@@ -72,15 +72,15 @@
       </stripes:link>
 </c:if></div>
 
-<jsp:useBean id="accountBean"
-	class="org.mybatis.jpetstore.web.actions.AccountActionBean"
-	scope="session" /> <c:if test="${accountBean != null}">
-	<div id="MyList"><c:if test="${accountBean.authenticated}">
-		<c:if test="${!empty accountBean.account.listOption}">
-			<%@ include file="IncludeMyList.jsp"%>
-		</c:if>
-	</c:if></div>
-</c:if>
+<div id="MyList">
+  <c:if test="${sessionScope.accountBean != null}">
+	<c:if test="${!sessionScope.accountBean.authenticated}">
+	  <c:if test="${!empty sessionScope.accountBean.account.listOption}">
+	    <%@ include file="IncludeMyList.jsp"%>
+      </c:if>
+	</c:if>
+  </c:if>
+</div>
 
 <div id="Separator">&nbsp;</div>
 </div>
