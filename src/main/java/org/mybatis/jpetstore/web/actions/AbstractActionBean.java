@@ -12,7 +12,7 @@ abstract class AbstractActionBean implements ActionBean, Serializable {
 
   protected static final String ERROR = "/WEB-INF/jsp/common/Error.jsp";
 
-  protected ActionBeanContext context;
+  protected transient ActionBeanContext context;
 
   protected void setMessage(String value) {
     context.getMessages().add(new SimpleMessage(value));
