@@ -22,6 +22,8 @@ import org.mybatis.jpetstore.service.CatalogService;
 @SessionScope
 public class AccountActionBean extends AbstractActionBean {
 
+  private static final long serialVersionUID = 5499663666155758178L;
+
   private static final String NEW_ACCOUNT = "/WEB-INF/jsp/account/NewAccountForm.jsp";
   private static final String EDIT_ACCOUNT = "/WEB-INF/jsp/account/EditAccountForm.jsp";
   private static final String SIGNON = "/WEB-INF/jsp/account/SignonForm.jsp";

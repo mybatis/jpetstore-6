@@ -15,6 +15,8 @@ import org.mybatis.jpetstore.service.CatalogService;
 @SessionScope
 public class CatalogActionBean extends AbstractActionBean {
 
+  private static final long serialVersionUID = 5849523372175050635L;
+
   private static final String MAIN = "/WEB-INF/jsp/catalog/Main.jsp";
   private static final String VIEW_CATEGORY = "/WEB-INF/jsp/catalog/Category.jsp";
   private static final String VIEW_PRODUCT = "/WEB-INF/jsp/catalog/Product.jsp";

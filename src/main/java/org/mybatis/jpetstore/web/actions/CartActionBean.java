@@ -17,6 +17,8 @@ import org.mybatis.jpetstore.service.CatalogService;
 @SessionScope
 public class CartActionBean extends AbstractActionBean {
 
+  private static final long serialVersionUID = -4038684592582714235L;
+
   private static final String VIEW_CART = "/WEB-INF/jsp/cart/Cart.jsp";
   private static final String CHECK_OUT = "/WEB-INF/jsp/cart/Checkout.jsp";
 
