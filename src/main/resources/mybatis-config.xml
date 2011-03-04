@@ -4,10 +4,6 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	<settings>
-		<!-- changes from the defaults -->
-		<setting name="lazyLoadingEnabled" value="false" />
-	</settings>
 	<typeAliases>
 		<typeAlias alias="account" type="org.mybatis.jpetstore.domain.Account" />
 		<typeAlias alias="category" type="org.mybatis.jpetstore.domain.Category" />
@@ -17,5 +13,4 @@
 		<typeAlias alias="product" type="org.mybatis.jpetstore.domain.Product" />
 		<typeAlias alias="sequence" type="org.mybatis.jpetstore.domain.Sequence" />
 	</typeAliases>
-
 </configuration>
