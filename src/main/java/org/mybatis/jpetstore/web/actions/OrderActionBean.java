@@ -47,6 +47,10 @@ public class OrderActionBean extends AbstractActionBean {
     return order.getOrderId();
   }
 
+  public void setOrderId(int orderId) {
+    order.setOrderId(orderId);
+  }
+
   public Order getOrder() {
     return order;
   }
