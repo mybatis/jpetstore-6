@@ -1,0 +1,13 @@
+Follow the next steps to run the sample on Tomcat 7.0
+
+- Install Eclipse
+- Run Eclipse
+- Add m2eclipse plugin to Eclipse (maven)
+- Add subclipse plugin to Eclipse (subversion)
+- Download and unzip Tomcat 7
+- In SVN add a new repository http://mybatis.googlecode.com/svn
+- In SVN go to sub-projects/jpetstore-6/trunk/
+- Mouse right click and select "Check out as Maven project"
+- Go to projects. Right click on JPetStore project and select "run on server"
+- Select Tomcat 7 Server and set your installation directory
+- JPetStore home page should be shown
