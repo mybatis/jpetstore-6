@@ -23,7 +23,7 @@ public class CartActionBean extends AbstractActionBean {
   private static final String CHECK_OUT = "/WEB-INF/jsp/cart/Checkout.jsp";
 
   @SpringBean
-  private CatalogService catalogService;
+  private transient CatalogService catalogService;
 
   private Cart cart = new Cart();
   private String workingItemId;

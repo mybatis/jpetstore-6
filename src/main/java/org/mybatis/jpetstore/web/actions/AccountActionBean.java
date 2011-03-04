@@ -32,9 +32,9 @@ public class AccountActionBean extends AbstractActionBean {
   private static final List<String> CATEGORY_LIST;
 
   @SpringBean
-  private AccountService accountService;
+  private transient AccountService accountService;
   @SpringBean
-  private CatalogService catalogService;
+  private transient CatalogService catalogService;
 
   private Account account = new Account();
   private List<Product> myList;

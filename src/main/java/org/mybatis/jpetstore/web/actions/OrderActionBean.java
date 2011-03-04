@@ -28,7 +28,7 @@ public class OrderActionBean extends AbstractActionBean {
   private static final List<String> CARD_TYPE_LIST;
 
   @SpringBean
-  private OrderService orderService;
+  private transient OrderService orderService;
 
   private Order order = new Order();
   private boolean shippingAddressRequired;

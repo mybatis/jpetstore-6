@@ -24,7 +24,7 @@ public class CatalogActionBean extends AbstractActionBean {
   private static final String SEARCH_PRODUCTS = "/WEB-INF/jsp/catalog/SearchProducts.jsp";
 
   @SpringBean
-  private CatalogService catalogService;
+  private transient CatalogService catalogService;
 
   private String keyword;
 
