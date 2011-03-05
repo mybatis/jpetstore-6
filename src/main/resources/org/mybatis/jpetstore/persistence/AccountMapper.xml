@@ -4,6 +4,8 @@
 
 <mapper namespace="org.mybatis.jpetstore.persistence.AccountMapper">
 
+  <cache />
+
   <select id="getAccountByUsername" parameterType="string" resultType="account">
     SELECT
           SIGNON.USERNAME,
