@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class CartItem implements Serializable {
+ 
   private static final long serialVersionUID = 6620528781626504362L;
 
   private Item item;

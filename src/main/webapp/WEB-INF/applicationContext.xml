@@ -48,7 +48,7 @@
     <!-- enable transaction demarcation with annotations -->
     <tx:annotation-driven />
 
-    <!-- define the SqlSessionFactory, notice that configLocation is not needed when you use MapperFactoryBean -->
+    <!-- define the SqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:mybatis-config.xml" />
