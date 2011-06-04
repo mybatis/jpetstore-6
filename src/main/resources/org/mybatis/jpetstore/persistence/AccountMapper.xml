@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.persistence.AccountMapper">
+
+  <cache />
+
+  <select id="getAccountByUsername" parameterType="string" resultType="Account">
+    SELECT
+          SIGNON.USERNAME,
+          ACCOUNT.EMAIL,
+          ACCOUNT.FIRSTNAME,
+          ACCOUNT.LASTNAME,
+          ACCOUNT.STATUS,
+          ACCOUNT.ADDR1 AS address1,
+          ACCOUNT.ADDR2 AS address2,
+          ACCOUNT.CITY,
+          ACCOUNT.STATE,
+          ACCOUNT.ZIP,
+          ACCOUNT.COUNTRY,
+          ACCOUNT.PHONE,
+          PROFILE.LANGPREF AS languagePreference,
+          PROFILE.FAVCATEGORY AS favouriteCategoryId,
+          PROFILE.MYLISTOPT AS listOption,
+          PROFILE.BANNEROPT AS bannerOption,
+          BANNERDATA.BANNERNAME
+    FROM ACCOUNT, PROFILE, SIGNON, BANNERDATA
+    WHERE ACCOUNT.USERID = #{username}
+      AND SIGNON.USERNAME = ACCOUNT.USERID
+      AND PROFILE.USERID = ACCOUNT.USERID
+      AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
+  </select>
+
+  <select id="getAccountByUsernameAndPassword" parameterType="Account" resultType="Account">
+    SELECT
+      SIGNON.USERNAME,
+      ACCOUNT.EMAIL,
+      ACCOUNT.FIRSTNAME,
+      ACCOUNT.LASTNAME,
+      ACCOUNT.STATUS,
+      ACCOUNT.ADDR1 AS address1,
+      ACCOUNT.ADDR2 AS address2,
+      ACCOUNT.CITY,
+      ACCOUNT.STATE,
+      ACCOUNT.ZIP,
+      ACCOUNT.COUNTRY,
+      ACCOUNT.PHONE,
+      PROFILE.LANGPREF AS languagePreference,
+      PROFILE.FAVCATEGORY AS favouriteCategoryId,
+      PROFILE.MYLISTOPT AS listOption,
+      PROFILE.BANNEROPT AS bannerOption,
+      BANNERDATA.BANNERNAME
+    FROM ACCOUNT, PROFILE, SIGNON, BANNERDATA
+    WHERE ACCOUNT.USERID = #{username}
+      AND SIGNON.PASSWORD = #{password}
+      AND SIGNON.USERNAME = ACCOUNT.USERID
+      AND PROFILE.USERID = ACCOUNT.USERID
+      AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
+  </select>
+
+  <update id="updateAccount" parameterType="Account">
+    UPDATE ACCOUNT SET
+      EMAIL = #{email},
+      FIRSTNAME = #{firstName},
+      LASTNAME = #{lastName},
+      STATUS = #{status},
+      ADDR1 = #{address1},
+      ADDR2 = #{address2,jdbcType=VARCHAR},
+      CITY = #{city},
+      STATE = #{state},
+      ZIP = #{zip},
+      COUNTRY = #{country},
+      PHONE = #{phone}
+    WHERE USERID = #{username}
+  </update>
+
+  <insert id="insertAccount" parameterType="Account">
+    INSERT INTO ACCOUNT
+      (EMAIL, FIRSTNAME, LASTNAME, STATUS, ADDR1, ADDR2, CITY, STATE, ZIP, COUNTRY, PHONE, USERID)
+    VALUES
+      (#{email}, #{firstName}, #{lastName}, #{status}, #{address1},  #{address2,jdbcType=VARCHAR}, #{city}, #{state}, #{zip}, #{country}, #{phone}, #{username})
+  </insert>
+
+  <!--  
+  TODO MyBatis 3 does not map booleans to integers
+  <update id="updateProfile" parameterType="Account">
+    UPDATE PROFILE SET
+      LANGPREF = #{languagePreference},
+      FAVCATEGORY = #{favouriteCategoryId},
+      MYLISTOPT = #{listOption},
+      BANNEROPT = #{bannerOption}
+    WHERE USERID = #{username}
+  </update>
+  -->
+
+  <update id="updateProfile" parameterType="Account">
+    UPDATE PROFILE SET
+      LANGPREF = #{languagePreference},
+      FAVCATEGORY = #{favouriteCategoryId}
+    WHERE USERID = #{username}
+  </update>
+
+  <!--  
+  TODO MyBatis 3 does not map booleans to integers
+  <insert id="insertProfile" parameterType="Account">
+    INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, MYLISTOPT, BANNEROPT, USERID)
+    VALUES (#{languagePreference}, #{favouriteCategoryId}, #{listOption}, #{bannerOption}, #{username})
+  </insert>
+  -->
+
+  <insert id="insertProfile" parameterType="Account">
+    INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, USERID)
+    VALUES (#{languagePreference}, #{favouriteCategoryId}, #{username})
+  </insert>
+
+  <update id="updateSignon" parameterType="Account">
+    UPDATE SIGNON SET PASSWORD = #{password}
+    WHERE USERNAME = #{username}
+  </update>
+
+  <insert id="insertSignon" parameterType="Account">
+    INSERT INTO SIGNON (PASSWORD,USERNAME)
+    VALUES (#{password}, #{username})
+  </insert>
+
+</mapper>

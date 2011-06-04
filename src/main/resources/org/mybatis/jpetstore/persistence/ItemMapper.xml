@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.persistence.ItemMapper">
+
+  <cache />
+
+  <select id="getItemListByProduct" parameterType="string" resultType="Item">
+    SELECT
+      I.ITEMID,
+      LISTPRICE,
+      UNITCOST,
+      SUPPLIER AS supplierId,
+      I.PRODUCTID AS "product.productId",
+      NAME AS "product.name",
+      DESCN AS "product.description",
+      CATEGORY AS "product.categoryId",
+      STATUS,
+      ATTR1 AS attribute1,
+      ATTR2 AS attribute2,
+      ATTR3 AS attribute3,
+      ATTR4 AS attribute4,
+      ATTR5 AS attribute5
+    FROM ITEM I, PRODUCT P
+    WHERE P.PRODUCTID = I.PRODUCTID
+    AND I.PRODUCTID = #{value}
+  </select>
+
+  <select id="getItem" parameterType="string" resultType="Item">
+    select
+      I.ITEMID,
+      LISTPRICE,
+      UNITCOST,
+      SUPPLIER AS supplierId,
+      I.PRODUCTID AS "product.productId",
+      NAME AS "product.name",
+      DESCN AS "product.description",
+      CATEGORY AS "product.categoryId",
+      STATUS,
+      ATTR1 AS attribute1,
+      ATTR2 AS attribute2,
+      ATTR3 AS attribute3,
+      ATTR4 AS attribute4,
+      ATTR5 AS attribute5,
+      QTY AS quantity
+    from ITEM I, INVENTORY V, PRODUCT P
+    where P.PRODUCTID = I.PRODUCTID
+      and I.ITEMID = V.ITEMID
+      and I.ITEMID = #{value}
+  </select>
+
+  <select id="getInventoryQuantity" parameterType="string" resultType="int">
+    SELECT QTY AS value
+    FROM INVENTORY
+    WHERE ITEMID = #{itemId}
+  </select>
+
+  <update id="updateInventoryQuantity" parameterType="map">
+    UPDATE INVENTORY SET
+      QTY = QTY - #{increment}
+    WHERE ITEMID = #{itemId}
+  </update>
+
+</mapper>

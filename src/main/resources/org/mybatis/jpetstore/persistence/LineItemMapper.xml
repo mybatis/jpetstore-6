@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.persistence.LineItemMapper">
+
+  <cache />
+
+  <select id="getLineItemsByOrderId" parameterType="int" resultType="LineItem">
+    SELECT
+      ORDERID,
+      LINENUM AS lineNumber,
+      ITEMID,
+      QUANTITY,
+      UNITPRICE
+    FROM LINEITEM
+    WHERE ORDERID = #{orderId}
+  </select>
+
+  <insert id="insertLineItem" parameterType="LineItem">
+    INSERT INTO LINEITEM (ORDERID, LINENUM, ITEMID, QUANTITY, UNITPRICE)
+    VALUES (#{orderId}, #{lineNumber}, #{itemId}, #{quantity}, #{unitPrice})
+  </insert>
+
+</mapper>
