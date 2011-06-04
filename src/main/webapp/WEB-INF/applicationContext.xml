@@ -51,7 +51,7 @@
     <!-- define the SqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <property name="typeAliasesPackage" value="org.mybatis.jpetstore.domain" />
     </bean>
 
     <!-- scan for mappers and let them be autowired -->

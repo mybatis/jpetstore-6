@@ -6,7 +6,7 @@
 
   <cache />
 
-  <select id="getLineItemsByOrderId" parameterType="int" resultType="lineItem">
+  <select id="getLineItemsByOrderId" parameterType="int" resultType="LineItem">
     SELECT
       ORDERID,
       LINENUM AS lineNumber,
@@ -17,7 +17,7 @@
     WHERE ORDERID = #{orderId}
   </select>
 
-  <insert id="insertLineItem" parameterType="lineItem">
+  <insert id="insertLineItem" parameterType="LineItem">
     INSERT INTO LINEITEM (ORDERID, LINENUM, ITEMID, QUANTITY, UNITPRICE)
     VALUES (#{orderId}, #{lineNumber}, #{itemId}, #{quantity}, #{unitPrice})
   </insert>

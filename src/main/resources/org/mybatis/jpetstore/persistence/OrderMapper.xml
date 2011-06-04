@@ -6,7 +6,7 @@
 
   <cache />
 
-  <select id="getOrder" resultType="order" parameterType="int">
+  <select id="getOrder" resultType="Order" parameterType="int">
     select
       BILLADDR1 AS billAddress1,
       BILLADDR2 AS billAddress2,
@@ -39,7 +39,7 @@
       AND ORDERS.ORDERID = ORDERSTATUS.ORDERID
   </select>
 
-  <select id="getOrdersByUsername" parameterType="string" resultType="order">
+  <select id="getOrdersByUsername" parameterType="string" resultType="Order">
     SELECT
       BILLADDR1 AS billAddress1,
       BILLADDR2 AS billAddress2,
@@ -73,7 +73,7 @@
     ORDER BY ORDERDATE
   </select>
 
-  <insert id="insertOrder" parameterType="order">
+  <insert id="insertOrder" parameterType="Order">
     INSERT INTO ORDERS (ORDERID, USERID, ORDERDATE, SHIPADDR1, SHIPADDR2, SHIPCITY, SHIPSTATE,
       SHIPZIP, SHIPCOUNTRY, BILLADDR1, BILLADDR2, BILLCITY, BILLSTATE, BILLZIP, BILLCOUNTRY,
       COURIER, TOTALPRICE, BILLTOFIRSTNAME, BILLTOLASTNAME, SHIPTOFIRSTNAME, SHIPTOLASTNAME,
@@ -84,7 +84,7 @@
       #{shipToFirstName}, #{shipToLastName}, #{creditCard}, #{expiryDate}, #{cardType}, #{locale})
   </insert>
 
-  <insert id="insertOrderStatus" parameterType="order">
+  <insert id="insertOrderStatus" parameterType="Order">
     INSERT INTO ORDERSTATUS (ORDERID, LINENUM, TIMESTAMP, STATUS)
     VALUES (#{orderId,jdbcType=NUMERIC}, #{orderId,jdbcType=NUMERIC}, #{orderDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>

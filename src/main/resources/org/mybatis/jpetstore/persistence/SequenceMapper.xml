@@ -6,13 +6,13 @@
 
   <cache />
 
-  <select id="getSequence" parameterType="sequence" resultType="sequence">
+  <select id="getSequence" parameterType="Sequence" resultType="Sequence">
     SELECT name, nextid
     FROM SEQUENCE
     WHERE NAME = #{name}
   </select>
 
-  <update id="updateSequence" parameterType="sequence">
+  <update id="updateSequence" parameterType="Sequence">
     UPDATE SEQUENCE
     SET NEXTID = #{nextId}
     WHERE NAME = #{name}

@@ -6,7 +6,7 @@
 
   <cache />
   
-  <select id="getCategory" parameterType="string" resultType="category">
+  <select id="getCategory" parameterType="string" resultType="Category">
     SELECT
       CATID AS categoryId,
       NAME,
@@ -15,7 +15,7 @@
     WHERE CATID = #{categoryId}
   </select>
 
-  <select id="getCategoryList" resultType="category">
+  <select id="getCategoryList" resultType="Category">
     SELECT
       CATID AS categoryId,
       NAME,

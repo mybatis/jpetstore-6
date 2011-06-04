@@ -6,7 +6,7 @@
 
   <cache />
 
-  <select id="getAccountByUsername" parameterType="string" resultType="account">
+  <select id="getAccountByUsername" parameterType="string" resultType="Account">
     SELECT
           SIGNON.USERNAME,
           ACCOUNT.EMAIL,
@@ -32,7 +32,7 @@
       AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
   </select>
 
-  <select id="getAccountByUsernameAndPassword" parameterType="account" resultType="account">
+  <select id="getAccountByUsernameAndPassword" parameterType="Account" resultType="Account">
     SELECT
       SIGNON.USERNAME,
       ACCOUNT.EMAIL,
@@ -59,7 +59,7 @@
       AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
   </select>
 
-  <update id="updateAccount" parameterType="account">
+  <update id="updateAccount" parameterType="Account">
     UPDATE ACCOUNT SET
       EMAIL = #{email},
       FIRSTNAME = #{firstName},
@@ -75,7 +75,7 @@
     WHERE USERID = #{username}
   </update>
 
-  <insert id="insertAccount" parameterType="account">
+  <insert id="insertAccount" parameterType="Account">
     INSERT INTO ACCOUNT
       (EMAIL, FIRSTNAME, LASTNAME, STATUS, ADDR1, ADDR2, CITY, STATE, ZIP, COUNTRY, PHONE, USERID)
     VALUES
@@ -84,7 +84,7 @@
 
   <!--  
   TODO MyBatis 3 does not map booleans to integers
-  <update id="updateProfile" parameterType="account">
+  <update id="updateProfile" parameterType="Account">
     UPDATE PROFILE SET
       LANGPREF = #{languagePreference},
       FAVCATEGORY = #{favouriteCategoryId},
@@ -94,7 +94,7 @@
   </update>
   -->
 
-  <update id="updateProfile" parameterType="account">
+  <update id="updateProfile" parameterType="Account">
     UPDATE PROFILE SET
       LANGPREF = #{languagePreference},
       FAVCATEGORY = #{favouriteCategoryId}
@@ -103,23 +103,23 @@
 
   <!--  
   TODO MyBatis 3 does not map booleans to integers
-  <insert id="insertProfile" parameterType="account">
+  <insert id="insertProfile" parameterType="Account">
     INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, MYLISTOPT, BANNEROPT, USERID)
     VALUES (#{languagePreference}, #{favouriteCategoryId}, #{listOption}, #{bannerOption}, #{username})
   </insert>
   -->
 
-  <insert id="insertProfile" parameterType="account">
+  <insert id="insertProfile" parameterType="Account">
     INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, USERID)
     VALUES (#{languagePreference}, #{favouriteCategoryId}, #{username})
   </insert>
 
-  <update id="updateSignon" parameterType="account">
+  <update id="updateSignon" parameterType="Account">
     UPDATE SIGNON SET PASSWORD = #{password}
     WHERE USERNAME = #{username}
   </update>
 
-  <insert id="insertSignon" parameterType="account">
+  <insert id="insertSignon" parameterType="Account">
     INSERT INTO SIGNON (PASSWORD,USERNAME)
     VALUES (#{password}, #{username})
   </insert>

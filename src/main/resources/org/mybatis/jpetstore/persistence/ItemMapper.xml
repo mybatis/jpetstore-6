@@ -6,7 +6,7 @@
 
   <cache />
 
-  <select id="getItemListByProduct" parameterType="string" resultType="item">
+  <select id="getItemListByProduct" parameterType="string" resultType="Item">
     SELECT
       I.ITEMID,
       LISTPRICE,
@@ -27,7 +27,7 @@
     AND I.PRODUCTID = #{value}
   </select>
 
-  <select id="getItem" parameterType="string" resultType="item">
+  <select id="getItem" parameterType="string" resultType="Item">
     select
       I.ITEMID,
       LISTPRICE,

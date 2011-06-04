@@ -6,7 +6,7 @@
 
   <cache />
 
-  <select id="getProduct" parameterType="string" resultType="product">
+  <select id="getProduct" parameterType="string" resultType="Product">
     SELECT
       PRODUCTID,
       NAME,
@@ -16,7 +16,7 @@
     WHERE PRODUCTID = #{productId}
   </select>
 
-  <select id="getProductListByCategory" parameterType="string" resultType="product">
+  <select id="getProductListByCategory" parameterType="string" resultType="Product">
     SELECT
       PRODUCTID,
       NAME,
@@ -26,7 +26,7 @@
     WHERE CATEGORY = #{value}
   </select>
 
-  <select id="searchProductList" parameterType="string" resultType="product">
+  <select id="searchProductList" parameterType="string" resultType="Product">
     select
       PRODUCTID,
       NAME,
