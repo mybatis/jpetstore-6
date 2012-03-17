@@ -17,10 +17,7 @@ public class AccountService {
   }
 
   public Account getAccount(String username, String password) {
-    Account account = new Account();
-    account.setUsername(username);
-    account.setPassword(password);
-    return accountMapper.getAccountByUsernameAndPassword(account);
+    return accountMapper.getAccountByUsernameAndPassword(username, password);
   }
 
   @Transactional

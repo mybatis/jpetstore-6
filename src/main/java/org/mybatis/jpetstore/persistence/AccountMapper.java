@@ -6,7 +6,7 @@ public interface AccountMapper {
 
   Account getAccountByUsername(String username);
 
-  Account getAccountByUsernameAndPassword(Account account);
+  Account getAccountByUsernameAndPassword(String username, String password);
 
   void insertAccount(Account account);
   
