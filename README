@@ -1,3 +1,16 @@
 JPetStore 6 is a full web application built on top of MyBatis 3, Spring 3 and Stripes. It is available for downloading in the downloads section of MyBatis project site. In this section we will walk through this sample to understand how is it built and learn how to run it.
 
 See: http://www.mybatis.org/spring/sample.html
+
+Follow the next steps to run the sample on Tomcat 7.0
+- Download and install a JDK, eclipse and tomcat 7
+- Run Eclipse
+- In eclipse, go to Help/Eclipse Marketplace
+- Install m2e plugin (maven)
+- Install m2e-wtp plugin (maven for wtp)
+- Check out the project from Git and import it into the workspace
+- A new project named "jpetstore-6" will be shown
+- Right click on jpetstore project and click on configure/convert to maven project
+- Right click on jpetstore project and select "run on server"
+- Select Tomcat 7 Server and set your installation directory
+- JPetStore home page should be shown
