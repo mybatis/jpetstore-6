@@ -21,7 +21,7 @@
 
   <cache />
 
-  <select id="getItemListByProduct" parameterType="string" resultType="Item">
+  <select id="getItemListByProduct" resultType="Item">
     SELECT
       I.ITEMID,
       LISTPRICE,
@@ -42,7 +42,7 @@
     AND I.PRODUCTID = #{value}
   </select>
 
-  <select id="getItem" parameterType="string" resultType="Item">
+  <select id="getItem" resultType="Item">
     select
       I.ITEMID,
       LISTPRICE,
@@ -65,13 +65,13 @@
       and I.ITEMID = #{value}
   </select>
 
-  <select id="getInventoryQuantity" parameterType="string" resultType="int">
+  <select id="getInventoryQuantity" resultType="int">
     SELECT QTY AS value
     FROM INVENTORY
     WHERE ITEMID = #{itemId}
   </select>
 
-  <update id="updateInventoryQuantity" parameterType="map">
+  <update id="updateInventoryQuantity">
     UPDATE INVENTORY SET
       QTY = QTY - #{increment}
     WHERE ITEMID = #{itemId}

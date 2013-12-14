@@ -21,7 +21,7 @@
 
   <cache />
   
-  <select id="getCategory" parameterType="string" resultType="Category">
+  <select id="getCategory" resultType="Category">
     SELECT
       CATID AS categoryId,
       NAME,

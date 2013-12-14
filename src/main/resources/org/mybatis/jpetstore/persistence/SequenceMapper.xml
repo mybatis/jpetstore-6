@@ -21,13 +21,13 @@
 
   <cache />
 
-  <select id="getSequence" parameterType="Sequence" resultType="Sequence">
+  <select id="getSequence" resultType="Sequence">
     SELECT name, nextid
     FROM SEQUENCE
     WHERE NAME = #{name}
   </select>
 
-  <update id="updateSequence" parameterType="Sequence">
+  <update id="updateSequence">
     UPDATE SEQUENCE
     SET NEXTID = #{nextId}
     WHERE NAME = #{name}

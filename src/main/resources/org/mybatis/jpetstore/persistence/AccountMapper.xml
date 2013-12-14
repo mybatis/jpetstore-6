@@ -21,7 +21,7 @@
 
   <cache />
 
-  <select id="getAccountByUsername" parameterType="string" resultType="Account">
+  <select id="getAccountByUsername" resultType="Account">
     SELECT
           SIGNON.USERNAME,
           ACCOUNT.EMAIL,
@@ -47,7 +47,7 @@
       AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
   </select>
 
-  <select id="getAccountByUsernameAndPassword" parameterType="Account" resultType="Account">
+  <select id="getAccountByUsernameAndPassword" resultType="Account">
     SELECT
       SIGNON.USERNAME,
       ACCOUNT.EMAIL,

@@ -21,7 +21,7 @@
 
   <cache />
 
-  <select id="getLineItemsByOrderId" parameterType="int" resultType="LineItem">
+  <select id="getLineItemsByOrderId" resultType="LineItem">
     SELECT
       ORDERID,
       LINENUM AS lineNumber,
@@ -32,7 +32,7 @@
     WHERE ORDERID = #{orderId}
   </select>
 
-  <insert id="insertLineItem" parameterType="LineItem">
+  <insert id="insertLineItem">
     INSERT INTO LINEITEM (ORDERID, LINENUM, ITEMID, QUANTITY, UNITPRICE)
     VALUES (#{orderId}, #{lineNumber}, #{itemId}, #{quantity}, #{unitPrice})
   </insert>
