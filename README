@@ -1,8 +1,10 @@
+# Readme
 JPetStore 6 is a full web application built on top of MyBatis 3, Spring 3 and Stripes. It is available for downloading in the downloads section of MyBatis project site. In this section we will walk through this sample to understand how is it built and learn how to run it.
 
 See: http://www.mybatis.org/spring/sample.html
 
-Follow the next steps to run the sample on Tomcat 7.0
+## Running sample under eclipse
+Follow the next steps to run the sample on Tomcat 7.0, by using eclipse IDE
 - Download and install a JDK, eclipse and tomcat 7
 - Run Eclipse
 - In eclipse, go to Help/Eclipse Marketplace
@@ -14,3 +16,25 @@ Follow the next steps to run the sample on Tomcat 7.0
 - Right click on jpetstore project and select "run on server"
 - Select Tomcat 7 Server and set your installation directory
 - JPetStore home page should be shown
+
+## Running with Tomcat 6
+Running JPetStore sample under Tomcat 6 (using maven).
+- Clone this repository
+- Open command prompt/shell and change to cloned directory
+- Issue following command to run project using Tomcat 6
+
+mvm clean tomcat:run
+
+- Run application in browser http://localhost:8080/jpetstore/ 
+- Press Ctrl-C to stop the server.
+
+## Running with Tomcat 7
+Running JPetStore sample under Tomcat 6 (using maven).
+- Clone this repository
+- Open command prompt/shell and change to cloned directory
+- Issue following command to run project using Tomcat 7
+
+mvm clean tomcat7:run
+
+- Run application in browser http://localhost:8080/jpetstore/ 
+- Press Ctrl-C to stop the server.
