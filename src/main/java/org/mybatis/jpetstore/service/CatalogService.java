@@ -16,6 +16,7 @@
 
 package org.mybatis.jpetstore.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.jpetstore.domain.Category;
@@ -57,9 +58,12 @@ public class CatalogService {
     return productMapper.getProductListByCategory(categoryId);
   }
 
-  // TODO enable using more than one keyword
-  public List<Product> searchProductList(String keyword) {
-    return productMapper.searchProductList("%" + keyword.toLowerCase() + "%");
+  public List<Product> searchProductList(String keywords) {
+    List<Product> products = new ArrayList<Product>();
+    for(String keyword : keywords.split("\\s+")){
+      products.addAll(productMapper.searchProductList("%" + keyword.toLowerCase() + "%"));
+    }
+    return products;
   }
 
   public List<Item> getItemListByProduct(String productId) {
