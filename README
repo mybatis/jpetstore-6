@@ -23,18 +23,18 @@ Running JPetStore sample under Tomcat 6 (using maven).
 - Open command prompt/shell and change to cloned directory
 - Issue following command to run project using Tomcat 6
 
-mvm clean tomcat:run
+mvn clean tomcat:run
 
 - Run application in browser http://localhost:8080/jpetstore/ 
 - Press Ctrl-C to stop the server.
 
 ## Running with Tomcat 7
-Running JPetStore sample under Tomcat 6 (using maven).
+Running JPetStore sample under Tomcat 7 (using maven).
 - Clone this repository
 - Open command prompt/shell and change to cloned directory
 - Issue following command to run project using Tomcat 7
 
-mvm clean tomcat7:run
+mvn clean tomcat7:run
 
 - Run application in browser http://localhost:8080/jpetstore/ 
 - Press Ctrl-C to stop the server.
