@@ -46,7 +46,12 @@
       <url>gitsite:git@github.com/mybatis/jpetstore.git</url>
     </site>
   </distributionManagement>
-  
+
+  <properties>
+    <maven.compiler.source>1.5</maven.compiler.source>
+    <maven.compiler.target>1.5</maven.compiler.target>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.mybatis</groupId>
@@ -104,14 +109,6 @@
         <artifactId>maven-resources-plugin</artifactId>
         <configuration>
           <overwrite>true</overwrite>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
         </configuration>
       </plugin>
       <plugin>
