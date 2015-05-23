@@ -29,7 +29,7 @@
   <scm>
     <url>http://github.com/mybatis/jpetstore</url>
     <connection>scm:git:ssh://github.com/mybatis/jpetstore.git</connection>
-    <developerConnection>scm:git:git+ssh://git@github.com/mybatis/jpetstore.git</developerConnection>
+    <developerConnection>scm:git:ssh://git@github.com/mybatis/jpetstore.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
@@ -46,11 +46,12 @@
       <url>gitsite:git@github.com/mybatis/jpetstore.git</url>
     </site>
   </distributionManagement>
+  
   <dependencies>
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.2.8</version>
+      <version>3.3.0</version>
     </dependency>
     <dependency>
       <groupId>org.mybatis</groupId>
