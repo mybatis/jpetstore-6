@@ -21,7 +21,7 @@
   <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>24</version>
+    <version>25-SNAPSHOT</version>
   </parent>
 
   <groupId>org.mybatis</groupId>
@@ -72,12 +72,12 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>4.1.6.RELEASE</version>
+      <version>4.1.7.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>4.1.6.RELEASE</version>
+      <version>4.1.7.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.stripes</groupId>
