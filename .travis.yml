@@ -2,5 +2,5 @@ language: java
 jdk:
   - oraclejdk8
   
-install: false  
-script: mvn test -Danimal.sniffer.skip  
+install: "mvn test -Danimal.sniffer.skip"
+script: "mvn test -Danimal.sniffer.skip"  
