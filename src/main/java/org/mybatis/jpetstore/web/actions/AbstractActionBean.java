@@ -37,10 +37,12 @@ abstract class AbstractActionBean implements ActionBean, Serializable {
     context.getMessages().add(new SimpleMessage(value));
   }
   
+  @Override
   public ActionBeanContext getContext() {
     return context;
   }
 
+  @Override
   public void setContext(ActionBeanContext context) {
     this.context = context;
   }
