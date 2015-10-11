@@ -62,6 +62,7 @@ public class Product implements Serializable {
     this.description = description;
   }
 
+  @Override
   public String toString() {
     return getName();
   }

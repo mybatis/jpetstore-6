@@ -53,6 +53,7 @@ public class Category implements Serializable {
     this.description = description;
   }
 
+  @Override
   public String toString() {
     return getCategoryId();
   }
