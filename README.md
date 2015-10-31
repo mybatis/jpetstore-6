@@ -12,6 +12,11 @@ JPetStore 6 is a full web application built on top of MyBatis 3, Spring 3 and St
 
 See: http://www.mybatis.org/spring/sample.html
 
+## Other versions that you may want to know about
+
+![JPetstore on top of Spring, Spring MVC, MyBatis 3, and Spring Security](https://github.com/making/spring-jpetstore)
+![JPetstore with Spring boot](https://github.com/igor-baiborodine/jpetstore-6)
+
 ## Running with Tomcat 7
 Running JPetStore sample under Tomcat 7 (using maven).
 - Clone this repository
