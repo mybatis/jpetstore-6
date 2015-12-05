@@ -26,9 +26,7 @@
 		</init-param>
 		<init-param>
 			<param-name>Extension.Packages</param-name>
-			<param-value>
-		        net.sourceforge.stripes.integration.spring
-		    </param-value>
+			<param-value>net.sourceforge.stripes.integration.spring</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
