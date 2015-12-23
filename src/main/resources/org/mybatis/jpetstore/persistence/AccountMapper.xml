@@ -97,36 +97,24 @@
       (#{email}, #{firstName}, #{lastName}, #{status}, #{address1},  #{address2,jdbcType=VARCHAR}, #{city}, #{state}, #{zip}, #{country}, #{phone}, #{username})
   </insert>
 
-  <!--  
-  TODO MyBatis 3 does not map booleans to integers
   <update id="updateProfile" parameterType="Account">
-    UPDATE PROFILE SET
-      LANGPREF = #{languagePreference},
-      FAVCATEGORY = #{favouriteCategoryId},
-      MYLISTOPT = #{listOption},
-      BANNEROPT = #{bannerOption}
-    WHERE USERID = #{username}
-  </update>
-  -->
+    <bind name="listOptionValue" value="_parameter.isListOption() ? 1 : 0" />
+    <bind name="bannerOptionValue" value="_parameter.isBannerOption() ? 1 : 0" />
 
-  <update id="updateProfile" parameterType="Account">
     UPDATE PROFILE SET
-      LANGPREF = #{languagePreference},
-      FAVCATEGORY = #{favouriteCategoryId}
+    LANGPREF = #{languagePreference},
+    FAVCATEGORY = #{favouriteCategoryId},
+    MYLISTOPT = #{listOptionValue},
+    BANNEROPT = #{bannerOptionValue}
     WHERE USERID = #{username}
   </update>
 
-  <!--  
-  TODO MyBatis 3 does not map booleans to integers
   <insert id="insertProfile" parameterType="Account">
+    <bind name="listOptionValue" value="_parameter.isListOption() ? 1 : 0" />
+    <bind name="bannerOptionValue" value="_parameter.isBannerOption() ? 1 : 0" />
+
     INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, MYLISTOPT, BANNEROPT, USERID)
-    VALUES (#{languagePreference}, #{favouriteCategoryId}, #{listOption}, #{bannerOption}, #{username})
-  </insert>
-  -->
-
-  <insert id="insertProfile" parameterType="Account">
-    INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, USERID)
-    VALUES (#{languagePreference}, #{favouriteCategoryId}, #{username})
+    VALUES (#{languagePreference}, #{favouriteCategoryId}, #{listOptionValue}, #{bannerOptionValue}, #{username})
   </insert>
 
   <update id="updateSignon" parameterType="Account">
