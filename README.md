@@ -2,7 +2,7 @@ MyBatis JPetStore
 =================
 
 [![Build Status](https://travis-ci.org/mybatis/jpetstore-6.svg?branch=master)](https://travis-ci.org/mybatis/jpetstore-6)
-[![Coverage Status](https://coveralls.io/repos/mybatis/jpetstore-6/badge.svg?branch=master&service=github)](https://coveralls.io/github/mybatis/jpetstore-6?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/mybatis/jpetstore-6/badge.svg?branch=master)](https://coveralls.io/github/mybatis/jpetstore-6?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/5619aafaa193340f320005fe/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5619aafaa193340f320005fe)
 [![Apache 2](http://img.shields.io/badge/license-Apache%202-red.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
