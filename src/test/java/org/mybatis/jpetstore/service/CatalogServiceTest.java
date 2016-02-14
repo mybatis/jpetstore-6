@@ -61,9 +61,9 @@ public class CatalogServiceTest {
     //when
     when(productMapper.searchProductList("%a%")).thenReturn(l1);
     when(productMapper.searchProductList("%b%")).thenReturn(l2);
+    List<Product> r = catalogService.searchProductList(keywords);
     
     //then
-    List<Product> r = catalogService.searchProductList(keywords);
     assertEquals(2, r.size());
     assertSame(r.get(0), l1.get(0));
     assertSame(r.get(1), l2.get(0));
