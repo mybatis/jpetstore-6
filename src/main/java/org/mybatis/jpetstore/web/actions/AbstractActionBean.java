@@ -25,7 +25,7 @@ import net.sourceforge.stripes.action.SimpleMessage;
  * @author Eduardo Macarron
  *
  */
-abstract class AbstractActionBean implements ActionBean, Serializable {
+public abstract class AbstractActionBean implements ActionBean, Serializable {
 
   private static final long serialVersionUID = -1767714708233127983L;
 
