@@ -17,20 +17,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.mybatis.jpetstore.persistence.SequenceMapper">
+<mapper namespace="org.mybatis.jpetstore.mapper.LineItemMapper">
 
   <cache />
 
-  <select id="getSequence" resultType="Sequence">
-    SELECT name, nextid
-    FROM SEQUENCE
-    WHERE NAME = #{name}
+  <select id="getLineItemsByOrderId" resultType="LineItem">
+    SELECT
+      ORDERID,
+      LINENUM AS lineNumber,
+      ITEMID,
+      QUANTITY,
+      UNITPRICE
+    FROM LINEITEM
+    WHERE ORDERID = #{orderId}
   </select>
 
-  <update id="updateSequence">
-    UPDATE SEQUENCE
-    SET NEXTID = #{nextId}
-    WHERE NAME = #{name}
-  </update>
+  <insert id="insertLineItem">
+    INSERT INTO LINEITEM (ORDERID, LINENUM, ITEMID, QUANTITY, UNITPRICE)
+    VALUES (#{orderId}, #{lineNumber}, #{itemId}, #{quantity}, #{unitPrice})
+  </insert>
 
 </mapper>

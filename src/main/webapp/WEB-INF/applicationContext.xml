@@ -51,6 +51,6 @@
 
     <!-- scan for mappers and let them be autowired -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="org.mybatis.jpetstore.persistence" />
+        <property name="basePackage" value="org.mybatis.jpetstore.mapper" />
     </bean>
 </beans>
