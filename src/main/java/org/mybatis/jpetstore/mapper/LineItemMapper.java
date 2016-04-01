@@ -13,24 +13,20 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.mybatis.jpetstore.persistence;
+package org.mybatis.jpetstore.mapper;
 
 import java.util.List;
 
-import org.mybatis.jpetstore.domain.Order;
+import org.mybatis.jpetstore.domain.LineItem;
 
 /**
  * @author Eduardo Macarron
  *
  */
-public interface OrderMapper {
+public interface LineItemMapper {
 
-  List<Order> getOrdersByUsername(String username);
+  List<LineItem> getLineItemsByOrderId(int orderId);
 
-  Order getOrder(int orderId);
-  
-  void insertOrder(Order order);
-  
-  void insertOrderStatus(Order order);
+  void insertLineItem(LineItem lineItem);
 
 }

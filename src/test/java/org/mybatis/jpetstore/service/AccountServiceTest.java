@@ -24,7 +24,7 @@ import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mybatis.jpetstore.domain.Account;
-import org.mybatis.jpetstore.persistence.AccountMapper;
+import org.mybatis.jpetstore.mapper.AccountMapper;
 
 /**
  * @author Eduardo Macarron

@@ -24,10 +24,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.LineItem;
 import org.mybatis.jpetstore.domain.Order;
-import org.mybatis.jpetstore.persistence.ItemMapper;
-import org.mybatis.jpetstore.persistence.LineItemMapper;
-import org.mybatis.jpetstore.persistence.OrderMapper;
-import org.mybatis.jpetstore.persistence.SequenceMapper;
+import org.mybatis.jpetstore.mapper.ItemMapper;
+import org.mybatis.jpetstore.mapper.LineItemMapper;
+import org.mybatis.jpetstore.mapper.OrderMapper;
+import org.mybatis.jpetstore.mapper.SequenceMapper;
 
 import java.util.ArrayList;
 import java.util.List;

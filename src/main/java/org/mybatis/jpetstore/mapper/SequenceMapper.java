@@ -13,20 +13,16 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.mybatis.jpetstore.persistence;
+package org.mybatis.jpetstore.mapper;
 
-import java.util.List;
-
-import org.mybatis.jpetstore.domain.Category;
+import org.mybatis.jpetstore.domain.Sequence;
 
 /**
  * @author Eduardo Macarron
  *
  */
-public interface CategoryMapper {
+public interface SequenceMapper {
 
-  List<Category> getCategoryList();
-
-  Category getCategory(String categoryId);
-
+  Sequence getSequence(Sequence sequence);
+  void updateSequence(Sequence sequence);
 }

@@ -21,9 +21,9 @@ import java.util.List;
 import org.mybatis.jpetstore.domain.Category;
 import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.Product;
-import org.mybatis.jpetstore.persistence.CategoryMapper;
-import org.mybatis.jpetstore.persistence.ItemMapper;
-import org.mybatis.jpetstore.persistence.ProductMapper;
+import org.mybatis.jpetstore.mapper.CategoryMapper;
+import org.mybatis.jpetstore.mapper.ItemMapper;
+import org.mybatis.jpetstore.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

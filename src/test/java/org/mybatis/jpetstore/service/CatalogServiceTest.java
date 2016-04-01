@@ -28,9 +28,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mybatis.jpetstore.domain.Product;
-import org.mybatis.jpetstore.persistence.CategoryMapper;
-import org.mybatis.jpetstore.persistence.ItemMapper;
-import org.mybatis.jpetstore.persistence.ProductMapper;
+import org.mybatis.jpetstore.mapper.CategoryMapper;
+import org.mybatis.jpetstore.mapper.ItemMapper;
+import org.mybatis.jpetstore.mapper.ProductMapper;
 
 /**
  * @author Eduardo Macarron
