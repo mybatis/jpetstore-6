@@ -23,7 +23,7 @@
 
   <body>
     <menu name="Reference Documentation">
-      <item name="サンプルコード" href="sample.html"/>
+      <item name="サンプルコード" href="index.html"/>
     </menu>
 
     <menu ref="reports"/>

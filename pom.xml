@@ -45,7 +45,7 @@
   </issueManagement>
   <ciManagement>
     <system>Travis CI</system>
-    <url>https://travis-ci.org/jpetstore/guice</url>
+    <url>https://travis-ci.org/mybatis/jpetstore-6</url>
   </ciManagement>
   <distributionManagement>
     <site>

@@ -23,7 +23,7 @@
 
   <body>
     <menu name="Manual de Referencia">
-      <item name="Código de ejemplo" href="sample.html"/>
+      <item name="Código de ejemplo" href="index.html"/>
     </menu>
 
     <menu ref="reports"/>

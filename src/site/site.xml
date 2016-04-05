@@ -24,7 +24,7 @@
 
   <body>
     <menu name="Reference Documentation">
-      <item name="Introduction" href="sample.html"/>
+      <item name="Introduction" href="index.html"/>
     </menu>
 
     <menu ref="reports"/>

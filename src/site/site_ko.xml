@@ -23,7 +23,7 @@
 
   <body>
     <menu name="레퍼런스 문서">
-      <item name="샘플코드" href="sample.html"/>
+      <item name="샘플코드" href="index.html"/>
     </menu>
 
     <menu ref="reports"/>
