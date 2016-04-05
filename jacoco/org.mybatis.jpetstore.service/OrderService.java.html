@@ -93,7 +93,7 @@ import org.springframework.transaction.annotation.Transactional;
 <span class="nc" id="L93">    sequence = (Sequence) sequenceMapper.getSequence(sequence);</span>
 <span class="nc bnc" id="L94" title="All 2 branches missed.">    if (sequence == null) {</span>
 <span class="nc" id="L95">      throw new RuntimeException(&quot;Error: A null sequence was returned from the database (could not get next &quot; + name</span>
-<span class="nc" id="L96">          + &quot; sequence).&quot;);</span>
+          + &quot; sequence).&quot;);
     }
 <span class="nc" id="L98">    Sequence parameterObject = new Sequence(name, sequence.getNextId() + 1);</span>
 <span class="nc" id="L99">    sequenceMapper.updateSequence(parameterObject);</span>

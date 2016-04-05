@@ -62,7 +62,7 @@ import org.mybatis.jpetstore.service.CatalogService;
   public Resolution addItemToCart() {
 <span class="nc bnc" id="L63" title="All 2 branches missed.">    if (cart.containsItemId(workingItemId)) {</span>
 <span class="nc" id="L64">      cart.incrementQuantityByItemId(workingItemId);</span>
-<span class="nc" id="L65">    } else {</span>
+    } else {
       // isInStock is a &quot;real-time&quot; property that must be updated
       // every time an item is added to the cart, even if other
       // item details are cached.
@@ -101,8 +101,8 @@ import org.mybatis.jpetstore.service.CatalogService;
         }
 <span class="nc" id="L102">      } catch (Exception e) {</span>
         //ignore parse exceptions on purpose
-      }
-    }
+<span class="nc" id="L104">      }</span>
+<span class="nc" id="L105">    }</span>
 
 <span class="nc" id="L107">    return new ForwardResolution(VIEW_CART);</span>
   }
