@@ -36,6 +36,18 @@
         section of MyBatis project site.
         In this section we will walk through this sample to understand how is it built and learn how to run it.
       </p>
+      
+      <subsection name="Translations">
+        <p>Users can read this doc in following translations:</p>
+        <ul class="i18n">
+          <li class="es"><a href="./es/index.html">Español</a></li>
+          <li class="ja"><a href="./ja/index.html">日本語</a></li>
+          <li class="ko"><a href="./ko/index.html">한국어</a></li>
+        </ul>
+        <p>Do you want to read about MyBatis in your own native language? File an issue providing patches with your
+        mother tongue documentation!</p>
+      </subsection>
+      
       <subsection name="Purpose">
       	<p>
       	This new JPetStore comes with the same idea in mind than its predecessors: <strong>keep it simple</strong>. 
@@ -437,18 +449,7 @@ public interface OrderMapper {
 		either, you can run the sample from your favorite IDE or the command line.
         </p>
       </subsection>
-      
-      <subsection name="Translations">
-        <p>Users can read this doc in following translations:</p>
-        <ul class="i18n">
-          <li class="es"><a href="./es/index.html">Español</a></li>
-          <li class="ja"><a href="./ja/index.html">日本語</a></li>
-          <li class="ko"><a href="./ko/index.html">한국어</a></li>
-        </ul>
-        <p>Do you want to read about MyBatis in your own native language? File an issue providing patches with your
-        mother tongue documentation!</p>
-      </subsection>
-      
+          
     </section>
   </body>
 </document>
