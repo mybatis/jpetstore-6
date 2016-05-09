@@ -88,12 +88,12 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>4.2.5.RELEASE</version>
+      <version>4.2.6.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>4.2.5.RELEASE</version>
+      <version>4.2.6.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.stripes</groupId>
