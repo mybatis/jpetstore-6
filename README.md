@@ -20,13 +20,13 @@ Essentials
 - JPetstore on top of Spring, Spring MVC, MyBatis 3, and Spring Security https://github.com/making/spring-jpetstore
 - JPetstore with Vaadin and Spring Boot with Java Config https://github.com/igor-baiborodine/jpetstore-6-vaadin-spring-boot
 
-## Running with Tomcat 7
-Running JPetStore sample under Tomcat 7 (using maven).
+## Running with Tomcat
+Running JPetStore sample under Tomcat (using maven).
 - Clone this repository
 - Open command prompt/shell and change to cloned directory
 - Issue following command to run project using Tomcat 7
 
-mvn clean tomcat7:run
+mvn clean tomcat:run
 
 - Run application in browser http://localhost:8080/jpetstore/ 
 - Press Ctrl-C to stop the server.
