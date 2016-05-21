@@ -24,7 +24,7 @@ Essentials
 Running JPetStore sample under Tomcat (using maven).
 - Clone this repository
 - Open command prompt/shell and change to cloned directory
-- Issue following command to run project using Tomcat 7
+- Issue following command to run project using Tomcat
 
 mvn clean tomcat:run
 
