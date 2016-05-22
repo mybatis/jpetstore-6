@@ -31,7 +31,7 @@
     <section name="Código de ejemplo">
       <p>
         JPetStore 6 es una aplicación web completa construida sobre MyBatis 3,
-      	<a href="http://www.springsource.org">Spring 3</a> y <a href="http://www.stripesframework.org/">Stripes</a>.
+      	<a href="http://projects.spring.io/spring-framework/">Spring 4</a> y <a href="http://www.stripesframework.org/">Stripes</a>.
         Está disponible para su descarga en la sección de
         <a href="https://github.com/mybatis/jpetstore-6/releases">downloads</a> del repositorio Github de MyBatis 3.
         En esta sección haremos un recorrido por este ejemplo para comprender cómo está construido y cómo ejecutarlo.
@@ -242,9 +242,7 @@ SUM:                            58            823            612           3464
       </p>
 
 <source><![CDATA[
-<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-  <property name="basePackage" value="org.mybatis.jpetstore.mapper" />
-</bean>
+<mybatis:scan base-package="org.mybatis.jpetstore.mapper" />
 ]]></source>
 
       <p>

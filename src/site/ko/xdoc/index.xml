@@ -29,7 +29,7 @@
 
   <body>
     <section name="Sample Code">
-      <p>JPetStore 6은 마이바티스 3, <a href="http://www.springsource.org">스프링 3</a> 과 
+      <p>JPetStore 6은 마이바티스 3, <a href="http://projects.spring.io/spring-framework/">스프링 4</a> 과
       <a href="http://www.stripesframework.org/">스트라이프(Stripes)</a>을 사용하는 완전한 웹 애플리케이션이다.
        마이바티스 프로젝트 사이트에서 <a href="https://github.com/mybatis/jpetstore-6/releases">다운로드(downloads)</a> 
        페이지에서 다운로드가 가능하다. 여기서는 샘플을 빌드하는 방법을 이해하고 실행하는 방법에 대해 배워볼것이다. </p>
@@ -218,9 +218,7 @@ SUM:                            58            823            612           3464
        스프링의 컴포넌트 스캔과 유사하게 검색할 기본 패키지를 설정해야 한다. </p>
 
 <source><![CDATA[
-<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-  <property name="basePackage" value="org.mybatis.jpetstore.mapper" />
-</bean>
+<mybatis:scan base-package="org.mybatis.jpetstore.mapper" />
 ]]></source>
 
       <p>매퍼 XML파일을 작성할때 좀더 작성하기 수월하도록 하기 위해 빈의 짧은 별칭을 사용하고자 할것이다. 

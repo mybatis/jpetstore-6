@@ -30,7 +30,7 @@
     <section name="Sample Code">
       <p>
       	JPetStore 6 is a full web application built on top of MyBatis 3,
-      	<a href="http://www.springsource.org">Spring 3</a> and <a href="http://www.stripesframework.org/">Stripes</a>.
+      	<a href="http://projects.spring.io/spring-framework/">Spring 4</a> and <a href="http://www.stripesframework.org/">Stripes</a>.
         It is available for download in the
         <a href="https://github.com/mybatis/jpetstore-6/releases">downloads</a>
         section of MyBatis project site.
@@ -245,9 +245,7 @@ SUM:                            58            823            612           3464
       </p>
 
 <source><![CDATA[
-<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-  <property name="basePackage" value="org.mybatis.jpetstore.mapper" />
-</bean>
+<mybatis:scan base-package="org.mybatis.jpetstore.mapper" />
 ]]></source>
 
       <p>To save some writing when building our mapper xml files we would want to be able to use short
