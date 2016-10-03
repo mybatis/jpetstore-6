@@ -16,11 +16,11 @@
 package org.mybatis.jpetstore.service;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.ArgumentMatchers.eq;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mybatis.jpetstore.domain.Account;
@@ -48,9 +48,9 @@ public class AccountServiceTest {
     accountService.insertAccount(account);
     
     //then
-    verify(accountMapper).insertAccount(Matchers.eq(account));
-    verify(accountMapper).insertProfile(Matchers.eq(account));
-    verify(accountMapper).insertSignon(Matchers.eq(account));
+    verify(accountMapper).insertAccount(eq(account));
+    verify(accountMapper).insertProfile(eq(account));
+    verify(accountMapper).insertSignon(eq(account));
   }
 
 }
