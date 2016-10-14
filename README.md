@@ -21,12 +21,39 @@ Essentials
 - JPetstore with Vaadin and Spring Boot with Java Config https://github.com/igor-baiborodine/jpetstore-6-vaadin-spring-boot
 
 ## Running with Tomcat
-Running JPetStore sample under Tomcat (using maven).
-- Clone this repository
-- Open command prompt/shell and change to cloned directory
-- Issue following command to run project using Tomcat
+Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://codehaus-cargo.github.io/cargo/Maven2+plugin.html)).
 
-mvn clean tomcat:run
+- Clone this repository
+
+  ```
+  $ git clone https://github.com/mybatis/jpetstore-6.git
+  ```
+
+- Build war file
+
+  ```
+  $ cd jpetstore-6
+  $ mvn clean package
+  ```
+
+- Startup the Tomcat server and deploy web application
+
+  ```
+  $ mvn cargo:run
+  ```
+
+  > Note:
+  >
+  > We provide some maven profiles as follow:
+  >
+  > * tomcat90 : Running under the Tomcat 9.0
+  > * tomcat85 : Running under the Tomcat 8.5 (default profile)
+  > * tomcat80 : Running under the Tomcat 8.0
+  > * tomcat70 : Running under the Tomcat 7.0
+  >
+  > ```
+  > $ mvn cargo:run -P tomcat90
+  > ```
 
 - Run application in browser http://localhost:8080/jpetstore/ 
 - Press Ctrl-C to stop the server.
