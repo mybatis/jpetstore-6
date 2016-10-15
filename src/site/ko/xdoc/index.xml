@@ -392,11 +392,7 @@ public interface OrderMapper {
       have the sample running under Tomcat:
         </p>
         <ul>
-          <li>Clone the repo https://github.com/mybatis/jpetstore-6.git</li>
-          <li>Open command prompt/shell and change to cloned directory</li>
-          <li>Issue following command to run project using Tomcat 7: mvn clean tomcat7:run</li>
-          <li>Run application in browser http://localhost:8080/jpetstore/</li>
-          <li>Press Ctrl-C to stop the server.</li>
+          <li><a href="https://github.com/mybatis/jpetstore-6#running-with-tomcat" target="how-to-run">여기를</a> 클릭하십시오</li>
         </ul>
         <p>실행할 준비가 되었다면 스스로 원하는 것을 변경해보자. </p>
         <p>

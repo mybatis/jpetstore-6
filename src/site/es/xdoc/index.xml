@@ -428,11 +428,7 @@ public interface OrderMapper {
         <p>Te prenguntarás. ¿Esto funciona? ¡Sí! Ejecutémoslo.</p>
         <p>Asumiendo que tienes un PC limpio estos son los pasos que debes seguir para ejecutar el ejemplo en Tomcat.</p>
         <ul>
-          <li>Clone el repo https://github.com/mybatis/jpetstore-6.git</li>
-          <li>Abre una shell y ve al directorio donde has clonado el proyecto</li>
-          <li>Ejecuta este comando: mvn clean tomcat7:run</li>
-          <li>Navega a la siguiente dirección en tu navegador http://localhost:8080/jpetstore/</li>
-          <li>Pulsa Ctrl-C para parar el servidor.</li>
+          <li>Vea <a href="https://github.com/mybatis/jpetstore-6#running-with-tomcat" target="how-to-run">aquí</a></li>
         </ul>
 
         <p>

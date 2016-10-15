@@ -388,17 +388,7 @@ public interface OrderMapper {
         <p>クリーンなコンピューターを持っているとして、Eclipse 上の Tomcat を使ってサンプルを実行する手順を下記に示します。
         </p>
         <ul>
-          <li>JDK 6 以降をダウンロードしてインストールします。</li>
-          <li>Eclipse をダウンロードして解凍します。</li>
-          <li>Tomcat をダウンロードして解凍します。</li>
-          <li>Eclipse を起動します。</li>
-          <li>新規のリポジトリ "https://github.com/mybatis/jpetstore-6.git" を追加します。</li>
-          <li>右クリックして "Check out" を選択し、プロジェクト名 "jpetstore" を入力します。</li>
-          <li>Java EE タブを開きます。</li>
-          <li>jpetstore プロジェクトを右クリックして "Configure/Convert to Maven Project" を選択します。</li>
-          <li>jpetstore プロジェクトを右クリックして "run on server" を選択します。</li>
-          <li>Tomcat Server を選び、Tomcat 7 をインストールしたディレクトリを指定します。</li>
-          <li>JPetStore のホームページが表示されるはずです！</li>
+          <li><a href="https://github.com/mybatis/jpetstore-6#running-with-tomcat" target="how-to-run">こちら</a>を参照してください。</li>
         </ul>
         <p>
           これで戯れる準備ができました。自由に変更を加えていろいろ試してみてください。
