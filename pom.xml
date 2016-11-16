@@ -170,7 +170,7 @@
       <id>tomcat90</id>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.0.M11</tomcat.version>
+        <tomcat.version>9.0.0.M13</tomcat.version>
       </properties>
     </profile>
     <profile>
@@ -180,21 +180,21 @@
       </activation>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.6</tomcat.version>
+        <tomcat.version>8.5.8</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat80</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.0.38</tomcat.version>
+        <tomcat.version>8.0.39</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat70</id>
       <properties>
         <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.72</tomcat.version>
+        <tomcat.version>7.0.73</tomcat.version>
       </properties>
     </profile>
   </profiles>
