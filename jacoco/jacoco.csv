@@ -1,17 +1,17 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-JPetStore Demo 6,org.mybatis.jpetstore.domain,Cart,145,0,6,0,38,0,14,0,11,0
 JPetStore Demo 6,org.mybatis.jpetstore.domain,Account,126,3,0,0,54,1,36,1,36,1
+JPetStore Demo 6,org.mybatis.jpetstore.domain,Cart,145,0,6,0,39,0,14,0,11,0
 JPetStore Demo 6,org.mybatis.jpetstore.domain,Sequence,26,0,0,0,12,0,6,0,6,0
 JPetStore Demo 6,org.mybatis.jpetstore.domain,Product,32,3,0,0,13,1,9,1,9,1
 JPetStore Demo 6,org.mybatis.jpetstore.domain,Category,28,0,0,0,11,0,8,0,8,0
-JPetStore Demo 6,org.mybatis.jpetstore.domain,LineItem,69,30,2,2,23,12,12,6,10,6
-JPetStore Demo 6,org.mybatis.jpetstore.domain,Order,312,15,2,0,113,5,56,3,55,3
-JPetStore Demo 6,org.mybatis.jpetstore.domain,Item,98,13,0,0,36,5,24,4,24,4
-JPetStore Demo 6,org.mybatis.jpetstore.domain,CartItem,63,0,4,0,21,0,12,0,10,0
-JPetStore Demo 6,org.mybatis.jpetstore.service,CatalogService,38,43,2,2,7,5,8,3,7,2
-JPetStore Demo 6,org.mybatis.jpetstore.service,OrderService,127,47,6,2,25,9,6,3,3,2
+JPetStore Demo 6,org.mybatis.jpetstore.domain,LineItem,69,30,2,2,22,12,12,6,10,6
+JPetStore Demo 6,org.mybatis.jpetstore.domain,Order,312,15,2,0,114,5,56,3,55,3
+JPetStore Demo 6,org.mybatis.jpetstore.domain,Item,99,13,0,0,36,5,24,4,24,4
+JPetStore Demo 6,org.mybatis.jpetstore.domain,CartItem,63,0,4,0,20,0,12,0,10,0
+JPetStore Demo 6,org.mybatis.jpetstore.service,CatalogService,38,44,2,2,7,5,8,3,7,2
+JPetStore Demo 6,org.mybatis.jpetstore.service,OrderService,128,47,6,2,24,9,6,3,3,2
 JPetStore Demo 6,org.mybatis.jpetstore.service,AccountService,31,16,4,0,7,5,5,2,3,2
-JPetStore Demo 6,org.mybatis.jpetstore.web.actions,CartActionBean,135,0,8,0,35,0,14,0,10,0
+JPetStore Demo 6,org.mybatis.jpetstore.web.actions,CartActionBean,135,0,8,0,36,0,14,0,10,0
 JPetStore Demo 6,org.mybatis.jpetstore.web.actions,AbstractActionBean,22,0,0,0,6,0,4,0,4,0
 JPetStore Demo 6,org.mybatis.jpetstore.web.actions,CatalogActionBean,199,0,8,0,59,0,31,0,27,0
 JPetStore Demo 6,org.mybatis.jpetstore.web.actions,AccountActionBean,244,0,8,0,58,0,24,0,20,0
