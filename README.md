@@ -21,7 +21,7 @@ Essentials
 - JPetstore with Vaadin and Spring Boot with Java Config https://github.com/igor-baiborodine/jpetstore-6-vaadin-spring-boot
 - JPetstore on MyBatis Spring Boot Starter https://github.com/kazuki43zoo/mybatis-spring-boot-jpetstore
 
-## Running with Tomcat
+## Run on Application Server
 Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://codehaus-cargo.github.io/cargo/Maven2+plugin.html)).
 
 - Clone this repository
@@ -45,12 +45,12 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
 
   > Note:
   >
-  > We provide some maven profiles as follow:
+  > We provide maven profiles per application server as follow:
   >
   > | Profile   | Description |
   > | --------- | ----------- |
-  > | tomcat90  | Running under the Tomcat 9.0 |
-  > | tomcat85  | Running under the Tomcat 8.5 (default profile) |
+  > | tomcat90  | Running under the Tomcat 9.0 (Mileston version) |
+  > | **tomcat85**  | **Running under the Tomcat 8.5 (default profile)** |
   > | tomcat80  | Running under the Tomcat 8.0 |
   > | tomcat70  | Running under the Tomcat 7.0 |
   > | tomee     | Running under the TomEE 7 |
