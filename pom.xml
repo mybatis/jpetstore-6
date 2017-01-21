@@ -234,6 +234,15 @@
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
     </profile>
+    <profile>
+      <id>resin</id>
+      <properties>
+        <resin.major-version>4</resin.major-version>
+        <resin.version>4.0.49</resin.version>
+        <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>http://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
+      </properties>
+    </profile>
   </profiles>
 
 </project>
