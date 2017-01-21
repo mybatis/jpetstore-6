@@ -180,7 +180,7 @@
       <id>tomcat90</id>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.0.M15</tomcat.version>
+        <tomcat.version>9.0.0.M17</tomcat.version>
       </properties>
     </profile>
     <profile>
@@ -190,7 +190,7 @@
       </activation>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.9</tomcat.version>
+        <tomcat.version>8.5.11</tomcat.version>
       </properties>
     </profile>
     <profile>
