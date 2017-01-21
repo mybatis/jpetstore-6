@@ -52,6 +52,7 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   > * tomcat80 : Running under the Tomcat 8.0
   > * tomcat70 : Running under the Tomcat 7.0
   > * wildfly  : Running under the WildFly 10
+  > * jetty    : Running under the Jetty 9
   >
   > ```
   > $ mvn cargo:run -P tomcat90
