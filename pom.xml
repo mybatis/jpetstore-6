@@ -190,7 +190,7 @@
       </activation>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.11</tomcat.version>
+        <tomcat.version>8.5.12</tomcat.version>
       </properties>
     </profile>
     <profile>
