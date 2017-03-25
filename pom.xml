@@ -133,7 +133,12 @@
       <version>2.7.19</version>
       <scope>test</scope>
     </dependency>
-
+    <dependency>
+      <groupId>com.codeborne</groupId>
+      <artifactId>selenide</artifactId>
+      <version>4.3</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -145,37 +150,93 @@
           <artifactId>maven-war-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <configuration>
+            <locales>en,es,ja,ko</locales>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <configuration>
+            <overwrite>true</overwrite>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.cargo</groupId>
+          <artifactId>cargo-maven2-plugin</artifactId>
+          <version>1.6.2</version>
+          <configuration>
+            <container>
+              <containerId>${cargo.maven.containerId}</containerId>
+              <zipUrlInstaller>
+                <url>${cargo.maven.containerUrl}</url>
+              </zipUrlInstaller>
+            </container>
+            <daemon>
+              <properties>
+                <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
+                <cargo.daemon.handleid>${project.artifactId}</cargo.daemon.handleid>
+              </properties>
+            </daemon>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <locales>en,es,ja,ko</locales>
-        </configuration>
-      </plugin>   
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <configuration>
-          <overwrite>true</overwrite>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.cargo</groupId>
-        <artifactId>cargo-maven2-plugin</artifactId>
-        <version>1.6.2</version>
-      </plugin>
-    </plugins>
   </build>
 
   <properties>
     <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
     <cargo.maven.containerUrl>http://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
+    <tomcat.major-version />
+    <tomcat.version />
   </properties>
 
   <profiles>
+    <!-- Profiles for Integration tests -->
+    <profile>
+      <id>itest</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <configuration>
+                <includes>
+                  <include>**/*IT.class</include>
+                </includes>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>com.googlecode.maven-download-plugin</groupId>
+            <artifactId>download-maven-plugin</artifactId>
+            <version>1.3.0</version>
+            <executions>
+              <execution>
+                <id>install-geckodriver</id>
+                <phase>test-compile</phase>
+                <goals>
+                  <goal>wget</goal>
+                </goals>
+                <configuration>
+                  <url>https://github.com/mozilla/geckodriver/releases/download/v0.14.0/geckodriver-v0.14.0-${geckodriver.os}.${geckodriver.archive.extenstion}</url>
+                  <unpack>true</unpack>
+                  <failOnError>false</failOnError>
+                  <outputDirectory>${project.basedir}</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- Profiles for Application Server -->
     <profile>
       <id>tomcat90</id>
       <properties>
@@ -259,6 +320,86 @@
         <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
       </properties>
+    </profile>
+    <!-- Profiles for OS family -->
+    <profile>
+      <id>linux</id>
+      <activation>
+        <os>
+          <family>unix</family>
+        </os>
+      </activation>
+      <properties>
+        <geckodriver.os>linux64</geckodriver.os>
+        <geckodriver.archive.extenstion>tar.gz</geckodriver.archive.extenstion>
+      </properties>
+    </profile>
+    <profile>
+      <id>mac</id>
+      <activation>
+        <os>
+          <family>mac</family>
+        </os>
+      </activation>
+      <properties>
+        <geckodriver.os>macos</geckodriver.os>
+        <geckodriver.archive.extenstion>tar.gz</geckodriver.archive.extenstion>
+      </properties>
+    </profile>
+    <profile>
+      <id>windows</id>
+      <activation>
+        <os>
+          <family>dos</family>
+        </os>
+      </activation>
+      <properties>
+        <geckodriver.os>win64</geckodriver.os>
+        <geckodriver.archive.extenstion>zip</geckodriver.archive.extenstion>
+      </properties>
+    </profile>
+    <!-- Profiles for JDK version -->
+    <profile>
+      <id>jdk7</id>
+      <activation>
+        <jdk>1.7</jdk>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                <testExcludes>
+                  <testExclude>**/*IT.java</testExclude>
+                </testExcludes>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>jdk6</id>
+      <activation>
+        <jdk>1.6</jdk>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                <testExcludes>
+                  <testExclude>**/*IT.java</testExclude>
+                </testExcludes>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
     </profile>
   </profiles>
 

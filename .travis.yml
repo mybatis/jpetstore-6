@@ -1,11 +1,30 @@
 language: java
 sudo: false
 
+addons:
+  firefox: latest
+
 jdk:
   - oraclejdk8
   - oraclejdk7
   - openjdk7
   - openjdk6
+
+before_script:
+  - |
+    if [ "${TRAVIS_JDK_VERSION}" == "oraclejdk8" ]; then
+        export DISPLAY=:99.0
+        sh -e /etc/init.d/xvfb start
+        mvn dependency:copy -Dartifact=org.codehaus.cargo:cargo-daemon-webapp:1.6.2:war -Dmdep.stripVersion=true
+        java -jar ./target/dependency/cargo-daemon-webapp.war &
+    fi
+
+script:
+  - |
+    if [ "${TRAVIS_JDK_VERSION}" == "oraclejdk8" ]; then
+        mvn -U cargo:daemon-start -P tomcat85
+        mvn -U test -P itest
+    fi
 
 after_success:
   - chmod -R 777 ./travis/after_success.sh
