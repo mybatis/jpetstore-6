@@ -40,7 +40,7 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
 - Startup the Tomcat server and deploy web application
 
   ```
-  $ mvn cargo:run
+  $ mvn cargo:run -P tomcat85
   ```
 
   > Note:
@@ -50,7 +50,7 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   > | Profile   | Description |
   > | --------- | ----------- |
   > | tomcat90  | Running under the Tomcat 9.0 (Milestone version) |
-  > | **tomcat85**  | **Running under the Tomcat 8.5 (default profile)** |
+  > | tomcat85  | Running under the Tomcat 8.5 |
   > | tomcat80  | Running under the Tomcat 8.0 |
   > | tomcat70  | Running under the Tomcat 7.0 |
   > | tomee     | Running under the TomEE 7 |
@@ -59,10 +59,22 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   > | jetty     | Running under the Jetty 9 |
   > | glassfish | Running under the GlassFish 4 |
   > | resin     | Running under the Resin 4 |
-  >
-  > ```
-  > $ mvn cargo:run -P tomcat90
-  > ```
 
 - Run application in browser http://localhost:8080/jpetstore/ 
 - Press Ctrl-C to stop the server.
+
+
+## Try integration tests
+
+Perform integration tests for screen transition.
+
+> Requires:
+>
+> * Running the JPetStore on 8080 port
+> * Installed Firefox
+> * Mac, Linux and Windows OS(64 bit)
+> * JDK 8
+
+```
+$ mvn test -P itest
+```
