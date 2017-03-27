@@ -27,7 +27,7 @@ script:
   - |
     if [ "${TRAVIS_JDK_VERSION}" == "oraclejdk8" ]; then
         mvn -U cargo:daemon-start -P tomcat85
-        mvn -U test -P itest
+        mvn -U test -P itest -Dwdm.gitHubTokenName=${WDM_GITHUB_USER} -Dwdm.gitHubTokenSecret=${WDM_GITHUB_TOKEN}
     fi
 
 after_success:
