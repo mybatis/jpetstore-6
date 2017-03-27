@@ -17,8 +17,9 @@ package org.mybatis.jpetstore;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.junit.ScreenShooter;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.junit.After;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -44,8 +45,13 @@ public class ScreenTransitionIT {
   @Rule
   public ScreenShooter screenShooter = ScreenShooter.failedTests();
 
-  @Before
-  public void setup() {
+  @BeforeClass
+  public static void setupWebDriverManager() {
+    FirefoxDriverManager.getInstance().setup();
+  }
+
+  @BeforeClass
+  public static void setupSelenide() {
     browser = MARIONETTE;
     timeout = TimeUnit.SECONDS.toMillis(10);
     baseUrl = "http://localhost:8080/jpetstore";
