@@ -17,8 +17,6 @@ cache:
 before_script:
   - |
     if [ "${TRAVIS_JDK_VERSION}" == "oraclejdk8" ]; then
-        export DISPLAY=:99.0
-        sh -e /etc/init.d/xvfb start
         mvn dependency:copy -Dartifact=org.codehaus.cargo:cargo-daemon-webapp:1.6.2:war -Dmdep.stripVersion=true
         java -jar ./target/dependency/cargo-daemon-webapp.war &
     fi
@@ -27,7 +25,7 @@ script:
   - |
     if [ "${TRAVIS_JDK_VERSION}" == "oraclejdk8" ]; then
         mvn -U cargo:daemon-start -P tomcat85
-        mvn -U test -P itest -Dwdm.gitHubTokenName=${WDM_GITHUB_USER} -Dwdm.gitHubTokenSecret=${WDM_GITHUB_TOKEN}
+        mvn -U test -P itest
     fi
 
 after_success:

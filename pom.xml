@@ -139,12 +139,6 @@
       <version>4.4.2</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>1.6.2</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
@@ -214,6 +208,13 @@
                 <includes>
                   <include>**/*IT.class</include>
                 </includes>
+              </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.jacoco</groupId>
+              <artifactId>jacoco-maven-plugin</artifactId>
+              <configuration>
+                <skip>true</skip>
               </configuration>
             </plugin>
           </plugins>
