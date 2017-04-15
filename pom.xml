@@ -117,7 +117,7 @@
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
-      <version>2.3.4</version>
+      <version>2.3.4</version> <!-- Version 2.4.0 requires jdk8 -->
     </dependency>
 
     <!-- Test dependencies -->
@@ -130,13 +130,13 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>2.7.19</version>
+      <version>2.7.22</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>4.3</version>
+      <version>4.4.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -242,7 +242,7 @@
       <id>tomcat80</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.0.42</tomcat.version>
+        <tomcat.version>8.0.43</tomcat.version>
       </properties>
     </profile>
     <profile>
