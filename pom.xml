@@ -242,7 +242,7 @@
       <id>tomcat80</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.0.42</tomcat.version>
+        <tomcat.version>8.0.43</tomcat.version>
       </properties>
     </profile>
     <profile>
