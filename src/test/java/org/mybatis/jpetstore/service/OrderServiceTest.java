@@ -27,13 +27,11 @@ import org.mybatis.jpetstore.domain.Order;
 import org.mybatis.jpetstore.mapper.ItemMapper;
 import org.mybatis.jpetstore.mapper.LineItemMapper;
 import org.mybatis.jpetstore.mapper.OrderMapper;
-import org.mybatis.jpetstore.mapper.SequenceMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 /**
@@ -47,8 +45,6 @@ public class OrderServiceTest {
   private ItemMapper itemMapper;
   @Mock
   private OrderMapper orderMapper;
-  @Mock
-  private SequenceMapper sequenceMapper;
   @Mock
   private LineItemMapper lineItemMapper;
 
@@ -72,8 +68,8 @@ public class OrderServiceTest {
     when(lineItemMapper.getLineItemsByOrderId(orderId)).thenReturn(lineItems);
 
     //then
-    assertThat(orderService.getOrder(orderId), is(order));
-    assertThat(orderService.getOrder(orderId).getLineItems().size(), is(0));
+    assertThat(orderService.getOrder(orderId)).isEqualTo(order);
+    assertThat(orderService.getOrder(orderId).getLineItems()).isEmpty();
   }
 
   @Test
@@ -95,9 +91,9 @@ public class OrderServiceTest {
 
     //then
     Order expectedOrder = orderService.getOrder(orderId);
-    assertThat(expectedOrder, is(order));
-    assertThat(expectedOrder.getLineItems().size(), is(1));
-    assertThat(expectedOrder.getLineItems().get(0).getItem().getQuantity(), is(5));
+    assertThat(expectedOrder).isEqualTo(order);
+    assertThat(expectedOrder.getLineItems()).hasSize(1);
+    assertThat(expectedOrder.getLineItems().get(0).getItem().getQuantity()).isEqualTo(5);
   }
 
 }

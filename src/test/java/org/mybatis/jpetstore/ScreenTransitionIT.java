@@ -31,8 +31,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
-import static org.hamcrest.core.Is.*;
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * Integration tests for screen transition.
@@ -64,7 +63,7 @@ public class ScreenTransitionIT {
 
     // Open the home page
     open("/");
-    assertThat(title(), is("JPetStore Demo"));
+    assertThat(title()).isEqualTo("JPetStore Demo");
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
@@ -92,7 +91,7 @@ public class ScreenTransitionIT {
 
     // Checkout cart items
     $(By.linkText("Proceed to Checkout")).click();
-    assertThat(title(), is("JPetStore Demo"));
+    assertThat(title()).isEqualTo("JPetStore Demo");
 
     // Confirm order information
     $(By.name("newOrder")).click();
@@ -113,7 +112,7 @@ public class ScreenTransitionIT {
 
     // Show order detail
     $(By.linkText(orderId)).click();
-    assertThat(extractOrderId($(By.cssSelector("#Catalog table tr")).text()), is(orderId));
+    assertThat(extractOrderId($(By.cssSelector("#Catalog table tr")).text())).isEqualTo(orderId);
 
     // Sign out
     $(By.linkText("Sign Out")).click();
@@ -125,7 +124,7 @@ public class ScreenTransitionIT {
   public void testUpdateProfile() {
     // Open the home page
     open("/");
-    assertThat(title(), is("JPetStore Demo"));
+    assertThat(title()).isEqualTo("JPetStore Demo");
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
@@ -153,7 +152,7 @@ public class ScreenTransitionIT {
   public void testRegistrationUser() {
     // Open the home page
     open("/");
-    assertThat(title(), is("JPetStore Demo"));
+    assertThat(title()).isEqualTo("JPetStore Demo");
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
@@ -202,7 +201,7 @@ public class ScreenTransitionIT {
   public void testSelectItems() {
     // Open the home page
     open("/");
-    assertThat(title(), is("JPetStore Demo"));
+    assertThat(title()).isEqualTo("JPetStore Demo");
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
@@ -239,7 +238,7 @@ public class ScreenTransitionIT {
 
     // Open the home page
     open("/");
-    assertThat(title(), is("JPetStore Demo"));
+    assertThat(title()).isEqualTo("JPetStore Demo");
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
@@ -256,7 +255,7 @@ public class ScreenTransitionIT {
 
     // Open the home page
     open("/");
-    assertThat(title(), is("JPetStore Demo"));
+    assertThat(title()).isEqualTo("JPetStore Demo");
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();

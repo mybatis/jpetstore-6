@@ -15,10 +15,6 @@
  */
 package org.mybatis.jpetstore.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
-import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +24,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mybatis.jpetstore.domain.Product;
-import org.mybatis.jpetstore.mapper.CategoryMapper;
-import org.mybatis.jpetstore.mapper.ItemMapper;
 import org.mybatis.jpetstore.mapper.ProductMapper;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 /**
  * @author Eduardo Macarron
@@ -39,10 +36,6 @@ import org.mybatis.jpetstore.mapper.ProductMapper;
 @RunWith(MockitoJUnitRunner.class)
 public class CatalogServiceTest {
 
-  @Mock
-  private CategoryMapper categoryMapper;
-  @Mock
-  private ItemMapper itemMapper;
   @Mock
   private ProductMapper productMapper;
 
@@ -64,9 +57,9 @@ public class CatalogServiceTest {
     List<Product> r = catalogService.searchProductList(keywords);
     
     //then
-    assertEquals(2, r.size());
-    assertSame(r.get(0), l1.get(0));
-    assertSame(r.get(1), l2.get(0));
+    assertThat(r).hasSize(2);
+    assertThat(r.get(0)).isSameAs(l1.get(0));
+    assertThat(r.get(1)).isSameAs(l2.get(0));
   }
 
 }
