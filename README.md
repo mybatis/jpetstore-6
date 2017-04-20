@@ -71,7 +71,6 @@ Perform integration tests for screen transition.
 > Requires:
 >
 > * Running the JPetStore on 8080 port
-> * Installed Firefox
 > * JDK 8
 
 ```
