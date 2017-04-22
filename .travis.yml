@@ -17,7 +17,7 @@ cache:
 before_script:
   - |
     if [ "${TRAVIS_JDK_VERSION}" == "oraclejdk8" ]; then
-        mvn dependency:copy -Dartifact=org.codehaus.cargo:cargo-daemon-webapp:1.6.2:war -Dmdep.stripVersion=true
+        mvn dependency:copy -Dartifact=org.codehaus.cargo:cargo-daemon-webapp:1.6.3:war -Dmdep.stripVersion=true
         java -jar ./target/dependency/cargo-daemon-webapp.war &
     fi
 
