@@ -8,7 +8,6 @@ jdk:
   - oraclejdk8
   - oraclejdk7
   - openjdk7
-  - openjdk6
 
 cache:
   directories:
@@ -17,15 +16,15 @@ cache:
 before_script:
   - |
     if [ "${TRAVIS_JDK_VERSION}" == "oraclejdk8" ]; then
-        mvn dependency:copy -Dartifact=org.codehaus.cargo:cargo-daemon-webapp:1.6.3:war -Dmdep.stripVersion=true
+        ./mvnw dependency:copy -Dartifact=org.codehaus.cargo:cargo-daemon-webapp:1.6.3:war -Dmdep.stripVersion=true
         java -jar ./target/dependency/cargo-daemon-webapp.war &
     fi
 
 script:
   - |
     if [ "${TRAVIS_JDK_VERSION}" == "oraclejdk8" ]; then
-        mvn -U cargo:daemon-start -P tomcat85
-        mvn -U test -P itest
+        ./mvnw -U cargo:daemon-start -P tomcat85
+        ./mvnw -U test -P itest
     fi
 
 after_success:
