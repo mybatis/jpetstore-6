@@ -1,5 +1,5 @@
 /**
- *    Copyright 2010-2016 the original author or authors.
+ *    Copyright 2010-2017 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import java.util.Map;
 public class Cart implements Serializable {
 
   private static final long serialVersionUID = 8329559983943337176L;
-  
+
   private final Map<String, CartItem> itemMap = Collections.synchronizedMap(new HashMap<String, CartItem>());
   private final List<CartItem> itemList = new ArrayList<CartItem>();
 
