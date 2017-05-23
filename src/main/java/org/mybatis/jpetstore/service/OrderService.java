@@ -32,8 +32,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * @author Eduardo Macarron
+ * The Class OrderService.
  *
+ * @author Eduardo Macarron
  */
 @Service
 public class OrderService {
@@ -47,11 +48,16 @@ public class OrderService {
   @Autowired
   private LineItemMapper lineItemMapper;
 
+  /**
+   * Insert order.
+   *
+   * @param order the order
+   */
   @Transactional
   public void insertOrder(Order order) {
     order.setOrderId(getNextId("ordernum"));
     for (int i = 0; i < order.getLineItems().size(); i++) {
-      LineItem lineItem = (LineItem) order.getLineItems().get(i);
+      LineItem lineItem = order.getLineItems().get(i);
       String itemId = lineItem.getItemId();
       Integer increment = new Integer(lineItem.getQuantity());
       Map<String, Object> param = new HashMap<String, Object>(2);
@@ -63,19 +69,25 @@ public class OrderService {
     orderMapper.insertOrder(order);
     orderMapper.insertOrderStatus(order);
     for (int i = 0; i < order.getLineItems().size(); i++) {
-      LineItem lineItem = (LineItem) order.getLineItems().get(i);
+      LineItem lineItem = order.getLineItems().get(i);
       lineItem.setOrderId(order.getOrderId());
       lineItemMapper.insertLineItem(lineItem);
     }
   }
 
+  /**
+   * Gets the order.
+   *
+   * @param orderId the order id
+   * @return the order
+   */
   @Transactional
   public Order getOrder(int orderId) {
     Order order = orderMapper.getOrder(orderId);
     order.setLineItems(lineItemMapper.getLineItemsByOrderId(orderId));
 
     for (int i = 0; i < order.getLineItems().size(); i++) {
-      LineItem lineItem = (LineItem) order.getLineItems().get(i);
+      LineItem lineItem = order.getLineItems().get(i);
       Item item = itemMapper.getItem(lineItem.getItemId());
       item.setQuantity(itemMapper.getInventoryQuantity(lineItem.getItemId()));
       lineItem.setItem(item);
@@ -84,13 +96,25 @@ public class OrderService {
     return order;
   }
 
+  /**
+   * Gets the orders by username.
+   *
+   * @param username the username
+   * @return the orders by username
+   */
   public List<Order> getOrdersByUsername(String username) {
     return orderMapper.getOrdersByUsername(username);
   }
 
+  /**
+   * Gets the next id.
+   *
+   * @param name the name
+   * @return the next id
+   */
   public int getNextId(String name) {
     Sequence sequence = new Sequence(name, -1);
-    sequence = (Sequence) sequenceMapper.getSequence(sequence);
+    sequence = sequenceMapper.getSequence(sequence);
     if (sequence == null) {
       throw new RuntimeException(
           "Error: A null sequence was returned from the database (could not get next " + name + " sequence).");

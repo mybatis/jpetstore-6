@@ -19,8 +19,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * @author Eduardo Macarron
+ * The Class Item.
  *
+ * @author Eduardo Macarron
  */
 public class Item implements Serializable {
 

@@ -28,8 +28,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Eduardo Macarron
+ * The Class CatalogService.
  *
+ * @author Eduardo Macarron
  */
 @Service
 public class CatalogService {
@@ -57,6 +58,12 @@ public class CatalogService {
     return productMapper.getProductListByCategory(categoryId);
   }
 
+  /**
+   * Search product list.
+   *
+   * @param keywords the keywords
+   * @return the list
+   */
   public List<Product> searchProductList(String keywords) {
     List<Product> products = new ArrayList<Product>();
     for (String keyword : keywords.split("\\s+")) {

@@ -22,8 +22,9 @@ import net.sourceforge.stripes.action.ActionBeanContext;
 import net.sourceforge.stripes.action.SimpleMessage;
 
 /**
- * @author Eduardo Macarron
+ * The Class AbstractActionBean.
  *
+ * @author Eduardo Macarron
  */
 public abstract class AbstractActionBean implements ActionBean, Serializable {
 

@@ -25,8 +25,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Eduardo Macarron
+ * The Class Cart.
  *
+ * @author Eduardo Macarron
  */
 public class Cart implements Serializable {
 
@@ -55,8 +56,14 @@ public class Cart implements Serializable {
     return itemMap.containsKey(itemId);
   }
 
+  /**
+   * Adds the item.
+   *
+   * @param item the item
+   * @param isInStock the is in stock
+   */
   public void addItem(Item item, boolean isInStock) {
-    CartItem cartItem = (CartItem) itemMap.get(item.getItemId());
+    CartItem cartItem = itemMap.get(item.getItemId());
     if (cartItem == null) {
       cartItem = new CartItem();
       cartItem.setItem(item);
@@ -68,8 +75,14 @@ public class Cart implements Serializable {
     cartItem.incrementQuantity();
   }
 
+  /**
+   * Removes the item by id.
+   *
+   * @param itemId the item id
+   * @return the item
+   */
   public Item removeItemById(String itemId) {
-    CartItem cartItem = (CartItem) itemMap.remove(itemId);
+    CartItem cartItem = itemMap.remove(itemId);
     if (cartItem == null) {
       return null;
     } else {
@@ -78,21 +91,31 @@ public class Cart implements Serializable {
     }
   }
 
+  /**
+   * Increment quantity by item id.
+   *
+   * @param itemId the item id
+   */
   public void incrementQuantityByItemId(String itemId) {
-    CartItem cartItem = (CartItem) itemMap.get(itemId);
+    CartItem cartItem = itemMap.get(itemId);
     cartItem.incrementQuantity();
   }
 
   public void setQuantityByItemId(String itemId, int quantity) {
-    CartItem cartItem = (CartItem) itemMap.get(itemId);
+    CartItem cartItem = itemMap.get(itemId);
     cartItem.setQuantity(quantity);
   }
 
+  /**
+   * Gets the sub total.
+   *
+   * @return the sub total
+   */
   public BigDecimal getSubTotal() {
     BigDecimal subTotal = new BigDecimal("0");
     Iterator<CartItem> items = getAllCartItems();
     while (items.hasNext()) {
-      CartItem cartItem = (CartItem) items.next();
+      CartItem cartItem = items.next();
       Item item = cartItem.getItem();
       BigDecimal listPrice = item.getListPrice();
       BigDecimal quantity = new BigDecimal(String.valueOf(cartItem.getQuantity()));

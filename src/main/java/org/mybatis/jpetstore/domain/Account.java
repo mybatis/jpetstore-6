@@ -20,8 +20,9 @@ import java.io.Serializable;
 import net.sourceforge.stripes.validation.Validate;
 
 /**
- * @author Eduardo Macarron
+ * The Class Account.
  *
+ * @author Eduardo Macarron
  */
 public class Account implements Serializable {
 

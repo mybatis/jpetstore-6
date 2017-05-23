@@ -198,6 +198,8 @@
     <cargo.maven.containerUrl>http://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
     <tomcat.major-version />
     <tomcat.version />
+
+    <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
   </properties>
 
   <profiles>

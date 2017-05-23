@@ -18,8 +18,9 @@ package org.mybatis.jpetstore.mapper;
 import org.mybatis.jpetstore.domain.Account;
 
 /**
- * @author Eduardo Macarron
+ * The Interface AccountMapper.
  *
+ * @author Eduardo Macarron
  */
 public interface AccountMapper {
 

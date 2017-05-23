@@ -20,8 +20,9 @@ import java.util.List;
 import org.mybatis.jpetstore.domain.Product;
 
 /**
- * @author Eduardo Macarron
+ * The Interface ProductMapper.
  *
+ * @author Eduardo Macarron
  */
 public interface ProductMapper {
 
