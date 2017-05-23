@@ -30,8 +30,9 @@ import org.mybatis.jpetstore.domain.Order;
 import org.mybatis.jpetstore.service.OrderService;
 
 /**
- * @author Eduardo Macarron
+ * The Class OrderActionBean.
  *
+ * @author Eduardo Macarron
  */
 @SessionScope
 public class OrderActionBean extends AbstractActionBean {
@@ -102,6 +103,11 @@ public class OrderActionBean extends AbstractActionBean {
     return orderList;
   }
 
+  /**
+   * List orders.
+   *
+   * @return the resolution
+   */
   public Resolution listOrders() {
     HttpSession session = context.getRequest().getSession();
     AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
@@ -109,6 +115,11 @@ public class OrderActionBean extends AbstractActionBean {
     return new ForwardResolution(LIST_ORDERS);
   }
 
+  /**
+   * New order form.
+   *
+   * @return the resolution
+   */
   public Resolution newOrderForm() {
     HttpSession session = context.getRequest().getSession();
     AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
@@ -127,6 +138,11 @@ public class OrderActionBean extends AbstractActionBean {
     }
   }
 
+  /**
+   * New order.
+   *
+   * @return the resolution
+   */
   public Resolution newOrder() {
     HttpSession session = context.getRequest().getSession();
 
@@ -151,6 +167,11 @@ public class OrderActionBean extends AbstractActionBean {
     }
   }
 
+  /**
+   * View order.
+   *
+   * @return the resolution
+   */
   public Resolution viewOrder() {
     HttpSession session = context.getRequest().getSession();
 
@@ -167,6 +188,9 @@ public class OrderActionBean extends AbstractActionBean {
     }
   }
 
+  /**
+   * Clear.
+   */
   public void clear() {
     order = new Order();
     shippingAddressRequired = false;

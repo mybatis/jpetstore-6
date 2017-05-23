@@ -18,8 +18,9 @@ package org.mybatis.jpetstore.domain;
 import java.io.Serializable;
 
 /**
- * @author Eduardo Macarron
+ * The Class Sequence.
  *
+ * @author Eduardo Macarron
  */
 public class Sequence implements Serializable {
 

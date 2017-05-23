@@ -23,8 +23,9 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * @author Eduardo Macarron
+ * The Class Order.
  *
+ * @author Eduardo Macarron
  */
 public class Order implements Serializable {
 
@@ -274,6 +275,12 @@ public class Order implements Serializable {
     return lineItems;
   }
 
+  /**
+   * Inits the order.
+   *
+   * @param account the account
+   * @param cart the cart
+   */
   public void initOrder(Account account, Cart cart) {
 
     username = account.getUsername();
@@ -308,7 +315,7 @@ public class Order implements Serializable {
 
     Iterator<CartItem> i = cart.getAllCartItems();
     while (i.hasNext()) {
-      CartItem cartItem = (CartItem) i.next();
+      CartItem cartItem = i.next();
       addLineItem(cartItem);
     }
 

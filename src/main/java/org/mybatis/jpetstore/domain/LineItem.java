@@ -19,8 +19,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * @author Eduardo Macarron
+ * The Class LineItem.
  *
+ * @author Eduardo Macarron
  */
 public class LineItem implements Serializable {
 
@@ -37,6 +38,12 @@ public class LineItem implements Serializable {
   public LineItem() {
   }
 
+  /**
+   * Instantiates a new line item.
+   *
+   * @param lineNumber the line number
+   * @param cartItem the cart item
+   */
   public LineItem(int lineNumber, CartItem cartItem) {
     this.lineNumber = lineNumber;
     this.quantity = cartItem.getQuantity();

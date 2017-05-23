@@ -20,8 +20,9 @@ import java.util.List;
 import org.mybatis.jpetstore.domain.LineItem;
 
 /**
- * @author Eduardo Macarron
+ * The Interface LineItemMapper.
  *
+ * @author Eduardo Macarron
  */
 public interface LineItemMapper {
 

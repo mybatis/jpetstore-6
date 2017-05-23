@@ -22,8 +22,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * @author Eduardo Macarron
+ * The Class AccountService.
  *
+ * @author Eduardo Macarron
  */
 @Service
 public class AccountService {
@@ -39,6 +40,11 @@ public class AccountService {
     return accountMapper.getAccountByUsernameAndPassword(username, password);
   }
 
+  /**
+   * Insert account.
+   *
+   * @param account the account
+   */
   @Transactional
   public void insertAccount(Account account) {
     accountMapper.insertAccount(account);
@@ -46,6 +52,11 @@ public class AccountService {
     accountMapper.insertSignon(account);
   }
 
+  /**
+   * Update account.
+   *
+   * @param account the account
+   */
   @Transactional
   public void updateAccount(Account account) {
     accountMapper.updateAccount(account);

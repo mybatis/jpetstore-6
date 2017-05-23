@@ -35,8 +35,9 @@ import org.mybatis.jpetstore.service.AccountService;
 import org.mybatis.jpetstore.service.CatalogService;
 
 /**
- * @author Eduardo Macarron
+ * The Class AccountActionBean.
  *
+ * @author Eduardo Macarron
  */
 @SessionScope
 public class AccountActionBean extends AbstractActionBean {
@@ -116,6 +117,11 @@ public class AccountActionBean extends AbstractActionBean {
     return new ForwardResolution(NEW_ACCOUNT);
   }
 
+  /**
+   * New account.
+   *
+   * @return the resolution
+   */
   public Resolution newAccount() {
     accountService.insertAccount(account);
     account = accountService.getAccount(account.getUsername());
@@ -124,10 +130,20 @@ public class AccountActionBean extends AbstractActionBean {
     return new RedirectResolution(CatalogActionBean.class);
   }
 
+  /**
+   * Edits the account form.
+   *
+   * @return the resolution
+   */
   public Resolution editAccountForm() {
     return new ForwardResolution(EDIT_ACCOUNT);
   }
 
+  /**
+   * Edits the account.
+   *
+   * @return the resolution
+   */
   public Resolution editAccount() {
     accountService.updateAccount(account);
     account = accountService.getAccount(account.getUsername());
@@ -135,11 +151,21 @@ public class AccountActionBean extends AbstractActionBean {
     return new RedirectResolution(CatalogActionBean.class);
   }
 
+  /**
+   * Signon form.
+   *
+   * @return the resolution
+   */
   @DefaultHandler
   public Resolution signonForm() {
     return new ForwardResolution(SIGNON);
   }
 
+  /**
+   * Signon.
+   *
+   * @return the resolution
+   */
   public Resolution signon() {
 
     account = accountService.getAccount(getUsername(), getPassword());
@@ -160,16 +186,29 @@ public class AccountActionBean extends AbstractActionBean {
     }
   }
 
+  /**
+   * Signoff.
+   *
+   * @return the resolution
+   */
   public Resolution signoff() {
     context.getRequest().getSession().invalidate();
     clear();
     return new RedirectResolution(CatalogActionBean.class);
   }
 
+  /**
+   * Checks if is authenticated.
+   *
+   * @return true, if is authenticated
+   */
   public boolean isAuthenticated() {
     return authenticated && account != null && account.getUsername() != null;
   }
 
+  /**
+   * Clear.
+   */
   public void clear() {
     account = new Account();
     myList = null;

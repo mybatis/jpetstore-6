@@ -30,8 +30,9 @@ import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.service.CatalogService;
 
 /**
- * @author Eduardo Macarron
+ * The Class CartActionBean.
  *
+ * @author Eduardo Macarron
  */
 @SessionScope
 public class CartActionBean extends AbstractActionBean {
@@ -59,6 +60,11 @@ public class CartActionBean extends AbstractActionBean {
     this.workingItemId = workingItemId;
   }
 
+  /**
+   * Adds the item to cart.
+   *
+   * @return the resolution
+   */
   public Resolution addItemToCart() {
     if (cart.containsItemId(workingItemId)) {
       cart.incrementQuantityByItemId(workingItemId);
@@ -74,6 +80,11 @@ public class CartActionBean extends AbstractActionBean {
     return new ForwardResolution(VIEW_CART);
   }
 
+  /**
+   * Removes the item from cart.
+   *
+   * @return the resolution
+   */
   public Resolution removeItemFromCart() {
 
     Item item = cart.removeItemById(workingItemId);
@@ -86,15 +97,20 @@ public class CartActionBean extends AbstractActionBean {
     }
   }
 
+  /**
+   * Update cart quantities.
+   *
+   * @return the resolution
+   */
   public Resolution updateCartQuantities() {
     HttpServletRequest request = context.getRequest();
 
     Iterator<CartItem> cartItems = getCart().getAllCartItems();
     while (cartItems.hasNext()) {
-      CartItem cartItem = (CartItem) cartItems.next();
+      CartItem cartItem = cartItems.next();
       String itemId = cartItem.getItem().getItemId();
       try {
-        int quantity = Integer.parseInt((String) request.getParameter(itemId));
+        int quantity = Integer.parseInt(request.getParameter(itemId));
         getCart().setQuantityByItemId(itemId, quantity);
         if (quantity < 1) {
           cartItems.remove();

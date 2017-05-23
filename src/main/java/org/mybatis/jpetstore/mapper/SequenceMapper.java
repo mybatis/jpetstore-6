@@ -18,8 +18,9 @@ package org.mybatis.jpetstore.mapper;
 import org.mybatis.jpetstore.domain.Sequence;
 
 /**
- * @author Eduardo Macarron
+ * The Interface SequenceMapper.
  *
+ * @author Eduardo Macarron
  */
 public interface SequenceMapper {
 
