@@ -50,12 +50,12 @@ public class CatalogServiceTest {
     l1.add(new Product());
     List<Product> l2 = new ArrayList<Product>();
     l2.add(new Product());
-    
+
     //when
     when(productMapper.searchProductList("%a%")).thenReturn(l1);
     when(productMapper.searchProductList("%b%")).thenReturn(l2);
     List<Product> r = catalogService.searchProductList(keywords);
-    
+
     //then
     assertThat(r).hasSize(2);
     assertThat(r.get(0)).isSameAs(l1.get(0));

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2010-2016 the original author or authors.
+ *    Copyright 2010-2017 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -77,12 +77,12 @@ public class AccountActionBean extends AbstractActionBean {
   public Account getAccount() {
     return this.account;
   }
-  
+
   public String getUsername() {
     return account.getUsername();
   }
 
-  @Validate(required=true, on={"signon", "newAccount", "editAccount"})
+  @Validate(required = true, on = { "signon", "newAccount", "editAccount" })
   public void setUsername(String username) {
     account.setUsername(username);
   }
@@ -91,7 +91,7 @@ public class AccountActionBean extends AbstractActionBean {
     return account.getPassword();
   }
 
-  @Validate(required=true, on={"signon", "newAccount", "editAccount"})
+  @Validate(required = true, on = { "signon", "newAccount", "editAccount" })
   public void setPassword(String password) {
     account.setPassword(password);
   }
@@ -115,7 +115,7 @@ public class AccountActionBean extends AbstractActionBean {
   public Resolution newAccountForm() {
     return new ForwardResolution(NEW_ACCOUNT);
   }
-  
+
   public Resolution newAccount() {
     accountService.insertAccount(account);
     account = accountService.getAccount(account.getUsername());
@@ -134,7 +134,7 @@ public class AccountActionBean extends AbstractActionBean {
     myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());
     return new RedirectResolution(CatalogActionBean.class);
   }
-  
+
   @DefaultHandler
   public Resolution signonForm() {
     return new ForwardResolution(SIGNON);
@@ -143,7 +143,7 @@ public class AccountActionBean extends AbstractActionBean {
   public Resolution signon() {
 
     account = accountService.getAccount(getUsername(), getPassword());
-   
+
     if (account == null) {
       String value = "Invalid username or password.  Signon failed.";
       setMessage(value);

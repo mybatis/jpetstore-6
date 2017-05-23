@@ -277,4 +277,3 @@ public class ScreenTransitionIT {
   }
 
 }
-
