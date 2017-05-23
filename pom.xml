@@ -142,7 +142,7 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>4.4.2</version>
+      <version>4.4.3</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -154,7 +154,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -232,7 +232,7 @@
       <id>tomcat90</id>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.0.M20</tomcat.version>
+        <tomcat.version>9.0.0.M21</tomcat.version>
       </properties>
     </profile>
     <profile>
@@ -242,21 +242,21 @@
       </activation>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.14</tomcat.version>
+        <tomcat.version>8.5.15</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat80</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.0.43</tomcat.version>
+        <tomcat.version>8.0.44</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat70</id>
       <properties>
         <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.77</tomcat.version>
+        <tomcat.version>7.0.78</tomcat.version>
       </properties>
     </profile>
     <profile>
@@ -289,7 +289,7 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>9</jetty.major-version>
-        <jetty.version>9.4.4.v20170414</jetty.version>
+        <jetty.version>9.4.5.v20170502</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
