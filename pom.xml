@@ -27,8 +27,8 @@
   </parent>
 
   <groupId>org.mybatis</groupId>
-  <version>6.0.3-SNAPSHOT</version>
   <artifactId>jpetstore</artifactId>
+  <version>6.0.3-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>JPetStore Demo 6</name>
