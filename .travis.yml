@@ -11,7 +11,7 @@ jdk:
 
 cache:
   directories:
-    - $HOME/.m2
+    - "$HOME/.m2"
 
 before_script:
   - |
@@ -29,4 +29,9 @@ script:
 
 after_success:
   - chmod -R 777 ./travis/after_success.sh
-  - ./travis/after_success.sh
+  - "./travis/after_success.sh"
+
+env:
+  global:
+  - secure: OYpjRGu1vnh+yrWqdpaF1nWAzshvlFzh9frQGZv51PCrB+xnwY6SLiwtrlNZ9NKp60Buoxf3YySAml2xG86Y0gUCVjUsFlWg0mBFs1Hvnv6lxUVla6ZjiQ+C9wSavjky6jPbGrBjHd2uXvdUnElMzJc7j6Czm6BigmAaivPfwE0=
+  - secure: n8R+jUI2M/SY3pfiVOP95jLbkMXSIrAVhJ6ttTyr9k9OpLdIiP0LJ/Ccv/lNawx0TBlbApcZsc+fh3YZC5QJOl4+2pT9yc7+nULv8LlWoDVjWy+31rD6UJsxgGvADks1gs8SYvW2oHP2vNd8GUpNG6W3hmBkQm80wi6ssAxysZM=
