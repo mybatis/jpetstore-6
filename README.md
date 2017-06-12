@@ -34,13 +34,13 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
 
   ```
   $ cd jpetstore-6
-  $ mvn clean package
+  $ ./mvnw clean package
   ```
 
 - Startup the Tomcat server and deploy web application
 
   ```
-  $ mvn cargo:run -P tomcat85
+  $ ./mvnw cargo:run -P tomcat85
   ```
 
   > Note:
@@ -74,5 +74,5 @@ Perform integration tests for screen transition.
 > * JDK 8
 
 ```
-$ mvn test -P itest
+$ ./mvnw test -P itest
 ```
