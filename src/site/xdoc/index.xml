@@ -89,9 +89,9 @@ SUM:                            58            823            612           3464
       	<p> JPetStore 6 follows the typical maven project structure </p>
 <pre>/jpetstore                    <tt>&lt;-- Maven pom.xml goes here.</tt>
   /src
-    /main/
+    /main
       /java                   <tt>&lt;-- Java code goes here.</tt>
-        /org/
+        /org
           /mybatis
             /jpetstore
               /domain         <tt>&lt;-- Business domain objects go here.</tt>
