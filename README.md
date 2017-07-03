@@ -54,7 +54,8 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   > | tomcat80  | Running under the Tomcat 8.0 |
   > | tomcat70  | Running under the Tomcat 7.0 |
   > | tomee     | Running under the TomEE 7 |
-  > | wildfly   | Running under the WildFly 10 |
+  > | wildfly11 | Running under the WildFly 11 (Aplha version) |
+  > | wildfly10 | Running under the WildFly 10 |
   > | liberty   | Running under the WebSphere Liberty 17 |
   > | jetty     | Running under the Jetty 9 |
   > | glassfish | Running under the GlassFish 4 |
