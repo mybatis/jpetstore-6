@@ -234,7 +234,7 @@
       <id>tomcat90</id>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.0.M22</tomcat.version>
+        <tomcat.version>9.0.0.M26</tomcat.version>
       </properties>
     </profile>
     <profile>
