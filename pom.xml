@@ -142,7 +142,13 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>4.5.1</version>
+      <version>4.6</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <artifactId>htmlunit-driver</artifactId>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <version>2.27</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
