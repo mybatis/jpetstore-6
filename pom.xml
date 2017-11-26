@@ -280,7 +280,7 @@
       <id>wildfly11</id>
       <properties>
         <wildfly.major-version>11</wildfly.major-version>
-        <wildfly.version>11.0.0.CR1</wildfly.version>
+        <wildfly.version>11.0.0.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
