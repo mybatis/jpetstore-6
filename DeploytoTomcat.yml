@@ -1,0 +1,6 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: "copy the war to webapps"
+      copy: src=/root/Nexus_Repo/sonatype-work/nexus/storage/Nav/com/org/jpetstore/2.0/jpetstore-2.0.war dest=/var/lib/tomcat7/webapps
