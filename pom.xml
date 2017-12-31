@@ -22,7 +22,7 @@
   <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>29</version>
+    <version>30</version>
     <relativePath />
   </parent>
 
@@ -75,12 +75,12 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>4.3.12.RELEASE</version>
+      <version>4.3.13.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>4.3.12.RELEASE</version>
+      <version>4.3.13.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.stripes</groupId>
@@ -122,9 +122,9 @@
 
     <!-- Test dependencies -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+      <version>4.12.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -142,13 +142,13 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>4.6</version>
+      <version>4.9</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <artifactId>htmlunit-driver</artifactId>
       <groupId>org.seleniumhq.selenium</groupId>
-      <version>2.27</version>
+      <artifactId>htmlunit-driver</artifactId>
+      <version>2.29.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -240,7 +240,7 @@
       <id>tomcat90</id>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.1</tomcat.version>
+        <tomcat.version>9.0.2</tomcat.version>
       </properties>
     </profile>
     <profile>
@@ -250,14 +250,14 @@
       </activation>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.23</tomcat.version>
+        <tomcat.version>8.5.24</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat80</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.0.47</tomcat.version>
+        <tomcat.version>8.0.48</tomcat.version>
       </properties>
     </profile>
     <profile>
@@ -271,7 +271,7 @@
       <id>tomee</id>
       <properties>
         <tomee.major-version>7</tomee.major-version>
-        <tomee.version>7.0.3</tomee.version>
+        <tomee.version>7.0.4</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
@@ -297,7 +297,7 @@
     <profile>
       <id>liberty</id>
       <properties>
-        <liberty.version>17.0.0.1</liberty.version>
+        <liberty.version>17.0.0.4</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee7/${liberty.version}/wlp-javaee7-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -306,7 +306,7 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>9</jetty.major-version>
-        <jetty.version>9.4.7.v20170914</jetty.version>
+        <jetty.version>9.4.8.v20171121</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
