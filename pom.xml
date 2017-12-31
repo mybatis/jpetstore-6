@@ -146,9 +146,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <artifactId>htmlunit-driver</artifactId>
       <groupId>org.seleniumhq.selenium</groupId>
-      <version>2.27</version>
+      <artifactId>htmlunit-driver</artifactId>
+      <version>2.29.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
