@@ -49,7 +49,7 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   >
   > | Profile   | Description |
   > | --------- | ----------- |
-  > | tomcat90  | Running under the Tomcat 9.0 (Bata) |
+  > | tomcat90  | Running under the Tomcat 9.0 (Beta) |
   > | tomcat85  | Running under the Tomcat 8.5 |
   > | tomcat80  | Running under the Tomcat 8.0 |
   > | tomcat70  | Running under the Tomcat 7.0 |
