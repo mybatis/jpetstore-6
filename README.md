@@ -47,19 +47,20 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   >
   > We provide maven profiles per application server as follow:
   >
-  > | Profile   | Description |
-  > | --------- | ----------- |
-  > | tomcat90  | Running under the Tomcat 9.0 (Beta) |
-  > | tomcat85  | Running under the Tomcat 8.5 |
-  > | tomcat80  | Running under the Tomcat 8.0 |
-  > | tomcat70  | Running under the Tomcat 7.0 |
-  > | tomee     | Running under the TomEE 7 |
-  > | wildfly11 | Running under the WildFly 11 |
-  > | wildfly10 | Running under the WildFly 10 |
-  > | liberty   | Running under the WebSphere Liberty 17 |
-  > | jetty     | Running under the Jetty 9 |
-  > | glassfish | Running under the GlassFish 4 |
-  > | resin     | Running under the Resin 4 |
+  > | Profile    | Description |
+  > | ---------- | ----------- |
+  > | tomcat90   | Running under the Tomcat 9.0 (Beta) |
+  > | tomcat85   | Running under the Tomcat 8.5 |
+  > | tomcat80   | Running under the Tomcat 8.0 |
+  > | tomcat70   | Running under the Tomcat 7.0 |
+  > | tomee      | Running under the TomEE 7 |
+  > | wildfly11  | Running under the WildFly 11 |
+  > | wildfly10  | Running under the WildFly 10 |
+  > | liberty    | Running under the WebSphere Liberty 17 |
+  > | jetty      | Running under the Jetty 9 |
+  > | glassfish5 | Running under the GlassFish 5 |
+  > | glassfish4 | Running under the GlassFish 4 |
+  > | resin      | Running under the Resin 4 |
 
 - Run application in browser http://localhost:8080/jpetstore/ 
 - Press Ctrl-C to stop the server.

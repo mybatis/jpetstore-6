@@ -312,7 +312,16 @@
       </properties>
     </profile>
     <profile>
-      <id>glassfish</id>
+      <id>glassfish5</id>
+      <properties>
+        <glassfish.major-version>5</glassfish.major-version>
+        <glassfish.version>5.0</glassfish.version>
+        <cargo.maven.containerId>glassfish${glassfish.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>http://download.java.net/glassfish/${glassfish.version}/release/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
+      </properties>
+    </profile>
+    <profile>
+      <id>glassfish4</id>
       <properties>
         <glassfish.major-version>4</glassfish.major-version>
         <glassfish.version>4.1.2</glassfish.version>
