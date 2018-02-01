@@ -250,7 +250,7 @@
       <id>tomcat85</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.24</tomcat.version>
+        <tomcat.version>8.5.27</tomcat.version>
       </properties>
     </profile>
     <profile>
