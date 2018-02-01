@@ -24,7 +24,7 @@ before_script:
 script:
   - |
     if [ "${TRAVIS_JDK_VERSION}" == "oraclejdk8" ]; then
-        ./mvnw -U cargo:daemon-start -P tomcat85
+        ./mvnw -U cargo:daemon-start -P tomcat90
         ./mvnw -U test -P itest
     fi
 
