@@ -5,3 +5,4 @@
 /.idea
 *.iml
 /build
+.mvn/wrapper/maven-wrapper.jar
