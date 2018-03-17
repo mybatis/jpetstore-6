@@ -264,7 +264,7 @@
       <id>tomcat70</id>
       <properties>
         <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.84</tomcat.version>
+        <tomcat.version>7.0.85</tomcat.version>
       </properties>
     </profile>
     <profile>
