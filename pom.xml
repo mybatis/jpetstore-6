@@ -200,6 +200,11 @@
             </daemon>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.1</version>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -210,6 +215,7 @@
     <tomcat.major-version />
     <tomcat.version />
 
+    <surefire.version>2.21.0</surefire.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
     <spring.version>5.0.5.RELEASE</spring.version>
