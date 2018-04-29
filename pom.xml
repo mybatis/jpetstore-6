@@ -212,7 +212,7 @@
 
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <spring.version>5.0.3.RELEASE</spring.version>
+    <spring.version>5.0.5.RELEASE</spring.version>
   </properties>
 
   <profiles>
@@ -352,7 +352,7 @@
         <jdk>1.7</jdk>
       </activation>
       <properties>
-        <spring.version>4.3.14.RELEASE</spring.version>
+        <spring.version>4.3.16.RELEASE</spring.version>
       </properties>
       <build>
         <pluginManagement>
@@ -376,7 +376,7 @@
         <jdk>1.6</jdk>
       </activation>
       <properties>
-        <spring.version>4.3.14.RELEASE</spring.version>
+        <spring.version>4.3.16.RELEASE</spring.version>
       </properties>
       <build>
         <pluginManagement>
