@@ -56,7 +56,8 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   > | tomee      | Running under the TomEE 7 |
   > | wildfly11  | Running under the WildFly 11 |
   > | wildfly10  | Running under the WildFly 10 |
-  > | liberty    | Running under the WebSphere Liberty 17 |
+  > | liberty18  | Running under the WebSphere Liberty 18 |
+  > | liberty17  | Running under the WebSphere Liberty 17 |
   > | jetty      | Running under the Jetty 9 |
   > | glassfish5 | Running under the GlassFish 5 |
   > | glassfish4 | Running under the GlassFish 4 |
@@ -78,3 +79,7 @@ Perform integration tests for screen transition.
 ```
 $ ./mvnw test -P itest
 ```
+
+> Known issues:
+>
+> * [Two tests are failed on The WebSphere Liberty](https://github.com/mybatis/jpetstore-6/issues/159).
