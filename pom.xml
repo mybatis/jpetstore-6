@@ -301,15 +301,6 @@
         <cargo.maven.containerUrl>http://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
     </profile>
-      <profile>
-        <id>wildfly10</id>
-        <properties>
-          <wildfly.major-version>10</wildfly.major-version>
-          <wildfly.version>10.1.0.Final</wildfly.version>
-          <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
-          <cargo.maven.containerUrl>http://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.tar.gz</cargo.maven.containerUrl>
-        </properties>
-      </profile>
     <profile>
       <id>liberty18</id>
       <properties>
