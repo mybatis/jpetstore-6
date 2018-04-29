@@ -74,13 +74,18 @@
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>4.3.14.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>4.3.14.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.stripes</groupId>
@@ -206,6 +211,8 @@
     <tomcat.version />
 
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
+
+    <spring.version>5.0.3.RELEASE</spring.version>
   </properties>
 
   <profiles>
@@ -344,6 +351,9 @@
       <activation>
         <jdk>1.7</jdk>
       </activation>
+      <properties>
+        <spring.version>4.3.14.RELEASE</spring.version>
+      </properties>
       <build>
         <pluginManagement>
           <plugins>
@@ -365,6 +375,9 @@
       <activation>
         <jdk>1.6</jdk>
       </activation>
+      <properties>
+        <spring.version>4.3.14.RELEASE</spring.version>
+      </properties>
       <build>
         <pluginManagement>
           <plugins>
