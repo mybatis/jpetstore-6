@@ -1,31 +1,46 @@
 language: java
 sudo: false
 
-addons:
-  firefox: latest
-
-jdk:
-  - oraclejdk9
-  - oraclejdk8
-  - openjdk8
-  - openjdk7
+matrix:
+  include:
+# 10
+    - env: JDK='Oracle JDK 10'
+      install: . ./install-jdk.sh -F 10 -L BCL
+    - env: JDK='OpenJDK 10'
+      install: . ./install-jdk.sh -F 10 -L GPL
+# 9
+    - env: JDK='Oracle JDK 9'
+      jdk: oraclejdk9
+# 8
+    - env: JDK='Oracle JDK 8'
+      jdk: oraclejdk8
+    - env: JDK='OpenJDK 8'
+      jdk: openjdk8
+# 7
+    - env: JDK='OpenJDK 7'
+      jdk: openjdk7
 
 cache:
   directories:
     - "$HOME/.m2"
 
+before_install:
+  - wget https://raw.githubusercontent.com/sormuras/bach/master/install-jdk.sh
+  - ./mvnw install -q -DskipTests=true
+
+install: true
+
 before_script:
-  - |
-    if [ "${TRAVIS_JDK_VERSION}" == "oraclejdk8" ]; then
-        ./mvnw dependency:copy -Dartifact=org.codehaus.cargo:cargo-daemon-webapp:1.6.7:war -Dmdep.stripVersion=true
-        java -jar ./target/dependency/cargo-daemon-webapp.war &
-    fi
+  - ./mvnw dependency:copy -Dartifact=org.codehaus.cargo:cargo-daemon-webapp:1.6.7:war -Dmdep.stripVersion=true
+  - java -jar ./target/dependency/cargo-daemon-webapp.war &
 
 script:
   - |
-    if [ "${TRAVIS_JDK_VERSION}" == "oraclejdk8" ]; then
-        ./mvnw -U cargo:daemon-start -P tomcat90
-        ./mvnw -U test -P itest
+    if [ "${TRAVIS_JDK_VERSION}" != "openjdk7" ]; then
+      ./mvnw -U clean verify cargo:daemon-start -P tomcat90
+      ./mvnw -U test -P itest
+    else
+      ./mvnw -U clean verify
     fi
 
 after_success:
