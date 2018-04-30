@@ -122,7 +122,7 @@
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
-      <version>2.3.5</version> <!-- Version 2.4.0 requires jdk8 -->
+      <version>${hsqldb.version}</version>
     </dependency>
 
     <!-- Test dependencies -->
@@ -220,6 +220,7 @@
 
     <spring.version>5.0.5.RELEASE</spring.version>
     <assertj.version>3.9.1</assertj.version>
+    <hsqldb.version>2.4.0</hsqldb.version>
   </properties>
 
   <profiles>
@@ -369,6 +370,7 @@
       <properties>
         <spring.version>4.3.16.RELEASE</spring.version>
         <assertj.version>2.9.0</assertj.version>
+        <hsqldb.version>2.3.5</hsqldb.version>
       </properties>
       <build>
         <pluginManagement>
