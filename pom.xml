@@ -258,7 +258,7 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.7</tomcat.version>
+        <tomcat.version>9.0.8</tomcat.version>
       </properties>
     </profile>
     <profile>
