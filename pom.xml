@@ -215,7 +215,7 @@
     <tomcat.major-version />
     <tomcat.version />
 
-    <surefire.version>2.21.0</surefire.version>
+    <surefire.version>2.22.0</surefire.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
     <spring.version>5.0.7.RELEASE</spring.version>
