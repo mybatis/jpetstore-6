@@ -368,7 +368,7 @@
         <jdk>1.7</jdk>
       </activation>
       <properties>
-        <spring.version>4.3.17.RELEASE</spring.version>
+        <spring.version>4.3.18.RELEASE</spring.version>
         <assertj.version>2.9.0</assertj.version>
         <hsqldb.version>2.3.5</hsqldb.version>
       </properties>
