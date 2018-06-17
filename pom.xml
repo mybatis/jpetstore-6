@@ -129,13 +129,13 @@
     <dependency>
       <groupId>org.junit.vintage</groupId>
       <artifactId>junit-vintage-engine</artifactId>
-      <version>4.12.2</version>
+      <version>5.2.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>2.18.3</version>
+      <version>2.19.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -147,13 +147,13 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>4.11.2</version>
+      <version>4.12.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit-driver</artifactId>
-      <version>2.30.0</version>
+      <version>2.31.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -165,7 +165,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.2.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -184,7 +184,7 @@
         <plugin>
           <groupId>org.codehaus.cargo</groupId>
           <artifactId>cargo-maven2-plugin</artifactId>
-          <version>1.6.7</version>
+          <version>1.6.8</version>
           <configuration>
             <container>
               <containerId>${cargo.maven.containerId}</containerId>
@@ -215,10 +215,10 @@
     <tomcat.major-version />
     <tomcat.version />
 
-    <surefire.version>2.21.0</surefire.version>
+    <surefire.version>2.22.0</surefire.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <spring.version>5.0.6.RELEASE</spring.version>
+    <spring.version>5.0.7.RELEASE</spring.version>
     <assertj.version>3.9.1</assertj.version>
     <hsqldb.version>2.4.0</hsqldb.version>
   </properties>
@@ -368,9 +368,10 @@
         <jdk>1.7</jdk>
       </activation>
       <properties>
-        <spring.version>4.3.17.RELEASE</spring.version>
+        <spring.version>4.3.18.RELEASE</spring.version>
         <assertj.version>2.9.0</assertj.version>
         <hsqldb.version>2.3.5</hsqldb.version>
+        <surefire.version>2.21.0</surefire.version>
       </properties>
       <build>
         <pluginManagement>
