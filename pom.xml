@@ -129,13 +129,13 @@
     <dependency>
       <groupId>org.junit.vintage</groupId>
       <artifactId>junit-vintage-engine</artifactId>
-      <version>5.2.0</version>
+      <version>5.3.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>2.19.0</version>
+      <version>2.21.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -147,13 +147,13 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>4.12.1</version>
+      <version>4.14.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit-driver</artifactId>
-      <version>2.31.0</version>
+      <version>2.32.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -184,7 +184,7 @@
         <plugin>
           <groupId>org.codehaus.cargo</groupId>
           <artifactId>cargo-maven2-plugin</artifactId>
-          <version>1.6.8</version>
+          <version>1.6.10</version>
           <configuration>
             <container>
               <containerId>${cargo.maven.containerId}</containerId>
@@ -203,7 +203,7 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.1</version>
+          <version>0.8.2</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -218,9 +218,9 @@
     <surefire.version>2.22.0</surefire.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <spring.version>5.0.7.RELEASE</spring.version>
-    <assertj.version>3.9.1</assertj.version>
-    <hsqldb.version>2.4.0</hsqldb.version>
+    <spring.version>5.0.8.RELEASE</spring.version>
+    <assertj.version>3.11.1</assertj.version>
+    <hsqldb.version>2.4.1</hsqldb.version>
   </properties>
 
   <profiles>
@@ -258,28 +258,28 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.8</tomcat.version>
+        <tomcat.version>9.0.11</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat85</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.31</tomcat.version>
+        <tomcat.version>8.5.33</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat80</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.0.52</tomcat.version>
+        <tomcat.version>8.0.53</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat70</id>
       <properties>
         <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.88</tomcat.version>
+        <tomcat.version>7.0.90</tomcat.version>
       </properties>
     </profile>
     <profile>
@@ -329,7 +329,7 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>9</jetty.major-version>
-        <jetty.version>9.4.11.v20180605</jetty.version>
+        <jetty.version>9.4.12.v20180830</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
@@ -369,7 +369,7 @@
       </activation>
       <properties>
         <spring.version>4.3.18.RELEASE</spring.version>
-        <assertj.version>2.9.0</assertj.version>
+        <assertj.version>2.9.1</assertj.version>
         <hsqldb.version>2.3.5</hsqldb.version>
         <surefire.version>2.21.0</surefire.version>
       </properties>
