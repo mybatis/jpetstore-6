@@ -276,7 +276,16 @@
       </properties>
     </profile>
     <profile>
-      <id>tomee</id>
+      <id>tomee71</id>
+      <properties>
+        <tomee.major-version>7</tomee.major-version>
+        <tomee.version>7.1.0</tomee.version>
+        <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
+      </properties>
+    </profile>
+    <profile>
+      <id>tomee70</id>
       <properties>
         <tomee.major-version>7</tomee.major-version>
         <tomee.version>7.0.4</tomee.version>
