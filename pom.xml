@@ -218,7 +218,7 @@
     <surefire.version>2.22.0</surefire.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <spring.version>5.0.8.RELEASE</spring.version>
+    <spring.version>5.1.0.RELEASE</spring.version>
     <assertj.version>3.11.1</assertj.version>
     <hsqldb.version>2.4.1</hsqldb.version>
   </properties>
@@ -361,7 +361,7 @@
         <jdk>1.7</jdk>
       </activation>
       <properties>
-        <spring.version>4.3.18.RELEASE</spring.version>
+        <spring.version>4.3.19.RELEASE</spring.version>
         <assertj.version>2.9.1</assertj.version>
         <hsqldb.version>2.3.5</hsqldb.version>
         <surefire.version>2.21.0</surefire.version>
