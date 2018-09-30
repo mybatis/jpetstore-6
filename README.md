@@ -78,7 +78,3 @@ Perform integration tests for screen transition.
 ```
 $ ./mvnw test -P itest
 ```
-
-> Known issues:
->
-> * [Two tests are failed on The WebSphere Liberty](https://github.com/mybatis/jpetstore-6/issues/159).
