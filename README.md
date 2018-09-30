@@ -47,20 +47,20 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   >
   > We provide maven profiles per application server as follow:
   >
-  > | Profile    | Description |
-  > | ---------- | ----------- |
-  > | tomcat90   | Running under the Tomcat 9.0 |
-  > | tomcat85   | Running under the Tomcat 8.5 |
-  > | tomcat70   | Running under the Tomcat 7.0 |
-  > | tomee71    | Running under the TomEE 7.1(Java EE 8) |
-  > | tomee70    | Running under the TomEE 7.0(Java EE 7) |
-  > | wildfly13  | Running under the WildFly 13(Java EE 7) |
-  > | liberty18  | Running under the WebSphere Liberty 18 |
-  > | liberty17  | Running under the WebSphere Liberty 17 |
-  > | jetty      | Running under the Jetty 9 |
-  > | glassfish5 | Running under the GlassFish 5(Java EE 8) |
-  > | glassfish4 | Running under the GlassFish 4(Java EE 7) |
-  > | resin      | Running under the Resin 4 |
+  > | Profile        | Description |
+  > | -------------- | ----------- |
+  > | tomcat90       | Running under the Tomcat 9.0 |
+  > | tomcat85       | Running under the Tomcat 8.5 |
+  > | tomcat70       | Running under the Tomcat 7.0 |
+  > | tomee71        | Running under the TomEE 7.1(Java EE 8) |
+  > | tomee70        | Running under the TomEE 7.0(Java EE 7) |
+  > | wildfly13      | Running under the WildFly 13(Java EE 7) |
+  > | liberty18-ee8  | Running under the WebSphere Liberty 18(Java EE 8) |
+  > | liberty18-ee7  | Running under the WebSphere Liberty 18(Java EE 7) |
+  > | jetty          | Running under the Jetty 9 |
+  > | glassfish5     | Running under the GlassFish 5(Java EE 8) |
+  > | glassfish4     | Running under the GlassFish 4(Java EE 7) |
+  > | resin          | Running under the Resin 4 |
 
 - Run application in browser http://localhost:8080/jpetstore/ 
 - Press Ctrl-C to stop the server.
