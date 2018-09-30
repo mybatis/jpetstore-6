@@ -58,8 +58,8 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   > | liberty18  | Running under the WebSphere Liberty 18 |
   > | liberty17  | Running under the WebSphere Liberty 17 |
   > | jetty      | Running under the Jetty 9 |
-  > | glassfish5 | Running under the GlassFish 5 |
-  > | glassfish4 | Running under the GlassFish 4 |
+  > | glassfish5 | Running under the GlassFish 5(Java EE 8) |
+  > | glassfish4 | Running under the GlassFish 4(Java EE 7) |
   > | resin      | Running under the Resin 4 |
 
 - Run application in browser http://localhost:8080/jpetstore/ 
