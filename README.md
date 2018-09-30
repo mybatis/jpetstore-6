@@ -53,6 +53,7 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   > | tomcat85   | Running under the Tomcat 8.5 |
   > | tomcat70   | Running under the Tomcat 7.0 |
   > | tomee      | Running under the TomEE 7 |
+  > | wildfly13  | Running under the WildFly 13(Java EE 7) |
   > | wildfly12  | Running under the WildFly 12 |
   > | wildfly11  | Running under the WildFly 11 |
   > | liberty18  | Running under the WebSphere Liberty 18 |
