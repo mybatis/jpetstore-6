@@ -184,7 +184,7 @@
         <plugin>
           <groupId>org.codehaus.cargo</groupId>
           <artifactId>cargo-maven2-plugin</artifactId>
-          <version>1.6.10</version>
+          <version>${cargo-maven2-plugin.version}</version>
           <configuration>
             <container>
               <containerId>${cargo.maven.containerId}</containerId>
@@ -216,6 +216,7 @@
     <tomcat.version />
 
     <surefire.version>2.22.0</surefire.version>
+    <cargo-maven2-plugin.version>1.6.10</cargo-maven2-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
     <spring.version>5.1.0.RELEASE</spring.version>

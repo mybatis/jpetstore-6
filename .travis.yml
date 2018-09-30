@@ -28,7 +28,8 @@ before_install:
 install: true
 
 before_script:
-  - ./mvnw dependency:copy -Dartifact=org.codehaus.cargo:cargo-daemon-webapp:1.6.7:war -Dmdep.stripVersion=true
+  - export CARGO_MAVEN_PLUGIN_VERSION=`mvn -B help:evaluate -Dexpression=cargo-maven2-plugin.version | grep -v '^\['`
+  - ./mvnw dependency:copy -Dartifact=org.codehaus.cargo:cargo-daemon-webapp:${CARGO_MAVEN_PLUGIN_VERSION}:war -Dmdep.stripVersion=true
   - java -jar ./target/dependency/cargo-daemon-webapp.war &
 
 script:
