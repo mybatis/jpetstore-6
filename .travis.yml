@@ -1,27 +1,17 @@
 language: java
 sudo: false
 
-matrix:
-  include:
-# 10
-    - env: JDK='OpenJDK 10'
-      install: . ./install-jdk.sh -F 10 -L GPL
-# 8
-    - env: JDK='Oracle JDK 8'
-      jdk: oraclejdk8
-    - env: JDK='OpenJDK 8'
-      jdk: openjdk8
-# 7
-    - env: JDK='OpenJDK 7'
-      jdk: openjdk7
+jdk:
+  - oraclejdk11
+  - openjdk11
+  - openjdk10
+  - oraclejdk8
+  - openjdk8
+  - openjdk7
 
 cache:
   directories:
     - "$HOME/.m2"
-
-before_install:
-  - wget https://raw.githubusercontent.com/sormuras/bach/master/install-jdk.sh
-  - ./mvnw install -q -DskipTests=true
 
 install: true
 
