@@ -1,19 +1,13 @@
 language: java
-sudo: false
 
 jdk:
   - oraclejdk11
-  - openjdk11
-  - openjdk10
   - oraclejdk8
-  - openjdk8
   - openjdk7
 
 cache:
   directories:
     - "$HOME/.m2"
-
-install: true
 
 before_script:
   - export CARGO_MAVEN_PLUGIN_VERSION=`mvn -B help:evaluate -Dexpression=cargo-maven2-plugin.version | grep -v '^\['`
