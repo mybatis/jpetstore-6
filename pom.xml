@@ -22,7 +22,7 @@
   <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>30</version>
+    <version>31-SNAPSHOT</version>
     <relativePath />
   </parent>
 
@@ -127,14 +127,20 @@
 
     <!-- Test dependencies -->
     <dependency>
-      <groupId>org.junit.vintage</groupId>
-      <artifactId>junit-vintage-engine</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
       <version>5.3.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
+      <version>2.23.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
       <version>2.23.4</version>
       <scope>test</scope>
     </dependency>
@@ -372,34 +378,6 @@
         <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
       </properties>
-    </profile>
-    <!-- Profiles for JDK version -->
-    <profile>
-      <id>jdk7</id>
-      <activation>
-        <jdk>1.7</jdk>
-      </activation>
-      <properties>
-        <spring.version>4.3.21.RELEASE</spring.version>
-        <assertj.version>2.9.1</assertj.version>
-        <hsqldb.version>2.3.5</hsqldb.version>
-        <surefire.version>2.21.0</surefire.version>
-      </properties>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-compiler-plugin</artifactId>
-              <configuration>
-                <testExcludes>
-                  <testExclude>**/*IT.java</testExclude>
-                </testExcludes>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
     </profile>
   </profiles>
 

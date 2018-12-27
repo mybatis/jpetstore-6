@@ -3,7 +3,6 @@ language: java
 jdk:
   - oraclejdk11
   - oraclejdk8
-  - openjdk7
 
 cache:
   directories:
@@ -16,7 +15,7 @@ before_script:
 
 script:
   - |
-    if [ "${TRAVIS_JDK_VERSION}" != "openjdk7" ]; then
+    if [ "${TRAVIS_JDK_VERSION}" != "oraclejdk8" ]; then
       ./mvnw -U clean verify cargo:daemon-start -P tomcat90
       ./mvnw -U test -P itest
     else

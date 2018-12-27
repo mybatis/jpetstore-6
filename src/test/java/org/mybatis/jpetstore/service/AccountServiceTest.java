@@ -1,5 +1,5 @@
 /**
- *    Copyright 2010-2017 the original author or authors.
+ *    Copyright 2010-2018 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,14 +15,14 @@
  */
 package org.mybatis.jpetstore.service;
 
-import static org.mockito.Mockito.verify;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.verify;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.mybatis.jpetstore.domain.Account;
 import org.mybatis.jpetstore.mapper.AccountMapper;
 
@@ -30,7 +30,7 @@ import org.mybatis.jpetstore.mapper.AccountMapper;
  * @author Eduardo Macarron
  *
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class AccountServiceTest {
 
   @Mock
@@ -41,13 +41,13 @@ public class AccountServiceTest {
 
   @Test
   public void shouldCallTheMapperToInsertAnAccount() {
-    //given
+    // given
     Account account = new Account();
 
-    //when
+    // when
     accountService.insertAccount(account);
 
-    //then
+    // then
     verify(accountMapper).insertAccount(eq(account));
     verify(accountMapper).insertProfile(eq(account));
     verify(accountMapper).insertSignon(eq(account));
