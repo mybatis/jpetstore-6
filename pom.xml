@@ -379,34 +379,6 @@
         <cargo.maven.containerUrl>http://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
-    <!-- Profiles for JDK version -->
-    <profile>
-      <id>jdk7</id>
-      <activation>
-        <jdk>1.7</jdk>
-      </activation>
-      <properties>
-        <spring.version>4.3.21.RELEASE</spring.version>
-        <assertj.version>2.9.1</assertj.version>
-        <hsqldb.version>2.3.5</hsqldb.version>
-        <surefire.version>2.21.0</surefire.version>
-      </properties>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-compiler-plugin</artifactId>
-              <configuration>
-                <testExcludes>
-                  <testExclude>**/*IT.java</testExclude>
-                </testExcludes>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
-    </profile>
   </profiles>
 
 </project>
