@@ -1,5 +1,5 @@
 /**
- *    Copyright 2010-2017 the original author or authors.
+ *    Copyright 2010-2018 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -44,19 +44,19 @@ public class CatalogServiceTest {
 
   @Test
   public void shouldCallTheSearchMapperTwice() {
-    //given
+    // given
     String keywords = "a b";
     List<Product> l1 = new ArrayList<Product>();
     l1.add(new Product());
     List<Product> l2 = new ArrayList<Product>();
     l2.add(new Product());
 
-    //when
+    // when
     when(productMapper.searchProductList("%a%")).thenReturn(l1);
     when(productMapper.searchProductList("%b%")).thenReturn(l2);
     List<Product> r = catalogService.searchProductList(keywords);
 
-    //then
+    // then
     assertThat(r).hasSize(2);
     assertThat(r.get(0)).isSameAs(l1.get(0));
     assertThat(r.get(1)).isSameAs(l2.get(0));

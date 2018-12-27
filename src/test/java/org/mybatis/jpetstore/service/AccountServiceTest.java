@@ -1,5 +1,5 @@
 /**
- *    Copyright 2010-2017 the original author or authors.
+ *    Copyright 2010-2018 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -41,13 +41,13 @@ public class AccountServiceTest {
 
   @Test
   public void shouldCallTheMapperToInsertAnAccount() {
-    //given
+    // given
     Account account = new Account();
 
-    //when
+    // when
     accountService.insertAccount(account);
 
-    //then
+    // then
     verify(accountMapper).insertAccount(eq(account));
     verify(accountMapper).insertProfile(eq(account));
     verify(accountMapper).insertSignon(eq(account));
