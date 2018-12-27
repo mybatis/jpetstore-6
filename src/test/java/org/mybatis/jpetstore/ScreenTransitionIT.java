@@ -15,42 +15,47 @@
  */
 package org.mybatis.jpetstore;
 
+import static com.codeborne.selenide.Browsers.HTMLUNIT;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.value;
+import static com.codeborne.selenide.Configuration.baseUrl;
+import static com.codeborne.selenide.Configuration.browser;
+import static com.codeborne.selenide.Configuration.timeout;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.title;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.junit.ScreenShooter;
-import org.junit.After;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
-import org.openqa.selenium.By;
+import com.codeborne.selenide.junit5.ScreenShooterExtension;
 
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Configuration.*;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.*;
-import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.By;
 
 /**
  * Integration tests for screen transition.
  *
  * @author Kazuki Shimizu
  */
+@ExtendWith(ScreenShooterExtension.class)
 public class ScreenTransitionIT {
 
-  @Rule
-  public ScreenShooter screenShooter = ScreenShooter.failedTests();
-
-  @BeforeClass
+  @BeforeAll
   public static void setupSelenide() {
     browser = HTMLUNIT;
     timeout = TimeUnit.SECONDS.toMillis(10);
     baseUrl = "http://localhost:8080/jpetstore";
   }
 
-  @After
+  @AfterEach
   public void logout() {
     SelenideElement element = $(By.linkText("Sign Out"));
     if (element.exists()) {
