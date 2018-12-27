@@ -371,7 +371,7 @@
         <jdk>1.7</jdk>
       </activation>
       <properties>
-        <spring.version>4.3.19.RELEASE</spring.version>
+        <spring.version>4.3.21.RELEASE</spring.version>
         <assertj.version>2.9.1</assertj.version>
         <hsqldb.version>2.3.5</hsqldb.version>
         <surefire.version>2.21.0</surefire.version>
