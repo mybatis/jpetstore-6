@@ -129,13 +129,13 @@
     <dependency>
       <groupId>org.junit.vintage</groupId>
       <artifactId>junit-vintage-engine</artifactId>
-      <version>5.3.0</version>
+      <version>5.3.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>2.21.0</version>
+      <version>2.23.4</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -147,13 +147,13 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>4.14.1</version>
+      <version>5.1.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit-driver</artifactId>
-      <version>2.32.1</version>
+      <version>2.33.3</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -215,11 +215,11 @@
     <tomcat.major-version />
     <tomcat.version />
 
-    <surefire.version>2.22.0</surefire.version>
+    <surefire.version>3.0.0-M3</surefire.version>
     <cargo-maven2-plugin.version>1.6.11</cargo-maven2-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <spring.version>5.1.0.RELEASE</spring.version>
+    <spring.version>5.1.3.RELEASE</spring.version>
     <assertj.version>3.11.1</assertj.version>
     <hsqldb.version>2.4.1</hsqldb.version>
   </properties>
@@ -259,21 +259,21 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.12</tomcat.version>
+        <tomcat.version>9.0.14</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat85</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.34</tomcat.version>
+        <tomcat.version>8.5.37</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat70</id>
       <properties>
         <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.91</tomcat.version>
+        <tomcat.version>7.0.92</tomcat.version>
       </properties>
     </profile>
     <profile>
@@ -289,9 +289,18 @@
       <id>tomee70</id>
       <properties>
         <tomee.major-version>7</tomee.major-version>
-        <tomee.version>7.0.4</tomee.version>
+        <tomee.version>7.0.5</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
+      </properties>
+    </profile>
+    <profile>
+      <id>wildfly15</id>
+      <properties>
+        <wildfly.major-version>15</wildfly.major-version>
+        <wildfly.version>15.0.0.Final</wildfly.version>
+        <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>http://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
@@ -332,7 +341,7 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>9</jetty.major-version>
-        <jetty.version>9.4.12.v20180830</jetty.version>
+        <jetty.version>9.4.14.v20181114</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
@@ -371,7 +380,7 @@
         <jdk>1.7</jdk>
       </activation>
       <properties>
-        <spring.version>4.3.19.RELEASE</spring.version>
+        <spring.version>4.3.21.RELEASE</spring.version>
         <assertj.version>2.9.1</assertj.version>
         <hsqldb.version>2.3.5</hsqldb.version>
         <surefire.version>2.21.0</surefire.version>
