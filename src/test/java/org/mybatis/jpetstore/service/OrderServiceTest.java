@@ -38,7 +38,7 @@ import org.mybatis.jpetstore.mapper.OrderMapper;
  *
  */
 @ExtendWith(MockitoExtension.class)
-public class OrderServiceTest {
+class OrderServiceTest {
 
   @Mock
   private ItemMapper itemMapper;
@@ -51,11 +51,11 @@ public class OrderServiceTest {
   private OrderService orderService;
 
   @Test
-  public void shouldReturnOrderWhenGivenOrderIdWithOutLineItems() {
+  void shouldReturnOrderWhenGivenOrderIdWithOutLineItems() {
     // given
     int orderId = 1;
     Order order = new Order();
-    List<LineItem> lineItems = new ArrayList<LineItem>();
+    List<LineItem> lineItems = new ArrayList<>();
 
     // when
     when(orderMapper.getOrder(orderId)).thenReturn(order);
@@ -67,11 +67,11 @@ public class OrderServiceTest {
   }
 
   @Test
-  public void shouldReturnOrderWhenGivenOrderIdExistedLineItems() {
+  void shouldReturnOrderWhenGivenOrderIdExistedLineItems() {
     // given
     int orderId = 1;
     Order order = new Order();
-    List<LineItem> lineItems = new ArrayList<LineItem>();
+    List<LineItem> lineItems = new ArrayList<>();
     LineItem item = new LineItem();
     String itemId = "abc";
     item.setItemId(itemId);
@@ -81,7 +81,7 @@ public class OrderServiceTest {
     when(orderMapper.getOrder(orderId)).thenReturn(order);
     when(lineItemMapper.getLineItemsByOrderId(orderId)).thenReturn(lineItems);
     when(itemMapper.getItem(itemId)).thenReturn(new Item());
-    when(itemMapper.getInventoryQuantity(itemId)).thenReturn(new Integer(5));
+    when(itemMapper.getInventoryQuantity(itemId)).thenReturn(5);
 
     // then
     Order expectedOrder = orderService.getOrder(orderId);

@@ -31,7 +31,7 @@ import org.mybatis.jpetstore.mapper.AccountMapper;
  *
  */
 @ExtendWith(MockitoExtension.class)
-public class AccountServiceTest {
+class AccountServiceTest {
 
   @Mock
   private AccountMapper accountMapper;
@@ -40,7 +40,7 @@ public class AccountServiceTest {
   private AccountService accountService;
 
   @Test
-  public void shouldCallTheMapperToInsertAnAccount() {
+  void shouldCallTheMapperToInsertAnAccount() {
     // given
     Account account = new Account();
 

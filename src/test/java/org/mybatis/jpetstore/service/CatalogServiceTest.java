@@ -34,7 +34,7 @@ import org.mybatis.jpetstore.mapper.ProductMapper;
  *
  */
 @ExtendWith(MockitoExtension.class)
-public class CatalogServiceTest {
+class CatalogServiceTest {
 
   @Mock(lenient = true)
   private ProductMapper productMapper;
@@ -43,12 +43,12 @@ public class CatalogServiceTest {
   private CatalogService catalogService;
 
   @Test
-  public void shouldCallTheSearchMapperTwice() {
+  void shouldCallTheSearchMapperTwice() {
     // given
     String keywords = "a b";
-    List<Product> l1 = new ArrayList<Product>();
+    List<Product> l1 = new ArrayList<>();
     l1.add(new Product());
-    List<Product> l2 = new ArrayList<Product>();
+    List<Product> l2 = new ArrayList<>();
     l2.add(new Product());
 
     // when

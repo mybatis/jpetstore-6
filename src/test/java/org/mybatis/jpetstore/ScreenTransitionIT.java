@@ -46,17 +46,17 @@ import org.openqa.selenium.By;
  * @author Kazuki Shimizu
  */
 @ExtendWith(ScreenShooterExtension.class)
-public class ScreenTransitionIT {
+class ScreenTransitionIT {
 
   @BeforeAll
-  public static void setupSelenide() {
+  static void setupSelenide() {
     browser = HTMLUNIT;
     timeout = TimeUnit.SECONDS.toMillis(10);
     baseUrl = "http://localhost:8080/jpetstore";
   }
 
   @AfterEach
-  public void logout() {
+  void logout() {
     SelenideElement element = $(By.linkText("Sign Out"));
     if (element.exists()) {
       element.click();
@@ -64,7 +64,7 @@ public class ScreenTransitionIT {
   }
 
   @Test
-  public void testOrder() {
+  void testOrder() {
 
     // Open the home page
     open("/");
@@ -150,7 +150,7 @@ public class ScreenTransitionIT {
   }
 
   @Test
-  public void testUpdateProfile() {
+  void testUpdateProfile() {
     // Open the home page
     open("/");
     assertThat(title()).isEqualTo("JPetStore Demo");
@@ -180,7 +180,7 @@ public class ScreenTransitionIT {
   }
 
   @Test
-  public void testRegistrationUser() {
+  void testRegistrationUser() {
     // Open the home page
     open("/");
     assertThat(title()).isEqualTo("JPetStore Demo");
@@ -229,7 +229,7 @@ public class ScreenTransitionIT {
   }
 
   @Test
-  public void testSelectItems() {
+  void testSelectItems() {
     // Open the home page
     open("/");
     assertThat(title()).isEqualTo("JPetStore Demo");
@@ -265,7 +265,7 @@ public class ScreenTransitionIT {
   }
 
   @Test
-  public void testViewCart() {
+  void testViewCart() {
 
     // Open the home page
     open("/");
@@ -282,7 +282,7 @@ public class ScreenTransitionIT {
   }
 
   @Test
-  public void testViewHelp() {
+  void testViewHelp() {
 
     // Open the home page
     open("/");
@@ -299,7 +299,7 @@ public class ScreenTransitionIT {
   }
 
   @Test
-  public void testSidebarContentOnTopPage() {
+  void testSidebarContentOnTopPage() {
     // Open the home page
     open("/");
     assertThat(title()).isEqualTo("JPetStore Demo");
@@ -335,7 +335,7 @@ public class ScreenTransitionIT {
   }
 
   @Test
-  public void testQuickLinks() {
+  void testQuickLinks() {
     // Open the home page
     open("/");
     assertThat(title()).isEqualTo("JPetStore Demo");
@@ -366,7 +366,7 @@ public class ScreenTransitionIT {
   }
 
   @Test
-  public void testMainImageContentOnTopPage() {
+  void testMainImageContentOnTopPage() {
     // Open the home page
     open("/");
     assertThat(title()).isEqualTo("JPetStore Demo");
@@ -407,7 +407,7 @@ public class ScreenTransitionIT {
   }
 
   @Test
-  public void testLogoContent() {
+  void testLogoContent() {
     // Open the home page
     open("/");
     assertThat(title()).isEqualTo("JPetStore Demo");
