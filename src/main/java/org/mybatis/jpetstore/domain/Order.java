@@ -57,7 +57,7 @@ public class Order implements Serializable {
   private String cardType;
   private String locale;
   private String status;
-  private List<LineItem> lineItems = new ArrayList<LineItem>();
+  private List<LineItem> lineItems = new ArrayList<>();
 
   public int getOrderId() {
     return orderId;

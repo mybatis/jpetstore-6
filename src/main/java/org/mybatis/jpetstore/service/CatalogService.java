@@ -24,7 +24,6 @@ import org.mybatis.jpetstore.domain.Product;
 import org.mybatis.jpetstore.mapper.CategoryMapper;
 import org.mybatis.jpetstore.mapper.ItemMapper;
 import org.mybatis.jpetstore.mapper.ProductMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -35,12 +34,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class CatalogService {
 
-  @Autowired
-  private CategoryMapper categoryMapper;
-  @Autowired
-  private ItemMapper itemMapper;
-  @Autowired
-  private ProductMapper productMapper;
+  private final CategoryMapper categoryMapper;
+  private final ItemMapper itemMapper;
+  private final ProductMapper productMapper;
+
+  public CatalogService(CategoryMapper categoryMapper, ItemMapper itemMapper, ProductMapper productMapper) {
+    this.categoryMapper = categoryMapper;
+    this.itemMapper = itemMapper;
+    this.productMapper = productMapper;
+  }
 
   public List<Category> getCategoryList() {
     return categoryMapper.getCategoryList();
@@ -66,7 +68,7 @@ public class CatalogService {
    * @return the list
    */
   public List<Product> searchProductList(String keywords) {
-    List<Product> products = new ArrayList<Product>();
+    List<Product> products = new ArrayList<>();
     for (String keyword : keywords.split("\\s+")) {
       products.addAll(productMapper.searchProductList("%" + keyword.toLowerCase() + "%"));
     }

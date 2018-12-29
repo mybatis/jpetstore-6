@@ -1,5 +1,5 @@
 /**
- *    Copyright 2010-2017 the original author or authors.
+ *    Copyright 2010-2018 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -61,12 +61,12 @@ public class AccountActionBean extends AbstractActionBean {
   private boolean authenticated;
 
   static {
-    List<String> langList = new ArrayList<String>();
+    List<String> langList = new ArrayList<>();
     langList.add("english");
     langList.add("japanese");
     LANGUAGE_LIST = Collections.unmodifiableList(langList);
 
-    List<String> catList = new ArrayList<String>();
+    List<String> catList = new ArrayList<>();
     catList.add("FISH");
     catList.add("DOGS");
     catList.add("REPTILES");

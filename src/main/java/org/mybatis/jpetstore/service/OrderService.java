@@ -27,7 +27,6 @@ import org.mybatis.jpetstore.mapper.ItemMapper;
 import org.mybatis.jpetstore.mapper.LineItemMapper;
 import org.mybatis.jpetstore.mapper.OrderMapper;
 import org.mybatis.jpetstore.mapper.SequenceMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,14 +38,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class OrderService {
 
-  @Autowired
-  private ItemMapper itemMapper;
-  @Autowired
-  private OrderMapper orderMapper;
-  @Autowired
-  private SequenceMapper sequenceMapper;
-  @Autowired
-  private LineItemMapper lineItemMapper;
+  private final ItemMapper itemMapper;
+  private final OrderMapper orderMapper;
+  private final SequenceMapper sequenceMapper;
+  private final LineItemMapper lineItemMapper;
+
+  public OrderService(ItemMapper itemMapper, OrderMapper orderMapper, SequenceMapper sequenceMapper,
+      LineItemMapper lineItemMapper) {
+    this.itemMapper = itemMapper;
+    this.orderMapper = orderMapper;
+    this.sequenceMapper = sequenceMapper;
+    this.lineItemMapper = lineItemMapper;
+  }
 
   /**
    * Insert order.
@@ -60,8 +63,8 @@ public class OrderService {
     for (int i = 0; i < order.getLineItems().size(); i++) {
       LineItem lineItem = order.getLineItems().get(i);
       String itemId = lineItem.getItemId();
-      Integer increment = new Integer(lineItem.getQuantity());
-      Map<String, Object> param = new HashMap<String, Object>(2);
+      Integer increment = lineItem.getQuantity();
+      Map<String, Object> param = new HashMap<>(2);
       param.put("itemId", itemId);
       param.put("increment", increment);
       itemMapper.updateInventoryQuantity(param);
