@@ -17,6 +17,7 @@ package org.mybatis.jpetstore.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Optional;
 
 /**
  * The Class LineItem.
@@ -109,11 +110,8 @@ public class LineItem implements Serializable {
   }
 
   private void calculateTotal() {
-    if (item != null && item.getListPrice() != null) {
-      total = item.getListPrice().multiply(new BigDecimal(quantity));
-    } else {
-      total = null;
-    }
+    total = Optional.ofNullable(item).map(Item::getListPrice).map(v -> v.multiply(new BigDecimal(quantity)))
+        .orElse(null);
   }
 
 }

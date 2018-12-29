@@ -20,6 +20,8 @@ import org.mybatis.jpetstore.mapper.AccountMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 /**
  * The Class AccountService.
  *
@@ -66,9 +68,8 @@ public class AccountService {
     accountMapper.updateAccount(account);
     accountMapper.updateProfile(account);
 
-    if (account.getPassword() != null && account.getPassword().length() > 0) {
-      accountMapper.updateSignon(account);
-    }
+    Optional.ofNullable(account.getPassword()).filter(password -> password.length() > 0)
+        .ifPresent(password -> accountMapper.updateSignon(account));
   }
 
 }

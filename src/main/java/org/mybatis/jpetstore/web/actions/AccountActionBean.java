@@ -15,7 +15,7 @@
  */
 package org.mybatis.jpetstore.web.actions;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,18 +61,8 @@ public class AccountActionBean extends AbstractActionBean {
   private boolean authenticated;
 
   static {
-    List<String> langList = new ArrayList<>();
-    langList.add("english");
-    langList.add("japanese");
-    LANGUAGE_LIST = Collections.unmodifiableList(langList);
-
-    List<String> catList = new ArrayList<>();
-    catList.add("FISH");
-    catList.add("DOGS");
-    catList.add("REPTILES");
-    catList.add("CATS");
-    catList.add("BIRDS");
-    CATEGORY_LIST = Collections.unmodifiableList(catList);
+    LANGUAGE_LIST = Collections.unmodifiableList(Arrays.asList("english", "japanese"));
+    CATEGORY_LIST = Collections.unmodifiableList(Arrays.asList("FISH", "DOGS", "REPTILES", "CATS", "BIRDS"));
   }
 
   public Account getAccount() {

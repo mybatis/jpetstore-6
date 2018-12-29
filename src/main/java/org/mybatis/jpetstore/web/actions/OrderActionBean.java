@@ -15,7 +15,7 @@
  */
 package org.mybatis.jpetstore.web.actions;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -56,11 +56,7 @@ public class OrderActionBean extends AbstractActionBean {
   private List<Order> orderList;
 
   static {
-    List<String> cardList = new ArrayList<>();
-    cardList.add("Visa");
-    cardList.add("MasterCard");
-    cardList.add("American Express");
-    CARD_TYPE_LIST = Collections.unmodifiableList(cardList);
+    CARD_TYPE_LIST = Collections.unmodifiableList(Arrays.asList("Visa", "MasterCard", "American Express"));
   }
 
   public int getOrderId() {
