@@ -222,7 +222,7 @@
     <tomcat.version />
 
     <surefire.version>3.0.0-M3</surefire.version>
-    <cargo-maven2-plugin.version>1.6.11</cargo-maven2-plugin.version>
+    <cargo-maven2-plugin.version>1.7.1</cargo-maven2-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
     <spring.version>5.1.3.RELEASE</spring.version>
