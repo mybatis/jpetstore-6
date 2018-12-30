@@ -116,7 +116,8 @@ public class Cart implements Serializable {
    * @return the sub total
    */
   public BigDecimal getSubTotal() {
-    return itemList.stream().map(cartItem -> cartItem.getItem().getListPrice().multiply(new BigDecimal(cartItem.getQuantity())))
+    return itemList.stream()
+        .map(cartItem -> cartItem.getItem().getListPrice().multiply(new BigDecimal(cartItem.getQuantity())))
         .reduce(BigDecimal.ZERO, BigDecimal::add);
   }
 
