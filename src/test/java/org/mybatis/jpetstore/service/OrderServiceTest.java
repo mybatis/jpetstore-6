@@ -16,10 +16,15 @@
 package org.mybatis.jpetstore.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,9 +34,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.LineItem;
 import org.mybatis.jpetstore.domain.Order;
+import org.mybatis.jpetstore.domain.Sequence;
 import org.mybatis.jpetstore.mapper.ItemMapper;
 import org.mybatis.jpetstore.mapper.LineItemMapper;
 import org.mybatis.jpetstore.mapper.OrderMapper;
+import org.mybatis.jpetstore.mapper.SequenceMapper;
 
 /**
  * @author coderliux
@@ -46,6 +53,8 @@ class OrderServiceTest {
   private OrderMapper orderMapper;
   @Mock
   private LineItemMapper lineItemMapper;
+  @Mock
+  private SequenceMapper sequenceMapper;
 
   @InjectMocks
   private OrderService orderService;
@@ -88,6 +97,86 @@ class OrderServiceTest {
     assertThat(expectedOrder).isEqualTo(order);
     assertThat(expectedOrder.getLineItems()).hasSize(1);
     assertThat(expectedOrder.getLineItems().get(0).getItem().getQuantity()).isEqualTo(5);
+  }
+
+  @Test
+  void shouldReturnOrderList() {
+
+    // given
+    String username = "foo";
+    List<Order> expectedOrders = new ArrayList<>();
+
+    // when
+    when(orderMapper.getOrdersByUsername(username)).thenReturn(expectedOrders);
+    List<Order> orders = orderService.getOrdersByUsername(username);
+
+    // then
+    assertThat(orders).isSameAs(expectedOrders);
+
+  }
+
+  @Test
+  void shouldReturnNextId() {
+
+    // given
+    Sequence expectedSequence = new Sequence("order", 100);
+
+    // when
+    when(sequenceMapper.getSequence(any())).thenReturn(expectedSequence);
+    int nextId = orderService.getNextId("order");
+
+    // then
+    assertThat(nextId).isEqualTo(100);
+    verify(sequenceMapper).getSequence(argThat(v -> v.getName().equals("order") && v.getNextId() == -1));
+    verify(sequenceMapper).updateSequence(argThat(v -> v.getName().equals("order") && v.getNextId() == 101));
+
+  }
+
+  @Test
+  void shouldThrowExceptionWhenSequenceNotFound() {
+
+    // given
+
+    // when
+    when(sequenceMapper.getSequence(any())).thenReturn(null);
+    try {
+      orderService.getNextId("order");
+      fail("Should throw an exception when sequence not found.");
+    } catch (RuntimeException e) {
+      // then
+      assertThat(e.getMessage())
+          .isEqualTo("Error: A null sequence was returned from the database (could not get next order sequence).");
+      verify(sequenceMapper).getSequence(argThat(v -> v.getName().equals("order") && v.getNextId() == -1));
+    }
+
+  }
+
+  @Test
+  void shouldCallTheMapperToInsert() {
+    // given
+    Order order = new Order();
+    LineItem item = new LineItem();
+    String itemId = "I01";
+    int quantity = 4;
+    item.setItemId(itemId);
+    item.setQuantity(quantity);
+    order.addLineItem(item);
+
+    Sequence orderNumSequence = new Sequence("ordernum", 100);
+
+    Map<String, Object> expectedItemParam = new HashMap<>(2);
+    expectedItemParam.put("itemId", itemId);
+    expectedItemParam.put("increment", quantity);
+
+    // when
+    when(sequenceMapper.getSequence(any())).thenReturn(orderNumSequence);
+    orderService.insertOrder(order);
+
+    // then
+    verify(orderMapper).insertOrder(argThat(v -> v == order && v.getOrderId() == 100));
+    verify(orderMapper).insertOrderStatus(eq(order));
+    verify(lineItemMapper).insertLineItem(argThat(v -> v == item && v.getOrderId() == 100));
+    verify(itemMapper).updateInventoryQuantity(eq(expectedItemParam));
   }
 
 }

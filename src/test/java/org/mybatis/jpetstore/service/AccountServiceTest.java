@@ -15,8 +15,10 @@
  */
 package org.mybatis.jpetstore.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -51,6 +53,50 @@ class AccountServiceTest {
     verify(accountMapper).insertAccount(eq(account));
     verify(accountMapper).insertProfile(eq(account));
     verify(accountMapper).insertSignon(eq(account));
+  }
+
+  @Test
+  void shouldCallTheMapperToUpdateAnAccount() {
+    // given
+    Account account = new Account();
+    account.setPassword("foo");
+
+    // when
+    accountService.updateAccount(account);
+
+    // then
+    verify(accountMapper).updateAccount(eq(account));
+    verify(accountMapper).updateProfile(eq(account));
+    verify(accountMapper).updateSignon(eq(account));
+  }
+
+  @Test
+  void shouldCallTheMapperToGetAccountAnUsername() {
+    // given
+    String username = "bar";
+    Account expectedAccount = new Account();
+    when(accountMapper.getAccountByUsername(username)).thenReturn(expectedAccount);
+
+    // when
+    Account account = accountService.getAccount(username);
+
+    // then
+    assertThat(account).isSameAs(expectedAccount);
+  }
+
+  @Test
+  void shouldCallTheMapperToGetAccountAnUsernameAndPassword() {
+    // given
+    String username = "bar";
+    String password = "foo";
+
+    // when
+    Account expectedAccount = new Account();
+    when(accountMapper.getAccountByUsernameAndPassword(username, password)).thenReturn(expectedAccount);
+    Account account = accountService.getAccount(username, password);
+
+    // then
+    assertThat(account).isSameAs(expectedAccount);
   }
 
 }
