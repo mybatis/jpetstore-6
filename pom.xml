@@ -376,7 +376,7 @@
       <id>resin</id>
       <properties>
         <resin.major-version>4</resin.major-version>
-        <resin.version>4.0.59</resin.version>
+        <resin.version>4.0.61</resin.version>
         <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
       </properties>
