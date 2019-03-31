@@ -330,17 +330,17 @@
       </properties>
     </profile>
     <profile>
-      <id>liberty18-ee8</id>
+      <id>liberty-ee8</id>
       <properties>
-        <liberty.version>18.0.0.4</liberty.version>
+        <liberty.version>19.0.0.3</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
-      <id>liberty18-ee7</id>
+      <id>liberty-ee7</id>
       <properties>
-        <liberty.version>18.0.0.4</liberty.version>
+        <liberty.version>19.0.0.3</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee7/${liberty.version}/wlp-javaee7-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
