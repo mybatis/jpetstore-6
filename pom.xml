@@ -312,6 +312,15 @@
       </properties>
     </profile>
     <profile>
+      <id>wildfly16</id>
+      <properties>
+        <wildfly.major-version>16</wildfly.major-version>
+        <wildfly.version>16.0.0.Final</wildfly.version>
+        <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>http://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.tar.gz</cargo.maven.containerUrl>
+      </properties>
+    </profile>
+    <profile>
       <id>wildfly13</id>
       <properties>
         <wildfly.major-version>13</wildfly.major-version>
