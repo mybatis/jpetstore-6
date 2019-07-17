@@ -31,9 +31,9 @@ echo "Current commit detected: ${commit_message}"
 # 4. Notify Coveralls.
 # 5. Deploy site
 
-if [ $TRAVIS_REPO_SLUG == "mybatis/jpetstore-6" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ] && [[ "$commit_message" != *"[maven-release-plugin]"* ]]; then
+if [ $TRAVIS_REPO_SLUG == "mybatis/jpetstore-6" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ] && [[ "$commit_message" != *"[maven-release-plugin]"* ]] && [ "${NEED_DEPLOY}" == "true" ]; then
 
-  if [ ${TRAVIS_JDK_VERSION} == "oraclejdk8" ]; then
+  if [ ${TRAVIS_JDK_VERSION} == "openjdk8" ]; then
 
     # Deploy to sonatype
     ./mvnw clean deploy -q --settings ./travis/settings.xml
@@ -51,6 +51,7 @@ if [ $TRAVIS_REPO_SLUG == "mybatis/jpetstore-6" ] && [ "$TRAVIS_PULL_REQUEST" ==
     echo "Java Version does not support additonal activity for travis CI"
   fi
 else
+  echo "Need deploy: ${NEED_DEPLOY}"
   echo "Travis Pull Request: $TRAVIS_PULL_REQUEST"
   echo "Travis Branch: $TRAVIS_BRANCH"
   echo "Travis build skipped"

@@ -1,9 +1,49 @@
 language: java
 
-jdk:
-  - openjdk12
-  - openjdk11
-  - openjdk8
+matrix:
+  include:
+    - env: TARGET_AP_SERVER=tomcat90
+      jdk: openjdk12
+    - env: TARGET_AP_SERVER=tomcat90
+      jdk: openjdk11
+    - env:
+      - TARGET_AP_SERVER=tomcat90
+      - NEED_DEPLOY=true
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=tomcat85
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=tomcat70
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=tomee80
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=tomee71
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=wildfly16
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=wildfly13
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=liberty-ee8
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=liberty-ee7
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=jetty
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=glassfish5
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=glassfish4
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=resin
+      jdk: openjdk8
+  allow_failures:
+    # Fail integration test because cannot unpack product zip file of application server
+    - env: TARGET_AP_SERVER=wildfly16
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=wildfly13
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=glassfish5
+      jdk: openjdk8
+    - env: TARGET_AP_SERVER=glassfish4
+      jdk: openjdk8
 
 cache:
   directories:
@@ -16,8 +56,8 @@ before_script:
 
 script:
   - |
-    if [ "${TRAVIS_JDK_VERSION}" != "oraclejdk8" ]; then
-      ./mvnw -U clean verify cargo:daemon-start -P tomcat90
+    if [ "${TRAVIS_JDK_VERSION}" == "openjdk8" ]; then
+      ./mvnw -U clean verify cargo:daemon-start -P ${TARGET_AP_SERVER}
       ./mvnw -U test -P itest
     else
       ./mvnw -U clean verify
