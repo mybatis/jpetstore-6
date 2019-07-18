@@ -55,13 +55,8 @@ before_script:
   - java -jar ./target/dependency/cargo-daemon-webapp.war &
 
 script:
-  - |
-    if [ "${TRAVIS_JDK_VERSION}" == "openjdk8" ]; then
-      ./mvnw -U clean verify cargo:daemon-start -P ${TARGET_AP_SERVER}
-      ./mvnw -U test -P itest
-    else
-      ./mvnw -U clean verify
-    fi
+  - ./mvnw -U clean verify cargo:daemon-start -P ${TARGET_AP_SERVER}
+  - ./mvnw -U test -P itest
 
 after_success:
   - chmod -R 777 ./travis/after_success.sh
