@@ -262,7 +262,7 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.22</tomcat.version>
+        <tomcat.version>9.0.24</tomcat.version>
       </properties>
     </profile>
     <profile>
@@ -276,7 +276,7 @@
       <id>tomcat70</id>
       <properties>
         <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.94</tomcat.version>
+        <tomcat.version>7.0.96</tomcat.version>
       </properties>
     </profile>
     <profile>
