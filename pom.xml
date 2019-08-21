@@ -298,12 +298,12 @@
       </properties>
     </profile>
     <profile>
-      <id>wildfly16</id>
+      <id>wildfly17</id>
       <properties>
-        <wildfly.major-version>16</wildfly.major-version>
-        <wildfly.version>16.0.0.Final</wildfly.version>
+        <wildfly.major-version>17</wildfly.major-version>
+        <wildfly.version>17.0.1.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>http://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.tar.gz</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
@@ -312,7 +312,7 @@
         <wildfly.major-version>13</wildfly.major-version>
         <wildfly.version>13.0.0.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>http://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.tar.gz</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
