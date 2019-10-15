@@ -221,7 +221,7 @@
     <cargo-maven2-plugin.version>1.7.7</cargo-maven2-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <spring.version>5.1.8.RELEASE</spring.version>
+    <spring.version>5.2.0.RELEASE</spring.version>
     <assertj.version>3.13.2</assertj.version>
     <hsqldb.version>2.5.0</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
