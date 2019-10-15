@@ -130,13 +130,13 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>3.0.0</version>
+      <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-junit-jupiter</artifactId>
-      <version>3.0.0</version>
+      <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -223,6 +223,7 @@
 
     <spring.version>5.2.0.RELEASE</spring.version>
     <assertj.version>3.13.2</assertj.version>
+    <mockito.version>3.1.0</mockito.version>
     <hsqldb.version>2.5.0</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
   </properties>
