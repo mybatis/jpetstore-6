@@ -262,14 +262,14 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.24</tomcat.version>
+        <tomcat.version>9.0.27</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat85</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.43</tomcat.version>
+        <tomcat.version>8.5.47</tomcat.version>
       </properties>
     </profile>
     <profile>
