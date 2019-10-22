@@ -70,10 +70,6 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
 
 Perform integration tests for screen transition.
 
-> Requires:
->
-> * JDK 8+
-
 ```
 $ ./mvnw clean verify -P tomcat90
 ```
