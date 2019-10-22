@@ -72,9 +72,8 @@ Perform integration tests for screen transition.
 
 > Requires:
 >
-> * Running the JPetStore on 8080 port
 > * JDK 8+
 
 ```
-$ ./mvnw test -P itest
+$ ./mvnw clean verify -P tomcat90
 ```
