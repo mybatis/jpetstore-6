@@ -21,52 +21,52 @@ import org.junit.jupiter.api.Test;
 
 class OrderActionBeanTest {
 
-   // Test written by Diffblue Cover.
-   @Test
-   void getOrderListOutputNull() {
+  // Test written by Diffblue Cover.
+  @Test
+  void getOrderListOutputNull() {
 
-   // Arrange
-   final OrderActionBean orderActionBean = new OrderActionBean();
+    // Arrange
+    final OrderActionBean orderActionBean = new OrderActionBean();
 
-   // Act and Assert result
-   assertThat(orderActionBean.getOrderList()).isNull();
+    // Act and Assert result
+    assertThat(orderActionBean.getOrderList()).isNull();
 
-   }
+  }
 
-   // Test written by Diffblue Cover.
-   @Test
-   void isShippingAddressRequiredOutputFalse() {
+  // Test written by Diffblue Cover.
+  @Test
+  void isShippingAddressRequiredOutputFalse() {
 
-   // Arrange
-   final OrderActionBean orderActionBean = new OrderActionBean();
+    // Arrange
+    final OrderActionBean orderActionBean = new OrderActionBean();
 
-   // Act and Assert result
-   assertThat(orderActionBean.isShippingAddressRequired()).isFalse();
+    // Act and Assert result
+    assertThat(orderActionBean.isShippingAddressRequired()).isFalse();
 
-   }
+  }
 
-   // Test written by Diffblue Cover.
-   @Test
-   void constructorOutputNotNull() {
+  // Test written by Diffblue Cover.
+  @Test
+  void constructorOutputNotNull() {
 
-   // Act, creating object to test constructor
-   final OrderActionBean actual = new OrderActionBean();
+    // Act, creating object to test constructor
+    final OrderActionBean actual = new OrderActionBean();
 
-   // Assert result
-   assertThat(actual).isNotNull().isNotNull();
-   assertThat(actual.getContext()).isNull();
+    // Assert result
+    assertThat(actual).isNotNull().isNotNull();
+    assertThat(actual.getContext()).isNull();
 
-   }
+  }
 
-   // Test written by Diffblue Cover.
-   @Test
-   void isConfirmedOutputFalse() {
+  // Test written by Diffblue Cover.
+  @Test
+  void isConfirmedOutputFalse() {
 
-   // Arrange
-   final OrderActionBean orderActionBean = new OrderActionBean();
+    // Arrange
+    final OrderActionBean orderActionBean = new OrderActionBean();
 
-   // Act and Assert result
-   assertThat(orderActionBean.isConfirmed()).isFalse();
+    // Act and Assert result
+    assertThat(orderActionBean.isConfirmed()).isFalse();
 
-   }
+  }
 }
