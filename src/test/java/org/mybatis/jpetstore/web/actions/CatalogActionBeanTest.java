@@ -100,7 +100,7 @@ class CatalogActionBeanTest {
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
 
     // Act and Assert result
-    assertThat(catalogActionBean.getItemId()).isNull();;
+    assertThat(catalogActionBean.getItemId()).isNull();
 
   }
 
@@ -112,7 +112,7 @@ class CatalogActionBeanTest {
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
 
     // Act and Assert result
-    assertThat(catalogActionBean.getProductId()).isNull();;
+    assertThat(catalogActionBean.getProductId()).isNull();
 
   }
 
