@@ -20,11 +20,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.mybatis.jpetstore.domain.Account;
 
-public class AccountActionBeanTest {
+class AccountActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getMyListOutputNull() {
+  void getMyListOutputNull() {
 
     // Arrange
     final AccountActionBean accountActionBean = new AccountActionBean();
@@ -36,7 +36,7 @@ public class AccountActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void constructorOutputNotNull() {
+  void constructorOutputNotNull() {
 
     // Act, creating object to test constructor
     final AccountActionBean actual = new AccountActionBean();
@@ -49,7 +49,7 @@ public class AccountActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getPasswordOutputNull() {
+  void getPasswordOutputNull() {
 
     // Arrange
     final AccountActionBean accountActionBean = new AccountActionBean();
@@ -61,7 +61,7 @@ public class AccountActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void isAuthenticatedOutputFalse() {
+  void isAuthenticatedOutputFalse() {
 
     // Arrange
     final AccountActionBean accountActionBean = new AccountActionBean();
@@ -73,7 +73,7 @@ public class AccountActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getUsernameOutputNull() {
+  void getUsernameOutputNull() {
 
     // Arrange
     final AccountActionBean accountActionBean = new AccountActionBean();
@@ -85,7 +85,7 @@ public class AccountActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getAccountOutputNotNull() {
+  void getAccountOutputNotNull() {
 
     // Arrange
     final AccountActionBean accountActionBean = new AccountActionBean();

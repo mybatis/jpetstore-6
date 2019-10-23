@@ -19,11 +19,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-public class OrderActionBeanTest {
+class OrderActionBeanTest {
 
    // Test written by Diffblue Cover.
    @Test
-   public void getOrderListOutputNull() {
+   void getOrderListOutputNull() {
 
    // Arrange
    final OrderActionBean orderActionBean = new OrderActionBean();
@@ -35,7 +35,7 @@ public class OrderActionBeanTest {
 
    // Test written by Diffblue Cover.
    @Test
-   public void isShippingAddressRequiredOutputFalse() {
+   void isShippingAddressRequiredOutputFalse() {
 
    // Arrange
    final OrderActionBean orderActionBean = new OrderActionBean();
@@ -47,7 +47,7 @@ public class OrderActionBeanTest {
 
    // Test written by Diffblue Cover.
    @Test
-   public void constructorOutputNotNull() {
+   void constructorOutputNotNull() {
 
    // Act, creating object to test constructor
    final OrderActionBean actual = new OrderActionBean();
@@ -60,7 +60,7 @@ public class OrderActionBeanTest {
 
    // Test written by Diffblue Cover.
    @Test
-   public void isConfirmedOutputFalse() {
+   void isConfirmedOutputFalse() {
 
    // Arrange
    final OrderActionBean orderActionBean = new OrderActionBean();

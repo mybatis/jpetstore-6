@@ -19,10 +19,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-public class CatalogActionBeanTest {
+class CatalogActionBeanTest {
 
   @Test
-  public void getItemListOutputNull() {
+  void getItemListOutputNull() {
 
     // Arrange
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
@@ -34,7 +34,7 @@ public class CatalogActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getProductListOutputNull() {
+  void getProductListOutputNull() {
 
     // Arrange
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
@@ -46,7 +46,7 @@ public class CatalogActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getCategoryListOutputNull() {
+  void getCategoryListOutputNull() {
 
     // Arrange
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
@@ -58,7 +58,7 @@ public class CatalogActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getItemOutputNull() {
+  void getItemOutputNull() {
 
     // Arrange
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
@@ -70,7 +70,7 @@ public class CatalogActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getProductOutputNull() {
+  void getProductOutputNull() {
 
     // Arrange
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
@@ -82,7 +82,7 @@ public class CatalogActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getCategoryOutputNull() {
+  void getCategoryOutputNull() {
 
     // Arrange
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
@@ -94,7 +94,7 @@ public class CatalogActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getItemIdOutputNull() {
+  void getItemIdOutputNull() {
 
     // Arrange
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
@@ -106,7 +106,7 @@ public class CatalogActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getProductIdOutputNull() {
+  void getProductIdOutputNull() {
 
     // Arrange
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
@@ -118,7 +118,7 @@ public class CatalogActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getCategoryIdOutputNull() {
+  void getCategoryIdOutputNull() {
 
     // Arrange
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
@@ -130,7 +130,7 @@ public class CatalogActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void getKeywordOutputNull() {
+  void getKeywordOutputNull() {
 
     // Arrange
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
@@ -142,7 +142,7 @@ public class CatalogActionBeanTest {
 
   // Test written by Diffblue Cover.
   @Test
-  public void constructorOutputNotNull() {
+  void constructorOutputNotNull() {
 
     // Act, creating object to test constructor
     final CatalogActionBean actual = new CatalogActionBean();
