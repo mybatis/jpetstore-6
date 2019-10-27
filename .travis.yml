@@ -22,7 +22,7 @@ matrix:
       jdk: openjdk8
     - env: TARGET_AP_SERVER=tomee71
       jdk: openjdk8
-    - env: TARGET_AP_SERVER=wildfly17
+    - env: TARGET_AP_SERVER=wildfly18
       jdk: openjdk8
     - env: TARGET_AP_SERVER=wildfly13
       jdk: openjdk8
@@ -40,7 +40,7 @@ matrix:
       jdk: openjdk8
   allow_failures:
     # Fail integration test because cannot unpack product zip file of application server
-    - env: TARGET_AP_SERVER=wildfly17
+    - env: TARGET_AP_SERVER=wildfly18
       jdk: openjdk8
     - env: TARGET_AP_SERVER=wildfly13
       jdk: openjdk8

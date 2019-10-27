@@ -248,6 +248,28 @@
     </plugins>
   </build>
 
+  <repositories>
+    <repository>
+      <id>sonatype-oss-snapshots</id>
+      <name>Sonatype OSS Snapshots Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>sonatype-oss-snapshots</id>
+      <name>Sonatype OSS Snapshots Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
   <properties>
     <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
     <cargo.maven.containerUrl>http://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
@@ -255,8 +277,9 @@
     <tomcat.version />
 
     <surefire.version>3.0.0-M3</surefire.version>
-    <cargo-maven2-plugin.version>1.7.7</cargo-maven2-plugin.version>
+    <cargo-maven2-plugin.version>1.7.8-SNAPSHOT</cargo-maven2-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
+    <enforcer.skip>true</enforcer.skip>
 
     <spring.version>5.2.0.RELEASE</spring.version>
     <assertj.version>3.13.2</assertj.version>
@@ -313,10 +336,10 @@
       </properties>
     </profile>
     <profile>
-      <id>wildfly17</id>
+      <id>wildfly18</id>
       <properties>
-        <wildfly.major-version>17</wildfly.major-version>
-        <wildfly.version>17.0.1.Final</wildfly.version>
+        <wildfly.major-version>18</wildfly.major-version>
+        <wildfly.version>18.0.0.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
