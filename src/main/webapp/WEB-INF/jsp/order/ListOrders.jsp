@@ -1,6 +1,6 @@
 <%--
 
-       Copyright 2010-2016 the original author or authors.
+       Copyright 2010-2019 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -36,8 +36,8 @@
 			  </stripes:link></td>
 			<td><fmt:formatDate value="${order.orderDate}"
 				pattern="yyyy/MM/dd hh:mm:ss" /></td>
-			<td><fmt:formatNumber value="${order.totalPrice}"
-				pattern="$#,##0.00" /></td>
+			<td>$<fmt:formatNumber value="${order.totalPrice}"
+				pattern="#,##0.00" /></td>
 		</tr>
 	</c:forEach>
 </table>
