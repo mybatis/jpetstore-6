@@ -272,7 +272,7 @@
 
   <properties>
     <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
-    <cargo.maven.containerUrl>http://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
+    <cargo.maven.containerUrl>https://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
     <tomcat.major-version />
     <tomcat.version />
 
@@ -323,7 +323,7 @@
         <tomee.major-version>8</tomee.major-version>
         <tomee.version>8.0.0</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
@@ -332,7 +332,7 @@
         <tomee.major-version>7</tomee.major-version>
         <tomee.version>7.1.1</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
@@ -358,7 +358,7 @@
       <properties>
         <liberty.version>19.0.0.9</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
-        <cargo.maven.containerUrl>http://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
@@ -366,7 +366,7 @@
       <properties>
         <liberty.version>19.0.0.9</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
-        <cargo.maven.containerUrl>http://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee7/${liberty.version}/wlp-javaee7-${liberty.version}.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee7/${liberty.version}/wlp-javaee7-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
@@ -375,7 +375,7 @@
         <jetty.major-version>9</jetty.major-version>
         <jetty.version>9.4.21.v20190926</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
@@ -384,7 +384,7 @@
         <glassfish.major-version>5</glassfish.major-version>
         <glassfish.version>5.1.0</glassfish.version>
         <cargo.maven.containerId>glassfish${glassfish.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>http://repo.maven.apache.org/maven2/org/glassfish/main/distributions/glassfish/${glassfish.version}/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/org/glassfish/main/distributions/glassfish/${glassfish.version}/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
@@ -393,7 +393,7 @@
         <glassfish.major-version>4</glassfish.major-version>
         <glassfish.version>4.1.2</glassfish.version>
         <cargo.maven.containerId>glassfish${glassfish.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>http://download.java.net/glassfish/${glassfish.version}/release/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://download.java.net/glassfish/${glassfish.version}/release/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
@@ -402,7 +402,7 @@
         <resin.major-version>4</resin.major-version>
         <resin.version>4.0.62</resin.version>
         <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>http://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
   </profiles>
