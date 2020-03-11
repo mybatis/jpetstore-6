@@ -5,6 +5,8 @@ matrix:
     - env: TARGET_AP_SERVER=tomcat90
       jdk: openjdk-ea
     - env: TARGET_AP_SERVER=tomcat90
+      jdk: openjdk14
+    - env: TARGET_AP_SERVER=tomcat90
       jdk: openjdk13
     - env: TARGET_AP_SERVER=tomcat90
       jdk: openjdk11
