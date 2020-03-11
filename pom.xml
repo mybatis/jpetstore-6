@@ -339,7 +339,7 @@
       <id>wildfly18</id>
       <properties>
         <wildfly.major-version>18</wildfly.major-version>
-        <wildfly.version>18.0.0.Final</wildfly.version>
+        <wildfly.version>18.0.1.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
