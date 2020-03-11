@@ -356,7 +356,7 @@
     <profile>
       <id>liberty-ee8</id>
       <properties>
-        <liberty.version>19.0.0.9</liberty.version>
+        <liberty.version>20.0.0.2</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -364,7 +364,7 @@
     <profile>
       <id>liberty-ee7</id>
       <properties>
-        <liberty.version>19.0.0.9</liberty.version>
+        <liberty.version>20.0.0.2</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee7/${liberty.version}/wlp-javaee7-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
