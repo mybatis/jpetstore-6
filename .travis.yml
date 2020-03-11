@@ -44,8 +44,6 @@ matrix:
       jdk: openjdk8
     - env: TARGET_AP_SERVER=wildfly13
       jdk: openjdk8
-    - env: TARGET_AP_SERVER=glassfish4
-      jdk: openjdk8
 
 cache:
   directories:
