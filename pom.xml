@@ -300,28 +300,28 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.27</tomcat.version>
+        <tomcat.version>9.0.31</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat85</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.47</tomcat.version>
+        <tomcat.version>8.5.51</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat70</id>
       <properties>
         <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.96</tomcat.version>
+        <tomcat.version>7.0.100</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomee80</id>
       <properties>
         <tomee.major-version>8</tomee.major-version>
-        <tomee.version>8.0.0</tomee.version>
+        <tomee.version>8.0.1</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
@@ -330,7 +330,7 @@
       <id>tomee71</id>
       <properties>
         <tomee.major-version>7</tomee.major-version>
-        <tomee.version>7.1.1</tomee.version>
+        <tomee.version>7.1.2</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
@@ -339,7 +339,7 @@
       <id>wildfly18</id>
       <properties>
         <wildfly.major-version>18</wildfly.major-version>
-        <wildfly.version>18.0.0.Final</wildfly.version>
+        <wildfly.version>18.0.1.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -356,7 +356,7 @@
     <profile>
       <id>liberty-ee8</id>
       <properties>
-        <liberty.version>19.0.0.9</liberty.version>
+        <liberty.version>20.0.0.2</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -364,7 +364,7 @@
     <profile>
       <id>liberty-ee7</id>
       <properties>
-        <liberty.version>19.0.0.9</liberty.version>
+        <liberty.version>20.0.0.2</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee7/${liberty.version}/wlp-javaee7-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -373,7 +373,7 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>9</jetty.major-version>
-        <jetty.version>9.4.21.v20190926</jetty.version>
+        <jetty.version>9.4.27.v20200227</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
@@ -400,7 +400,7 @@
       <id>resin</id>
       <properties>
         <resin.major-version>4</resin.major-version>
-        <resin.version>4.0.62</resin.version>
+        <resin.version>4.0.64</resin.version>
         <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
       </properties>
