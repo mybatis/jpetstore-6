@@ -68,7 +68,7 @@
 				<td><stripes:link class="Button"
 					beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
 					event="removeItemFromCart">
-					<stripes:param name="cartItem" value="${cartItem.item.itemId}" />
+					<stripes:param name="workingItemId" value="${cartItem.item.itemId}" />
             	Remove
             </stripes:link></td>
 			</tr>
