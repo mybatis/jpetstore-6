@@ -1,5 +1,5 @@
 /**
- *    Copyright 2010-2019 the original author or authors.
+ *    Copyright 2010-2020 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -111,7 +111,7 @@ class ScreenTransitionIT {
     $(By.cssSelector("#Cart tr:nth-of-type(4) td")).shouldBe(text("Sub Total: $248.50"));
 
     // Remove item
-    $(By.cssSelector("#Cart tr:nth-of-type(2) td:nth-of-type(8) a")).click();
+    $(By.cssSelector("#Cart tr:nth-of-type(3) td:nth-of-type(8) a")).click();
     $(By.cssSelector("#Cart tr:nth-of-type(3) td")).shouldBe(text("Sub Total: $55.00"));
 
     // Checkout cart items

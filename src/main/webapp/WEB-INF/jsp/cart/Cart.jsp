@@ -1,6 +1,6 @@
 <%--
 
-       Copyright 2010-2019 the original author or authors.
+       Copyright 2010-2020 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@
 				<td><stripes:link class="Button"
 					beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
 					event="removeItemFromCart">
-					<stripes:param name="cartItem" value="${cartItem.item.itemId}" />
+					<stripes:param name="workingItemId" value="${cartItem.item.itemId}" />
             	Remove
             </stripes:link></td>
 			</tr>
