@@ -111,7 +111,7 @@ class ScreenTransitionIT {
     $(By.cssSelector("#Cart tr:nth-of-type(4) td")).shouldBe(text("Sub Total: $248.50"));
 
     // Remove item
-    $(By.cssSelector("#Cart tr:nth-of-type(2) td:nth-of-type(8) a")).click();
+    $(By.cssSelector("#Cart tr:nth-of-type(3) td:nth-of-type(8) a")).click();
     $(By.cssSelector("#Cart tr:nth-of-type(3) td")).shouldBe(text("Sub Total: $55.00"));
 
     // Checkout cart items
