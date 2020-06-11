@@ -80,4 +80,5 @@ stages:
         azureSubscription: $(azureServiceConnectionId)
         appType: 'webAppLinux'
         appName: $(webServer)
-        package: $(artifactsPath)
+        #package: $(artifactsPath)
+        package: '/home/vsts/work/1/s/target/jpetstore.war'
