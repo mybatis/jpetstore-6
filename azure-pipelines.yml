@@ -1,0 +1,83 @@
+#Java
+#Checkout,Codescan,QualityCheck,Build,UploadArtifacts and Deploy To Webapp
+name: $(build.sourceBranchName)-$(Date:yyyyMMdd)$(Rev:.r)
+trigger:
+- master
+variables:
+  sonarServiceConnection: 'sonar-ahold'
+  sonarProjectKey: 'jpetstore'
+  sonarProjectName: 'jpetstore'
+  sonarSources: '.'
+  sonarJavaSource: '.'
+  sonarJavaBinaries: '.'
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+  #Build Artifacts
+  publishesArtifactsPath: '/home/vsts/work/1/s/target/'
+  artifactsPath: '/home/vsts/work/1/s/target/jpetstore.war'
+  artifactRepoName: 'jpetstore'
+  artifactVersionType: 'patch'
+  webServer: 'java-sample-demo11'
+  azureServiceConnectionId: 'ahold-poc-demo2'
+  azureArtifactName: 'jpetstore'
+  azureFeedPublishName: 'bed25be9-4b19-4d72-bd95-49459092e4eb'
+resources:
+  repositories:
+  - repository: jpetstore_demo
+    type: git
+    name: jpetstore_demo
+stages:
+- stage: JavaBuildPipeline
+  displayName: Java CI CD Build Pipeline
+  jobs:  
+  - job: JavaBuildPipeline
+    displayName: Java CI CD Build Pipeline
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - checkout: jpetstore_demo
+      displayName: CodeCheckout
+    - task: SonarQubePrepare@4
+      displayName: SonarqubeInitial
+      inputs:
+        SonarQube: $(sonarServiceConnection)
+        scannerMode: 'CLI'
+        configMode: 'manual'
+        cliProjectKey: $(sonarProjectKey)
+        cliProjectName: $(sonarProjectName)
+        cliSources: $(sonarSources)
+        extraProperties: |
+          sonar.java.source=$(sonarJavaSource)
+          sonar.java.binaries=$(sonarJavaBinaries)
+    - task: SonarQubeAnalyze@4
+      displayName: SonarAnalysis
+    - task: SonarQubePublish@4
+      displayName: SonarCodeQualityCheck
+      inputs:
+        pollingTimeoutSec: '300'
+    - task: Maven@3
+      displayName: BuildWithMaven
+      inputs:
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: false
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
+    - task: UniversalPackages@0
+      displayName: PublishArtifacts
+      inputs:
+        command: 'publish'
+        publishDirectory: $(artifactsPath)
+        feedsToUsePublish: 'internal'
+        vstsFeedPublish: $(azureFeedPublishName)
+        vstsFeedPackagePublish: $(azureArtifactName)
+        versionOption: 'patch'
+    - task: AzureWebApp@1
+      displayName: App Deployment
+      inputs:
+        azureSubscription: $(azureServiceConnectionId)
+        appType: 'webAppLinux'
+        appName: $(webServer)
+        package: $(artifactsPath)
