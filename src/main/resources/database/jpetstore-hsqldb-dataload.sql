@@ -34,6 +34,11 @@ INSERT INTO account VALUES('user5','user3@yourdomain.com','ABC', 'XYX', 'OK', '9
 
 INSERT INTO profile VALUES('j2ee','english','DOGS',1,1);
 INSERT INTO profile VALUES('ACID','english','CATS',1,1);
+INSERT INTO profile VALUES('user1','english','CATS',1,1);
+INSERT INTO profile VALUES('user2','english','CATS',1,1);
+INSERT INTO profile VALUES('user3','english','CATS',1,1);
+INSERT INTO profile VALUES('user4','english','CATS',1,1);
+INSERT INTO profile VALUES('user5','english','CATS',1,1);
 
 INSERT INTO bannerdata VALUES ('FISH','<image src="../images/banner_fish.gif">');
 INSERT INTO bannerdata VALUES ('CATS','<image src="../images/banner_cats.gif">');
