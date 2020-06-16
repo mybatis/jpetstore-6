@@ -1,7 +1,10 @@
 IMAGE="jloisel/jpetstore6:latest"
 
-image:
+package:
+	./mvnw clean package
+
+image: package
 	docker build --pull --rm=true -t $(IMAGE) .
 
-push:
+push: image
 	docker push $(IMAGE)
