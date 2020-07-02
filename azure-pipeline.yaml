@@ -1,0 +1,52 @@
+#Java
+#Checkout,Codescan,QualityCheck,Build,UploadArtifacts and Deploy To Webapp
+name: $(build.sourceBranchName)-$(Date:yyyyMMdd)$(Rev:.r)
+trigger:
+  - master
+pr:
+  - master
+variables:
+  sonarServiceConnection: 'sonar-ahold'
+  sonarProjectKey: 'jpetstore'
+  sonarProjectName: 'jpetstore'
+  sonarSources: '.'
+  sonarJavaSource: '.'
+  sonarJavaBinaries: '.'
+  sonar.junit.reportsPath: 'target/surefire-reports'
+  sonar.surefire.reportsPath: 'target/surefire-reports'
+  sonar.jacoco.reportPath: 'target/jacoco.exec'
+  sonar.binaries: 'target/classes'
+  sonar.java.coveragePlugin: 'jacoco'
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+  #Build Artifacts
+  publishesArtifactsPath: '/home/vsts/work/1/s/target/'
+  artifactsPath: '/home/vsts/work/1/s/target/jpetstore.war'
+  artifactRepoName: 'jpetstore'
+  artifactVersionType: 'patch'
+  webServer: 'java-sample-demo11'
+  azureServiceConnectionId: 'ahold-poc-demo'
+  azureArtifactName: 'jpetstore'
+  azureFeedPublishName: '765878f8-c954-450c-9d10-10f7effa2b3c'
+stages:
+- stage: JavaBuildPipeline
+  displayName: Java CI CD Build Pipeline
+  jobs:  
+  - job: JavaBuildPipeline
+    displayName: Java CI CD Build Pipeline
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - checkout: self
+      displayName: CodeCheckout
+    - task: Maven@3
+      condition: and(succeeded(), ne(variables['TriggeringArtifactSourceBranchName'], 'merge'))
+      displayName: BuildWithMaven
+      inputs:
+        mavenPomFile: 'pom.xml'
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
+        publishJUnitResults: false
