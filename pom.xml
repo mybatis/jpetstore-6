@@ -154,7 +154,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit-driver</artifactId>
-      <version>2.42.0</version>
+      <version>2.43.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -284,13 +284,13 @@
     <tomcat.version />
 
     <surefire.version>3.0.0-M3</surefire.version>
-    <cargo-maven2-plugin.version>1.7.15</cargo-maven2-plugin.version>
+    <cargo-maven2-plugin.version>1.8.0</cargo-maven2-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
     <enforcer.skip>true</enforcer.skip>
 
     <spring.version>5.2.8.RELEASE</spring.version>
-    <assertj.version>3.16.1</assertj.version>
-    <mockito.version>3.4.4</mockito.version>
+    <assertj.version>3.17.2</assertj.version>
+    <mockito.version>3.5.10</mockito.version>
     <hsqldb.version>2.5.1</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
 
