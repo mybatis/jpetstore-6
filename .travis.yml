@@ -3,11 +3,9 @@ language: java
 matrix:
   include:
     - env: TARGET_AP_SERVER=tomcat90
-      jdk: openjdk-ea
+      jdk: openjdk16
     - env: TARGET_AP_SERVER=tomcat90
-      jdk: openjdk14
-    - env: TARGET_AP_SERVER=tomcat90
-      jdk: openjdk13
+      jdk: openjdk15
     - env: TARGET_AP_SERVER=tomcat90
       jdk: openjdk11
     - env:
@@ -39,9 +37,6 @@ matrix:
     - env: TARGET_AP_SERVER=resin
       jdk: openjdk8
   allow_failures:
-    # Fail maven-bundle-plugin on JDK 15 (https://issues.apache.org/jira/browse/FELIX-6259,https://github.com/mybatis/parent/issues/160)
-    - env: TARGET_AP_SERVER=tomcat90
-      jdk: openjdk-ea
     # Fail integration test because cannot unpack product zip file of application server
     - env: TARGET_AP_SERVER=wildfly18
       jdk: openjdk8
