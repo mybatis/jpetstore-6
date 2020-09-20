@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-       Copyright 2010-2017 the original author or authors.
+       Copyright 2010-2020 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@
         section of MyBatis project site.
         In this section we will walk through this sample to understand how is it built and learn how to run it.
       </p>
-      
+
       <subsection name="Translations">
         <p>Users can read this doc in following translations:</p>
         <ul class="i18n">
@@ -46,21 +46,21 @@
         <p>Do you want to read about MyBatis in your own native language? File an issue providing patches with your
         mother tongue documentation!</p>
       </subsection>
-      
+
       <subsection name="Purpose">
       	<p>
-      	This new JPetStore comes with the same idea in mind than its predecessors: <strong>keep it simple</strong>. 
-      	The purpose of JPetStore 6 is to demonstrate how to build a web application with very few classes and no advanced coding skills. 
+      	This new JPetStore comes with the same idea in mind than its predecessors: <strong>keep it simple</strong>.
+      	The purpose of JPetStore 6 is to demonstrate how to build a web application with very few classes and no advanced coding skills.
       	You just need to know plain Java and SQL.
       	</p>
       	<p>
-      	The 6th version of JPetStore is the smallest of the family, 20% smaller than its predecessor. 
+      	The 6th version of JPetStore is the smallest of the family, 20% smaller than its predecessor.
       	It uses just 24 java classes while keeping a good design and program structure.
       	</p>
       	<pre>
 eduardo@nomada ~ $ ./cloc-1.60.pl ~/git/jpetstore-6/src/main/
       60 text files.
-      60 unique files.                              
+      60 unique files.
        3 files ignored.
 
 http://cloc.sourceforge.net v 1.60  T=0.28 s (209.8 files/s, 17722.9 lines/s)
@@ -78,9 +78,9 @@ SUM:                            58            823            612           3464
 -------------------------------------------------------------------------------
       	</pre>
       	<p>
-      	As we will see later on, you will find no code to deal with JDBC, to create objects or bind them or to handle transactions. 
-      	What is more impressive is that you <strong>will not find any call to the MyBatis API</strong>. 
-      	Although this sounds magical, you will see that the combination of MyBatis mappers and dependency injection lets you 
+      	As we will see later on, you will find no code to deal with JDBC, to create objects or bind them or to handle transactions.
+      	What is more impressive is that you <strong>will not find any call to the MyBatis API</strong>.
+      	Although this sounds magical, you will see that the combination of MyBatis mappers and dependency injection lets you
       	build applications without dependencies.
       	</p>
       </subsection>
@@ -442,7 +442,7 @@ public interface OrderMapper {
 		either, you can run the sample from your favorite IDE or the command line.
         </p>
       </subsection>
-          
+
     </section>
   </body>
 </document>

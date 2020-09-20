@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-       Copyright 2010-2016 the original author or authors.
+       Copyright 2010-2020 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
        limitations under the License.
 
 -->
-
 <document xmlns="http://maven.apache.org/XDOC/2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
@@ -38,18 +37,18 @@
       </p>
       <subsection name="Propósito">
       	<p>
-      	Esta nueva versión de JPetStore viene con la misma idea en mente que sus precedesores: <strong>hazlo fácil</strong>. 
-      	El propósito principal de JPetStore 6 es demostrar que una aplicación web completa puede construirse con sólo unas pocas clases, 
+      	Esta nueva versión de JPetStore viene con la misma idea en mente que sus precedesores: <strong>hazlo fácil</strong>.
+      	El propósito principal de JPetStore 6 es demostrar que una aplicación web completa puede construirse con sólo unas pocas clases,
       	y lo que es más importante,	sin necesidad de tener grandes conocimientos de programación. Sólo necesitas saber java básico y SQL.
       	</p>
       	<p>
-      	La sexta versión de JPetStore es la más pequeña de la familia, un 20% más pequeña que su predecesora. 
+      	La sexta versión de JPetStore es la más pequeña de la familia, un 20% más pequeña que su predecesora.
       	Sólo usa 24 clases y conserva un buen diseño y estructura de programa.
       	</p>
       	<pre>
 eduardo@nomada ~ $ ./cloc-1.60.pl ~/git/jpetstore-6/src/main/
       60 text files.
-      60 unique files.                              
+      60 unique files.
        3 files ignored.
 
 http://cloc.sourceforge.net v 1.60  T=0.28 s (209.8 files/s, 17722.9 lines/s)
@@ -65,7 +64,7 @@ HTML                             2             44              0            143
 -------------------------------------------------------------------------------
 SUM:                            58            823            612           3464
 -------------------------------------------------------------------------------
-      	</pre>      	
+      	</pre>
       	<p>
       	Como veremos un poco después, no encontrarás código JDBC, de creación de objetos, de enlace de objetos o de gestión de transacciones.
       	Y lo que es más sorprendente es que <strong>¡no encontrarás ninguna llamada al API de MyBatis!</strong>. A pesar de que esto suena a mágia,
@@ -361,7 +360,7 @@ public class OrderService {
 
       <h4>Persistencia</h4>
       <p>
-      La capa de persistencia está compuesta por mappers de MyBatis. 
+      La capa de persistencia está compuesta por mappers de MyBatis.
       Los mappers son interfaces Java simples y ficheros XML que contienen las sentencias SQL. No hay código Java en esta capa.
       Cuando se ejecuta el método <code>getOrder</code> del mapper interface <code>OrderMapper</code>,
       MyBatis ejecuta la sentencia SQL del stamtent getOrder del ficheroOrderMapper.xml file y rellena el bean
@@ -440,7 +439,7 @@ public interface OrderMapper {
         </p>
         <p>
           <span class="label important">NOTE</span>
-		  JPetStore y debe ejecutarse en cualquier servidor compatible Servlet 2.5 y JSP 2.1. Tampoco es necesario NetBeans o Eclipse, 
+		  JPetStore y debe ejecutarse en cualquier servidor compatible Servlet 2.5 y JSP 2.1. Tampoco es necesario NetBeans o Eclipse,
 		  puedes ejecutarlo desde tu IDE favorito o desde la línea de comando.
         </p>
       </subsection>
