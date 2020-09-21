@@ -293,9 +293,6 @@
     <mockito.version>3.5.11</mockito.version>
     <hsqldb.version>2.5.1</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
-
-    <!-- Remove after parent 32 (support for jdk 13) -->
-    <jacoco.version>0.8.4</jacoco.version>
   </properties>
 
   <profiles>
