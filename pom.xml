@@ -35,9 +35,9 @@
   <url>http://www.mybatis.org</url>
 
   <scm>
-    <url>http://github.com/mybatis/jpetstore-6</url>
-    <connection>scm:git:ssh://github.com/mybatis/jpetstore-6.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</developerConnection>
+    <url>http://github.com/SteampunkFoundry/jpetstore-6</url>
+    <connection>scm:git:ssh://github.com/SteampunkFoundry/jpetstore-6.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/SteampunkFoundry/jpetstore-6.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
@@ -49,6 +49,14 @@
     <url>https://travis-ci.org/mybatis/jpetstore-6</url>
   </ciManagement>
   <distributionManagement>
+    <snapshotRepository>
+      <id>maven-snapshots</id>
+      <url>https://nexus.dhsice.name/repository/maven-snapshots/</url>
+    </snapshotRepository>
+    <repository>
+      <id>maven-releases</id>
+      <url>https://nexus.dhsice.name/repository/maven-releases/</url>
+    </repository>
     <site>
       <id>gh-pages</id>
       <name>Mybatis GitHub Pages</name>
