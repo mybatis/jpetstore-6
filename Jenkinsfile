@@ -28,6 +28,16 @@ podTemplate(
                     stage('Compile') {
                         sh('mvn -s ${MAVEN_CONFIG} compile')
                     }
+                    stage('Test') {
+                        sh('mvn -s ${MAVEN_CONFIG} test')
+                        junit '**/target/surefire-reports/TEST-*.xml'
+                        jacoco(
+                            execPattern: 'target/*.exec',
+                            classPattern: 'target/classes',
+                            sourcePattern: 'src/main/java',
+                            exclusionPattern: 'src/test*'
+                        )
+                    }
                     stage ('SonarQube analysis') {
                         withSonarQubeEnv('sonarqube') {
                             sh 'mvn -s ${MAVEN_CONFIG} sonar:sonar'
@@ -37,10 +47,6 @@ podTemplate(
                         timeout(time: 10, unit: 'MINUTES') {
                             waitForQualityGate abortPipeline: true
                         }
-                    }
-                    stage('Test') {
-                        sh('mvn -s ${MAVEN_CONFIG} test')
-                        junit '**/target/surefire-reports/TEST-*.xml'
                     }
                     stage('Deploy') {
                         sh('mvn -s ${MAVEN_CONFIG} deploy -DskipITs')
