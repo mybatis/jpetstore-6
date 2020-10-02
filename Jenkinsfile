@@ -16,18 +16,6 @@ podTemplate(
 ) {
     node(kubelabel) {
         stage('cache check') {
-            stage('Clone') {
-                checkout(
-                    [
-                        $class                           : 'GitSCM',
-                        branches                         : scm.branches,
-                        doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
-                        extensions                       : scm.extensions,
-                        submoduleCfg                     : [],
-                        userRemoteConfigs                : scm.userRemoteConfigs
-                    ]
-                )
-            }
 
             container('kubectl'){
                 //Grab the namespace of the current pod
@@ -46,14 +34,20 @@ podTemplate(
                 branch=branch.replaceAll("/","-");
                 echo "BRANCH: ${branch}"
                 echo "${branch}-${zone}"
-                // pvc = "${branch}-${zone}"
+                pvc = "${branch}-${zone}"
                 // Create a pvc base on the AZ
-                def claim=readYaml file: "kube/claim.yaml"
+                def claim
+                claim.apiVersion="v1"
+                claim.kind="PersistentVolumeClaim"
+                claim.spec.accessModes[0]="ReadWriteOnce"
+                claim.spec.storageClassName="ebs-sc"
+                claim.spec.resources.requests.storage="4Gi"
                 claim.metadata.name = "${branch}-${zone}"
                 claim.metadata.namespace = "${namespace}"
-                writeYaml file: 'kube/dynamicclaim.yaml', data: claim
-                sh 'cat kube/dynamicclaim.yaml'
-                sh 'kubectl apply -f kube/dynamicclaim.yaml'
+                sh 'rm -rf dynamicclaim.yaml'
+                writeYaml file: 'dynamicclaim.yaml', data: claim
+                sh 'cat dynamicclaim.yaml'
+                sh 'kubectl apply -f dynamicclaim.yaml'
             }
         }
     }
@@ -75,6 +69,18 @@ podTemplate(
     ]
 ) {
     node(label) {
+        stage('Clone') {
+            checkout(
+                [
+                    $class                           : 'GitSCM',
+                    branches                         : scm.branches,
+                    doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
+                    extensions                       : scm.extensions,
+                    submoduleCfg                     : [],
+                    userRemoteConfigs                : scm.userRemoteConfigs
+                ]
+            )
+        }
         stage('Container') {
             container('maven') {
                 configFileProvider([configFile(fileId: 'mavennexus', variable: 'MAVEN_CONFIG')]) {
