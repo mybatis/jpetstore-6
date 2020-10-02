@@ -14,7 +14,7 @@ podTemplate(
     node(kubelabel) {
         stage('cache check') {
             container('kubectl'){
-                sh('kubectl -n cistack get pods')
+                sh('kubectl -n cistack get pvc')
             }
         }
     }
