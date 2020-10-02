@@ -3,7 +3,7 @@ def kubelabel = "kubepod-${UUID.randomUUID().toString()}"
 def zone
 def node
 def volume
-def pvc = "feature-maven-us-east-1b"
+//def pvc = "feature-maven-us-east-1b"
 
 podTemplate(
     label: kubelabel,
