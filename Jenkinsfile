@@ -5,6 +5,7 @@ def kubenode
 def volume
 def pvc = "feature-maven-us-east-1b"
 def branch 
+def namespace
 
 podTemplate(
     label: kubelabel,
@@ -29,6 +30,7 @@ podTemplate(
             }
 
             container('kubectl'){
+                namespace=sh returnStdout: true, script: "kubectl -n cistack describe pod jenkins-855644c864-fshnl | grep Namespace| sed -e 's/Namespace:    //g'"
                 kubenode=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
                 kubenode=kubenode.trim()
                 echo "${kubenode}"
@@ -42,8 +44,10 @@ podTemplate(
                 echo "${branch}-${zone}"
                 def claim=readYaml file: "kube/claim.yaml"
                 claim.metadata.name = "${branch}-${zone}"
+                claim.metadata.namespace = "${namespace}"
                 writeYaml file: 'kube/dynamicclaim.yaml', data: claim
                 sh 'cat kube/dynamicclaim.yaml'
+                sh 'kubectl -n cistack
             }
         }
     }
