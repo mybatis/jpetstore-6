@@ -1,36 +1,36 @@
 //
-//def kubelabel = "kubepod-${UUID.randomUUID().toString()}"
-//def zone
+def kubelabel = "kubepod-${UUID.randomUUID().toString()}"
+def zone
 //def node
-//def volume
-//def pvc = "feature-maven-us-east-1b"
+def volume
+def pvc = "feature-maven-us-east-1b"
 
-//podTemplate(
-//    label: kubelabel,
-//    containers: [
-//        containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl', ttyEnabled: true, command: '/bin/cat')
-//    ],
-//    serviceAccount: 'jenkins'
-//) {
-//    node(kubelabel) {
-//        stage('cache check') {
-//            container('kubectl'){
-//                node=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
-//                node=node.trim()
-//                echo "${node}"
-//                zone=sh returnStdout: true, script: "kubectl describe node \"${node}\"| grep ProviderID | sed -e 's/.*aws:\\/\\/\\///g' | sed -e 's/\\/.*//g'"
-//                zone=zone.trim()
-//                echo "${zone}"
-//                
-//            }
+podTemplate(
+    label: kubelabel,
+    containers: [
+        containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl', ttyEnabled: true, command: '/bin/cat')
+    ],
+    serviceAccount: 'jenkins'
+) {
+    node(kubelabel) {
+        stage('cache check') {
+            container('kubectl'){
+                node=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
+                node=node.trim()
+                echo "${node}"
+                zone=sh returnStdout: true, script: "kubectl describe node \"${node}\"| grep ProviderID | sed -e 's/.*aws:\\/\\/\\///g' | sed -e 's/\\/.*//g'"
+                zone=zone.trim()
+                echo "${zone}"
+                
+            }
 //            container('aws-cli') {
 //                volume=sh returnStdout: true, script: "aws ec2 describe-volumes --filters \"Name=availability-zone,Values=${zone}\" \"Name=tag:purpose,Values=mavencache\" \"Name=tag:branch,Values=feature/mavencache\" --query 'Volumes[*]'"
 //                volumet=volumet.trim()
 //                echo "${volume}"
 //            }
 //        }
-//    }
-//}
+    }
+}
 
 
 
