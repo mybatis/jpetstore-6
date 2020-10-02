@@ -25,16 +25,14 @@ podTemplate(
                 //Get the node so we can get the availability zone
                 kubenode=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
                 kubenode=kubenode.trim()
-                echo "${kubenode}"
                 zone=sh returnStdout: true, script: "kubectl describe node \"${kubenode}\"| grep ProviderID | sed -e 's/.*aws:\\/\\/\\///g' | sed -e 's/\\/.*//g'"
                 zone=zone.trim()
-                echo "${zone}"
                 branch=env.BRANCH_NAME
                 // Sanitize the branch name so it can be made part of the pvc 
                 branch=branch.replaceAll("/","-");
-                echo "BRANCH: ${branch}"
-                echo "${branch}-${zone}"
                 pvc = "${branch}-${zone}"
+
+                echo "I am checking for a maven cache for ${branch} in ${zone}" 
                 // Create a pvc base on the AZ
                 def claim = readYaml text:"""
 apiVersion: v1
@@ -52,7 +50,6 @@ spec:
 """
                 sh 'rm -rf dynamicclaim.yaml'
                 writeYaml file: 'dynamicclaim.yaml', data: claim
-                sh 'cat dynamicclaim.yaml'
                 sh 'kubectl apply -f dynamicclaim.yaml'
             }
         }
