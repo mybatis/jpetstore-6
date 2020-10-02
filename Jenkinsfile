@@ -36,14 +36,13 @@ podTemplate(
                 echo "${branch}-${zone}"
                 pvc = "${branch}-${zone}"
                 // Create a pvc base on the AZ
-                def claim
-                claim.apiVersion="v1"
-                claim.kind="PersistentVolumeClaim"
-                claim.spec.accessModes[0]="ReadWriteOnce"
-                claim.spec.storageClassName="ebs-sc"
-                claim.spec.resources.requests.storage="4Gi"
-                claim.metadata.name = "${branch}-${zone}"
-                claim.metadata.namespace = "${namespace}"
+                def claim = [ 'apiVersion': 'v1',
+                             'kind': 'PersistentVolumeClaim',
+                             'spec': { 'accessModes' : [ "ReadWriteOnce" ] },
+                             'spec': { 'storageClassName': 'ebs-sc' },
+                             'spec': { 'resources': { 'requests' : { 'storage': '4Gi' }}},
+                             'metadata': { 'name': "${branch}-${zone}" },
+                             'metadata': { 'namespace': "${namespace}" } ]
                 sh 'rm -rf dynamicclaim.yaml'
                 writeYaml file: 'dynamicclaim.yaml', data: claim
                 sh 'cat dynamicclaim.yaml'
