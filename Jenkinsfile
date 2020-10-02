@@ -3,7 +3,7 @@ def kubelabel = "kubepod-${UUID.randomUUID().toString()}"
 def zone
 def node
 def volume
-//def pvc = "feature-maven-us-east-1b"
+def pvc = "feature-maven-us-east-1b"
 
 podTemplate(
     label: kubelabel,
@@ -12,10 +12,6 @@ podTemplate(
                           image: 'lachlanevenson/k8s-kubectl',
                           ttyEnabled: true,
                           command: '/bin/cat'),
-        containerTemplate(name: 'awscli',
-                          image: 'amazon/aws-cli',
-                          ttyEnabled: true,
-                          command: '/bin/cat')
     ],
     serviceAccount: 'jenkins'
 ) {
