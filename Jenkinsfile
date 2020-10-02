@@ -53,7 +53,7 @@ podTemplate(
                 claim.metadata.namespace = "${namespace}"
                 writeYaml file: 'kube/dynamicclaim.yaml', data: claim
                 sh 'cat kube/dynamicclaim.yaml'
-                //sh 'kubectl apply -f kube/dynamicclaim.yaml'
+                sh 'kubectl apply -f kube/dynamicclaim.yaml'
             }
         }
     }
