@@ -1,4 +1,4 @@
-
+//
 def kubelabel = "kubepod-${UUID.randomUUID().toString()}"
 def zone
 def node
@@ -43,10 +43,10 @@ podTemplate(
             image: 'maven:3.6.3-jdk-8',
             ttyEnabled: true,
             command: 'cat')
-    ],
-    volumes: [
-        persistentVolumeClaim(mountPath: '/root/.m2/repository', claimName: "${pvc}", readOnly: false)
-    ]
+    ]//,
+//    volumes: [
+//        persistentVolumeClaim(mountPath: '/root/.m2/repository', claimName: pvc, readOnly: false)
+//    ]
 ) {
     node(label) {
         stage('Container') {
