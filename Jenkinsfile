@@ -18,7 +18,7 @@ podTemplate(
     node(kubelabel) {
         stage('cache check') {
             container('kubectl'){
-                def node=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
+                def node=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*$//g'"
                 echo "${node}"
                 def zone=sh returnStdout: true, script: "kubectl describe node \"${node}\"| grep ProviderID | sed -e 's/.*aws:\\/\\/\\///g' | sed -e 's/\\/.*//g'"
                 echo "${zone}"
