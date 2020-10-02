@@ -15,6 +15,19 @@ podTemplate(
 ) {
     node(kubelabel) {
         stage('cache check') {
+            stage('Clone') {
+                checkout(
+                    [
+                        $class                           : 'GitSCM',
+                        branches                         : scm.branches,
+                        doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
+                        extensions                       : scm.extensions,
+                        submoduleCfg                     : [],
+                        userRemoteConfigs                : scm.userRemoteConfigs
+                    ]
+                )
+            }
+
             container('kubectl'){
                 kubenode=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
                 kubenode=kubenode.trim()
@@ -27,6 +40,10 @@ podTemplate(
                 branch=branch.replaceAll("/","-");
                 echo "BRANCH: ${branch}"
                 echo "${branch}-${zone}"
+                def claim=readYaml file: "kube/claim.yaml"
+                claim.metadata.name = "${branch}-${zone}"
+                writeYaml file: 'kube/dynamicclaim.yaml', data: claim
+                sh 'cat kube/dynamicclaim.yaml'
             }
         }
     }
@@ -51,18 +68,6 @@ podTemplate(
 //    node(label) {
 //        stage('Container') {
 //            container('maven') {
-//                stage('Clone') {
-//                    checkout(
-//                        [
-//                            $class                           : 'GitSCM',
-//                            branches                         : scm.branches,
-//                            doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
-//                            extensions                       : scm.extensions,
-//                            submoduleCfg                     : [],
-//                            userRemoteConfigs                : scm.userRemoteConfigs
-//                        ]
-//                    )
-//                }
 //                configFileProvider([configFile(fileId: 'mavennexus', variable: 'MAVEN_CONFIG')]) {
 //                    stage('Compile') {
 //                        sh('mvn -s ${MAVEN_CONFIG} compile')
