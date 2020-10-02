@@ -1,7 +1,7 @@
 //
 def kubelabel = "kubepod-${UUID.randomUUID().toString()}"
 def zone
-//def node
+def kubenode
 def volume
 def pvc = "feature-maven-us-east-1b"
 
@@ -15,10 +15,10 @@ podTemplate(
     node(kubelabel) {
         stage('cache check') {
             container('kubectl'){
-                node=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
-                node=node.trim()
-                echo "${node}"
-                zone=sh returnStdout: true, script: "kubectl describe node \"${node}\"| grep ProviderID | sed -e 's/.*aws:\\/\\/\\///g' | sed -e 's/\\/.*//g'"
+                kubenode=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
+                kubenode=kubenode.trim()
+                echo "${kubenode}"
+                zone=sh returnStdout: true, script: "kubectl describe node \"${kubenode}\"| grep ProviderID | sed -e 's/.*aws:\\/\\/\\///g' | sed -e 's/\\/.*//g'"
                 zone=zone.trim()
                 echo "${zone}"
                 
@@ -28,7 +28,7 @@ podTemplate(
 //                volumet=volumet.trim()
 //                echo "${volume}"
 //            }
-//        }
+        }
     }
 }
 
