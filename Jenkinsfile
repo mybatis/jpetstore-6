@@ -41,7 +41,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata: 
   name: ${branch}-${zone}
-  namespace': ${namespace}
+  namespace: ${namespace}
 spec:
   accessModes:
     - ReadWriteOnce
