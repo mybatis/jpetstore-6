@@ -11,7 +11,7 @@ podTemplate(
         containerTemplate(name: 'kubectl',
                           image: 'lachlanevenson/k8s-kubectl',
                           ttyEnabled: true,
-                          command: '/bin/cat'),
+                          command: '/bin/cat')
     ],
     serviceAccount: 'jenkins'
 ) {
