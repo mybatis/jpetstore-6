@@ -9,7 +9,7 @@ podTemplate(
             ttyEnabled: true,
             command: 'cat')
     ],
-    serviceAccount: 'system:serviceaccount:cistack:jenkins'
+    serviceAccount: 'jenkins'
 ) {
     node(kubelabel) {
         stage('cache check') {
