@@ -38,15 +38,15 @@ podTemplate(
                 // Create a pvc base on the AZ
                 def claim = """
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata: 
   name: ${branch}-${zone}
   namespace': ${namespace}
-kind: PersistentVolumeClaim,
 spec:
-  accessModes: 
+  accessModes:
     - ReadWriteOnce
   storageClassName: ebs-sc
-  resources: 
+  resources:
     requests:
       storage: 4Gi
 """
