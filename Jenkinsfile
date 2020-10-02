@@ -7,9 +7,9 @@ podTemplate(
         containerTemplate(name: 'kubectl',
             image: 'bitnami/kubectl',
             ttyEnabled: true,
-            serviceAccount: 'system:serviceaccount:cistack:jenkins',              
             command: 'cat')
-        ]
+    ],
+    serviceAccount: 'system:serviceaccount:cistack:jenkins'
 ) {
     node(kubelabel) {
         stage('cache check') {
