@@ -5,7 +5,7 @@ podTemplate(
     label: kubelabel,
     containers: [
         containerTemplate(name: 'kubectl',
-            image: 'bitnami/kubectl',
+            image: 'lachlanevenson/k8s-kubectl',
             ttyEnabled: true,
             command: '/bin/cat')
     ],
