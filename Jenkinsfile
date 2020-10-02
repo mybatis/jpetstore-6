@@ -1,24 +1,24 @@
 
-def kubelabel = "kubePod-${UUID.randomUUID().toString()}"
-
-podTemplate(
-    label: kubelabel,
-    containers: [
-        containerTemplate(name: 'kubectl',
-            image: 'lachlanevenson/k8s-kubectl',
-            ttyEnabled: true,
-            command: '/bin/cat')
-    ],
-    serviceAccount: 'jenkins'
-) {
-    node(kubelabel) {
-        stage('cache check') {
-            container('kubectl'){
-                sh('kubectl -n cistack get pvc')
-            }
-        }
-    }
-}
+//def kubelabel = "kubePod-${UUID.randomUUID().toString()}"
+//
+//podTemplate(
+//    label: kubelabel,
+//    containers: [
+//        containerTemplate(name: 'kubectl',
+//            image: 'lachlanevenson/k8s-kubectl',
+//            ttyEnabled: true,
+//            command: '/bin/cat')
+//    ],
+//    serviceAccount: 'jenkins'
+//) {
+//    node(kubelabel) {
+//        stage('cache check') {
+//            container('kubectl'){
+//                sh('kubectl -n cistack apply -f testpvc.yaml')
+//            }
+//        }
+//    }
+//}
 
 
 
@@ -31,7 +31,10 @@ podTemplate(
             image: 'maven:3.6.3-jdk-8',
             ttyEnabled: true,
             command: 'cat')
-        ]
+    ],
+    volumes: [
+        persistentVolumeClaim(mountPath: '/root/.m2/repository', claimName: 'maven-repo', readOnly: false)
+    ]
 ) {
     node(label) {
         stage('Container') {
