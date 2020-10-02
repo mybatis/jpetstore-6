@@ -4,6 +4,7 @@ def zone
 def kubenode
 def volume
 def pvc = "feature-maven-us-east-1b"
+def branch 
 
 podTemplate(
     label: kubelabel,
@@ -21,7 +22,11 @@ podTemplate(
                 zone=sh returnStdout: true, script: "kubectl describe node \"${kubenode}\"| grep ProviderID | sed -e 's/.*aws:\\/\\/\\///g' | sed -e 's/\\/.*//g'"
                 zone=zone.trim()
                 echo "${zone}"
-                echo "BRANCH: ${env.bRANCH_NAME}"
+                branch=env.BRANCH_NAME
+                // Sanitize the branch name so it can be made part of the pvc 
+                branch=branch.replaceAll("/","-");
+                echo "BRANCH: ${branch}"
+                echo "${branch}-${zone}"
             }
         }
     }
