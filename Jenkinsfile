@@ -36,7 +36,7 @@ podTemplate(
                 echo "${branch}-${zone}"
                 pvc = "${branch}-${zone}"
                 // Create a pvc base on the AZ
-                def claim = """
+                def claim = readYaml text:"""
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata: 
