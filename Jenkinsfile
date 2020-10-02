@@ -30,7 +30,11 @@ podTemplate(
             }
 
             container('kubectl'){
+                //Grab the namespace of the current pod
                 namespace=sh returnStdout: true, script: "kubectl -n cistack describe pod jenkins-855644c864-fshnl | grep Namespace| sed -e 's/Namespace:    //g'"
+                namespace=namespace.trim()
+
+                //Get the node so we can get the availability zone
                 kubenode=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
                 kubenode=kubenode.trim()
                 echo "${kubenode}"
@@ -42,12 +46,14 @@ podTemplate(
                 branch=branch.replaceAll("/","-");
                 echo "BRANCH: ${branch}"
                 echo "${branch}-${zone}"
+
+                // Create a pvc base on the AZ
                 def claim=readYaml file: "kube/claim.yaml"
                 claim.metadata.name = "${branch}-${zone}"
                 claim.metadata.namespace = "${namespace}"
                 writeYaml file: 'kube/dynamicclaim.yaml', data: claim
                 sh 'cat kube/dynamicclaim.yaml'
-                sh 'kubectl -n cistack
+                //sh 'kubectl apply -f kube/dynamicclaim.yaml'
             }
         }
     }
