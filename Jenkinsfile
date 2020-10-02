@@ -7,7 +7,7 @@ podTemplate(
         containerTemplate(name: 'kubectl',
             image: 'bitnami/kubectl',
             ttyEnabled: true,
-            command: 'cat')
+            command: '/bin/cat')
     ],
     serviceAccount: 'jenkins'
 ) {
