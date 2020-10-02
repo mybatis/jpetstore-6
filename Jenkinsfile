@@ -46,7 +46,7 @@ podTemplate(
                 branch=branch.replaceAll("/","-");
                 echo "BRANCH: ${branch}"
                 echo "${branch}-${zone}"
-
+                // pvc = "${branch}-${zone}"
                 // Create a pvc base on the AZ
                 def claim=readYaml file: "kube/claim.yaml"
                 claim.metadata.name = "${branch}-${zone}"
