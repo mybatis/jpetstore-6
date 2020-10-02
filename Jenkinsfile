@@ -1,3 +1,26 @@
+
+def kubelabel = "kubePod-${UUID.randomUUID().toString()}"
+
+podTemplate(
+    label: kubelabel,
+    containers: [
+        containerTemplate(name: 'kubectl',
+            image: 'bitnami/kubectl',
+            ttyEnabled: true,
+            command: 'cat')
+        ]
+) {
+    node(kubelabel) {
+        stage('cache check') {
+            container('kubectl'){
+                sh('kubectl -n cistack get pods')
+            }
+        }
+    }
+}
+
+
+
 def label = "jpetstorePod-${UUID.randomUUID().toString()}"
 
 podTemplate(
