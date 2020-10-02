@@ -1,5 +1,9 @@
 
 def kubelabel = "kubepod-${UUID.randomUUID().toString()}"
+def zone
+def node
+def volume
+def pvc="feature-maven-us-east-1b"
 
 podTemplate(
     label: kubelabel,
@@ -18,77 +22,84 @@ podTemplate(
     node(kubelabel) {
         stage('cache check') {
             container('kubectl'){
-                def node=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
+                node=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
                 node=node.trim()
                 echo "${node}"
-                def zone=sh returnStdout: true, script: "kubectl describe node \"${node}\"| grep ProviderID | sed -e 's/.*aws:\\/\\/\\///g' | sed -e 's/\\/.*//g'"
+                zone=sh returnStdout: true, script: "kubectl describe node \"${node}\"| grep ProviderID | sed -e 's/.*aws:\\/\\/\\///g' | sed -e 's/\\/.*//g'"
+                zone=zone.trim()
                 echo "${zone}"
+                
             }
+//            container('aws-cli') {
+//                volume=sh returnStdout: true, script: "aws ec2 describe-volumes --filters \"Name=availability-zone,Values=${zone}\" \"Name=tag:purpose,Values=mavencache\" \"Name=tag:branch,Values=feature/mavencache\" --query 'Volumes[*]'"
+//                volumet=volumet.trim()
+//                echo "${volume}"
+//            }
         }
     }
 }
 
 
 
-//def label = "jpetstorepod-${UUID.randomUUID().toString()}"
-//
-//podTemplate(
-//    label: label,
-//    containers: [
-//        containerTemplate(name: 'maven',
-//            image: 'maven:3.6.3-jdk-8',
-//            ttyEnabled: true,
-//            command: 'cat')
-//    ],
-//    volumes: [
-//        persistentVolumeClaim(mountPath: '/root/.m2/repository', claimName: 'maven-repo', readOnly: false)
-//    ]
-//) {
-//    node(label) {
-//        stage('Container') {
-//            container('maven') {
-//                stage('Clone') {
-//                    checkout(
-//                        [
-//                            $class                           : 'GitSCM',
-//                            branches                         : scm.branches,
-//                            doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
-//                            extensions                       : scm.extensions,
-//                            submoduleCfg                     : [],
-//                            userRemoteConfigs                : scm.userRemoteConfigs
-//                        ]
-//                    )
-//                }
-//                configFileProvider([configFile(fileId: 'mavennexus', variable: 'MAVEN_CONFIG')]) {
-//                    stage('Compile') {
-//                        sh('mvn -s ${MAVEN_CONFIG} compile')
-//                    }
-//                    stage('Test') {
-//                        sh('mvn -s ${MAVEN_CONFIG} test')
-//                        junit '**/target/surefire-reports/TEST-*.xml'
-//                        jacoco(
-//                            execPattern: 'target/*.exec',
-//                            classPattern: 'target/classes',
-//                            sourcePattern: 'src/main/java',
-//                            exclusionPattern: 'src/test*'
-//                        )
-//                    }
-//                    stage ('SonarQube analysis') {
-//                        withSonarQubeEnv('sonarqube') {
-//                            sh 'mvn -s ${MAVEN_CONFIG} sonar:sonar'
-//                        }
-//                    }
-//                    stage ('SonarQube quality gate') {
-//                        timeout(time: 10, unit: 'MINUTES') {
-//                            waitForQualityGate abortPipeline: true
-//                        }
-//                    }
-//                    stage('Deploy') {
-//                        sh('mvn -s ${MAVEN_CONFIG} deploy -DskipITs')
-//                        archiveArtifacts artifacts: '**/target/*.war', onlyIfSuccessful: true
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+def label = "jpetstorepod-${UUID.randomUUID().toString()}"
+
+podTemplate(
+    label: label,
+    containers: [
+        containerTemplate(name: 'maven',
+            image: 'maven:3.6.3-jdk-8',
+            ttyEnabled: true,
+            command: 'cat')
+    ],
+    volumes: [
+        persistentVolumeClaim(mountPath: '/root/.m2/repository', claimName: "${pvc}", readOnly: false)
+    ]
+) {
+    node(label) {
+        stage('Container') {
+            container('maven') {
+                stage('Clone') {
+                    checkout(
+                        [
+                            $class                           : 'GitSCM',
+                            branches                         : scm.branches,
+                            doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
+                            extensions                       : scm.extensions,
+                            submoduleCfg                     : [],
+                            userRemoteConfigs                : scm.userRemoteConfigs
+                        ]
+                    )
+                }
+                configFileProvider([configFile(fileId: 'mavennexus', variable: 'MAVEN_CONFIG')]) {
+                    stage('Compile') {
+                        sh('mvn -s ${MAVEN_CONFIG} compile')
+                    }
+                    stage('Test') {
+                        sh('mvn -s ${MAVEN_CONFIG} test')
+                        junit '**/target/surefire-reports/TEST-*.xml'
+                        jacoco(
+                            execPattern: 'target/*.exec',
+                            classPattern: 'target/classes',
+                            sourcePattern: 'src/main/java',
+                            exclusionPattern: 'src/test*'
+                        )
+                    }
+                    stage ('SonarQube analysis') {
+                        withSonarQubeEnv('sonarqube') {
+                            sh 'mvn -s ${MAVEN_CONFIG} sonar:sonar'
+                        }
+                    }
+                    stage ('SonarQube quality gate') {
+                        timeout(time: 10, unit: 'MINUTES') {
+                            waitForQualityGate abortPipeline: true
+                        }
+                    }
+                    stage('Deploy') {
+                        sh('mvn -s ${MAVEN_CONFIG} deploy -DskipITs')
+                        archiveArtifacts artifacts: '**/target/*.war', onlyIfSuccessful: true
+                    }
+                }
+            }
+        }
+    }
+}
