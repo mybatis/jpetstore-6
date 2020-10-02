@@ -5,14 +5,14 @@ def node
 def volume
 def pvc = "feature-maven-us-east-1b"
 
-//podTemplate(
-//    label: kubelabel,
-//    containers: [
-//        containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl', ttyEnabled: true, command: '/bin/cat')
-//    ],
-//    serviceAccount: 'jenkins'
-//) {
-//    node(kubelabel) {
+podTemplate(
+    label: kubelabel,
+    containers: [
+        containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl', ttyEnabled: true, command: '/bin/cat')
+    ],
+    serviceAccount: 'jenkins'
+) {
+    node(kubelabel) {
 //        stage('cache check') {
 //            container('kubectl'){
 //                node=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
@@ -30,7 +30,7 @@ def pvc = "feature-maven-us-east-1b"
 //            }
 //        }
 //    }
-//}
+}
 
 
 
