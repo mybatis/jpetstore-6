@@ -12,7 +12,8 @@ podTemplate(
     containers: [
         containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl', ttyEnabled: true, command: '/bin/cat')
     ],
-    serviceAccount: 'jenkins'
+    serviceAccount: 'jenkins',
+    nodeSelector: 'role=workers'
 ) {
     node(kubelabel) {
         stage('cache check') {
@@ -69,7 +70,8 @@ podTemplate(
     ],
     volumes: [
         persistentVolumeClaim(mountPath: '/root/.m2/repository', claimName: pvc, readOnly: false)
-    ]
+    ],
+    nodeSelector: 'role=workers'
 ) {
     node(label) {
         stage('Clone') {
