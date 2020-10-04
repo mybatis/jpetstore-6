@@ -136,7 +136,7 @@ class CatalogActionBeanTest {
     final CatalogActionBean catalogActionBean = new CatalogActionBean();
 
     // Act and Assert result
-    assertThat(catalogActionBean.getKeyword());
+    assertThat(catalogActionBean.getKeyword()).isNull();
 
   }
 
