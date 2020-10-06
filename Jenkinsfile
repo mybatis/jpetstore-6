@@ -5,7 +5,7 @@ def kubenode
 def volume
 def pvc = "feature-maven-us-east-1b"
 def branch 
-def namespace
+def namespace = "cistack"
 
 podTemplate(
     label: kubelabel,
@@ -19,10 +19,6 @@ podTemplate(
         stage('cache check') {
 
             container('kubectl'){
-                //Grab the namespace of the current pod
-                namespace=sh returnStdout: true, script: "kubectl -n cistack describe pod jenkins-855644c864-fshnl | grep Namespace| sed -e 's/Namespace:    //g'"
-                namespace=namespace.trim()
-
                 //Get the node so we can get the availability zone
                 kubenode=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
                 kubenode=kubenode.trim()
@@ -31,7 +27,7 @@ podTemplate(
                 branch=env.BRANCH_NAME
                 // Sanitize the branch name so it can be made part of the pvc 
                 branch=branch.replaceAll("/","-");
-                pvc = "mavencache-${branch}-${zone}"
+                pvc = "${branch}-${zone}"
 
                 echo "I am checking for a maven cache for ${branch} in ${zone}" 
                 // Create a pvc base on the AZ
@@ -41,6 +37,8 @@ kind: PersistentVolumeClaim
 metadata: 
   name: ${branch}-${zone}
   namespace: ${namespace}
+  annotations:
+    type: mavencache
 spec:
   accessModes:
     - ReadWriteOnce
