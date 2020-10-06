@@ -38,7 +38,7 @@ metadata:
   name: ${branch}-${zone}
   namespace: ${namespace}
   annotations:
-    type: mavencache
+    purpose: mavencache
 spec:
   accessModes:
     - ReadWriteOnce
