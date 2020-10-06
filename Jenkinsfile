@@ -1,11 +1,14 @@
 
+// Only one person can use the cache at a time. 
+properties([disableConcurrentBuilds()])
+
+// Name of the pods
 def kubelabel = "kubepod-${UUID.randomUUID().toString()}"
-def zone
-def kubenode
-def volume
-def pvc = "feature-maven-us-east-1b"
-def branch 
-def namespace
+def zone                   // The AZ in AWS we are in
+def kubenode               //The name of the kube node we are on
+def pvc                    // Name of the PVC for this branch
+def branch                 // Branch name
+def namespace = "cistack"  // Namespace pods execute in
 
 podTemplate(
     label: kubelabel,
@@ -19,10 +22,6 @@ podTemplate(
         stage('cache check') {
 
             container('kubectl'){
-                //Grab the namespace of the current pod
-                namespace=sh returnStdout: true, script: "kubectl -n cistack describe pod jenkins-855644c864-fshnl | grep Namespace| sed -e 's/Namespace:    //g'"
-                namespace=namespace.trim()
-
                 //Get the node so we can get the availability zone
                 kubenode=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
                 kubenode=kubenode.trim()
@@ -41,6 +40,8 @@ kind: PersistentVolumeClaim
 metadata: 
   name: ${branch}-${zone}
   namespace: ${namespace}
+  annotations:
+    purpose: mavencache
 spec:
   accessModes:
     - ReadWriteOnce
