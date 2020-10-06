@@ -1,11 +1,14 @@
 
+// Only one person can use the cache at a time. 
+properties([disableConcurrentBuilds()])
+
+// Name of the pods
 def kubelabel = "kubepod-${UUID.randomUUID().toString()}"
-def zone
-def kubenode
-def volume
-def pvc = "feature-maven-us-east-1b"
-def branch 
-def namespace = "cistack"
+def zone                   // The AZ in AWS we are in
+def kubenode               //The name of the kube node we are on
+def pvc                    // Name of the PVC for this branch
+def branch                 // Branch name
+def namespace = "cistack"  // Namespace pods execute in
 
 podTemplate(
     label: kubelabel,
