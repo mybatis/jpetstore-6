@@ -222,6 +222,7 @@
               <properties>
                 <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
                 <cargo.daemon.handleid>${project.artifactId}</cargo.daemon.handleid>
+                <cargo.jvmargs>${contrast.cargo.jvmargs}</cargo.jvmargs>
               </properties>
             </daemon>
           </configuration>
@@ -435,6 +436,49 @@
         <resin.version>4.0.64</resin.version>
         <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
+      </properties>
+    </profile>
+    <profile>
+      <id>with-contrast</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.contrastsecurity</groupId>
+            <artifactId>contrast-maven-plugin</artifactId>
+            <version>2.6</version>
+            <executions>
+              <execution>
+                <id>install-contrast-jar</id>
+                <goals>
+                  <goal>install</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>verify-with-contrast</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <username>${contrast.username}</username>
+              <apiKey>${contrast.apiKey}</apiKey>
+              <serviceKey>${contrast.serviceKey}</serviceKey>
+              <apiUrl>${contrast.apiUrl}</apiUrl>
+              <orgUuid>${contrast.orgUuid}</orgUuid>
+              <appName>${contrast.appName}</appName>
+              <serverName>${contrast.serverName}</serverName>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <contrast.cargo.jvmargs>-javaagent:${project.build.directory}/contrast.jar</contrast.cargo.jvmargs>
+
+        <contrast.apiUrl>https://ce.contrastsecurity.com/Contrast</contrast.apiUrl>
+        <contrast.appName>JPetStore</contrast.appName>
+        <contrast.serverName>ip-10-0-1-126.ec2.internal</contrast.serverName>
       </properties>
     </profile>
   </profiles>
