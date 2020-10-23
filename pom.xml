@@ -227,6 +227,22 @@
             </daemon>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.owasp</groupId>
+          <artifactId>dependency-check-maven</artifactId>
+          <version>${dependency.check.maven.version}</version>
+          <configuration>
+            <!-- <failBuildOnCVSS>${dependency.check.maven.failBuildOnCVSS}</failBuildOnCVSS> -->
+            <formats>HTML,XML</formats>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -281,6 +297,10 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+      </plugin>
     </plugins>
   </build>
 
@@ -322,6 +342,8 @@
     <mockito.version>3.5.13</mockito.version>
     <hsqldb.version>2.5.1</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
+
+    <dependency.check.maven.version>6.0.2</dependency.check.maven.version>
   </properties>
 
   <profiles>
