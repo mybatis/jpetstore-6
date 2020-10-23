@@ -234,6 +234,8 @@
           <configuration>
             <!-- <failBuildOnCVSS>${dependency.check.maven.failBuildOnCVSS}</failBuildOnCVSS> -->
             <formats>HTML,XML</formats>
+            <cveUrlModified>${dependency.check.cveUrlModified}</cveUrlModified>
+            <cveUrlBase>${dependency.check.cveUrlBase}</cveUrlBase>
           </configuration>
           <executions>
             <execution>
@@ -344,6 +346,8 @@
     <module.name>org.mybatis.jpetstore</module.name>
 
     <dependency.check.maven.version>6.0.2</dependency.check.maven.version>
+    <dependency.check.cveUrlModified>https://nexus.dhsice.name/repository/nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-modified.json.gz</dependency.check.cveUrlModified>
+    <dependency.check.cveUrlBase>https://nexus.dhsice.name/repository/nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-%d.json.gz</dependency.check.cveUrlBase>
   </properties>
 
   <profiles>
