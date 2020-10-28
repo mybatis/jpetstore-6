@@ -117,6 +117,7 @@ podTemplate(
                         }
                         stage('Deploy') {
                             sh('mvn -s ${MAVEN_CONFIG} -P tomcat90,with-contrast -Dcontrast.username=${CONTRAST_USERNAME} -Dcontrast.serviceKey=${CONTRAST_SERVICEKEY} -Dcontrast.apiKey=${CONTRAST_APIKEY} -Dcontrast.orgUuid=${CONTRAST_ORGUUID} deploy -DskipITs')
+                            archiveArtifacts artifacts: '**/target/dependency-check-report.*', onlyIfSuccessful: false
                             archiveArtifacts artifacts: '**/target/*.war', onlyIfSuccessful: true
                         }
                     }
