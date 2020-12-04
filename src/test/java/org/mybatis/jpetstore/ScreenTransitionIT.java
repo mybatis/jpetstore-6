@@ -16,6 +16,7 @@
 package org.mybatis.jpetstore;
 
 import static com.codeborne.selenide.Browsers.CHROME;
+import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Configuration.baseUrl;
@@ -75,7 +76,7 @@ class ScreenTransitionIT {
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
     // Move to sign in page & sign
     $(By.linkText("Sign In")).click();
@@ -147,7 +148,7 @@ class ScreenTransitionIT {
 
     // Sign out
     $(By.linkText("Sign Out")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
   }
 
@@ -159,7 +160,7 @@ class ScreenTransitionIT {
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
     // Move to sign in page & sign
     $(By.linkText("Sign In")).click();
@@ -189,7 +190,7 @@ class ScreenTransitionIT {
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
     // Move to sign in page & sign
     $(By.linkText("Sign In")).click();
@@ -219,7 +220,7 @@ class ScreenTransitionIT {
     $(By.name("account.listOption")).setSelected(true);
     $(By.name("account.bannerOption")).setSelected(true);
     $(By.name("newAccount")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
     // Move to sign in page & sign
     $(By.linkText("Sign In")).click();
@@ -238,7 +239,7 @@ class ScreenTransitionIT {
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
     // Move to category
     $(By.cssSelector("#SidebarContent a")).click();
@@ -262,7 +263,7 @@ class ScreenTransitionIT {
 
     // Back to the top page
     $(By.linkText("Return to Main Menu")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
   }
 
@@ -275,7 +276,7 @@ class ScreenTransitionIT {
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
     // Move to cart
     $(By.name("img_cart")).click();
@@ -292,7 +293,7 @@ class ScreenTransitionIT {
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
     // Move to help
     $(By.linkText("?")).click();
@@ -308,7 +309,7 @@ class ScreenTransitionIT {
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
     // Move to Fish category
     $(By.cssSelector("#SidebarContent a:nth-of-type(1)")).click();
@@ -344,7 +345,7 @@ class ScreenTransitionIT {
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
     // Move to Fish category
     $(By.cssSelector("#QuickLinks a:nth-of-type(1)")).click();
@@ -375,7 +376,7 @@ class ScreenTransitionIT {
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
     // Move to Birds category
     $(By.cssSelector("#MainImageContent area:nth-of-type(1)")).click();
@@ -416,7 +417,7 @@ class ScreenTransitionIT {
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
+    $(By.id("WelcomeContent")).shouldBe(empty);
 
     // Move to Birds category
     $(By.cssSelector("#MainImageContent area:nth-of-type(1)")).click();
