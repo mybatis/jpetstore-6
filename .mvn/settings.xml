@@ -26,8 +26,11 @@
     </server>
     <server>
       <id>gh-pages</id>
-      <username>git</username>
-      <password>${env.CI_SITE_PASSWORD}</password>
+    </server>
+    <server>
+      <id>github</id>
+      <username>${env.CI_DEPLOY_USERNAME}</username>
+      <password>${env.GITHUB_TOKEN}</password>
     </server>
   </servers>
 </settings>
