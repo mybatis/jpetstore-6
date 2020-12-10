@@ -288,7 +288,7 @@
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
     <enforcer.skip>true</enforcer.skip>
 
-    <spring.version>5.3.1</spring.version>
+    <spring.version>5.3.2</spring.version>
     <assertj.version>3.18.1</assertj.version>
     <mockito.version>3.6.28</mockito.version>
     <hsqldb.version>2.5.1</hsqldb.version>
