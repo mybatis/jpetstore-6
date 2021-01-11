@@ -29,7 +29,7 @@ podTemplate(
                 zone=zone.trim()
                 branch=env.BRANCH_NAME
                 // Sanitize the branch name so it can be made part of the pvc
-                branch=branch.replaceAll("/","-").replaceAll("[^-.a-zA-Z0-9]","").take(62-zone.length).toLowerCase();
+                branch=branch.replaceAll("/","-").replaceAll("[^-.a-zA-Z0-9]","").take(62-zone.length().toLowerCase();
                 pvc = "${branch}-${zone}"
 
                 echo "I am checking for a maven cache for ${branch} in ${zone}"
