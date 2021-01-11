@@ -65,7 +65,7 @@ podTemplate(
     label: label,
     containers: [
         containerTemplate(name: 'maven',
-            image: 'cdelepine/mvn3.3.9-jdk8-node10',
+            image: 'steampunkfoundry/mvn-jdk-node:mvn3.6.3-openjdk8-node15.4.0',
             ttyEnabled: true,
             command: 'cat')
     ],
