@@ -503,7 +503,7 @@
 
         <contrast.apiUrl>https://ce.contrastsecurity.com/Contrast</contrast.apiUrl>
         <contrast.appName>JPetStore</contrast.appName>
-        <contrast.serverName>ip-10-0-1-192.ec2.internal</contrast.serverName>
+        <contrast.serverName>jenkins</contrast.serverName>
       </properties>
     </profile>
   </profiles>
