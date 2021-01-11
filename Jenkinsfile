@@ -1,5 +1,5 @@
 
-// Only one person can use the cache at a time. 
+// Only one person can use the cache at a time.
 properties([disableConcurrentBuilds()])
 
 // Name of the pods
@@ -28,16 +28,16 @@ podTemplate(
                 zone=sh returnStdout: true, script: "kubectl describe node \"${kubenode}\"| grep ProviderID | sed -e 's/.*aws:\\/\\/\\///g' | sed -e 's/\\/.*//g'"
                 zone=zone.trim()
                 branch=env.BRANCH_NAME
-                // Sanitize the branch name so it can be made part of the pvc 
-                branch=branch.replaceAll("/","-").take(63).toLowerCase();
+                // Sanitize the branch name so it can be made part of the pvc
+                branch=branch.replaceAll("/","-").take(62).toLowerCase();
                 pvc = "${branch}-${zone}"
 
-                echo "I am checking for a maven cache for ${branch} in ${zone}" 
+                echo "I am checking for a maven cache for ${branch} in ${zone}"
                 // Create a pvc base on the AZ
                 def claim = readYaml text:"""
 apiVersion: v1
 kind: PersistentVolumeClaim
-metadata: 
+metadata:
   name: ${branch}-${zone}
   namespace: ${namespace}
   annotations:
