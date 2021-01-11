@@ -38,7 +38,7 @@ podTemplate(
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ${branch}-${zone}
+  name: ${pvc}
   namespace: ${namespace}
   annotations:
     purpose: mavencache
