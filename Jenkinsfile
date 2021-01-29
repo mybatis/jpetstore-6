@@ -1,62 +1,11 @@
-
+@Library('jenkinsSharedLibrarySASS@feature/initial') import gov.dhs.ice.secdevops.mavenUtility
 // Only one person can use the cache at a time.
 properties([disableConcurrentBuilds()])
 
-// Name of the pods
-def kubelabel = "kubepod-${UUID.randomUUID().toString()}"
-def zone                   // The AZ in AWS we are in
-def kubenode               //The name of the kube node we are on
-def pvc                    // Name of the PVC for this branch
-def branch                 // Branch name
-def namespace = "cistack"  // Namespace pods execute in
 
-podTemplate(
-    label: kubelabel,
-    containers: [
-        containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl', ttyEnabled: true, command: '/bin/cat')
-    ],
-    serviceAccount: 'jenkins',
-    nodeSelector: 'role=workers'
-) {
-    node(kubelabel) {
-        stage('cache check') {
+def utils = new mavenUtility(this)
+def pvc = utils.getMavenCache()
 
-            container('kubectl'){
-                //Get the node so we can get the availability zone
-                kubenode=sh returnStdout: true, script: "kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name -n cistack | grep ${kubelabel} | sed -e 's/  .*//g'"
-                kubenode=kubenode.trim()
-                zone=sh returnStdout: true, script: "kubectl describe node \"${kubenode}\"| grep ProviderID | sed -e 's/.*aws:\\/\\/\\///g' | sed -e 's/\\/.*//g'"
-                zone=zone.trim()
-                branch=env.BRANCH_NAME
-                // Sanitize the branch name so it can be made part of the pvc
-                branch=branch.replaceAll("[/_]","-").replaceAll("[^-.a-zA-Z0-9]","").take(62-zone.length()).toLowerCase();
-                pvc = "${branch}-${zone}"
-
-                echo "I am checking for a maven cache for ${branch} in ${zone}"
-                // Create a pvc base on the AZ
-                def claim = readYaml text:"""
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: ${pvc}
-  namespace: ${namespace}
-  annotations:
-    purpose: mavencache
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: ebs-sc
-  resources:
-    requests:
-      storage: 4Gi
-"""
-                sh 'rm -rf dynamicclaim.yaml'
-                writeYaml file: 'dynamicclaim.yaml', data: claim
-                sh 'kubectl apply -f dynamicclaim.yaml'
-            }
-        }
-    }
-}
 
 
 def label = "jpetstorepod-${UUID.randomUUID().toString()}"
@@ -75,7 +24,11 @@ podTemplate(
     nodeSelector: 'role=workers'
 ) {
     node(label) {
-        stage('Clone') {
+          stage('tester'){
+              echo "PVC is: ${pvc}"
+          }
+
+/*        stage('Clone') {
             checkout(
                 [
                     $class                           : 'GitSCM',
@@ -87,7 +40,7 @@ podTemplate(
                 ]
             )
         }
-        stage('Container') {
+/*        stage('Container') {
             withCredentials([usernamePassword(credentialsId: 'contrast-security-ce', passwordVariable: 'CONTRAST_SERVICEKEY', usernameVariable: 'CONTRAST_USERNAME'),
                             usernamePassword(credentialsId: 'contrast-security-org', passwordVariable: 'CONTRAST_APIKEY', usernameVariable: 'CONTRAST_ORGUUID')]) {
                 container('maven') {
@@ -97,8 +50,8 @@ podTemplate(
                         }
                         stage('Test') {
                             sh('mvn -s ${MAVEN_CONFIG} -P tomcat90,with-contrast -Dcontrast.username=${CONTRAST_USERNAME} -Dcontrast.serviceKey=${CONTRAST_SERVICEKEY} -Dcontrast.apiKey=${CONTRAST_APIKEY} -Dcontrast.orgUuid=${CONTRAST_ORGUUID} test')
-                            junit '**/target/surefire-reports/TEST-*.xml'
-                            jacoco(
+*///                            junit '**/target/surefire-reports/TEST-*.xml'
+/*                            jacoco(
                                 execPattern: 'target/*.exec',
                                 classPattern: 'target/classes',
                                 sourcePattern: 'src/main/java',
@@ -117,13 +70,13 @@ podTemplate(
                         }
                         stage('Deploy') {
                             sh('mvn -s ${MAVEN_CONFIG} -P tomcat90,with-contrast -Dcontrast.username=${CONTRAST_USERNAME} -Dcontrast.serviceKey=${CONTRAST_SERVICEKEY} -Dcontrast.apiKey=${CONTRAST_APIKEY} -Dcontrast.orgUuid=${CONTRAST_ORGUUID} deploy -DskipITs')
-                            archiveArtifacts artifacts: '**/target/dependency-check-report.*', onlyIfSuccessful: false
-                            archiveArtifacts artifacts: '**/target/*.war', onlyIfSuccessful: true
-                        }
+*///                            archiveArtifacts artifacts: '**/target/dependency-check-report.*', onlyIfSuccessful: false
+//                            archiveArtifacts artifacts: '**/target/*.war', onlyIfSuccessful: true
+/*                        }
                     }
                 }
             }
-        }
+        }*/
     }
 }
 
