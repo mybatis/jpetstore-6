@@ -26,7 +26,7 @@ podTemplate(
               echo "PVC is: ${pvc}"
           }
 
-/*        stage('Clone') {
+        stage('Clone') {
             checkout(
                 [
                     $class                           : 'GitSCM',
@@ -38,7 +38,7 @@ podTemplate(
                 ]
             )
         }
-/*        stage('Container') {
+        stage('Container') {
             withCredentials([usernamePassword(credentialsId: 'contrast-security-ce', passwordVariable: 'CONTRAST_SERVICEKEY', usernameVariable: 'CONTRAST_USERNAME'),
                             usernamePassword(credentialsId: 'contrast-security-org', passwordVariable: 'CONTRAST_APIKEY', usernameVariable: 'CONTRAST_ORGUUID')]) {
                 container('maven') {
@@ -48,8 +48,8 @@ podTemplate(
                         }
                         stage('Test') {
                             sh('mvn -s ${MAVEN_CONFIG} -P tomcat90,with-contrast -Dcontrast.username=${CONTRAST_USERNAME} -Dcontrast.serviceKey=${CONTRAST_SERVICEKEY} -Dcontrast.apiKey=${CONTRAST_APIKEY} -Dcontrast.orgUuid=${CONTRAST_ORGUUID} test')
-*///                            junit '**/target/surefire-reports/TEST-*.xml'
-/*                            jacoco(
+                            junit '**/target/surefire-reports/TEST-*.xml'
+                            jacoco(
                                 execPattern: 'target/*.exec',
                                 classPattern: 'target/classes',
                                 sourcePattern: 'src/main/java',
@@ -68,13 +68,13 @@ podTemplate(
                         }
                         stage('Deploy') {
                             sh('mvn -s ${MAVEN_CONFIG} -P tomcat90,with-contrast -Dcontrast.username=${CONTRAST_USERNAME} -Dcontrast.serviceKey=${CONTRAST_SERVICEKEY} -Dcontrast.apiKey=${CONTRAST_APIKEY} -Dcontrast.orgUuid=${CONTRAST_ORGUUID} deploy -DskipITs')
-*///                            archiveArtifacts artifacts: '**/target/dependency-check-report.*', onlyIfSuccessful: false
-//                            archiveArtifacts artifacts: '**/target/*.war', onlyIfSuccessful: true
-/*                        }
+                            archiveArtifacts artifacts: '**/target/dependency-check-report.*', onlyIfSuccessful: false
+                            archiveArtifacts artifacts: '**/target/*.war', onlyIfSuccessful: true
+                        }
                     }
                 }
             }
-        }*/
+        }
     }
 }
 
