@@ -5,10 +5,8 @@ properties([disableConcurrentBuilds()])
 
 def utils = new mavenUtility(this)
 def pvc = utils.getMavenCache()
-
-
-
 def label = "jpetstorepod-${UUID.randomUUID().toString()}"
+println("Here I am")
 
 podTemplate(
     label: label,
