@@ -16,23 +16,10 @@
        limitations under the License.
 
 -->
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="org.mybatis.jpetstore.mapper.SequenceMapper">
-
-  <cache />
-
-  <select id="getSequence" resultType="Sequence">
-    SELECT name, nextid
-    FROM SEQUENCE
-    WHERE NAME = #{name}
-  </select>
-
-  <update id="updateSequence">
-    UPDATE SEQUENCE
-    SET NEXTID = #{nextId}
-    WHERE NAME = #{name}
-  </update>
-
-</mapper>
+<extensions>
+    <extension>
+      <groupId>fr.jcgay.maven</groupId>
+      <artifactId>maven-profiler</artifactId>
+      <version>3.0</version>
+    </extension>
+</extensions>

@@ -22,7 +22,7 @@
   <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>31</version>
+    <version>32</version>
     <relativePath />
   </parent>
 
@@ -60,12 +60,12 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.5.5</version>
+      <version>3.5.6</version>
     </dependency>
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis-spring</artifactId>
-      <version>2.0.5</version>
+      <version>2.0.6</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -124,7 +124,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.6.2</version>
+      <version>5.7.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -148,13 +148,13 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>5.12.2</version>
+      <version>5.19.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit-driver</artifactId>
-      <version>2.43.1</version>
+      <version>2.47.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -284,18 +284,15 @@
     <tomcat.version />
 
     <surefire.version>3.0.0-M3</surefire.version>
-    <cargo-maven2-plugin.version>1.8.0</cargo-maven2-plugin.version>
+    <cargo-maven2-plugin.version>1.8.5</cargo-maven2-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
     <enforcer.skip>true</enforcer.skip>
 
-    <spring.version>5.2.8.RELEASE</spring.version>
-    <assertj.version>3.17.2</assertj.version>
-    <mockito.version>3.5.10</mockito.version>
+    <spring.version>5.3.4</spring.version>
+    <assertj.version>3.19.0</assertj.version>
+    <mockito.version>3.8.0</mockito.version>
     <hsqldb.version>2.5.1</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
-
-    <!-- Remove after parent 32 (support for jdk 13) -->
-    <jacoco.version>0.8.4</jacoco.version>
   </properties>
 
   <profiles>
@@ -307,28 +304,28 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.31</tomcat.version>
+        <tomcat.version>9.0.39</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat85</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.51</tomcat.version>
+        <tomcat.version>8.5.59</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat70</id>
       <properties>
         <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.100</tomcat.version>
+        <tomcat.version>7.0.106</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomee80</id>
       <properties>
         <tomee.major-version>8</tomee.major-version>
-        <tomee.version>8.0.1</tomee.version>
+        <tomee.version>8.0.4</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
@@ -337,16 +334,16 @@
       <id>tomee71</id>
       <properties>
         <tomee.major-version>7</tomee.major-version>
-        <tomee.version>7.1.2</tomee.version>
+        <tomee.version>7.1.4</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
-      <id>wildfly18</id>
+      <id>wildfly20</id>
       <properties>
-        <wildfly.major-version>18</wildfly.major-version>
-        <wildfly.version>18.0.1.Final</wildfly.version>
+        <wildfly.major-version>20</wildfly.major-version>
+        <wildfly.version>20.0.1.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -363,7 +360,7 @@
     <profile>
       <id>liberty-ee8</id>
       <properties>
-        <liberty.version>20.0.0.2</liberty.version>
+        <liberty.version>20.0.0.11</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -371,7 +368,7 @@
     <profile>
       <id>liberty-ee7</id>
       <properties>
-        <liberty.version>20.0.0.2</liberty.version>
+        <liberty.version>20.0.0.11</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee7/${liberty.version}/wlp-javaee7-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -380,7 +377,7 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>9</jetty.major-version>
-        <jetty.version>9.4.27.v20200227</jetty.version>
+        <jetty.version>9.4.34.v20201102</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
@@ -407,7 +404,7 @@
       <id>resin</id>
       <properties>
         <resin.major-version>4</resin.major-version>
-        <resin.version>4.0.64</resin.version>
+        <resin.version>4.0.65</resin.version>
         <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
       </properties>

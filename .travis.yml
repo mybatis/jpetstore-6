@@ -3,11 +3,9 @@ language: java
 matrix:
   include:
     - env: TARGET_AP_SERVER=tomcat90
-      jdk: openjdk-ea
+      jdk: openjdk16
     - env: TARGET_AP_SERVER=tomcat90
-      jdk: openjdk14
-    - env: TARGET_AP_SERVER=tomcat90
-      jdk: openjdk13
+      jdk: openjdk15
     - env: TARGET_AP_SERVER=tomcat90
       jdk: openjdk11
     - env:
@@ -22,7 +20,7 @@ matrix:
       jdk: openjdk8
     - env: TARGET_AP_SERVER=tomee71
       jdk: openjdk8
-    - env: TARGET_AP_SERVER=wildfly18
+    - env: TARGET_AP_SERVER=wildfly20
       jdk: openjdk8
     - env: TARGET_AP_SERVER=wildfly13
       jdk: openjdk8
@@ -39,11 +37,8 @@ matrix:
     - env: TARGET_AP_SERVER=resin
       jdk: openjdk8
   allow_failures:
-    # Fail maven-bundle-plugin on JDK 15 (https://issues.apache.org/jira/browse/FELIX-6259,https://github.com/mybatis/parent/issues/160)
-    - env: TARGET_AP_SERVER=tomcat90
-      jdk: openjdk-ea
     # Fail integration test because cannot unpack product zip file of application server
-    - env: TARGET_AP_SERVER=wildfly18
+    - env: TARGET_AP_SERVER=wildfly20
       jdk: openjdk8
     - env: TARGET_AP_SERVER=wildfly13
       jdk: openjdk8
@@ -56,12 +51,3 @@ install: true
 
 script:
   - ./mvnw -U clean verify -P ${TARGET_AP_SERVER}
-
-after_success:
-  - chmod -R 777 ./travis/after_success.sh
-  - "./travis/after_success.sh"
-
-env:
-  global:
-  - secure: OYpjRGu1vnh+yrWqdpaF1nWAzshvlFzh9frQGZv51PCrB+xnwY6SLiwtrlNZ9NKp60Buoxf3YySAml2xG86Y0gUCVjUsFlWg0mBFs1Hvnv6lxUVla6ZjiQ+C9wSavjky6jPbGrBjHd2uXvdUnElMzJc7j6Czm6BigmAaivPfwE0=
-  - secure: n8R+jUI2M/SY3pfiVOP95jLbkMXSIrAVhJ6ttTyr9k9OpLdIiP0LJ/Ccv/lNawx0TBlbApcZsc+fh3YZC5QJOl4+2pT9yc7+nULv8LlWoDVjWy+31rD6UJsxgGvADks1gs8SYvW2oHP2vNd8GUpNG6W3hmBkQm80wi6ssAxysZM=
