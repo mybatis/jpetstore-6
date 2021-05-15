@@ -206,8 +206,8 @@
         </plugin>
         <plugin>
           <groupId>org.codehaus.cargo</groupId>
-          <artifactId>cargo-maven2-plugin</artifactId>
-          <version>${cargo-maven2-plugin.version}</version>
+          <artifactId>cargo-maven3-plugin</artifactId>
+          <version>${cargo-maven3-plugin.version}</version>
           <configuration>
             <container>
               <containerId>${cargo.maven.containerId}</containerId>
@@ -228,7 +228,7 @@
     <plugins>
       <plugin>
         <groupId>org.codehaus.cargo</groupId>
-        <artifactId>cargo-maven2-plugin</artifactId>
+        <artifactId>cargo-maven3-plugin</artifactId>
         <executions>
           <execution>
             <id>start-container</id>
@@ -289,7 +289,7 @@
     <tomcat.version />
 
     <surefire.version>3.0.0-M3</surefire.version>
-    <cargo-maven2-plugin.version>1.8.5</cargo-maven2-plugin.version>
+    <cargo-maven3-plugin.version>1.9.4</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
     <enforcer.skip>true</enforcer.skip>
 
