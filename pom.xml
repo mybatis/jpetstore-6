@@ -323,7 +323,7 @@
       <id>tomcat70</id>
       <properties>
         <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.106</tomcat.version>
+        <tomcat.version>7.0.109</tomcat.version>
       </properties>
     </profile>
     <profile>
