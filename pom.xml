@@ -98,21 +98,26 @@
       <version>1.2.5</version>
     </dependency>
     <dependency>
-      <groupId>javax.servlet.jsp</groupId>
-      <artifactId>javax.servlet.jsp-api</artifactId>
-      <version>2.3.3</version>
+      <groupId>jakarta.servlet.jsp</groupId>
+      <artifactId>jakarta.servlet.jsp-api</artifactId>
+      <version>2.3.6</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>4.0.4</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.30</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.30</version>
     </dependency>
     <dependency>
       <groupId>org.hsqldb</groupId>
@@ -124,7 +129,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.7.1</version>
+      <version>5.7.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -201,8 +206,8 @@
         </plugin>
         <plugin>
           <groupId>org.codehaus.cargo</groupId>
-          <artifactId>cargo-maven2-plugin</artifactId>
-          <version>${cargo-maven2-plugin.version}</version>
+          <artifactId>cargo-maven3-plugin</artifactId>
+          <version>${cargo-maven3-plugin.version}</version>
           <configuration>
             <container>
               <containerId>${cargo.maven.containerId}</containerId>
@@ -223,7 +228,7 @@
     <plugins>
       <plugin>
         <groupId>org.codehaus.cargo</groupId>
-        <artifactId>cargo-maven2-plugin</artifactId>
+        <artifactId>cargo-maven3-plugin</artifactId>
         <executions>
           <execution>
             <id>start-container</id>
@@ -283,15 +288,15 @@
     <tomcat.major-version />
     <tomcat.version />
 
-    <surefire.version>3.0.0-M3</surefire.version>
-    <cargo-maven2-plugin.version>1.8.5</cargo-maven2-plugin.version>
+    <surefire.version>3.0.0-M5</surefire.version>
+    <cargo-maven3-plugin.version>1.9.4</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
     <enforcer.skip>true</enforcer.skip>
 
     <spring.version>5.3.7</spring.version>
     <assertj.version>3.19.0</assertj.version>
     <mockito.version>3.10.0</mockito.version>
-    <hsqldb.version>2.5.1</hsqldb.version>
+    <hsqldb.version>2.5.2</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
   </properties>
 
@@ -304,28 +309,28 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.39</tomcat.version>
+        <tomcat.version>9.0.46</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat85</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.59</tomcat.version>
+        <tomcat.version>8.5.66</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat70</id>
       <properties>
         <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.106</tomcat.version>
+        <tomcat.version>7.0.109</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomee80</id>
       <properties>
         <tomee.major-version>8</tomee.major-version>
-        <tomee.version>8.0.4</tomee.version>
+        <tomee.version>8.0.7</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
@@ -340,10 +345,10 @@
       </properties>
     </profile>
     <profile>
-      <id>wildfly20</id>
+      <id>wildfly22</id>
       <properties>
-        <wildfly.major-version>20</wildfly.major-version>
-        <wildfly.version>20.0.1.Final</wildfly.version>
+        <wildfly.major-version>22</wildfly.major-version>
+        <wildfly.version>22.0.0.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -360,7 +365,7 @@
     <profile>
       <id>liberty-ee8</id>
       <properties>
-        <liberty.version>20.0.0.11</liberty.version>
+        <liberty.version>21.0.0.5</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -368,7 +373,7 @@
     <profile>
       <id>liberty-ee7</id>
       <properties>
-        <liberty.version>20.0.0.11</liberty.version>
+        <liberty.version>21.0.0.5</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee7/${liberty.version}/wlp-javaee7-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -377,7 +382,7 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>9</jetty.major-version>
-        <jetty.version>9.4.34.v20201102</jetty.version>
+        <jetty.version>9.4.40.v20210413</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>

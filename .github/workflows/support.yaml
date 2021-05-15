@@ -29,7 +29,7 @@ jobs:
         token: ["tomcat70", "tomcat85", "tomcat85", "tomee71", "tomee80", "wildfly13", "wildfly20", "liberty-ee7", "liberty-ee8", "jetty", "glassfish4", "glassfish5", "resin"]
       fail-fast: false
       max-parallel: 4
-    name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}
+    name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
 
     steps:
       - uses: actions/checkout@v2
@@ -38,5 +38,5 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: ${{ matrix.distribution }}
-      - name: Test with Tomcat90
+      - name: Test with ${{ matrix.token }}
         run: ./mvnw test -P ${{ matrix.token }}
