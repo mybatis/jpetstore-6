@@ -63,14 +63,14 @@
 	<stripes:link
 		beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
 		event="signonForm">
-          Sign In -New Value-
+          Sign In -New Value... Second...-
 	    </stripes:link>
 </c:if> <c:if test="${sessionScope.accountBean != null}">
 	<c:if test="${!sessionScope.accountBean.authenticated}">
 		<stripes:link
 			beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
 			event="signonForm">
-            Sign In -New Value-
+            Sign In -New Value... Second...-
 	      </stripes:link>
 	</c:if>
 </c:if> <c:if test="${sessionScope.accountBean != null}">
