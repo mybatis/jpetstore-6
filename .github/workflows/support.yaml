@@ -25,7 +25,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
         java: [8,11]
-        distribution: ['adopt']
+        distribution: ['zulu']
         token: ["tomcat70", "tomcat85", "tomcat85", "tomee71", "tomee80", "wildfly13", "wildfly20", "liberty-ee7", "liberty-ee8", "jetty", "glassfish4", "glassfish5", "resin"]
       fail-fast: false
       max-parallel: 4
