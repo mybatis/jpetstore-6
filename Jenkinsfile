@@ -44,10 +44,10 @@ podTemplate(
                 container('maven') {
                     configFileProvider([configFile(fileId: 'mavennexus', variable: 'MAVEN_CONFIG')]) {
                         stage('Compile') {
-                            sh('mvn -s ${MAVEN_CONFIG} -P tomcat90,with-contrast -Dcontrast.username=${CONTRAST_USERNAME} -Dcontrast.serviceKey=${CONTRAST_SERVICEKEY} -Dcontrast.apiKey=${CONTRAST_APIKEY} -Dcontrast.orgUuid=${CONTRAST_ORGUUID}  compile')
+                            sh('mvn -s ${MAVEN_CONFIG} -P tomcat90 compile')
                         }
                         stage('Test') {
-                            sh('mvn -s ${MAVEN_CONFIG} -P tomcat90,with-contrast -Dcontrast.username=${CONTRAST_USERNAME} -Dcontrast.serviceKey=${CONTRAST_SERVICEKEY} -Dcontrast.apiKey=${CONTRAST_APIKEY} -Dcontrast.orgUuid=${CONTRAST_ORGUUID} test')
+                            sh('mvn -s ${MAVEN_CONFIG} -P tomcat90 test')
                             junit '**/target/surefire-reports/TEST-*.xml'
                             jacoco(
                                 execPattern: 'target/*.exec',
@@ -58,7 +58,7 @@ podTemplate(
                         }
                         stage ('SonarQube analysis') {
                             withSonarQubeEnv('sonarqube') {
-                                sh 'mvn -s ${MAVEN_CONFIG} -P tomcat90,with-contrast -Dcontrast.username=${CONTRAST_USERNAME} -Dcontrast.serviceKey=${CONTRAST_SERVICEKEY} -Dcontrast.apiKey=${CONTRAST_APIKEY} -Dcontrast.orgUuid=${CONTRAST_ORGUUID} sonar:sonar'
+                                sh 'mvn -s ${MAVEN_CONFIG} -P tomcat90 sonar:sonar'
                             }
                         }
                         stage ('SonarQube quality gate') {
@@ -67,7 +67,7 @@ podTemplate(
                             }
                         }
                         stage('Deploy') {
-                            sh('mvn -s ${MAVEN_CONFIG} -P tomcat90,with-contrast -Dcontrast.username=${CONTRAST_USERNAME} -Dcontrast.serviceKey=${CONTRAST_SERVICEKEY} -Dcontrast.apiKey=${CONTRAST_APIKEY} -Dcontrast.orgUuid=${CONTRAST_ORGUUID} deploy -DskipITs')
+                            sh('mvn -s ${MAVEN_CONFIG} -P tomcat90 deploy -DskipITs')
                             archiveArtifacts artifacts: '**/target/dependency-check-report.*', onlyIfSuccessful: false
                             archiveArtifacts artifacts: '**/target/*.war', onlyIfSuccessful: true
                         }
