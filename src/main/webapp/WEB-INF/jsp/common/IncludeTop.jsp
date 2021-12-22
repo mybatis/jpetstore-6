@@ -1,6 +1,6 @@
 <%--
 
-       Copyright 2010-2016 the original author or authors.
+       Copyright 2010-2021 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -63,14 +63,14 @@
 	<stripes:link
 		beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
 		event="signonForm">
-          Sign In
+          Sign In -New Value... Second...-
 	    </stripes:link>
 </c:if> <c:if test="${sessionScope.accountBean != null}">
 	<c:if test="${!sessionScope.accountBean.authenticated}">
 		<stripes:link
 			beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
 			event="signonForm">
-            Sign In
+            Sign In -New Value... Second...-
 	      </stripes:link>
 	</c:if>
 </c:if> <c:if test="${sessionScope.accountBean != null}">
