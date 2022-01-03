@@ -315,7 +315,7 @@
     <enforcer.skip>true</enforcer.skip>
 
     <spring.version>5.3.14</spring.version>
-    <assertj.version>3.21.0</assertj.version>
+    <assertj.version>3.22.0</assertj.version>
     <mockito.version>4.2.0</mockito.version>
     <hsqldb.version>2.5.2</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
