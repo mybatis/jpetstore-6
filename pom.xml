@@ -319,6 +319,7 @@
     <mockito.version>4.3.1</mockito.version>
     <hsqldb.version>2.5.2</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
+    <project.build.outputTimestamp>1645112687</project.build.outputTimestamp>
   </properties>
 
   <profiles>
