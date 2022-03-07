@@ -174,7 +174,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit-driver</artifactId>
-      <version>3.58.0</version>
+      <version>3.59.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
