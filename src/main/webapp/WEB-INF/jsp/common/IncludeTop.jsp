@@ -90,12 +90,20 @@
 </c:if> <img align="middle" src="../images/separator.gif" /> <a
 	href="../help.html">?</a>
 	<img align="middle" src="../images/separator.gif" />
+<<<<<<< Updated upstream
 			<stripes:link
 					beanclass="org.mybatis.jpetstore.web.actions.OrderActionBean"
 					event="listCustomerOrders">
 				Popular Pets
 			</stripes:link>
 			</div>
+=======
+	<stripes:link
+			beanclass="org.mybatis.jpetstore.web.actions.OrderActionBean"
+			event="listCustomerOrders">
+		Popular Pets
+	</stripes:link></div>
+>>>>>>> Stashed changes
 </div>
 
 <div id="Search">

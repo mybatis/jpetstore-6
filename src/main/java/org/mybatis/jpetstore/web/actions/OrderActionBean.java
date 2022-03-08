@@ -26,6 +26,7 @@ import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
+import org.mybatis.jpetstore.domain.LineItem;
 import org.mybatis.jpetstore.domain.Order;
 import org.mybatis.jpetstore.domain.PopularPets;
 import org.mybatis.jpetstore.service.OrderService;
@@ -56,6 +57,10 @@ public class OrderActionBean extends AbstractActionBean {
   private boolean shippingAddressRequired;
   private boolean confirmed;
   private List<Order> orderList;
+<<<<<<< Updated upstream
+=======
+  private List<LineItem> lineItems;
+>>>>>>> Stashed changes
   private List<PopularPets> popularPets;
 
   public List<PopularPets> getPopularPets() {
@@ -65,6 +70,17 @@ public class OrderActionBean extends AbstractActionBean {
   public void setPopularPets(List<PopularPets> popularPets) {
     this.popularPets = popularPets;
   }
+<<<<<<< Updated upstream
+=======
+
+  public List<LineItem> getLineItems() {
+    return lineItems;
+  }
+
+  public void setLineItems(List<LineItem> lineItems) {
+    this.lineItems = lineItems;
+  }
+>>>>>>> Stashed changes
 
   static {
     CARD_TYPE_LIST = Collections.unmodifiableList(Arrays.asList("Visa", "MasterCard", "American Express"));
@@ -123,9 +139,15 @@ public class OrderActionBean extends AbstractActionBean {
   }
 
   public Resolution listCustomerOrders(){
+<<<<<<< Updated upstream
 	    popularPets=orderService.getOrderList();
 	    return new ForwardResolution(LIST_CUSTOMERS_ORDER);
 	  }
+=======
+    popularPets=orderService.getOrderList();
+    return new ForwardResolution(LIST_CUSTOMERS_ORDER);
+  }
+>>>>>>> Stashed changes
 
   /**
    * New order form.
