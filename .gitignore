@@ -6,5 +6,3 @@
 *.iml
 /build
 .mvn/wrapper/maven-wrapper.jar
-*.properties
-applicationContext.xml
