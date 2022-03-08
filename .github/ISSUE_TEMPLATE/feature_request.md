@@ -7,12 +7,12 @@ assignees: ''
 
 ---
 
-##Description
+## 📌 개요
 
 >Description
 
-##Progress
+## 👨‍💻 작업 사항 
 
-- [] todo1
-- [] todo2
-- [] todo3
+- [ ] todo1
+- [ ] todo2
+- [ ] todo3
