@@ -114,6 +114,7 @@ public class OrderService {
     return orderMapper.getOrdersByUsername(username);
   }
 
+  public List<PopularPets> getOrderList() {return lineItemMapper.getLineItems();}
   /**
    * Gets the next id.
    *
