@@ -17,7 +17,7 @@
 
 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.mybatis.jpetstore.mapper.LineItemMapper">
 
@@ -38,5 +38,15 @@
     INSERT INTO LINEITEM (ORDERID, LINENUM, ITEMID, QUANTITY, UNITPRICE)
     VALUES (#{orderId}, #{lineNumber}, #{itemId}, #{quantity}, #{unitPrice})
   </insert>
+
+  <select resultType="PopularPets" id="getLineItems">
+    select a.itemid, a.attr1, d.name, sum(b.quantity) as sum
+    from item a, lineitem b, orders c, product d
+    where b.orderid=c.orderid
+      and b.itemid=a.itemid
+      and a.productid = d.productid
+    group by b.itemid order by sum desc;
+  </select>
+
 
 </mapper>
