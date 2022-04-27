@@ -1,5 +1,5 @@
-/**
- *    Copyright 2010-2020 the original author or authors.
+/*
+ *    Copyright 2010-2021 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package org.mybatis.jpetstore;
 
 import static com.codeborne.selenide.Browsers.CHROME;
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.value;
@@ -88,7 +89,7 @@ class ScreenTransitionIT {
     // Search items
     $(By.name("keyword")).setValue("fish");
     $(By.name("searchProducts")).click();
-    $$(By.cssSelector("#Catalog table tr")).shouldHaveSize(4);
+    $$(By.cssSelector("#Catalog table tr")).shouldHave(size(4));
 
     // Select item
     $(By.linkText("Fresh Water fish from China")).click();

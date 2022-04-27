@@ -21,3 +21,13 @@ updates:
   schedule:
     interval: daily
   open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: jakarta.servlet.jsp:jakarta.servlet.jsp-api
+    versions:
+    - ">= 3.0.0"
+  - dependency-name: jakarta.servlet:jakarta.servlet-api
+    versions:
+    - ">= 5.0.0"
+  - dependency-name: org.hsqldb:hsqldb
+    versions:
+    - ">= 2.6.0"
