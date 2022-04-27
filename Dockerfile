@@ -19,7 +19,7 @@ FROM tomcat:9
 MAINTAINER Jerome Loisel
 
 RUN rm -rf ${CATALINA_HOME}/webapps/ ${CATALINA_HOME}/work/Catalina/localhost
-COPY target/ROOT.war robots.txt ${CATALINA_HOME}/webapps/
+COPY target/ROOT.war ${CATALINA_HOME}/webapps/
 
 EXPOSE 8080
 
