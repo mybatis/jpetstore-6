@@ -19,7 +19,7 @@ FROM tomcat:9
 MAINTAINER Jerome Loisel
 
 RUN rm -rf ${CATALINA_HOME}/webapps/ ${CATALINA_HOME}/work/Catalina/localhost
-ADD target/jpetstore.war ${CATALINA_HOME}/webapps/ROOT.war
+COPY target/ROOT.war robots.txt ${CATALINA_HOME}/webapps/
 
 EXPOSE 8080
 
