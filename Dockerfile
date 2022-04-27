@@ -18,9 +18,6 @@ FROM tomcat:9
 
 MAINTAINER Jerome Loisel
 
-ENV JAVA_OPTS="${JAVA_OPTS} -javaagent:${CATALINA_HOME}/dd-java-agent.jar"
-
-ADD https://dtdg.co/latest-java-tracer ${CATALINA_HOME}/dd-java-agent.jar
 RUN rm -rf ${CATALINA_HOME}/webapps/ ${CATALINA_HOME}/work/Catalina/localhost
 ADD target/jpetstore.war ${CATALINA_HOME}/webapps/ROOT.war
 
