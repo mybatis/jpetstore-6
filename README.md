@@ -13,6 +13,8 @@ JPetStore 6 is a full web application built on top of MyBatis 3, Spring 5 and St
 
 Adding changes to check it is building
 
+Adding new line
+
 Essentials
 ----------
 
