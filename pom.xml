@@ -316,7 +316,7 @@
 
     <spring.version>5.3.22</spring.version>
     <assertj.version>3.23.1</assertj.version>
-    <mockito.version>4.6.1</mockito.version>
+    <mockito.version>4.7.0</mockito.version>
     <hsqldb.version>2.5.2</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
     <project.build.outputTimestamp>1645112687</project.build.outputTimestamp>
