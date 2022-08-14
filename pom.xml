@@ -42,7 +42,7 @@
   </scm>
   <issueManagement>
     <system>GitHub Issue Management</system>
-    <url>https://github.com/mybatis/jpetstore/issues</url>
+    <url>https://github.com/mybatis/jpetstore-6/issues</url>
   </issueManagement>
   <ciManagement>
     <system>Travis CI</system>
