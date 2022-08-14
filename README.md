@@ -4,7 +4,7 @@ MyBatis JPetStore
 [![Java CI](https://github.com/mybatis/jpetstore-6/actions/workflows/ci.yaml/badge.svg)](https://github.com/mybatis/jpetstore-6/actions/workflows/ci.yaml)
 [![Container Support](https://github.com/mybatis/jpetstore-6/actions/workflows/support.yaml/badge.svg)](https://github.com/mybatis/jpetstore-6/actions/workflows/support.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/mybatis/jpetstore-6/badge.svg?branch=master)](https://coveralls.io/github/mybatis/jpetstore-6?branch=master)
-[![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![License](https://img.shields.io/:license-apache-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 ![mybatis-jpetstore](http://mybatis.github.io/images/mybatis-logo.png)
 
@@ -51,10 +51,9 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   > | -------------- | ----------- |
   > | tomcat90       | Running under the Tomcat 9.0 |
   > | tomcat85       | Running under the Tomcat 8.5 |
-  > | tomcat70       | Running under the Tomcat 7.0 |
   > | tomee80        | Running under the TomEE 8.0(Java EE 8) |
   > | tomee71        | Running under the TomEE 7.1(Java EE 7) |
-  > | wildfly20      | Running under the WildFly 20(Java EE 8) |
+  > | wildfly26      | Running under the WildFly 26(Java EE 8) |
   > | wildfly13      | Running under the WildFly 13(Java EE 7) |
   > | liberty-ee8    | Running under the WebSphere Liberty(Java EE 8) |
   > | liberty-ee7    | Running under the WebSphere Liberty(Java EE 7) |
