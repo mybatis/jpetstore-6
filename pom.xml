@@ -45,8 +45,8 @@
     <url>https://github.com/mybatis/jpetstore-6/issues</url>
   </issueManagement>
   <ciManagement>
-    <system>Travis CI</system>
-    <url>https://travis-ci.org/mybatis/jpetstore-6</url>
+    <system>GitHub Actions</system>
+    <url>https://github.com/mybatis/jpetstore-6/actions</url>
   </ciManagement>
   <distributionManagement>
     <site>
