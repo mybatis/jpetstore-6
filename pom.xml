@@ -352,13 +352,6 @@
       </properties>
     </profile>
     <profile>
-      <id>tomcat70</id>
-      <properties>
-        <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.109</tomcat.version>
-      </properties>
-    </profile>
-    <profile>
       <id>tomee80</id>
       <properties>
         <tomee.major-version>8</tomee.major-version>
