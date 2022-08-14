@@ -247,6 +247,17 @@
       </plugins>
     </pluginManagement>
     <plugins>
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <configuration>
+          <rules>
+            <enforceBytecodeVersion>
+              <ignoredScopes>test</ignoredScopes>
+            </enforceBytecodeVersion>
+          </rules>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.cargo</groupId>
         <artifactId>cargo-maven3-plugin</artifactId>
@@ -312,12 +323,11 @@
     <surefire.version>3.0.0-M7</surefire.version>
     <cargo-maven3-plugin.version>1.9.13</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
-    <enforcer.skip>true</enforcer.skip>
 
     <spring.version>5.3.22</spring.version>
     <assertj.version>3.23.1</assertj.version>
     <mockito.version>4.7.0</mockito.version>
-    <hsqldb.version>2.5.2</hsqldb.version>
+    <hsqldb.version>2.7.0</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
     <project.build.outputTimestamp>1645112687</project.build.outputTimestamp>
   </properties>
