@@ -370,12 +370,12 @@
       </properties>
     </profile>
     <profile>
-      <id>wildfly22</id>
+      <id>wildfly26</id>
       <properties>
-        <wildfly.major-version>22</wildfly.major-version>
-        <wildfly.version>22.0.1.Final</wildfly.version>
+        <wildfly.major-version>26</wildfly.major-version>
+        <wildfly.version>26.1.1.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
+		<cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
