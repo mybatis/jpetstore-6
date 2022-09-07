@@ -6,7 +6,7 @@ MyBatis JPetStore
 [![Coverage Status](https://coveralls.io/repos/github/mybatis/jpetstore-6/badge.svg?branch=master)](https://coveralls.io/github/mybatis/jpetstore-6?branch=master)
 [![License](https://img.shields.io/:license-apache-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-![mybatis-jpetstore](http://mybatis.github.io/images/mybatis-logo.png)
+![mybatis-jpetstore](https://mybatis.org/images/mybatis-logo.png)
 
 JPetStore 6 is a full web application built on top of MyBatis 3, Spring 5 and Stripes.
 
