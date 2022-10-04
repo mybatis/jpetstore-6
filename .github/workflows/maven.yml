@@ -25,4 +25,4 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: magnologan/gha-devsecops
-      uses: magnologan/gha-devsecops@1
+      uses: magnologan/gha-devsecops
