@@ -313,9 +313,11 @@
     <mockito.version>4.8.0</mockito.version>
     <hsqldb.version>2.5.2</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
+    <sonar.organization>org.mybatis</sonar.organization>
 
     <!-- Reproducible Builds -->
     <project.build.outputTimestamp>1757561022</project.build.outputTimestamp>
+
   </properties>
 
   <profiles>
