@@ -47,6 +47,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           docker_name: 'owasp/zap2docker-stable'
-          target: 'http://test.com' # Change URL or IP of your target application
+          target: 'https://petstore.octoperf.com/actions/Catalog.action' # Change URL or IP of your target application
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
