@@ -16,7 +16,7 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: d218cbce2137ce83403595d0116ec8046bfbbeb6
 
   snyk:
     runs-on: ubuntu-latest
