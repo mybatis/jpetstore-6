@@ -20,7 +20,7 @@ jobs:
 
   snyk:
     runs-on: ubuntu-latest
-    needs: sonarcloud
+#    needs: sonarcloud
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
