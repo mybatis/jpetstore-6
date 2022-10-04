@@ -13,7 +13,7 @@ jobs:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
       - name: SonarCloud Scan
-        run: ./mvnw -B verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=jpetstore -Dsonar.organization=org.mybatis -Dsonar.login=d218cbce2137ce83403595d0116ec8046bfbbeb6
+        run: ./mvnw -B verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=jpetstore -Dsonar.organization=default -Dsonar.login=d218cbce2137ce83403595d0116ec8046bfbbeb6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: d218cbce2137ce83403595d0116ec8046bfbbeb6
