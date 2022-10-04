@@ -18,25 +18,25 @@ jobs:
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #          SONAR_TOKEN: d218cbce2137ce83403595d0116ec8046bfbbeb6
 
-  snyk:
-    runs-on: ubuntu-latest
-#    needs: sonarcloud
-    steps:
-      - uses: actions/checkout@v2
-        with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting
-          fetch-depth: 0
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/Maven@master # For node projects, change accordingly
-        env:
-          SNYK_TOKEN: dd2cc2e7-882e-4a96-9d2d-527da5cb745a
-        with:
-          command: monitor
+#  snyk:
+#    runs-on: ubuntu-latest
+##    needs: sonarcloud
+#    steps:
+#      - uses: actions/checkout@v2
+#        with:
+#        # Disabling shallow clone is recommended for improving relevancy of reporting
+#          fetch-depth: 0
+#      - name: Run Snyk to check for vulnerabilities
+#        uses: snyk/actions/Maven@master # For node projects, change accordingly
+#        env:
+#          SNYK_TOKEN: dd2cc2e7-882e-4a96-9d2d-527da5cb745a
+#        with:
+#          command: monitor
 
   zap_scan:
     runs-on: ubuntu-latest
     name: zap
-    needs: snyk
+    #needs: snyk
     steps:
       - name: Checkout
         uses: actions/checkout@v2
