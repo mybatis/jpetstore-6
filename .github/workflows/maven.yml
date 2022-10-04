@@ -27,7 +27,7 @@ jobs:
         # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master # For node projects, change accordingly
+        uses: snyk/actions/Maven@master # For node projects, change accordingly
         env:
           SNYK_TOKEN: dd2cc2e7-882e-4a96-9d2d-527da5cb745a
         with:
