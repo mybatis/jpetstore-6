@@ -1,6 +1,9 @@
 name: DevSecOps Pipeline
-on: pull_request
-  branches: master, main
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 jobs:
   sonarcloud:
     needs: recon
