@@ -319,6 +319,8 @@
     <hsqldb.version>2.5.2</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
     <sonar.organization>default</sonar.organization>
+    <sonar.projectKey>jpetstore</sonar.projectKey>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
     <!-- Reproducible Builds -->
     <project.build.outputTimestamp>1757561022</project.build.outputTimestamp>

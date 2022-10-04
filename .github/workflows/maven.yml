@@ -33,20 +33,59 @@ jobs:
 #        with:
 #          command: monitor
 
-  zap_scan:
+#  zap_scan:
+#    runs-on: ubuntu-latest
+#    name: zap
+#    #needs: snyk
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#        with:
+#          ref: master
+#      - name: ZAP Scan
+#        uses: zaproxy/action-baseline@v0.6.1
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          docker_name: 'owasp/zap2docker-stable'
+#          target: 'https://petstore.octoperf.com/actions/Catalog.action' # Change URL or IP of your target application
+#          rules_file_name: '.zap/rules.tsv'
+#          cmd_options: '-a'
+  sonar:
+    name: Inspect - Using Sonar
     runs-on: ubuntu-latest
-    name: zap
-    #needs: snyk
+    needs: [ test ]
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Check out the code
+        uses: actions/checkout@v1
         with:
-          ref: master
-      - name: ZAP Scan
-        uses: zaproxy/action-baseline@v0.6.1
+          fetch-depth: 0
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          docker_name: 'owasp/zap2docker-stable'
-          target: 'https://petstore.octoperf.com/actions/Catalog.action' # Change URL or IP of your target application
-          rules_file_name: '.zap/rules.tsv'
-          cmd_options: '-a'
+          java-version: 11
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify -DexcludedGroups="Smoke | Staging | LamdaTest | BrowserStack" org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.issuesReport.html.enable=true -Dsonar.projectKey=judebantony_cicd-github-action-example
+      - name: SonarQube Quality Gate check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        timeout-minutes: 5
+        with:
+          scanMetadataReportFile: target/sonar/report-task.txt
