@@ -14,7 +14,8 @@
  *    limitations under the License.
  */
 package org.mybatis.jpetstore;
-//test push
+//test push1
+//test secret scan
 import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.empty;
