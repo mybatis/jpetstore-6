@@ -74,6 +74,19 @@ jobs:
 #        with:
 #          scanMetadataReportFile: target/sonar/report-task.txt
 
+
+  gitleaks:
+    name: secret scan using Gitleaks
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   snykScan:
     name: SCA Scan using Snyk
     runs-on: ubuntu-latest
