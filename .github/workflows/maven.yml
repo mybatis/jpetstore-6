@@ -33,23 +33,23 @@ jobs:
 #        with:
 #          command: monitor
 
-#  zap_scan:
-#    runs-on: ubuntu-latest
-#    name: zap
-#    #needs: snyk
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#        with:
-#          ref: master
-#      - name: ZAP Scan
-#        uses: zaproxy/action-baseline@v0.6.1
-#        with:
-#          token: ${{ secrets.GITHUB_TOKEN }}
-#          docker_name: 'owasp/zap2docker-stable'
-#          target: 'https://petstore.octoperf.com/actions/Catalog.action' # Change URL or IP of your target application
-#          rules_file_name: '.zap/rules.tsv'
-#          cmd_options: '-a'
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: zap
+    #needs: snyk
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.6.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          docker_name: 'owasp/zap2docker-stable'
+          target: 'https://petstore.octoperf.com/actions/Catalog.action' # Change URL or IP of your target application
+          rules_file_name: '.zap/rules.tsv'
+          cmd_options: '-a'
 #  sonar:
 #    name: Inspect - Using Sonar
 #    runs-on: ubuntu-latest
