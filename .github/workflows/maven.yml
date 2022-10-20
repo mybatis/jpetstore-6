@@ -4,7 +4,69 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+
+env:
+  AWS_REGION: us-west-2                   # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: jpetstore           # set this to your Amazon ECR repository name
+  ECS_SERVICE: jpestore-service                 # set this to your Amazon ECS service name
+  ECS_CLUSTER: jpetstore-cluster                 # set this to your Amazon ECS cluster name
+  ECS_TASK_DEFINITION: aws/task-definition.json # set this to the path to your Amazon ECS task definition
+  # file, e.g. .aws/task-definition.json
+  CONTAINER_NAME: sample-app           # set this to the name of the container in the
+  # containerDefinitions section of your task definition
+
+
 jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@aaf69d68aa3fb14c1d5a6be9ac61fe15b48453a2
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@97587c9d45a4930bf0e3da8dd2feb2a463cf4a3a
+        with:
+          task-definition: ${{ env.ECS_TASK_DEFINITION }}
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ steps.build-image.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@de0132cf8cdedb79975c6d42b77eb7ea193cf28e
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
+
+
 #  sonarcloud:
 #    runs-on: ubuntu-latest
 #    steps:
@@ -75,54 +137,59 @@ jobs:
 #          scanMetadataReportFile: target/sonar/report-task.txt
 
 
-  gitleaks:
-    name: secret scan using Gitleaks
-    runs-on: ubuntu-latest
+#  gitleaks:
+#    name: secret scan using Gitleaks
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v3
+#        with:
+#          fetch-depth: 0
+#      - uses: gitleaks/gitleaks-action@v2
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#
+#  snykScan:
+#    name: SCA Scan using Snyk
+#    runs-on: ubuntu-latest
+##    needs: [codeqlScan, codacyScan, appScan]
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0
+#      - name: Set up Maven
+#        run: mvn -N io.takari:maven:wrapper -Dmaven=3.8.2
+#      - name: Run Snyk to check for vulnerabilities
+#        continue-on-error: true
+#        uses: snyk/actions/maven-3-jdk-11@master
+#        env:
+#          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#        with:
+#          args: --sarif-file-output=snyk.sarif
+#      - name: Upload result to GitHub Code Scanning
+#        uses: github/codeql-action/upload-sarif@v2
+#        with:
+#          sarif_file: snyk.sarif
+#  zap_scan:
+#    runs-on: ubuntu-latest
+#    name: zap
+#    #needs: snyk
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#        with:
+#          ref: master
+#      - name: ZAP Scan
+#        uses: zaproxy/action-baseline@v0.6.1
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          docker_name: 'owasp/zap2docker-stable'
+#          target: 'https://petstore.octoperf.com/actions/Catalog.action' # Change URL or IP of your target application
+#          rules_file_name: '.zap/rules.tsv'
+#          cmd_options: '-a'
 
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  snykScan:
-    name: SCA Scan using Snyk
-    runs-on: ubuntu-latest
-#    needs: [codeqlScan, codacyScan, appScan]
 
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Set up Maven
-        run: mvn -N io.takari:maven:wrapper -Dmaven=3.8.2
-      - name: Run Snyk to check for vulnerabilities
-        continue-on-error: true
-        uses: snyk/actions/maven-3-jdk-11@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --sarif-file-output=snyk.sarif
-      - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: snyk.sarif
-  zap_scan:
-    runs-on: ubuntu-latest
-    name: zap
-    #needs: snyk
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: master
-      - name: ZAP Scan
-        uses: zaproxy/action-baseline@v0.6.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          docker_name: 'owasp/zap2docker-stable'
-          target: 'https://petstore.octoperf.com/actions/Catalog.action' # Change URL or IP of your target application
-          rules_file_name: '.zap/rules.tsv'
-          cmd_options: '-a'
+
+
