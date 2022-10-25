@@ -87,10 +87,44 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  CodeQL-Build:
+    # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
+    runs-on: ubuntu-latest
+    needs: [gitleaks]
+    permissions:
+      # required for all workflows
+      security-events: write
+      # only required for workflows in private repositories
+      actions: read
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        # Override language selection by uncommenting this and choosing your languages
+        # with:
+        #   languages: go, javascript, csharp, python, cpp, java
+      # Autobuild attempts to build any compiled languages (C/C++, C#, or Java).
+      # If this step fails, then you should remove it and run the build manually (see below).
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+      # ℹ️ Command-line programs to run using the OS shell.
+      # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
+      # ✏️ If the Autobuild fails above, remove it and uncomment the following
+      #    three lines and modify them (or add more) to build your code if your
+      #    project uses a compiled language
+      #- run: |
+      #     make bootstrap
+      #     make release
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+
   snykScan:
     name: SCA Scan using Snyk
     runs-on: ubuntu-latest
-    needs: [gitleaks]
+    needs: [CodeQL-Build]
 
     steps:
       - uses: actions/checkout@v2
@@ -193,3 +227,25 @@ jobs:
           target: 'https://petstore.octoperf.com/actions/Catalog.action' # Change URL or IP of your target application
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
+
+  nuclei-scan:
+    runs-on: ubuntu-latest
+    needs: [zap_scan]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Nuclei - Vulnerability Scan
+        uses: projectdiscovery/nuclei-action@main
+        with:
+          target: 'https://petstore.octoperf.com/actions/Catalog.action'
+
+      - name: GitHub Workflow artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: nuclei.log
+          path: nuclei.log
+
+      - name: GitHub Security Dashboard Alerts update
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: nuclei.sarif
