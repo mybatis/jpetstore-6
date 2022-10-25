@@ -90,7 +90,7 @@ jobs:
   snykScan:
     name: SCA Scan using Snyk
     runs-on: ubuntu-latest
-#    needs: [codeqlScan, codacyScan, appScan]
+    needs: [gitleaks]
 
     steps:
       - uses: actions/checkout@v2
@@ -109,10 +109,77 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: snyk.sarif
+
+  dockerHubImageBuild:
+      name: Push Docker image to Docker Hub
+      runs-on: ubuntu-latest
+      needs: [snykScan]
+      
+      steps:
+        - name: Check out the repo
+          uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+        - name: Set up JDK 11
+          uses: actions/setup-java@v1
+          with:
+            java-version: 11
+        - name: Cache Maven packages
+          uses: actions/cache@v1
+          with:
+            path: ~/.m2
+            key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+            restore-keys: ${{ runner.os }}-m2
+        - name: Package
+          run: mvn -B clean package -DskipTests
+        - name: Log in to Docker Hub
+          uses: docker/login-action@v2
+          with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
+        - name: Extract metadata (tags, labels) for Docker
+          id: meta
+          uses: docker/metadata-action@v2
+          with:
+            images: kda78/rd06
+        
+        - name: Build and push Docker image
+          uses: docker/build-push-action@v3
+          with:
+            context: .
+            push: true
+            tags: ${{ steps.meta.outputs.tags }}
+            labels: ${{ steps.meta.outputs.labels }}
+            
+  Trivy:
+      name: Image scan by Trivy
+      runs-on: ubuntu-20.04
+      needs: [dockerHubImageBuild]
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+
+        - name: Build an image from Dockerfile
+          run: |
+            docker build -t hub.docker.com/r/kda78/rd06:${{ github.sha }} .
+        - name: Run Trivy vulnerability scanner
+          uses: aquasecurity/trivy-action@master
+          with:
+            image-ref: 'hub.docker.com/r/kda78/rd06:${{ github.sha }}'
+            format: 'sarif'
+            output: 'trivy-results.sarif'
+
+        - name: Upload Trivy scan results to GitHub Security tab
+          uses: github/codeql-action/upload-sarif@v2
+          with:
+            sarif_file: 'trivy-results.sarif'
+
+
   zap_scan:
     runs-on: ubuntu-latest
     name: zap
-    #needs: snyk
+    needs: [Trivy]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
