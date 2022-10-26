@@ -1,9 +1,9 @@
 name: DevSecOps Pipeline
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "allen" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "allen" ]
 
 env:
   AWS_REGION: us-west-2                   # set this to your preferred AWS region, e.g. us-west-1
@@ -238,7 +238,7 @@ jobs:
       - name: Nuclei - Vulnerability Scan
         uses: projectdiscovery/nuclei-action@main
         with:
-          target: 'https://petstore.octoperf.com/actions/Catalog.action'
+          target: 'http://ecsloadbalancer-1600554619.us-west-2.elb.amazonaws.com/jpetstore'
 
       - name: GitHub Workflow artifacts
         uses: actions/upload-artifact@v2
