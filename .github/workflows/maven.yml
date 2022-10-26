@@ -13,19 +13,20 @@ env:
   ECS_TASK_DEFINITION: aws/task_definition.json # set this to the path to your Amazon ECS task definition
   # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: sample-app           # set this to the name of the container in the
+  
 jobs:
- sonarcloud:
-   runs-on: ubuntu-latest
-   steps:
-     - uses: actions/checkout@v2
-       with:
-         # Disabling shallow clone is recommended for improving relevancy of reporting
-         fetch-depth: 0
-     - name: SonarCloud Scan
-       run: ./mvnw -Dmaven.test.skip=true -X -B verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=jpetstore -Dsonar.organization=default -Dsonar.login=d218cbce2137ce83403595d0116ec8046bfbbeb6
-       env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-         SONAR_TOKEN: d218cbce2137ce83403595d0116ec8046bfbbeb6
+#  sonarcloud:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#        with:
+#          # Disabling shallow clone is recommended for improving relevancy of reporting
+#          fetch-depth: 0
+#      - name: SonarCloud Scan
+#        run: ./mvnw -Dmaven.test.skip=true -X -B verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=jpetstore -Dsonar.organization=default -Dsonar.login=d218cbce2137ce83403595d0116ec8046bfbbeb6
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          SONAR_TOKEN: d218cbce2137ce83403595d0116ec8046bfbbeb6
 
 #  snyk:
 #    runs-on: ubuntu-latest
@@ -84,17 +85,17 @@ jobs:
 #          scanMetadataReportFile: target/sonar/report-task.txt
 
 
-  # gitleaks:
-  #   name: secret scan using Gitleaks
-  #   runs-on: ubuntu-latest
+  gitleaks:
+    name: secret scan using Gitleaks
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0
-  #     - uses: gitleaks/gitleaks-action@v2
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # CodeQL-Build:
   #   runs-on: ubuntu-latest
