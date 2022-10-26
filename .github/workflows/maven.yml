@@ -281,4 +281,4 @@ jobs:
       - name: GitHub Security Dashboard Alerts update
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: ${{ steps.run-analysis.outputs.sarif }}
+          sarif_file: results.sarif
