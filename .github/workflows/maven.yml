@@ -1,72 +1,10 @@
 name: DevSecOps Pipeline
 on:
   push:
-    branches: [ "master", "" ]
+    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
-env:
-  AWS_REGION: us-west-2                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: jpetstore           # set this to your Amazon ECR repository name
-  ECS_SERVICE: jpestore-service                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: jpetstore-cluster                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: aws/task-definition.json # set this to the path to your Amazon ECS task definition
-  # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: sample-app           # set this to the name of the container in the
-  # containerDefinitions section of your task definition
-
-
 jobs:
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    environment: production
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@aaf69d68aa3fb14c1d5a6be9ac61fe15b48453a2
-
-      - name: Build, tag, and push image to Amazon ECR
-        id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          # Build a docker container and
-          # push it to ECR so that it can
-          # be deployed to ECS.
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
-
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@97587c9d45a4930bf0e3da8dd2feb2a463cf4a3a
-        with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}
-          container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ steps.build-image.outputs.image }}
-
-      - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@de0132cf8cdedb79975c6d42b77eb7ea193cf28e
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
-          wait-for-service-stability: true
-
-
 #  sonarcloud:
 #    runs-on: ubuntu-latest
 #    steps:
@@ -137,59 +75,177 @@ jobs:
 #          scanMetadataReportFile: target/sonar/report-task.txt
 
 
-#  gitleaks:
-#    name: secret scan using Gitleaks
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - uses: actions/checkout@v3
-#        with:
-#          fetch-depth: 0
-#      - uses: gitleaks/gitleaks-action@v2
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#
-#  snykScan:
-#    name: SCA Scan using Snyk
-#    runs-on: ubuntu-latest
-##    needs: [codeqlScan, codacyScan, appScan]
-#
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          fetch-depth: 0
-#      - name: Set up Maven
-#        run: mvn -N io.takari:maven:wrapper -Dmaven=3.8.2
-#      - name: Run Snyk to check for vulnerabilities
-#        continue-on-error: true
-#        uses: snyk/actions/maven-3-jdk-11@master
-#        env:
-#          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-#        with:
-#          args: --sarif-file-output=snyk.sarif
-#      - name: Upload result to GitHub Code Scanning
-#        uses: github/codeql-action/upload-sarif@v2
-#        with:
-#          sarif_file: snyk.sarif
-#  zap_scan:
-#    runs-on: ubuntu-latest
-#    name: zap
-#    #needs: snyk
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#        with:
-#          ref: master
-#      - name: ZAP Scan
-#        uses: zaproxy/action-baseline@v0.6.1
-#        with:
-#          token: ${{ secrets.GITHUB_TOKEN }}
-#          docker_name: 'owasp/zap2docker-stable'
-#          target: 'https://petstore.octoperf.com/actions/Catalog.action' # Change URL or IP of your target application
-#          rules_file_name: '.zap/rules.tsv'
-#          cmd_options: '-a'
+  gitleaks:
+    name: secret scan using Gitleaks
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  CodeQL-Build:
+    # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
+    runs-on: ubuntu-latest
+    needs: [gitleaks]
+    permissions:
+      # required for all workflows
+      security-events: write
+      # only required for workflows in private repositories
+      actions: read
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        # Override language selection by uncommenting this and choosing your languages
+        # with:
+        #   languages: go, javascript, csharp, python, cpp, java
+      # Autobuild attempts to build any compiled languages (C/C++, C#, or Java).
+      # If this step fails, then you should remove it and run the build manually (see below).
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+      # ℹ️ Command-line programs to run using the OS shell.
+      # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
+      # ✏️ If the Autobuild fails above, remove it and uncomment the following
+      #    three lines and modify them (or add more) to build your code if your
+      #    project uses a compiled language
+      #- run: |
+      #     make bootstrap
+      #     make release
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+
+  snykScan:
+    name: SCA Scan using Snyk
+    runs-on: ubuntu-latest
+    needs: [CodeQL-Build]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up Maven
+        run: mvn -N io.takari:maven:wrapper -Dmaven=3.8.2
+      - name: Run Snyk to check for vulnerabilities
+        continue-on-error: true
+        uses: snyk/actions/maven-3-jdk-11@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
+
+  dockerHubImageBuild:
+      name: Push Docker image to Docker Hub
+      runs-on: ubuntu-latest
+      needs: [snykScan]
+
+      steps:
+        - name: Check out the repo
+          uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+        - name: Set up JDK 11
+          uses: actions/setup-java@v1
+          with:
+            java-version: 11
+        - name: Cache Maven packages
+          uses: actions/cache@v1
+          with:
+            path: ~/.m2
+            key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+            restore-keys: ${{ runner.os }}-m2
+        - name: Package
+          run: mvn -B clean package -DskipTests
+        - name: Log in to Docker Hub
+          uses: docker/login-action@v2
+          with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+        - name: Extract metadata (tags, labels) for Docker
+          id: meta
+          uses: docker/metadata-action@v2
+          with:
+            images: kda78/rd06
+
+        - name: Build and push Docker image
+          uses: docker/build-push-action@v3
+          with:
+            context: .
+            push: true
+            tags: ${{ steps.meta.outputs.tags }}
+            labels: ${{ steps.meta.outputs.labels }}
+
+  Trivy:
+      name: Image scan by Trivy
+      runs-on: ubuntu-20.04
+      needs: [dockerHubImageBuild]
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+
+        - name: Build an image from Dockerfile
+          run: |
+            docker build -t hub.docker.com/r/kda78/rd06:${{ github.sha }} .
+        - name: Run Trivy vulnerability scanner
+          uses: aquasecurity/trivy-action@master
+          with:
+            image-ref: 'hub.docker.com/r/kda78/rd06:${{ github.sha }}'
+            format: 'sarif'
+            output: 'trivy-results.sarif'
+
+        - name: Upload Trivy scan results to GitHub Security tab
+          uses: github/codeql-action/upload-sarif@v2
+          with:
+            sarif_file: 'trivy-results.sarif'
 
 
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: zap
+    needs: [Trivy]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.6.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          docker_name: 'owasp/zap2docker-stable'
+          target: 'https://petstore.octoperf.com/actions/Catalog.action' # Change URL or IP of your target application
+          rules_file_name: '.zap/rules.tsv'
+          cmd_options: '-a'
 
+  nuclei-scan:
+    runs-on: ubuntu-latest
+    needs: [zap_scan]
+    steps:
+      - uses: actions/checkout@v2
 
+      - name: Nuclei - Vulnerability Scan
+        uses: projectdiscovery/nuclei-action@main
+        with:
+          target: 'https://petstore.octoperf.com/actions/Catalog.action'
 
+      - name: GitHub Workflow artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: nuclei.log
+          path: nuclei.log
+
+      - name: GitHub Security Dashboard Alerts update
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: nuclei.sarif
