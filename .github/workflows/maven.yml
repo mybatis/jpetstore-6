@@ -216,7 +216,7 @@ jobs:
   zap_scan:
     runs-on: ubuntu-latest
     name: zap
-    needs: [Trivy]
+    needs: [deploy]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
