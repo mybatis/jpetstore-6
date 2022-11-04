@@ -133,6 +133,7 @@
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
       <version>${hsqldb.version}</version>
+      <classifier>jdk8</classifier>
     </dependency>
 
     <!-- Test dependencies -->
@@ -311,7 +312,7 @@
     <spring.version>5.3.23</spring.version>
     <assertj.version>3.23.1</assertj.version>
     <mockito.version>4.8.1</mockito.version>
-    <hsqldb.version>2.5.2</hsqldb.version>
+    <hsqldb.version>2.7.1</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
 
     <!-- Reproducible Builds -->
