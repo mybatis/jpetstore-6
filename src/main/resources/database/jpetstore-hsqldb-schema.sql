@@ -163,3 +163,18 @@ CREATE TABLE sequence
     nextid             int          not null,
     constraint pk_sequence primary key (name)
 );
+
+CREATE TABLE review
+(
+    reviewid VARCHAR(10) NOT NULL,
+    itemid VARCHAR(10) NOT NULL,
+    userid VARCHAR(10) NOT NULL,
+    content VARCHAR(200) NOT NULL,
+    rating INT NOT NULL,
+    picture_url VARCHAR(200) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_review primary key (reviewid),
+    CONSTRAINT fk_review_item FOREIGN KEY (itemid)
+    REFERENCES item (itemid)
+);
