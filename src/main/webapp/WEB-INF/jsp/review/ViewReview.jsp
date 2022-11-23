@@ -28,6 +28,13 @@
         ${actionBean.review.content}
       </td>
     </tr>
+    <c:forEach var="rating" items="${actionBean.ratingList}">
+      <tr>
+        <td>
+          ${rating.key}: ${rating.rating}
+        </td>
+      </tr>
+    </c:forEach>
     <tr>
       <td>
         <img src="${actionBean.review.pictureUrl}">
