@@ -6,10 +6,9 @@ import java.sql.Date;
 public class Review implements Serializable {
 
     private String reviewId;
-    private String itemId;
+    private String productId;
     private String userId;
     private String content;
-    private int rating;
     private String pictureUrl;
     private Date createdAt;
 
@@ -21,12 +20,12 @@ public class Review implements Serializable {
         this.reviewId = reviewId;
     }
 
-    public String getItemId() {
-        return itemId;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getUserId() {
@@ -43,14 +42,6 @@ public class Review implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 
     public String getPictureUrl() {

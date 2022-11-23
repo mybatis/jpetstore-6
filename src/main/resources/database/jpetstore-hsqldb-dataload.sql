@@ -115,3 +115,7 @@ INSERT INTO inventory (itemid, qty ) VALUES ('EST-26',10000);
 INSERT INTO inventory (itemid, qty ) VALUES ('EST-27',10000);
 INSERT INTO inventory (itemid, qty ) VALUES ('EST-28',10000);
 
+INSERT INTO review (reviewid, productid, userid, content) VALUES ('RV-1', 'FI-SW-01', 'j2ee', 'Review1');
+-- INSERT INTO review (reviewid, productid, userid, content, rating, picture_url) VALUES ('RV-2', 'FI-SW-01', 'ACID', 'Review2', 3, "");
+
+INSERT INTO reviewrating (reviewid, key, rating) VALUES ('RV-1', 'money', 5);
