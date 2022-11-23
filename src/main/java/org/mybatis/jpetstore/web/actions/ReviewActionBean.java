@@ -26,11 +26,6 @@ import org.mybatis.jpetstore.service.ReviewService;
 
 import javax.servlet.http.HttpSession;
 
-/**
- * The Class OrderActionBean.
- *
- * @author Eduardo Macarron
- */
 @SessionScope
 public class ReviewActionBean extends AbstractActionBean {
 
@@ -61,11 +56,6 @@ public class ReviewActionBean extends AbstractActionBean {
     return this.product;
   }
 
-  /**
-   * View order.
-   *
-   * @return the resolution
-   */
   public Resolution viewReview() {
     review = reviewService.getReviewById(reviewId);
     product = reviewService.getProduct(review.getProductId());
