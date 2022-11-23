@@ -169,8 +169,9 @@ CREATE TABLE review
     reviewid VARCHAR(10) NOT NULL,
     productid VARCHAR(10) NOT NULL,
     userid VARCHAR(10) NOT NULL,
-    content VARCHAR(200) NOT NULL,
-    picture_url VARCHAR(200),
+    title VARCHAR(200) NOT NULL,
+    content VARCHAR(2000) NOT NULL,
+    picture_url VARCHAR(100000),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT pk_review primary key (reviewid),

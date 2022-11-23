@@ -11,4 +11,19 @@
         SELECT * FROM review;
     </select>
 
+    <select id="getReviewById" resultType="Review">
+        SELECT
+            reviewid AS reviewId,
+            productid AS productId,
+            userid AS userId,
+            title,
+            content,
+            picture_url AS pictureUrl,
+            created_at
+        FROM
+            review
+        WHERE
+            reviewid = #{id}
+    </select>
+
 </mapper>
