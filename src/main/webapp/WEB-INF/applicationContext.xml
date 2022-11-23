@@ -29,7 +29,7 @@
      http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
    <!-- in-memory database and a datasource -->
-    <jdbc:embedded-database id="dataSource">
+    <jdbc:embedded-database id="dataSource" database-name="testdb;MODE=mysql">
         <jdbc:script location="classpath:database/jpetstore-hsqldb-schema.sql"/>
         <jdbc:script location="classpath:database/jpetstore-hsqldb-dataload.sql"/>
     </jdbc:embedded-database>
