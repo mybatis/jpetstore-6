@@ -38,4 +38,10 @@ public class ReviewService {
     public Product getProduct(String productId) {
         return productMapper.getProduct(productId);
     }
+
+
+    public void deleteReview(String id) {
+        reviewRatingMapper.deleteReviewRatingByReviewId(id);
+        reviewMapper.deleteReviewById(id);
+    }
 }
