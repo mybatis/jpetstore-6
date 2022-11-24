@@ -8,6 +8,7 @@ public class Review implements Serializable {
     private String reviewId;
     private String productId;
     private String userId;
+    private String title;
     private String content;
     private String pictureUrl;
     private Date createdAt;
@@ -34,6 +35,14 @@ public class Review implements Serializable {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {

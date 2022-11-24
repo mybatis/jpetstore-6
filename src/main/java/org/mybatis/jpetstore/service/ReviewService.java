@@ -1,6 +1,8 @@
 package org.mybatis.jpetstore.service;
 
+import org.mybatis.jpetstore.domain.Product;
 import org.mybatis.jpetstore.domain.Review;
+import org.mybatis.jpetstore.mapper.ProductMapper;
 import org.mybatis.jpetstore.mapper.ReviewMapper;
 import org.springframework.stereotype.Service;
 
@@ -10,12 +12,22 @@ import java.util.List;
 public class ReviewService {
 
     private final ReviewMapper reviewMapper;
+    private final ProductMapper productMapper;
 
-    ReviewService(ReviewMapper reviewMapper) {
+    ReviewService(ReviewMapper reviewMapper, ProductMapper productMapper) {
         this.reviewMapper = reviewMapper;
+        this.productMapper = productMapper;
     }
 
     public List<Review> getReviews() {
         return this.reviewMapper.getReviews();
+    }
+
+    public Review getReviewById(String id) {
+        return this.reviewMapper.getReviewById(id);
+    }
+
+    public Product getProduct(String productId) {
+        return productMapper.getProduct(productId);
     }
 }
