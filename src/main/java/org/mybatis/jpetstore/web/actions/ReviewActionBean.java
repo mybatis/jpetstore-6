@@ -19,12 +19,12 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
-import org.mybatis.jpetstore.domain.Order;
 import org.mybatis.jpetstore.domain.Product;
 import org.mybatis.jpetstore.domain.Review;
+import org.mybatis.jpetstore.domain.ReviewRating;
 import org.mybatis.jpetstore.service.ReviewService;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @SessionScope
 public class ReviewActionBean extends AbstractActionBean {
@@ -35,6 +35,7 @@ public class ReviewActionBean extends AbstractActionBean {
 
   private String reviewId;
   private Review review;
+  private List<ReviewRating> ratingList;
   private Product product;
 
   @SpringBean
@@ -52,6 +53,8 @@ public class ReviewActionBean extends AbstractActionBean {
     return this.review;
   }
 
+  public List<ReviewRating> getRatingList() { return this.ratingList; }
+
   public Product getProduct() {
     return this.product;
   }
@@ -59,6 +62,7 @@ public class ReviewActionBean extends AbstractActionBean {
   public Resolution viewReview() {
     review = reviewService.getReviewById(reviewId);
     product = reviewService.getProduct(review.getProductId());
+    ratingList = reviewService.getReviewRatingById(review.getReviewId());
 
     return new ForwardResolution(VIEW_ORDER);
   }
