@@ -1,3 +1,4 @@
+<%@ taglib prefix="stri" uri="http://stripes.sourceforge.net/stripes-dynattr.tld" %>
 <%--
 
        Copyright 2010-2022 the original author or authors.
@@ -15,6 +16,8 @@
        limitations under the License.
 
 --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%@ include file="../common/IncludeTop.jsp"%>
 
 <jsp:useBean id="catalog"
@@ -61,12 +64,31 @@
         </stripes:link></td>
 		</tr>
 	</c:forEach>
-	<tr>
-		<td>
-		</td>
-	</tr>
 </table>
-
+<c:if test="${not empty actionBean.reviewList}">
+<h2>분양 후기</h2>
+<table>
+	<tr>
+		<th>Review ID</th>
+		<th>Title</th>
+		<th>Writer</th>
+		<th>AVG Difficluty</th>
+	</tr>
+	<c:forEach var="review" items="${actionBean.reviewList}">
+		<tr>
+			<td><stripes:link
+					beanclass="org.mybatis.jpetstore.web.actions.ReviewActionBean"
+					event="viewReview">
+				<stripes:param name="reviewId" value="${review.reviewId}"/>
+					${review.reviewId}
+			</stripes:link></td>
+			<td>${review.title}</td>
+			<td>${review.userId}</td>
+			<td>${actionBean.averageRatingMap.get(review.reviewId)}</td>
+		</tr>
+	</c:forEach>
+</table>
+</c:if>
 </div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
