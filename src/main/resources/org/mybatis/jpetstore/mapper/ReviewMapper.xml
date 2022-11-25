@@ -26,4 +26,9 @@
             reviewid = #{id}
     </select>
 
+    <delete id="deleteReviewById">
+        DELETE FROM review
+        WHERE reviewid = #{id}
+    </delete>
+
 </mapper>

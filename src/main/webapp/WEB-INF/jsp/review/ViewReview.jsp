@@ -6,6 +6,8 @@
 <jsp:useBean id="review"
              class="org.mybatis.jpetstore.web.actions.ReviewActionBean" />
 
+<c:if test="${actionBean.review != null}">
+
 <div id="Review">
   <table>
     <tr>
@@ -40,9 +42,24 @@
         <img src="${actionBean.review.pictureUrl}">
       </td>
     </tr>
+
+    <c:if test="${actionBean.isReviewOwner}">
+      <tr>
+        <td>
+          <stripes:link
+                  beanclass="org.mybatis.jpetstore.web.actions.ReviewActionBean"
+                  event="deleteReview">
+            Delete
+          </stripes:link>
+        </td>
+      </tr>
+
+    </c:if>
   </table>
+
 </div>
 
+</c:if>
 
 
 <%@ include file="../common/IncludeBottom.jsp"%>

@@ -16,6 +16,7 @@
 package org.mybatis.jpetstore.web.actions;
 
 import net.sourceforge.stripes.action.ForwardResolution;
+import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
@@ -24,6 +25,7 @@ import org.mybatis.jpetstore.domain.Review;
 import org.mybatis.jpetstore.domain.ReviewRating;
 import org.mybatis.jpetstore.service.ReviewService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @SessionScope
@@ -37,6 +39,7 @@ public class ReviewActionBean extends AbstractActionBean {
   private Review review;
   private List<ReviewRating> ratingList;
   private Product product;
+  private boolean isReviewOwner = false;
 
   @SpringBean
   private transient ReviewService reviewService;
@@ -59,13 +62,46 @@ public class ReviewActionBean extends AbstractActionBean {
     return this.product;
   }
 
+  public boolean getIsReviewOwner() {
+    return this.isReviewOwner;
+  }
+
   public Resolution viewReview() {
+    HttpSession session = context.getRequest().getSession();
+    AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
+
     review = reviewService.getReviewById(reviewId);
-    product = reviewService.getProduct(review.getProductId());
-    ratingList = reviewService.getReviewRatingById(review.getReviewId());
+    if (review != null) {
+      product = reviewService.getProduct(review.getProductId());
+      ratingList = reviewService.getReviewRatingById(review.getReviewId());
+
+      if (accountBean != null) {
+        isReviewOwner = accountBean.getAccount().getUsername().equals(review.getUserId());
+      }
+      else {
+        isReviewOwner = false;
+      }
+    }
 
     return new ForwardResolution(VIEW_ORDER);
   }
 
+  public Resolution deleteReview() {
+    HttpSession session = context.getRequest().getSession();
+    AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
 
+    review = reviewService.getReviewById(reviewId);
+    if (accountBean != null) {
+      isReviewOwner = accountBean.getAccount().getUsername().equals(review.getUserId());
+    }
+    else {
+      isReviewOwner = false;
+    }
+
+    if (isReviewOwner && reviewId != null) {
+      reviewService.deleteReview(reviewId);
+    }
+
+    return new RedirectResolution(CatalogActionBean.class, "viewMain");
+  }
 }
