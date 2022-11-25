@@ -17,6 +17,7 @@ package org.mybatis.jpetstore.web.actions;
 
 import java.util.List;
 
+import java.util.Map;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.SessionScope;
@@ -25,6 +26,7 @@ import net.sourceforge.stripes.integration.spring.SpringBean;
 import org.mybatis.jpetstore.domain.Category;
 import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.Product;
+import org.mybatis.jpetstore.domain.Review;
 import org.mybatis.jpetstore.service.CatalogService;
 
 /**
@@ -59,6 +61,8 @@ public class CatalogActionBean extends AbstractActionBean {
   private String itemId;
   private Item item;
   private List<Item> itemList;
+  private List<Review> reviewList;
+  private Map<String ,Integer> averageRatingMap; // key: reviewId value = avgRating
 
   public String getKeyword() {
     return keyword;
@@ -140,6 +144,20 @@ public class CatalogActionBean extends AbstractActionBean {
     this.itemList = itemList;
   }
 
+  public List<Review> getReviewList(){
+    return reviewList;
+  }
+
+  public void setReviewList(List<Review> reviewList){
+    this.reviewList = reviewList;
+  }
+
+  public Map<String, Integer> averageRatingMap(){
+    return averageRatingMap;
+  }
+  public void setaverageRatingMap(Map<String, Integer> averageRatingMap) {
+    this.averageRatingMap = averageRatingMap;
+  }
   @DefaultHandler
   public ForwardResolution viewMain() {
     return new ForwardResolution(MAIN);
@@ -167,6 +185,8 @@ public class CatalogActionBean extends AbstractActionBean {
     if (productId != null) {
       itemList = catalogService.getItemListByProduct(productId);
       product = catalogService.getProduct(productId);
+      //reviewList = catalogService.getReviewList(productId);
+      //averageRatingMap = catalogService.
     }
     return new ForwardResolution(VIEW_PRODUCT);
   }
