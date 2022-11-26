@@ -185,7 +185,7 @@ public class CatalogActionBean extends AbstractActionBean {
     if (productId != null) {
       itemList = catalogService.getItemListByProduct(productId);
       product = catalogService.getProduct(productId);
-      //reviewList = catalogService.getReviewList(productId);
+      reviewList = catalogService.getReviewList(productId);
       //averageRatingMap = catalogService.
     }
     return new ForwardResolution(VIEW_PRODUCT);

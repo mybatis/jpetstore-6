@@ -65,7 +65,6 @@
 		</tr>
 	</c:forEach>
 </table>
-<c:if test="${not empty actionBean.reviewList}">
 <h2>분양 후기</h2>
 <table>
 	<tr>
@@ -84,11 +83,10 @@
 			</stripes:link></td>
 			<td>${review.title}</td>
 			<td>${review.userId}</td>
-			<td>${actionBean.averageRatingMap.get(review.reviewId)}</td>
+
 		</tr>
 	</c:forEach>
 </table>
-</c:if>
 </div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>

@@ -21,9 +21,11 @@ import java.util.List;
 import org.mybatis.jpetstore.domain.Category;
 import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.Product;
+import org.mybatis.jpetstore.domain.Review;
 import org.mybatis.jpetstore.mapper.CategoryMapper;
 import org.mybatis.jpetstore.mapper.ItemMapper;
 import org.mybatis.jpetstore.mapper.ProductMapper;
+import org.mybatis.jpetstore.mapper.ReviewMapper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -38,10 +40,13 @@ public class CatalogService {
   private final ItemMapper itemMapper;
   private final ProductMapper productMapper;
 
-  public CatalogService(CategoryMapper categoryMapper, ItemMapper itemMapper, ProductMapper productMapper) {
+  private final ReviewMapper reviewMapper;
+
+  public CatalogService(CategoryMapper categoryMapper, ItemMapper itemMapper, ProductMapper productMapper, ReviewMapper reviewMapper) {
     this.categoryMapper = categoryMapper;
     this.itemMapper = itemMapper;
     this.productMapper = productMapper;
+    this.reviewMapper=reviewMapper;
   }
 
   public List<Category> getCategoryList() {
@@ -87,4 +92,6 @@ public class CatalogService {
   public boolean isItemInStock(String itemId) {
     return itemMapper.getInventoryQuantity(itemId) > 0;
   }
+
+  public List<Review> getReviewList(String productId) {return reviewMapper.getReivewListByProductId(productId);  }
 }
