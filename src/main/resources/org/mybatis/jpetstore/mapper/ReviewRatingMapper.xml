@@ -23,4 +23,11 @@
         DELETE FROM reviewrating
         WHERE reviewid = #{reviewId}
     </delete>
+
+    <select id="getAverageRatingByProductId" resultType="Float">
+        SELECT AVG(reviewrating.rating)
+        FROM review, reviewrating
+        WHERE review.reviewid = reviewrating.reviewid AND review.productid = #{productId}
+        GROUP BY productid
+    </select>
 </mapper>
