@@ -65,28 +65,30 @@
 		</tr>
 	</c:forEach>
 </table>
-<h2>분양 후기</h2>
-<table>
-	<tr>
-		<th>Review ID</th>
-		<th>Title</th>
-		<th>Writer</th>
-		<th>AVG Difficluty</th>
-	</tr>
-	<c:forEach var="review" items="${actionBean.reviewList}">
-		<tr>
-			<td><stripes:link
-					beanclass="org.mybatis.jpetstore.web.actions.ReviewActionBean"
-					event="viewReview">
-				<stripes:param name="reviewId" value="${review.reviewId}"/>
-					${review.reviewId}
-			</stripes:link></td>
-			<td>${review.title}</td>
-			<td>${review.userId}</td>
+	<c:if test="${not empty actionBean.reviewList}">
+		<h2>분양 후기</h2>
+		<table>
+			<tr>
+				<th>Review ID</th>
+				<th>Title</th>
+				<th>Writer</th>
+				<th>AVG Difficluty</th>
+			</tr>
+			<c:forEach var="review" items="${actionBean.reviewList}">
+				<tr>
+					<td><stripes:link
+							beanclass="org.mybatis.jpetstore.web.actions.ReviewActionBean"
+							event="viewReview">
+						<stripes:param name="reviewId" value="${review.reviewId}"/>
+						${review.reviewId}
+					</stripes:link></td>
+					<td>${review.title}</td>
+					<td>${review.userId}</td>
 
-		</tr>
-	</c:forEach>
-</table>
+				</tr>
+			</c:forEach>
+		</table>
+	</c:if>
 </div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>

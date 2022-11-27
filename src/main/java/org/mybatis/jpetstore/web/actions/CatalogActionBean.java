@@ -62,7 +62,7 @@ public class CatalogActionBean extends AbstractActionBean {
   private Item item;
   private List<Item> itemList;
   private List<Review> reviewList;
-  private Map<String ,Integer> averageRatingMap; // key: reviewId value = avgRating
+  private Map<String, Float> averageRatingMap; // key: productId value = avgRating
 
   public String getKeyword() {
     return keyword;
@@ -152,10 +152,10 @@ public class CatalogActionBean extends AbstractActionBean {
     this.reviewList = reviewList;
   }
 
-  public Map<String, Integer> averageRatingMap(){
+  public Map<String, Float> getAverageRatingMap(){
     return averageRatingMap;
   }
-  public void setaverageRatingMap(Map<String, Integer> averageRatingMap) {
+  public void setAverageRatingMap(Map<String, Float> averageRatingMap) {
     this.averageRatingMap = averageRatingMap;
   }
   @DefaultHandler
@@ -172,6 +172,7 @@ public class CatalogActionBean extends AbstractActionBean {
     if (categoryId != null) {
       productList = catalogService.getProductListByCategory(categoryId);
       category = catalogService.getCategory(categoryId);
+      averageRatingMap = catalogService.getRatingMapByCategory(categoryId);
     }
     return new ForwardResolution(VIEW_CATEGORY);
   }
@@ -186,7 +187,6 @@ public class CatalogActionBean extends AbstractActionBean {
       itemList = catalogService.getItemListByProduct(productId);
       product = catalogService.getProduct(productId);
       reviewList = catalogService.getReviewList(productId);
-      //averageRatingMap = catalogService.
     }
     return new ForwardResolution(VIEW_PRODUCT);
   }

@@ -29,6 +29,7 @@
 	<tr>
 		<th>Product ID</th>
 		<th>Name</th>
+		<th>Difficulty</th>
 	</tr>
 	<c:forEach var="product" items="${actionBean.productList}">
 		<tr>
@@ -39,6 +40,12 @@
 				${product.productId}
 			</stripes:link></td>
 			<td>${product.name}</td>
+			<c:choose>
+				<c:when test="${not empty actionBean.averageRatingMap.get(product.productId)}">
+			<td>${actionBean.averageRatingMap.get(product.productId)}</td>
+				</c:when>
+				<c:otherwise><td>No Data!</td></c:otherwise>
+			</c:choose>
 		</tr>
 	</c:forEach>
 </table>
