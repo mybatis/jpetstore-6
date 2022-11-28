@@ -97,8 +97,8 @@ public class CatalogService {
 
   public List<Review> getReviewList(String productId) {return reviewMapper.getReivewListByProductId(productId);  }
 
-  public Map<String, Float> getRatingMapByCategory(String categoryId){
-    Map<String, Float> result = new HashMap<>();
+  public Map<String, Double> getRatingMapByCategory(String categoryId){
+    Map<String, Double> result = new HashMap<>();
     List<Product> products = productMapper.getProductListByCategory(categoryId);
     for(Product product:products){
       String productId = product.getProductId();
@@ -107,7 +107,14 @@ public class CatalogService {
     return result;
   }
 
-  public Float getAverageRatingByProductId(String productId){
-    return reviewRatingMapper.getAverageRatingByProductId(productId);
+  public Double getAverageRatingByProductId(String productId){
+    List<Integer> ratings = new ArrayList<>();
+    List<Review> reviews = reviewMapper.getReivewListByProductId(productId);
+    for(Review review:reviews){
+      String reviewId = review.getReviewId();
+      reviewRatingMapper.getReviewRatingByReviewId(reviewId).forEach(reviewRating -> ratings.add(reviewRating.getRating()));
+    }
+    return ratings.stream().mapToDouble(num -> (double) num).sum() / ratings.size();
   }
+
 }

@@ -62,7 +62,7 @@ public class CatalogActionBean extends AbstractActionBean {
   private Item item;
   private List<Item> itemList;
   private List<Review> reviewList;
-  private Map<String, Float> averageRatingMap; // key: productId value = avgRating
+  private Map<String, Double> averageRatingMap; // key: productId value = avgRating
 
   public String getKeyword() {
     return keyword;
@@ -152,10 +152,10 @@ public class CatalogActionBean extends AbstractActionBean {
     this.reviewList = reviewList;
   }
 
-  public Map<String, Float> getAverageRatingMap(){
+  public Map<String, Double> getAverageRatingMap(){
     return averageRatingMap;
   }
-  public void setAverageRatingMap(Map<String, Float> averageRatingMap) {
+  public void setAverageRatingMap(Map<String, Double> averageRatingMap) {
     this.averageRatingMap = averageRatingMap;
   }
   @DefaultHandler
