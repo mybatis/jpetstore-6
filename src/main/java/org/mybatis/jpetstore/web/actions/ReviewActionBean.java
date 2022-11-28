@@ -26,6 +26,7 @@ import org.mybatis.jpetstore.domain.ReviewRating;
 import org.mybatis.jpetstore.service.ReviewService;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @SessionScope
@@ -43,6 +44,9 @@ public class ReviewActionBean extends AbstractActionBean {
   private boolean isReviewOwner = false;
   private String itemId;
   private String userId;
+  private int moneyrating;
+  private int alonerating;
+
 
   @SpringBean
   private transient ReviewService reviewService;
@@ -59,7 +63,7 @@ public class ReviewActionBean extends AbstractActionBean {
     return this.review;
   }
 
-  public List<ReviewRating> getRatingList() { return this.ratingList; }
+  public List<ReviewRating> getRatingList() {return this.ratingList;}
 
   public Product getProduct() {
     return this.product;
@@ -85,6 +89,14 @@ public class ReviewActionBean extends AbstractActionBean {
 
   public void setReview(Review review) {
     this.review = review;
+  }
+
+  public void setMoneyrating(int moneyrating) {
+    this.moneyrating = moneyrating;
+  }
+
+  public void setAlonerating(int alonerating) {
+    this.alonerating = alonerating;
   }
 
   public Resolution viewReview() {
@@ -130,19 +142,35 @@ public class ReviewActionBean extends AbstractActionBean {
     HttpSession session = context.getRequest().getSession();
     AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
 
-    if(itemId != null){
+    if (itemId != null) {
       product = reviewService.getProductById(itemId);
       userId = accountBean.getAccount().getUsername();
+      ratingList = new ArrayList<ReviewRating>();
+      ratingList.add(new ReviewRating("money"));
+      ratingList.add(new ReviewRating("alone"));
     }
     return new ForwardResolution(VIEW_WRITE_REVIEW);
   }
+
   public Resolution newReview() {
     HttpSession session = context.getRequest().getSession();
+    if (review != null) {
+      review.setProductId(product.getProductId());
+      review.setUserId(userId);
+      review = reviewService.insertReview(review);
 
-    review.setProductId(product.getProductId());
-    review.setUserId(userId);
-    review = reviewService.insertReview(review);
+      //review rating
+      ratingList.get(0).setRating(moneyrating);
+      ratingList.get(1).setRating(alonerating);
+      for (int i = 0; i < ratingList.size(); i++) {
+        ratingList.get(i).setReviewId(review.getReviewId());
+      }
 
-    return new ForwardResolution(VIEW_ORDER);
+      reviewService.insertReviewRating(ratingList);
+      return new ForwardResolution(VIEW_ORDER);
+    } else {
+      setMessage("An error occurred processing your order (review was null).");
+      return new ForwardResolution(ERROR);
+    }
   }
 }

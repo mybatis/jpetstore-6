@@ -8,6 +8,10 @@ public class ReviewRating implements Serializable {
     private String key;
     private int rating;
 
+    public ReviewRating(String key) {
+        this.key = key;
+    }
+
     public String getReviewId() {
         return reviewId;
     }

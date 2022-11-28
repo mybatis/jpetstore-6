@@ -6,23 +6,28 @@
 <jsp:useBean id="review"
              class="org.mybatis.jpetstore.web.actions.ReviewActionBean" />
 
-<div id="WriteReview"><stripes:form
+<div id="Catalog">
+    <stripes:form
         beanclass="org.mybatis.jpetstore.web.actions.ReviewActionBean">
 
     <table>
         <tr>
             <th colspan=2>Write ReviewRating</th>
         </tr>
-        <tr>
-            <td>Money Rating:</td>
-            <td><stripes:select name="reviewRating.rating">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">5</option>
-                <option value="4">5</option>
-            </stripes:select></td>
-        </tr>
+        <c:forEach var="rating" items="${actionBean.ratingList}">
+            <tr>
+                <td>${rating.key} Rating:</td>
+                <td>
+                    <stripes:select name="${rating.key}rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </stripes:select></td>
+                </td>
+            </tr>
+        </c:forEach>
         <tr>
             <th colspan=2>Write Review</th>
         </tr>
@@ -54,10 +59,9 @@
         </tr>--%>
 
     </table>
-
-    <stripes:submit name="newReview" value="Continue" />
-
-</stripes:form></div>
+    <stripes:submit name="newReview" value="Resist"/>
+</stripes:form>
+</div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
 
