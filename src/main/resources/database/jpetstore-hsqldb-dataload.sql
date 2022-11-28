@@ -15,6 +15,7 @@
 --
 
 INSERT INTO sequence VALUES('ordernum', 1000);
+INSERT INTO sequence VALUES('reviewnum', 2);
 
 INSERT INTO signon VALUES('j2ee','j2ee');
 INSERT INTO signon VALUES('ACID','ACID');
