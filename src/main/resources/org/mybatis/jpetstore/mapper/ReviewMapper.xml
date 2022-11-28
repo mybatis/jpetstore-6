@@ -63,4 +63,14 @@
         VALUES(#{reviewId}, #{key}, #{rating})
     </insert>
 
+    <select id="getReivewListByProductId" resultType="Review">
+        SELECT
+            reviewid AS reviewId,
+            title,
+            userid AS userId
+        FROM
+            review
+        WHERE
+            productid = #{productId}
+    </select>
 </mapper>

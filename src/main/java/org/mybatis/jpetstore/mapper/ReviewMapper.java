@@ -14,4 +14,5 @@ public interface ReviewMapper {
     Product getProductById(String id);
     void insertReview(Review review);
     void insertReviewRating(ReviewRating rr);
+    List<Review> getReivewListByProductId(String productId);
 }
