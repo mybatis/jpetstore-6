@@ -29,7 +29,7 @@
 	<stripes:param name="categoryId"
 		value="${actionBean.product.categoryId}" />
 	Return to ${actionBean.product.categoryId}
-</stripes:link></div>
+</stripes:link></div><br><br>
 
 <div id="Catalog">
 
@@ -72,7 +72,7 @@
 				<th>Review ID</th>
 				<th>Title</th>
 				<th>Writer</th>
-				<th>AVG Difficluty</th>
+				<th>Date</th>
 			</tr>
 			<c:forEach var="review" items="${actionBean.reviewList}">
 				<tr>
@@ -84,7 +84,8 @@
 					</stripes:link></td>
 					<td>${review.title}</td>
 					<td>${review.userId}</td>
-
+					<td><fmt:formatDate
+							value="${review.createdAt}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
 				</tr>
 			</c:forEach>
 		</table>
