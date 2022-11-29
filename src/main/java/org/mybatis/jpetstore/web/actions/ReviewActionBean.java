@@ -44,8 +44,6 @@ public class ReviewActionBean extends AbstractActionBean {
   private boolean isReviewOwner = false;
   private String itemId;
   private String userId;
-  private int moneyrating;
-  private int alonerating;
 
 
   @SpringBean
@@ -91,13 +89,6 @@ public class ReviewActionBean extends AbstractActionBean {
     this.review = review;
   }
 
-  public void setMoneyrating(int moneyrating) {
-    this.moneyrating = moneyrating;
-  }
-
-  public void setAlonerating(int alonerating) {
-    this.alonerating = alonerating;
-  }
 
   public Resolution viewReview() {
     HttpSession session = context.getRequest().getSession();
@@ -160,14 +151,11 @@ public class ReviewActionBean extends AbstractActionBean {
       review = reviewService.insertReview(review);
 
       //review rating
-      ratingList.get(0).setRating(moneyrating);
-      ratingList.get(1).setRating(alonerating);
       for (int i = 0; i < ratingList.size(); i++) {
         ratingList.get(i).setReviewId(review.getReviewId());
       }
-
       reviewService.insertReviewRating(ratingList);
-      return new ForwardResolution(VIEW_ORDER);
+      return new RedirectResolution(CatalogActionBean.class, "viewProduct");
     } else {
       setMessage("An error occurred processing your order (review was null).");
       return new ForwardResolution(ERROR);
