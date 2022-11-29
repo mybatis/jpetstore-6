@@ -1,7 +1,7 @@
 package org.mybatis.jpetstore.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class Review implements Serializable {
 

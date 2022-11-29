@@ -35,10 +35,13 @@
         SELECT
             reviewid AS reviewId,
             title,
-            userid AS userId
+            userid AS userId,
+            created_at AS createdAt
         FROM
             review
         WHERE
             productid = #{productId}
+        ORDER BY
+            created_at DESC
     </select>
 </mapper>
