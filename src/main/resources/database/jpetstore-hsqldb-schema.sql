@@ -46,6 +46,7 @@ create table account (
     zip varchar(20) not null,
     country varchar(20) not null,
     phone varchar(80) not null,
+    role int not null,
     constraint pk_account primary key (userid)
 );
 

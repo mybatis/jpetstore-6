@@ -15,6 +15,7 @@
  */
 package org.mybatis.jpetstore.web.actions;
 
+import java.util.Iterator;
 import java.util.List;
 
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -22,10 +23,13 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
+import org.mybatis.jpetstore.domain.CartItem;
 import org.mybatis.jpetstore.domain.Category;
 import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.Product;
 import org.mybatis.jpetstore.service.CatalogService;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * The Class CatalogActionBean.
@@ -42,6 +46,10 @@ public class CatalogActionBean extends AbstractActionBean {
   private static final String VIEW_PRODUCT = "/WEB-INF/jsp/catalog/Product.jsp";
   private static final String VIEW_ITEM = "/WEB-INF/jsp/catalog/Item.jsp";
   private static final String SEARCH_PRODUCTS = "/WEB-INF/jsp/catalog/SearchProducts.jsp";
+  private static final String VIEW_ITEM_EDIT = "/WEB-INF/jsp/admin/ItemList.jsp";
+  private static final String VIEW_ITEM_ADDFORM = "/WEB-INF/jsp/admin/ItemAddForm.jsp";
+  private static final String VIEW_ITEM_UPDATEFORM = "/WEB-INF/jsp/admin/ItemUpdateForm.jsp";
+
 
   @SpringBean
   private transient CatalogService catalogService;
@@ -170,6 +178,22 @@ public class CatalogActionBean extends AbstractActionBean {
     }
     return new ForwardResolution(VIEW_PRODUCT);
   }
+
+  //여기추가!
+
+
+  //UPDATE 버튼 누르면 보여줄거
+
+  //ADD 버튼 누르면 보여줄거
+
+
+
+  public ForwardResolution viewSubmit(){
+
+    return new ForwardResolution(VIEW_ITEM_EDIT);
+  }
+
+
 
   /**
    * View item.

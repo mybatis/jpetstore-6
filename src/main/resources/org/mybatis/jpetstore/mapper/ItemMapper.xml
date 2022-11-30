@@ -17,7 +17,7 @@
 
 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.mybatis.jpetstore.mapper.ItemMapper">
 
@@ -41,7 +41,7 @@
       ATTR5 AS attribute5
     FROM ITEM I, PRODUCT P
     WHERE P.PRODUCTID = I.PRODUCTID
-    AND I.PRODUCTID = #{value}
+      AND I.PRODUCTID = #{value}
   </select>
 
   <select id="getItem" resultType="Item">
@@ -73,10 +73,27 @@
     WHERE ITEMID = #{itemId}
   </select>
 
+  <insert id="insertItem" parameterType="item">
+    INSERT INTO ITEM (itemid, productid, attr1, listprice)
+    VALUES (#{itemId}, #{productId}, #{attribute1}, #{listPrice})
+  </insert>
+
+<delete id="deleteItem">
+    DELETE FROM ITEM
+    WHERE ITEMID = #{itemId}
+</delete>
+
   <update id="updateInventoryQuantity">
     UPDATE INVENTORY SET
       QTY = QTY - #{increment}
     WHERE ITEMID = #{itemId}
   </update>
+
+  <update id="updateItem" parameterType="item">
+    UPDATE ITEM
+    SET ATTR1 = #{attribute1}, LISTPRICE = #{listPrice}
+    WHERE ITEMID = #{itemId}
+  </update>
+
 
 </mapper>

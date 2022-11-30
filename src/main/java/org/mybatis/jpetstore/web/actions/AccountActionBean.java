@@ -141,6 +141,7 @@ public class AccountActionBean extends AbstractActionBean {
     return new RedirectResolution(CatalogActionBean.class);
   }
 
+
   /**
    * Signon form.
    *

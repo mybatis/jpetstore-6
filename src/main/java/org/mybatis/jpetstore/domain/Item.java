@@ -17,6 +17,9 @@ package org.mybatis.jpetstore.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The Class Item.
@@ -25,7 +28,8 @@ import java.math.BigDecimal;
  */
 public class Item implements Serializable {
 
-  private static final long serialVersionUID = -2159121673445254631L;
+
+
 
   private String itemId;
   private String productId;
@@ -45,8 +49,17 @@ public class Item implements Serializable {
     return itemId;
   }
 
+
   public void setItemId(String itemId) {
     this.itemId = itemId.trim();
+  }
+
+  public String getProductId(){
+    return productId;
+  }
+
+  public void setProductId(String productId){
+    this.productId=productId;
   }
 
   public int getQuantity() {
@@ -141,5 +154,29 @@ public class Item implements Serializable {
   public String toString() {
     return "(" + getItemId() + "-" + getProduct().getProductId() + ")";
   }
+
+
+
+
+
+  //여기부터 추가
+  //AdminActionBean의 viewSubmit()
+  private final Map<String, Item> itemMap = Collections.synchronizedMap(new HashMap<>());
+  public void setDescriptionByItemId(String itemId, String description) {
+    Item item = itemMap.get(itemId);
+    item.setAttribute1(description);
+  }
+  public void setListPriceByItemId(String itemId, int listPrice) {
+    Item item = itemMap.get(itemId);
+    item.setListPrice(BigDecimal.valueOf(listPrice));
+  }
+  public void setQuantityByItemId(String itemId, int quantity) {
+    Item item = itemMap.get(itemId);
+    item.setQuantity(quantity);
+  }
+
+
+
+  //여기까지 추가 (업데이트 submit 기능할때)
 
 }

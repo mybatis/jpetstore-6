@@ -46,6 +46,7 @@ public class Account implements Serializable {
   private boolean listOption;
   private boolean bannerOption;
   private String bannerName;
+  private int role;
 
   public String getUsername() {
     return username;
@@ -193,4 +194,7 @@ public class Account implements Serializable {
     this.bannerName = bannerName;
   }
 
+  public int getRole() { return role;}
+
+  public void setRole(int role) {this.role=role;}
 }

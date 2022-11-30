@@ -18,6 +18,7 @@ package org.mybatis.jpetstore.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.mybatis.jpetstore.domain.Inventory;
 import org.mybatis.jpetstore.domain.Item;
 
 /**
@@ -34,5 +35,13 @@ public interface ItemMapper {
   List<Item> getItemListByProduct(String productId);
 
   Item getItem(String itemId);
+
+  void insertItem(Item item);
+
+  void deleteItem(String itemId);
+
+  //item update
+  void updateItem(Item item);
+
 
 }

@@ -169,7 +169,7 @@ body>#Menu {
   height: 9ex;
 }
 
- {
+{
 }
 
 #Search {
@@ -271,6 +271,31 @@ body>#Banner {
   border-style: solid;
   border-color: #fff;
 }
+#EditItem {
+  padding: 1ex;
+  text-align:center;
+  background:inherit;
+}
+#UpdateForm {
+  padding: 1ex;
+  text-align:center;
+  background:inherit;
+}
+
+.button-green {
+  padding: .3ex;
+  color: #fff;
+  background-color: #005e21;
+  text-decoration: none;
+  font-family: helvetica, tahoma, arial, verdana, sans-serif;
+  font-size: 1.5ex;
+}
+#AddForm {
+  padding: 1ex;
+  text-align:center;
+  background:inherit;
+}
+
 
 #Sidebar {
   float: left;

@@ -15,23 +15,24 @@
  */
 package org.mybatis.jpetstore.mapper;
 
+import org.mybatis.jpetstore.domain.Account;
+import org.mybatis.jpetstore.domain.Inventory;
+import org.mybatis.jpetstore.domain.Item;
+
 import java.util.List;
 
-import org.mybatis.jpetstore.domain.Product;
-
 /**
- * The Interface ProductMapper.
+ * The Interface AccountMapper.
  *
  * @author Eduardo Macarron
  */
-public interface ProductMapper {
+public interface InventoryMapper {
+  List<Item> getItemListByProduct(String productId);
+  Item getItem(String itemId);
 
-  List<Product> getProductListByCategory(String categoryId);
+  void insertInventory(Inventory inventory);
 
-  Product getProduct(String productId);
+  void deleteItemInventory(String itemId);
 
-  List<Product> searchProductList(String keywords);
-
-  List<Product> getProductList();
-
+  void updateInventory(Item item);
 }
