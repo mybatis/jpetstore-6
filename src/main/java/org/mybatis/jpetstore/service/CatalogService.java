@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.mybatis.jpetstore.domain.*;
 import org.mybatis.jpetstore.mapper.CategoryMapper;
@@ -104,7 +103,7 @@ public class CatalogService {
       String productId = product.getProductId();
       Double avg = getAverageRatingByProductId(productId);
       if (avg == null) continue;
-      result.put(productId, getAverageRatingByProductId(productId));
+      result.put(productId, Math.round(getAverageRatingByProductId(productId)*100)/100.0);
     }
     return result;
   }
