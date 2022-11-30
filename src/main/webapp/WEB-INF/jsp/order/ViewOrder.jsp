@@ -156,6 +156,12 @@
 						pattern="#,##0.00" /></td>
 					<td>$<fmt:formatNumber value="${lineItem.total}"
 						pattern="#,##0.00" /></td>
+					<td><stripes:link class="Button"
+									  beanclass="org.mybatis.jpetstore.web.actions.ReviewActionBean"
+									  event="viewWriteReview">
+						<stripes:param name="itemId" value="${lineItem.item.itemId}" />
+						Write Review
+					</stripes:link></td>
 				</tr>
 			</c:forEach>
 			<tr>
