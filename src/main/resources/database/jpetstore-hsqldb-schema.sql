@@ -168,14 +168,26 @@ CREATE TABLE sequence
 CREATE TABLE review
 (
     reviewid VARCHAR(10) NOT NULL,
-    itemid VARCHAR(10) NOT NULL,
+    productid VARCHAR(10) NOT NULL,
     userid VARCHAR(10) NOT NULL,
-    content VARCHAR(200) NOT NULL,
-    rating INT NOT NULL,
-    picture_url VARCHAR(200) NOT NULL,
+    title VARCHAR(200) NOT NULL,
+    content VARCHAR(2000) NOT NULL,
+    picture_url VARCHAR(100000),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT pk_review primary key (reviewid),
-    CONSTRAINT fk_review_item FOREIGN KEY (itemid)
-    REFERENCES item (itemid)
+    CONSTRAINT fk_review_product FOREIGN KEY (productid)
+    REFERENCES product (productid),
+    CONSTRAINT fk_review_user FOREIGN KEY (userid)
+    REFERENCES account (userid)
+);
+
+CREATE TABLE reviewrating
+(
+    reviewid VARCHAR(10) NOT NULL,
+    key VARCHAR(20) NOT NULL,
+    rating INT NOT NULL,
+
+    CONSTRAINT fk_reviewrating_review FOREIGN KEY (reviewid)
+        REFERENCES review (reviewid)
 );

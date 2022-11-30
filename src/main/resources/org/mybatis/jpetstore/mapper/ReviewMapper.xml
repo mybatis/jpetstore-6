@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.mapper.ReviewMapper">
+
+    <cache />
+
+    <select id="getReviews" resultType="Review">
+        SELECT * FROM review;
+    </select>
+
+    <select id="getReviewById" resultType="Review">
+        SELECT
+            reviewid AS reviewId,
+            productid AS productId,
+            userid AS userId,
+            title,
+            content,
+            picture_url AS pictureUrl,
+            created_at
+        FROM
+            review
+        WHERE
+            reviewid = #{id}
+    </select>
+
+    <delete id="deleteReviewById">
+        DELETE FROM review
+        WHERE reviewid = #{id}
+    </delete>
+
+</mapper>
