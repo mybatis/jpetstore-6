@@ -94,6 +94,11 @@
     SET ATTR1 = #{attribute1}, LISTPRICE = #{listPrice}
     WHERE ITEMID = #{itemId}
   </update>
+  <update id="updateInventory" parameterType="item">
+    UPDATE INVENTORY
+    SET QTY = #{quantity}
+    WHERE ITEMID = #{itemId}
+  </update>
 
 
 </mapper>

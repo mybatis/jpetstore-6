@@ -42,6 +42,7 @@ public interface ItemMapper {
 
   //item update
   void updateItem(Item item);
+  void updateInventory(Item item);
 
 
 }

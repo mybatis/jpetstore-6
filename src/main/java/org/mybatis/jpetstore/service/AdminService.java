@@ -84,6 +84,6 @@ public class AdminService {
     @Transactional
     public void updateItem(Item item){
         itemMapper.updateItem(item);
-        inventoryMapper.updateInventory(item);
+        itemMapper.updateInventory(item);
     }
 }
