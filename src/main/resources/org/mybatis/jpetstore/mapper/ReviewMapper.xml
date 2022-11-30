@@ -31,4 +31,49 @@
         WHERE reviewid = #{id}
     </delete>
 
+    <select id="getItemById" resultType="Item">
+        SELECT
+            itemid As itemId,
+            productid As productId
+        FROM
+            item
+        WHERE
+            itemid = #{id}
+    </select>
+
+    <select id="getProductById" resultType="Product">
+        SELECT
+            productid AS productId,
+            category AS categoryId,
+            name,
+            descn AS description
+        FROM
+            product
+        WHERE
+            productid = #{id}
+    </select>
+
+    <insert id="insertReview">
+        INSERT INTO REVIEW (REVIEWID, PRODUCTID, USERID, TITLE, CONTENT, PICTURE_URL)
+        VALUES(#{reviewId}, #{productId}, #{userId}, #{title}, #{content}, #{pictureUrl})
+    </insert>
+
+    <insert id="insertReviewRating">
+        INSERT INTO REVIEWRATING (REVIEWID, KEY, RATING)
+        VALUES(#{reviewId}, #{key}, #{rating})
+    </insert>
+
+    <select id="getReivewListByProductId" resultType="Review">
+        SELECT
+            reviewid AS reviewId,
+            title,
+            userid AS userId,
+            created_at AS createdAt
+        FROM
+            review
+        WHERE
+            productid = #{productId}
+        ORDER BY
+            created_at DESC
+    </select>
 </mapper>

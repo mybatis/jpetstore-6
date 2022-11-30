@@ -16,14 +16,17 @@
 package org.mybatis.jpetstore.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-import org.mybatis.jpetstore.domain.Category;
-import org.mybatis.jpetstore.domain.Item;
-import org.mybatis.jpetstore.domain.Product;
+import org.mybatis.jpetstore.domain.*;
 import org.mybatis.jpetstore.mapper.CategoryMapper;
 import org.mybatis.jpetstore.mapper.ItemMapper;
 import org.mybatis.jpetstore.mapper.ProductMapper;
+import org.mybatis.jpetstore.mapper.ReviewMapper;
+import org.mybatis.jpetstore.mapper.ReviewRatingMapper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -37,11 +40,15 @@ public class CatalogService {
   private final CategoryMapper categoryMapper;
   private final ItemMapper itemMapper;
   private final ProductMapper productMapper;
+  private final ReviewMapper reviewMapper;
+  private final ReviewRatingMapper reviewRatingMapper;
 
-  public CatalogService(CategoryMapper categoryMapper, ItemMapper itemMapper, ProductMapper productMapper) {
+  public CatalogService(CategoryMapper categoryMapper, ItemMapper itemMapper, ProductMapper productMapper, ReviewMapper reviewMapper, ReviewRatingMapper reviewRatingMapper) {
     this.categoryMapper = categoryMapper;
     this.itemMapper = itemMapper;
     this.productMapper = productMapper;
+    this.reviewMapper=reviewMapper;
+    this.reviewRatingMapper=reviewRatingMapper;
   }
 
   public List<Category> getCategoryList() {
@@ -87,4 +94,27 @@ public class CatalogService {
   public boolean isItemInStock(String itemId) {
     return itemMapper.getInventoryQuantity(itemId) > 0;
   }
+
+  public List<Review> getReviewList(String productId) {return reviewMapper.getReivewListByProductId(productId);  }
+
+  public Map<String, Double> getRatingMapByCategory(String categoryId){
+    Map<String, Double> result = new HashMap<>();
+    List<Product> products = productMapper.getProductListByCategory(categoryId);
+    for(Product product:products){
+      String productId = product.getProductId();
+      result.put(productId, getAverageRatingByProductId(productId));
+    }
+    return result;
+  }
+
+  public Double getAverageRatingByProductId(String productId){
+    List<Integer> ratings = new ArrayList<>();
+    List<Review> reviews = reviewMapper.getReivewListByProductId(productId);
+    for(Review review:reviews){
+      String reviewId = review.getReviewId();
+      reviewRatingMapper.getReviewRatingByReviewId(reviewId).forEach(reviewRating -> ratings.add(reviewRating.getRating()));
+    }
+    return ratings.stream().mapToDouble(num -> (double) num).sum() / ratings.size();
+  }
+
 }

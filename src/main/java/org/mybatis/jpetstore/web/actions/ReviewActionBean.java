@@ -26,6 +26,7 @@ import org.mybatis.jpetstore.domain.ReviewRating;
 import org.mybatis.jpetstore.service.ReviewService;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @SessionScope
@@ -34,12 +35,16 @@ public class ReviewActionBean extends AbstractActionBean {
   private static final long serialVersionUID = -6121288227123176272L;
 
   private static final String VIEW_ORDER = "/WEB-INF/jsp/review/ViewReview.jsp";
+  private static final String VIEW_WRITE_REVIEW = "/WEB-INF/jsp/review/WriteReview.jsp";
 
   private String reviewId;
   private Review review;
   private List<ReviewRating> ratingList;
   private Product product;
   private boolean isReviewOwner = false;
+  private String itemId;
+  private String userId;
+
 
   @SpringBean
   private transient ReviewService reviewService;
@@ -56,7 +61,7 @@ public class ReviewActionBean extends AbstractActionBean {
     return this.review;
   }
 
-  public List<ReviewRating> getRatingList() { return this.ratingList; }
+  public List<ReviewRating> getRatingList() {return this.ratingList;}
 
   public Product getProduct() {
     return this.product;
@@ -65,6 +70,25 @@ public class ReviewActionBean extends AbstractActionBean {
   public boolean getIsReviewOwner() {
     return this.isReviewOwner;
   }
+  public String getItemId() {
+    return this.itemId;
+  }
+
+  public void setItemId(String itemId) {
+    this.itemId = itemId;
+  }
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setRatingList(List<ReviewRating> ratingList) {
+    this.ratingList = ratingList;
+  }
+
+  public void setReview(Review review) {
+    this.review = review;
+  }
+
 
   public Resolution viewReview() {
     HttpSession session = context.getRequest().getSession();
@@ -103,5 +127,38 @@ public class ReviewActionBean extends AbstractActionBean {
     }
 
     return new RedirectResolution(CatalogActionBean.class, "viewMain");
+  }
+
+  public Resolution viewWriteReview() {
+    HttpSession session = context.getRequest().getSession();
+    AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
+
+    if (itemId != null) {
+      product = reviewService.getProductById(itemId);
+      userId = accountBean.getAccount().getUsername();
+      ratingList = new ArrayList<ReviewRating>();
+      ratingList.add(new ReviewRating("money"));
+      ratingList.add(new ReviewRating("alone"));
+    }
+    return new ForwardResolution(VIEW_WRITE_REVIEW);
+  }
+
+  public Resolution newReview() {
+    HttpSession session = context.getRequest().getSession();
+    if (review != null) {
+      review.setProductId(product.getProductId());
+      review.setUserId(userId);
+      review = reviewService.insertReview(review);
+
+      //review rating
+      for (int i = 0; i < ratingList.size(); i++) {
+        ratingList.get(i).setReviewId(review.getReviewId());
+      }
+      reviewService.insertReviewRating(ratingList);
+      return new RedirectResolution(CatalogActionBean.class, "viewProduct");
+    } else {
+      setMessage("An error occurred processing your order (review was null).");
+      return new ForwardResolution(ERROR);
+    }
   }
 }

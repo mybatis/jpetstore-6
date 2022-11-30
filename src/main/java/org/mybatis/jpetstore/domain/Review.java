@@ -1,7 +1,7 @@
 package org.mybatis.jpetstore.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class Review implements Serializable {
 
@@ -67,5 +67,18 @@ public class Review implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewId='" + reviewId + '\'' +
+                ", productId='" + productId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", pictureUrl='" + pictureUrl + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

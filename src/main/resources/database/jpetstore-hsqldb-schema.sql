@@ -172,7 +172,7 @@ CREATE TABLE review
     userid VARCHAR(10) NOT NULL,
     title VARCHAR(200) NOT NULL,
     content VARCHAR(2000) NOT NULL,
-    picture_url VARCHAR(100000),
+    picture_url VARCHAR(1000000),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT pk_review primary key (reviewid),
