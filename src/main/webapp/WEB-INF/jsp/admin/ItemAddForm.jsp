@@ -21,27 +21,42 @@
 </stripes:link></div><br/><br/>
 
 <div id="AddForm">
-<stripes:form beanclass="org.mybatis.jpetstore.web.actions.AdminActionBean">
-    <h3><b> ${actionBean.product.name} </b></h3>
-    <table align="center">
-        <tr>
-            <th>ProductId</th>
-            <th>Item ID</th>
-            <th>Description</th>
-            <th>List Price</th>
-            <th>Quantity</th>
-        </tr>
+    <c:if test="${sessionScope.accountBean != null}">
+        <c:if test="${sessionScope.accountBean.authenticated}">
+            <c:if test="${sessionScope.accountBean.account.role == 0}">
+                <h3>Please log in with admin ID!</h3>
+            </c:if>
+        </c:if>
+    </c:if>
 
-        <tr>
-            <td>${actionBean.product.productId}</td>
-            <td><stripes:text name="item.itemId"/></td>
-            <td><stripes:text name="item.attribute1"/></td>
-            <td><stripes:text name="item.listPrice"/></td>
-            <td><stripes:text name="inventory.quantity"/></td>
-        </tr>
-    </table>
-    <stripes:submit class="button-green" name="insertItem" value="Submit"/>
-</stripes:form>
+    <c:if test="${sessionScope.accountBean != null}">
+        <c:if test="${sessionScope.accountBean.authenticated}">
+            <c:if test="${sessionScope.accountBean.account.role != 0}">
+
+                <stripes:form beanclass="org.mybatis.jpetstore.web.actions.AdminActionBean">
+                    <h3><b> ${actionBean.product.name} </b></h3>
+                    <table align="center">
+                        <tr>
+                            <th>ProductId</th>
+                            <th>Item ID</th>
+                            <th>Description</th>
+                            <th>List Price</th>
+                            <th>Quantity</th>
+                        </tr>
+
+                        <tr>
+                            <td>${actionBean.product.productId}</td>
+                            <td><stripes:text name="item.itemId"/></td>
+                            <td><stripes:text name="item.attribute1"/></td>
+                            <td><stripes:text name="item.listPrice"/></td>
+                            <td><stripes:text name="inventory.quantity"/></td>
+                        </tr>
+                    </table>
+                    <stripes:submit class="button-green" name="insertItem" value="Submit"/>
+                </stripes:form>
+            </c:if>
+        </c:if>
+    </c:if>
 </div><br/><br/>
 
 

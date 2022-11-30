@@ -29,10 +29,12 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
 	<filter>
 		<display-name>Stripes Filter</display-name>
 		<filter-name>StripesFilter</filter-name>
 		<filter-class>net.sourceforge.stripes.controller.StripesFilter</filter-class>
+
 		<init-param>
 			<param-name>ActionResolver.Packages</param-name>
 			<param-value>org.mybatis.jpetstore.web</param-value>
@@ -42,11 +44,13 @@
 			<param-value>net.sourceforge.stripes.integration.spring</param-value>
 		</init-param>
 	</filter>
+
 	<filter-mapping>
 		<filter-name>StripesFilter</filter-name>
 		<servlet-name>StripesDispatcher</servlet-name>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
+
 	<servlet>
 		<servlet-name>StripesDispatcher</servlet-name>
 		<servlet-class>net.sourceforge.stripes.controller.DispatcherServlet</servlet-class>

@@ -25,40 +25,51 @@
     Return to Menu</stripes:link></div><br><br>
 
 <div id="Product">
+    <c:if test="${sessionScope.accountBean != null}">
+        <c:if test="${sessionScope.accountBean.authenticated}">
+            <c:if test="${sessionScope.accountBean.account.role == 0}">
+                <h3>Please log in with admin ID!</h3>
+            </c:if>
+        </c:if>
+    </c:if>
 
+    <c:if test="${sessionScope.accountBean != null}">
+        <c:if test="${sessionScope.accountBean.authenticated}">
+            <c:if test="${sessionScope.accountBean.account.role != 0}">
+                <table align="center">
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Name</th>
+                        <th>&nbsp;</th>
+                    </tr>
 
+                    <c:forEach var="item" items="${actionBean.productList}">
+                        <tr>
+                            <td><stripes:link
+                                    beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+                                    event="viewProduct">
+                                <stripes:param name="productId" value="${item.productId}"/>
+                                ${item.productId}
+                            </stripes:link></td>
 
-    <table align="center">
-        <tr>
-            <th>Product ID</th>
-            <th>Name</th>
-            <th>&nbsp;</th>
-        </tr>
-        <c:forEach var="item" items="${actionBean.productList}">
-            <tr>
-                <td><stripes:link
-                        beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
-                        event="viewProduct">
-                    <stripes:param name="productId" value="${item.productId}"/>
-                    ${item.productId}
-                </stripes:link></td>
+                            <td>${item.name}</td>
 
-                <td>${item.name}</td>
+                            <td><stripes:link class="Button"
+                                              beanclass="org.mybatis.jpetstore.web.actions.AdminActionBean"
+                                              event="viewEditItem">
+                                <stripes:param name="productId" value="${item.productId}"/>
+                                EDIT ITEM
+                            </stripes:link></td>
 
-                <td><stripes:link class="Button"
-                                  beanclass="org.mybatis.jpetstore.web.actions.AdminActionBean"
-                                  event="viewEditItem">
-                    <stripes:param name="productId" value="${item.productId}"/>
-                    EDIT ITEM
-                </stripes:link></td>
-
-            </tr>
-        </c:forEach>
-    </table>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:if>
+        </c:if>
+    </c:if>
 </div><br><br>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
-
 
 
 
