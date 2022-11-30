@@ -102,6 +102,8 @@ public class CatalogService {
     List<Product> products = productMapper.getProductListByCategory(categoryId);
     for(Product product:products){
       String productId = product.getProductId();
+      Double avg = getAverageRatingByProductId(productId);
+      if (avg == null) continue;
       result.put(productId, getAverageRatingByProductId(productId));
     }
     return result;
@@ -110,6 +112,7 @@ public class CatalogService {
   public Double getAverageRatingByProductId(String productId){
     List<Integer> ratings = new ArrayList<>();
     List<Review> reviews = reviewMapper.getReivewListByProductId(productId);
+    if(reviews.isEmpty()) return null;
     for(Review review:reviews){
       String reviewId = review.getReviewId();
       reviewRatingMapper.getReviewRatingByReviewId(reviewId).forEach(reviewRating -> ratings.add(reviewRating.getRating()));
