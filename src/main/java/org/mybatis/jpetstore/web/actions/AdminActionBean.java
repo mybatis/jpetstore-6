@@ -24,7 +24,6 @@ import org.mybatis.jpetstore.domain.Category;
 import org.mybatis.jpetstore.domain.Inventory;
 import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.Product;
-import org.mybatis.jpetstore.service.AdminService;
 import org.mybatis.jpetstore.service.CatalogService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -165,26 +164,6 @@ public class AdminActionBean extends AbstractActionBean {
 
 
 
-
-
-
-
-
-    @SpringBean
-    private transient AdminService adminService;
-/*
-    private List<Product> productList;
-
-    public List<Product> getProductList(){
-        return productList;
-    }
-
-    public void setProductList(List<Product> productList){
-        this.productList=productList;
-    }
-*/
-
-
     /**
      * ProductList form.
      *
@@ -194,7 +173,7 @@ public class AdminActionBean extends AbstractActionBean {
     //  public Resolution ProductListForm(){ return new ForwardResolution(PRODUCT_LIST); }
 
     public ForwardResolution viewProductList(){
-        productList= adminService.getProductList();
+        productList= catalogService.getProductList();
         return new ForwardResolution(PRODUCT_LIST);
     }
 
@@ -202,31 +181,31 @@ public class AdminActionBean extends AbstractActionBean {
         item.setProductId(product.getProductId());
         inventory.setItemId(item.getItemId());
 
-        adminService.insertItem(item);
-        adminService.insertInventory(inventory);
+        catalogService.insertItem(item);
+        catalogService.insertInventory(inventory);
 
         if (productId != null) {
-            itemList = adminService.getItemListByProduct(productId);
-            product = adminService.getProduct(productId);
+            itemList = catalogService.getItemListByProduct(productId);
+            product = catalogService.getProduct(productId);
         }
         return new ForwardResolution(VIEW_ITEM_EDIT);
     }
 
     public Resolution deleteItem(){
         if(itemId != null) {
-            adminService.deleteItem(itemId);
-            adminService.deleteItemInventory(itemId);
+            catalogService.deleteItem(itemId);
+            catalogService.deleteItemInventory(itemId);
         }
         if (productId != null) {
-            itemList = adminService.getItemListByProduct(productId);
-            product = adminService.getProduct(productId);
+            itemList = catalogService.getItemListByProduct(productId);
+            product = catalogService.getProduct(productId);
         }
         return new ForwardResolution(VIEW_ITEM_EDIT);
     }
 
     public ForwardResolution viewAddForm(){
         if (productId != null) {
-            product = adminService.getProduct(productId);
+            product = catalogService.getProduct(productId);
         }
         return new ForwardResolution(VIEW_ITEM_ADDFORM);
     }
@@ -240,34 +219,26 @@ public class AdminActionBean extends AbstractActionBean {
 
     public ForwardResolution viewEditItem(){
         if (productId != null) {
-            itemList = adminService.getItemListByProduct(productId);
-            product = adminService.getProduct(productId);
+            itemList = catalogService.getItemListByProduct(productId);
+            product = catalogService.getProduct(productId);
         }
         return new ForwardResolution(VIEW_ITEM_EDIT);
     }
 
 
-    //Item업데이트 할거 입력하고 Submit 버튼 누르면 보여줄거
     public Resolution updateItem(){
         item.setItemId(item.getItemId());
-        adminService.updateItem(item);
+        catalogService.updateItem(item);
 
         if(item != null) {
-            itemList = adminService.getItemListByProduct(item.getProductId());
-            item = adminService.getItem(item.getItemId());
-            product = adminService.getProduct(item.getItemId());
+            itemList = catalogService.getItemListByProduct(item.getProductId());
+            item = catalogService.getItem(item.getItemId());
+            product = catalogService.getProduct(item.getItemId());
         }
 
 
         return new RedirectResolution(AdminActionBean.class, "viewEditItem");
     }
-
-
-
-
-
-
-
 
 
 }
