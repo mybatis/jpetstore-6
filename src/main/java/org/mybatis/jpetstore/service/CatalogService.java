@@ -21,12 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.jpetstore.domain.*;
-import org.mybatis.jpetstore.mapper.CategoryMapper;
-import org.mybatis.jpetstore.mapper.ItemMapper;
-import org.mybatis.jpetstore.mapper.ProductMapper;
-import org.mybatis.jpetstore.mapper.ReviewMapper;
-import org.mybatis.jpetstore.mapper.ReviewRatingMapper;
+import org.mybatis.jpetstore.mapper.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * The Class CatalogService.
@@ -42,12 +39,15 @@ public class CatalogService {
   private final ReviewMapper reviewMapper;
   private final ReviewRatingMapper reviewRatingMapper;
 
-  public CatalogService(CategoryMapper categoryMapper, ItemMapper itemMapper, ProductMapper productMapper, ReviewMapper reviewMapper, ReviewRatingMapper reviewRatingMapper) {
+  private final InventoryMapper inventoryMapper;
+
+  public CatalogService(CategoryMapper categoryMapper, ItemMapper itemMapper, ProductMapper productMapper, ReviewMapper reviewMapper, ReviewRatingMapper reviewRatingMapper, InventoryMapper inventoryMapper) {
     this.categoryMapper = categoryMapper;
     this.itemMapper = itemMapper;
     this.productMapper = productMapper;
     this.reviewMapper=reviewMapper;
     this.reviewRatingMapper=reviewRatingMapper;
+    this.inventoryMapper = inventoryMapper;
   }
 
   public List<Category> getCategoryList() {
@@ -66,6 +66,42 @@ public class CatalogService {
     return productMapper.getProductListByCategory(categoryId);
   }
 
+  public List<Product> getProductList() {
+    List<Product> products = new ArrayList<>();
+    products.addAll(productMapper.getProductList());
+    return products;
+  }
+
+  public Item getItem(String itemId) { //itemId 전달
+    return itemMapper.getItem(itemId); //itemId
+  }
+
+  public void insertItem(Item item){
+    itemMapper.insertItem(item);
+  }
+
+  public void insertInventory(Inventory inventory){
+    inventoryMapper.insertInventory(inventory);
+  }
+
+
+  public void deleteItem(String itemId){
+    itemMapper.deleteItem(itemId);
+  }
+
+  public void deleteItemInventory(String itemId){
+    inventoryMapper.deleteItemInventory(itemId);
+  }
+  public List<Item> getItemListByProduct(String productId) {
+    return itemMapper.getItemListByProduct(productId);
+  }
+
+  @Transactional
+  public void updateItem(Item item){
+    itemMapper.updateItem(item);
+    itemMapper.updateInventory(item);
+  }
+
   /**
    * Search product list.
    *
@@ -82,19 +118,14 @@ public class CatalogService {
     return products;
   }
 
-  public List<Item> getItemListByProduct(String productId) {
-    return itemMapper.getItemListByProduct(productId);
-  }
-
-  public Item getItem(String itemId) {
-    return itemMapper.getItem(itemId);
-  }
 
   public boolean isItemInStock(String itemId) {
     return itemMapper.getInventoryQuantity(itemId) > 0;
   }
 
   public List<Review> getReviewList(String productId) {return reviewMapper.getReivewListByProductId(productId);  }
+
+
 
   public Map<String, Double> getRatingMapByCategory(String categoryId){
     Map<String, Double> result = new HashMap<>();
