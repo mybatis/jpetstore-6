@@ -177,40 +177,62 @@ public class AdminActionBean extends AbstractActionBean {
         HttpSession session = context.getRequest().getSession();
         AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
 
-        role = accountBean.getAccount().getRole();
+        if (accountBean == null || !accountBean.isAuthenticated()) {
+            setMessage("You must sign on before accessing to Product List.  Please sign on and try with Admin ID. ");
+            return new ForwardResolution(AccountActionBean.class);
+        } else{
+            role = accountBean.getAccount().getRole();
 
-        if(role == 1) {
-            productList = catalogService.getProductList();
-            return new ForwardResolution(PRODUCT_LIST);
+            if(role == 1) {
+                productList = catalogService.getProductList();
+                return new ForwardResolution(PRODUCT_LIST);
+            }else {
+                setMessage("You must log in with Admin ID. ");
+                return new ForwardResolution(ERROR);
+            }
         }
-        else {
-            setMessage("You must log in with Admin ID. ");
-            return new ForwardResolution(ERROR);
-        }
+
     }
+
 
     public Resolution insertItem(){
         HttpSession session = context.getRequest().getSession();
         AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
 
-        role = accountBean.getAccount().getRole();
+        if (accountBean == null || !accountBean.isAuthenticated()) {
+            setMessage("You must sign on before accessing to Product List.  Please sign on and try with Admin ID. ");
+            return new ForwardResolution(AccountActionBean.class);
+        } else {
+            role = accountBean.getAccount().getRole();
+            inventory = getInventory();
 
-        if(role ==1 ) {
-            item.setProductId(product.getProductId());
-            inventory.setItemId(item.getItemId());
+            if (role == 1) {
+                if(inventory==null) {
+                    setMessage("Quantity를 입력해주세요.");
+                    return new ForwardResolution(ERROR);
+                }
 
-            catalogService.insertItem(item);
-            catalogService.insertInventory(inventory);
+                item.setProductId(product.getProductId());
+                inventory.setItemId(item.getItemId());
 
-            if (productId != null) {
-                itemList = catalogService.getItemListByProduct(productId);
-                product = catalogService.getProduct(productId);
+                try {
+                    catalogService.insertItem(item);
+                    catalogService.insertInventory(inventory);
+                } catch (Exception e) {
+                    setMessage("중복된 Item ID 입니다.");
+                    return new ForwardResolution(ERROR);
+                }
+
+                if (productId != null) {
+                    itemList = catalogService.getItemListByProduct(productId);
+                    product = catalogService.getProduct(productId);
+                }
+                return new ForwardResolution(VIEW_ITEM_EDIT);
+            } else {
+                setMessage("You must log in with Admin ID. ");
+                return new ForwardResolution(ERROR);
             }
-            return new ForwardResolution(VIEW_ITEM_EDIT);
-        }
-        else {
-            setMessage("You must log in with Admin ID. ");
-            return new ForwardResolution(ERROR);
+
         }
     }
 
@@ -218,21 +240,25 @@ public class AdminActionBean extends AbstractActionBean {
         HttpSession session = context.getRequest().getSession();
         AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
 
-        role = accountBean.getAccount().getRole();
-        if(role == 1) {
-            if (itemId != null) {
-                catalogService.deleteItem(itemId);
-                catalogService.deleteItemInventory(itemId);
+        if (accountBean == null || !accountBean.isAuthenticated()) {
+            setMessage("You must sign on before accessing to Product List.  Please sign on and try with Admin ID. ");
+            return new ForwardResolution(AccountActionBean.class);
+        } else {
+            role = accountBean.getAccount().getRole();
+            if (role == 1) {
+                if (itemId != null) {
+                    catalogService.deleteItem(itemId);
+                    catalogService.deleteItemInventory(itemId);
+                }
+                if (productId != null) {
+                    itemList = catalogService.getItemListByProduct(productId);
+                    product = catalogService.getProduct(productId);
+                }
+                return new ForwardResolution(VIEW_ITEM_EDIT);
+            } else {
+                setMessage("You must log in with Admin ID. ");
+                return new ForwardResolution(ERROR);
             }
-            if (productId != null) {
-                itemList = catalogService.getItemListByProduct(productId);
-                product = catalogService.getProduct(productId);
-            }
-            return new ForwardResolution(VIEW_ITEM_EDIT);
-        }
-        else {
-            setMessage("You must log in with Admin ID. ");
-            return new ForwardResolution(ERROR);
         }
     }
 
@@ -240,16 +266,20 @@ public class AdminActionBean extends AbstractActionBean {
         HttpSession session = context.getRequest().getSession();
         AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
 
-        role = accountBean.getAccount().getRole();
-        if(role == 1) {
-            if (productId != null) {
-                product = catalogService.getProduct(productId);
+        if (accountBean == null || !accountBean.isAuthenticated()) {
+            setMessage("You must sign on before accessing to Product List.  Please sign on and try with Admin ID. ");
+            return new ForwardResolution(AccountActionBean.class);
+        } else {
+            role = accountBean.getAccount().getRole();
+            if (role == 1) {
+                if (productId != null) {
+                    product = catalogService.getProduct(productId);
+                }
+                return new ForwardResolution(VIEW_ITEM_ADDFORM);
+            } else {
+                setMessage("You must log in with Admin ID. ");
+                return new ForwardResolution(ERROR);
             }
-            return new ForwardResolution(VIEW_ITEM_ADDFORM);
-        }
-        else {
-            setMessage("You must log in with Admin ID. ");
-            return new ForwardResolution(ERROR);
         }
     }
 
@@ -257,16 +287,20 @@ public class AdminActionBean extends AbstractActionBean {
         HttpSession session = context.getRequest().getSession();
         AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
 
-        role = accountBean.getAccount().getRole();
-        if(role == 1) {
-            item = catalogService.getItem(itemId);
-            product = item.getProduct();
+        if (accountBean == null || !accountBean.isAuthenticated()) {
+            setMessage("You must sign on before accessing to Product List.  Please sign on and try with Admin ID. ");
+            return new ForwardResolution(AccountActionBean.class);
+        } else {
+            role = accountBean.getAccount().getRole();
+            if (role == 1) {
+                item = catalogService.getItem(itemId);
+                product = item.getProduct();
 
-            return new ForwardResolution(VIEW_ITEM_UPDATEFORM);
-        }
-        else {
-            setMessage("You must log in with Admin ID. ");
-            return new ForwardResolution(ERROR);
+                return new ForwardResolution(VIEW_ITEM_UPDATEFORM);
+            } else {
+                setMessage("You must log in with Admin ID. ");
+                return new ForwardResolution(ERROR);
+            }
         }
     }
 
@@ -274,17 +308,21 @@ public class AdminActionBean extends AbstractActionBean {
         HttpSession session = context.getRequest().getSession();
         AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
 
-        role = accountBean.getAccount().getRole();
-        if(role == 1) {
-            if (productId != null) {
-                itemList = catalogService.getItemListByProduct(productId);
-                product = catalogService.getProduct(productId);
+        if (accountBean == null || !accountBean.isAuthenticated()) {
+            setMessage("You must sign on before accessing to Product List.  Please sign on and try with Admin ID. ");
+            return new ForwardResolution(AccountActionBean.class);
+        } else {
+            role = accountBean.getAccount().getRole();
+            if (role == 1) {
+                if (productId != null) {
+                    itemList = catalogService.getItemListByProduct(productId);
+                    product = catalogService.getProduct(productId);
+                }
+                return new ForwardResolution(VIEW_ITEM_EDIT);
+            } else {
+                setMessage("You must log in with Admin ID. ");
+                return new ForwardResolution(ERROR);
             }
-            return new ForwardResolution(VIEW_ITEM_EDIT);
-        }
-        else {
-            setMessage("You must log in with Admin ID. ");
-            return new ForwardResolution(ERROR);
         }
     }
 
@@ -293,22 +331,26 @@ public class AdminActionBean extends AbstractActionBean {
         HttpSession session = context.getRequest().getSession();
         AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
 
-        role = accountBean.getAccount().getRole();
-        if (role == 1) {
-            item.setItemId(item.getItemId());
-            catalogService.updateItem(item);
+        if (accountBean == null || !accountBean.isAuthenticated()) {
+            setMessage("You must sign on before accessing to Product List.  Please sign on and try with Admin ID. ");
+            return new ForwardResolution(AccountActionBean.class);
+        } else {
+            role = accountBean.getAccount().getRole();
+            if (role == 1) {
+                item.setItemId(item.getItemId());
+                catalogService.updateItem(item);
 
-            if (item != null) {
-                itemList = catalogService.getItemListByProduct(item.getProductId());
-                item = catalogService.getItem(item.getItemId());
-                product = catalogService.getProduct(item.getItemId());
+                if (item != null) {
+                    itemList = catalogService.getItemListByProduct(item.getProductId());
+                    item = catalogService.getItem(item.getItemId());
+                    product = catalogService.getProduct(item.getItemId());
+                }
+
+                return new RedirectResolution(AdminActionBean.class, "viewEditItem");
+            } else {
+                setMessage("You must log in with Admin ID. ");
+                return new ForwardResolution(ERROR);
             }
-
-            return new RedirectResolution(AdminActionBean.class, "viewEditItem");
-        }
-        else {
-            setMessage("You must log in with Admin ID. ");
-            return new ForwardResolution(ERROR);
         }
     }
 

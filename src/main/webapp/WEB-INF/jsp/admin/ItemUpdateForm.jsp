@@ -17,49 +17,33 @@
 </stripes:link></div><br/><br/>
 
 <div id="UpdateForm">
-    <c:if test="${sessionScope.accountBean != null}">
-        <c:if test="${sessionScope.accountBean.authenticated}">
-            <c:if test="${sessionScope.accountBean.account.role == 0}">
-                <h3>Please log in with admin ID!</h3>
-            </c:if>
-        </c:if>
-    </c:if>
+    <stripes:form
+            beanclass="org.mybatis.jpetstore.web.actions.AdminActionBean">
+        <h3><b> ${actionBean.product.name} </b></h3>
+        <table align="center">
+            <tr>
+                <th>Item ID</th>
+                <th>Description</th>
+                <th>List Price</th>
+                <th>Quantity</th>
+            </tr>
 
-    <c:if test="${sessionScope.accountBean != null}">
-        <c:if test="${sessionScope.accountBean.authenticated}">
-            <c:if test="${sessionScope.accountBean.account.role != 0}">
+            <tr>
+                <td>${actionBean.item.itemId}</td>
 
-                <stripes:form
-                        beanclass="org.mybatis.jpetstore.web.actions.AdminActionBean">
-                    <h3><b> ${actionBean.product.name} </b></h3>
-                    <table align="center">
-                        <tr>
-                            <th>Item ID</th>
-                            <th>Description</th>
-                            <th>List Price</th>
-                            <th>Quantity</th>
-                        </tr>
-
-                        <tr>
-                            <td>${actionBean.item.itemId}</td>
-
-                            <td><stripes:text size="14" name="item.attribute1"
-                                              value="${actionBean.item.attribute1}" /></td>
-                            <td><stripes:text size="14" name="item.listPrice"
-                                              value="${actionBean.item.listPrice}" /></td>
-                            <td><stripes:text size="14" name="item.quantity"
-                                              value="${actionBean.item.quantity}" /></td>
-                        </tr>
-                    </table>
+                <td><stripes:text size="14" name="item.attribute1"
+                                  value="${actionBean.item.attribute1}" /></td>
+                <td><stripes:text size="14" name="item.listPrice"
+                                  value="${actionBean.item.listPrice}" /></td>
+                <td><stripes:text size="14" name="item.quantity"
+                                  value="${actionBean.item.quantity}" /></td>
+            </tr>
+        </table>
 
 
-                    <stripes:submit class="button-green" name="updateItem" value="Submit"/>
+        <stripes:submit class="button-green" name="updateItem" value="Submit"/>
 
-                </stripes:form>
-
-            </c:if>
-        </c:if>
-    </c:if>
+    </stripes:form>
 </div><br/><br/>
 
 
