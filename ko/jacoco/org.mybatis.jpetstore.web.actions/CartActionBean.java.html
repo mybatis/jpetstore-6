@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CartActionBean.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JPetStore Demo 6</a> &gt; <a href="index.source.html" class="el_package">org.mybatis.jpetstore.web.actions</a> &gt; <span class="el_source">CartActionBean.java</span></div><h1>CartActionBean.java</h1><pre class="source lang-java linenums">/**
- *    Copyright 2010-2016 the original author or authors.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CartActionBean.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JPetStore Demo 6</a> &gt; <a href="index.source.html" class="el_package">org.mybatis.jpetstore.web.actions</a> &gt; <span class="el_source">CartActionBean.java</span></div><h1>CartActionBean.java</h1><pre class="source lang-java linenums">/*
+ *    Copyright 2010-2022 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  *    you may not use this file except in compliance with the License.
  *    You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *       https://www.apache.org/licenses/LICENSE-2.0
  *
  *    Unless required by applicable law or agreed to in writing, software
  *    distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
@@ -30,11 +30,12 @@ import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.service.CatalogService;
 
 /**
- * @author Eduardo Macarron
+ * The Class CartActionBean.
  *
+ * @author Eduardo Macarron
  */
 @SessionScope
-<span class="nc" id="L37">public class CartActionBean extends AbstractActionBean {</span>
+<span class="nc" id="L38">public class CartActionBean extends AbstractActionBean {</span>
 
   private static final long serialVersionUID = -4038684592582714235L;
 
@@ -44,81 +45,96 @@ import org.mybatis.jpetstore.service.CatalogService;
   @SpringBean
   private transient CatalogService catalogService;
 
-<span class="nc" id="L47">  private Cart cart = new Cart();</span>
+<span class="nc" id="L48">  private Cart cart = new Cart();</span>
   private String workingItemId;
 
   public Cart getCart() {
-<span class="nc" id="L51">    return cart;</span>
+<span class="nc" id="L52">    return cart;</span>
   }
 
   public void setCart(Cart cart) {
-<span class="nc" id="L55">    this.cart = cart;</span>
-<span class="nc" id="L56">  }</span>
+<span class="nc" id="L56">    this.cart = cart;</span>
+<span class="nc" id="L57">  }</span>
 
   public void setWorkingItemId(String workingItemId) {
-<span class="nc" id="L59">    this.workingItemId = workingItemId;</span>
-<span class="nc" id="L60">  }</span>
+<span class="nc" id="L60">    this.workingItemId = workingItemId;</span>
+<span class="nc" id="L61">  }</span>
 
+  /**
+   * Adds the item to cart.
+   *
+   * @return the resolution
+   */
   public Resolution addItemToCart() {
-<span class="nc bnc" id="L63" title="All 2 branches missed.">    if (cart.containsItemId(workingItemId)) {</span>
-<span class="nc" id="L64">      cart.incrementQuantityByItemId(workingItemId);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">    if (cart.containsItemId(workingItemId)) {</span>
+<span class="nc" id="L70">      cart.incrementQuantityByItemId(workingItemId);</span>
     } else {
       // isInStock is a &quot;real-time&quot; property that must be updated
       // every time an item is added to the cart, even if other
       // item details are cached.
-<span class="nc" id="L69">      boolean isInStock = catalogService.isItemInStock(workingItemId);</span>
-<span class="nc" id="L70">      Item item = catalogService.getItem(workingItemId);</span>
-<span class="nc" id="L71">      cart.addItem(item, isInStock);</span>
+<span class="nc" id="L75">      boolean isInStock = catalogService.isItemInStock(workingItemId);</span>
+<span class="nc" id="L76">      Item item = catalogService.getItem(workingItemId);</span>
+<span class="nc" id="L77">      cart.addItem(item, isInStock);</span>
     }
 
-<span class="nc" id="L74">    return new ForwardResolution(VIEW_CART);</span>
+<span class="nc" id="L80">    return new ForwardResolution(VIEW_CART);</span>
   }
 
+  /**
+   * Removes the item from cart.
+   *
+   * @return the resolution
+   */
   public Resolution removeItemFromCart() {
 
-<span class="nc" id="L79">    Item item = cart.removeItemById(workingItemId);</span>
+<span class="nc" id="L90">    Item item = cart.removeItemById(workingItemId);</span>
 
-<span class="nc bnc" id="L81" title="All 2 branches missed.">    if (item == null) {</span>
-<span class="nc" id="L82">      setMessage(&quot;Attempted to remove null CartItem from Cart.&quot;);</span>
-<span class="nc" id="L83">      return new ForwardResolution(ERROR);</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">    if (item == null) {</span>
+<span class="nc" id="L93">      setMessage(&quot;Attempted to remove null CartItem from Cart.&quot;);</span>
+<span class="nc" id="L94">      return new ForwardResolution(ERROR);</span>
     } else {
-<span class="nc" id="L85">      return new ForwardResolution(VIEW_CART);</span>
+<span class="nc" id="L96">      return new ForwardResolution(VIEW_CART);</span>
     }
   }
 
+  /**
+   * Update cart quantities.
+   *
+   * @return the resolution
+   */
   public Resolution updateCartQuantities() {
-<span class="nc" id="L90">    HttpServletRequest request = context.getRequest();</span>
+<span class="nc" id="L106">    HttpServletRequest request = context.getRequest();</span>
 
-<span class="nc" id="L92">    Iterator&lt;CartItem&gt; cartItems = getCart().getAllCartItems();</span>
-<span class="nc bnc" id="L93" title="All 2 branches missed.">    while (cartItems.hasNext()) {</span>
-<span class="nc" id="L94">      CartItem cartItem = (CartItem) cartItems.next();</span>
-<span class="nc" id="L95">      String itemId = cartItem.getItem().getItemId();</span>
+<span class="nc" id="L108">    Iterator&lt;CartItem&gt; cartItems = getCart().getAllCartItems();</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">    while (cartItems.hasNext()) {</span>
+<span class="nc" id="L110">      CartItem cartItem = cartItems.next();</span>
+<span class="nc" id="L111">      String itemId = cartItem.getItem().getItemId();</span>
       try {
-<span class="nc" id="L97">        int quantity = Integer.parseInt((String) request.getParameter(itemId));</span>
-<span class="nc" id="L98">        getCart().setQuantityByItemId(itemId, quantity);</span>
-<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (quantity &lt; 1) {</span>
-<span class="nc" id="L100">          cartItems.remove();</span>
+<span class="nc" id="L113">        int quantity = Integer.parseInt(request.getParameter(itemId));</span>
+<span class="nc" id="L114">        getCart().setQuantityByItemId(itemId, quantity);</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        if (quantity &lt; 1) {</span>
+<span class="nc" id="L116">          cartItems.remove();</span>
         }
-<span class="nc" id="L102">      } catch (Exception e) {</span>
-        //ignore parse exceptions on purpose
-<span class="nc" id="L104">      }</span>
-<span class="nc" id="L105">    }</span>
+<span class="nc" id="L118">      } catch (Exception e) {</span>
+        // ignore parse exceptions on purpose
+<span class="nc" id="L120">      }</span>
+<span class="nc" id="L121">    }</span>
 
-<span class="nc" id="L107">    return new ForwardResolution(VIEW_CART);</span>
+<span class="nc" id="L123">    return new ForwardResolution(VIEW_CART);</span>
   }
 
   public ForwardResolution viewCart() {
-<span class="nc" id="L111">    return new ForwardResolution(VIEW_CART);</span>
+<span class="nc" id="L127">    return new ForwardResolution(VIEW_CART);</span>
   }
 
   public ForwardResolution checkOut() {
-<span class="nc" id="L115">    return new ForwardResolution(CHECK_OUT);</span>
+<span class="nc" id="L131">    return new ForwardResolution(CHECK_OUT);</span>
   }
 
   public void clear() {
-<span class="nc" id="L119">    cart = new Cart();</span>
-<span class="nc" id="L120">    workingItemId = null;</span>
-<span class="nc" id="L121">  }</span>
+<span class="nc" id="L135">    cart = new Cart();</span>
+<span class="nc" id="L136">    workingItemId = null;</span>
+<span class="nc" id="L137">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

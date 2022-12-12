@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AccountActionBean.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JPetStore Demo 6</a> &gt; <a href="index.source.html" class="el_package">org.mybatis.jpetstore.web.actions</a> &gt; <span class="el_source">AccountActionBean.java</span></div><h1>AccountActionBean.java</h1><pre class="source lang-java linenums">/**
- *    Copyright 2010-2016 the original author or authors.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AccountActionBean.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JPetStore Demo 6</a> &gt; <a href="index.source.html" class="el_package">org.mybatis.jpetstore.web.actions</a> &gt; <span class="el_source">AccountActionBean.java</span></div><h1>AccountActionBean.java</h1><pre class="source lang-java linenums">/*
+ *    Copyright 2010-2022 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  *    you may not use this file except in compliance with the License.
  *    You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *       https://www.apache.org/licenses/LICENSE-2.0
  *
  *    Unless required by applicable law or agreed to in writing, software
  *    distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
@@ -15,7 +15,7 @@
  */
 package org.mybatis.jpetstore.web.actions;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,11 +35,12 @@ import org.mybatis.jpetstore.service.AccountService;
 import org.mybatis.jpetstore.service.CatalogService;
 
 /**
- * @author Eduardo Macarron
+ * The Class AccountActionBean.
  *
+ * @author Eduardo Macarron
  */
 @SessionScope
-<span class="nc" id="L42">public class AccountActionBean extends AbstractActionBean {</span>
+<span class="fc" id="L43">public class AccountActionBean extends AbstractActionBean {</span>
 
   private static final long serialVersionUID = 5499663666155758178L;
 
@@ -55,126 +56,154 @@ import org.mybatis.jpetstore.service.CatalogService;
   @SpringBean
   private transient CatalogService catalogService;
 
-<span class="nc" id="L58">  private Account account = new Account();</span>
+<span class="fc" id="L59">  private Account account = new Account();</span>
   private List&lt;Product&gt; myList;
   private boolean authenticated;
 
   static {
-<span class="nc" id="L63">    List&lt;String&gt; langList = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L64">    langList.add(&quot;english&quot;);</span>
-<span class="nc" id="L65">    langList.add(&quot;japanese&quot;);</span>
-<span class="nc" id="L66">    LANGUAGE_LIST = Collections.unmodifiableList(langList);</span>
-
-<span class="nc" id="L68">    List&lt;String&gt; catList = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L69">    catList.add(&quot;FISH&quot;);</span>
-<span class="nc" id="L70">    catList.add(&quot;DOGS&quot;);</span>
-<span class="nc" id="L71">    catList.add(&quot;REPTILES&quot;);</span>
-<span class="nc" id="L72">    catList.add(&quot;CATS&quot;);</span>
-<span class="nc" id="L73">    catList.add(&quot;BIRDS&quot;);</span>
-<span class="nc" id="L74">    CATEGORY_LIST = Collections.unmodifiableList(catList);</span>
-<span class="nc" id="L75">  }</span>
+<span class="fc" id="L64">    LANGUAGE_LIST = Collections.unmodifiableList(Arrays.asList(&quot;english&quot;, &quot;japanese&quot;));</span>
+<span class="fc" id="L65">    CATEGORY_LIST = Collections.unmodifiableList(Arrays.asList(&quot;FISH&quot;, &quot;DOGS&quot;, &quot;REPTILES&quot;, &quot;CATS&quot;, &quot;BIRDS&quot;));</span>
+<span class="fc" id="L66">  }</span>
 
   public Account getAccount() {
-<span class="nc" id="L78">    return this.account;</span>
-  }
-  
-  public String getUsername() {
-<span class="nc" id="L82">    return account.getUsername();</span>
+<span class="fc" id="L69">    return this.account;</span>
   }
 
-  @Validate(required=true, on={&quot;signon&quot;, &quot;newAccount&quot;, &quot;editAccount&quot;})
+  public String getUsername() {
+<span class="fc" id="L73">    return account.getUsername();</span>
+  }
+
+  @Validate(required = true, on = { &quot;signon&quot;, &quot;newAccount&quot;, &quot;editAccount&quot; })
   public void setUsername(String username) {
-<span class="nc" id="L87">    account.setUsername(username);</span>
-<span class="nc" id="L88">  }</span>
+<span class="nc" id="L78">    account.setUsername(username);</span>
+<span class="nc" id="L79">  }</span>
 
   public String getPassword() {
-<span class="nc" id="L91">    return account.getPassword();</span>
+<span class="fc" id="L82">    return account.getPassword();</span>
   }
 
-  @Validate(required=true, on={&quot;signon&quot;, &quot;newAccount&quot;, &quot;editAccount&quot;})
+  @Validate(required = true, on = { &quot;signon&quot;, &quot;newAccount&quot;, &quot;editAccount&quot; })
   public void setPassword(String password) {
-<span class="nc" id="L96">    account.setPassword(password);</span>
-<span class="nc" id="L97">  }</span>
+<span class="nc" id="L87">    account.setPassword(password);</span>
+<span class="nc" id="L88">  }</span>
 
   public List&lt;Product&gt; getMyList() {
-<span class="nc" id="L100">    return myList;</span>
+<span class="fc" id="L91">    return myList;</span>
   }
 
   public void setMyList(List&lt;Product&gt; myList) {
-<span class="nc" id="L104">    this.myList = myList;</span>
-<span class="nc" id="L105">  }</span>
+<span class="nc" id="L95">    this.myList = myList;</span>
+<span class="nc" id="L96">  }</span>
 
   public List&lt;String&gt; getLanguages() {
-<span class="nc" id="L108">    return LANGUAGE_LIST;</span>
+<span class="nc" id="L99">    return LANGUAGE_LIST;</span>
   }
 
   public List&lt;String&gt; getCategories() {
-<span class="nc" id="L112">    return CATEGORY_LIST;</span>
+<span class="nc" id="L103">    return CATEGORY_LIST;</span>
   }
 
   public Resolution newAccountForm() {
-<span class="nc" id="L116">    return new ForwardResolution(NEW_ACCOUNT);</span>
+<span class="nc" id="L107">    return new ForwardResolution(NEW_ACCOUNT);</span>
   }
-  
+
+  /**
+   * New account.
+   *
+   * @return the resolution
+   */
   public Resolution newAccount() {
-<span class="nc" id="L120">    accountService.insertAccount(account);</span>
-<span class="nc" id="L121">    account = accountService.getAccount(account.getUsername());</span>
-<span class="nc" id="L122">    myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());</span>
-<span class="nc" id="L123">    authenticated = true;</span>
-<span class="nc" id="L124">    return new RedirectResolution(CatalogActionBean.class);</span>
+<span class="nc" id="L116">    accountService.insertAccount(account);</span>
+<span class="nc" id="L117">    account = accountService.getAccount(account.getUsername());</span>
+<span class="nc" id="L118">    myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());</span>
+<span class="nc" id="L119">    authenticated = true;</span>
+<span class="nc" id="L120">    return new RedirectResolution(CatalogActionBean.class);</span>
   }
 
+  /**
+   * Edits the account form.
+   *
+   * @return the resolution
+   */
   public Resolution editAccountForm() {
-<span class="nc" id="L128">    return new ForwardResolution(EDIT_ACCOUNT);</span>
+<span class="nc" id="L129">    return new ForwardResolution(EDIT_ACCOUNT);</span>
   }
 
+  /**
+   * Edits the account.
+   *
+   * @return the resolution
+   */
   public Resolution editAccount() {
-<span class="nc" id="L132">    accountService.updateAccount(account);</span>
-<span class="nc" id="L133">    account = accountService.getAccount(account.getUsername());</span>
-<span class="nc" id="L134">    myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());</span>
-<span class="nc" id="L135">    return new RedirectResolution(CatalogActionBean.class);</span>
+<span class="nc" id="L138">    accountService.updateAccount(account);</span>
+<span class="nc" id="L139">    account = accountService.getAccount(account.getUsername());</span>
+<span class="nc" id="L140">    myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());</span>
+<span class="nc" id="L141">    return new RedirectResolution(CatalogActionBean.class);</span>
   }
-  
+
+  /**
+   * Signon form.
+   *
+   * @return the resolution
+   */
   @DefaultHandler
   public Resolution signonForm() {
-<span class="nc" id="L140">    return new ForwardResolution(SIGNON);</span>
+<span class="nc" id="L151">    return new ForwardResolution(SIGNON);</span>
   }
 
+  /**
+   * Signon.
+   *
+   * @return the resolution
+   */
   public Resolution signon() {
 
-<span class="nc" id="L145">    account = accountService.getAccount(getUsername(), getPassword());</span>
-   
-<span class="nc bnc" id="L147" title="All 2 branches missed.">    if (account == null) {</span>
-<span class="nc" id="L148">      String value = &quot;Invalid username or password.  Signon failed.&quot;;</span>
-<span class="nc" id="L149">      setMessage(value);</span>
-<span class="nc" id="L150">      clear();</span>
-<span class="nc" id="L151">      return new ForwardResolution(SIGNON);</span>
+<span class="nc" id="L161">    account = accountService.getAccount(getUsername(), getPassword());</span>
+
+<span class="nc bnc" id="L163" title="All 2 branches missed.">    if (account == null) {</span>
+<span class="nc" id="L164">      String value = &quot;Invalid username or password.  Signon failed.&quot;;</span>
+<span class="nc" id="L165">      setMessage(value);</span>
+<span class="nc" id="L166">      clear();</span>
+<span class="nc" id="L167">      return new ForwardResolution(SIGNON);</span>
     } else {
-<span class="nc" id="L153">      account.setPassword(null);</span>
-<span class="nc" id="L154">      myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());</span>
-<span class="nc" id="L155">      authenticated = true;</span>
-<span class="nc" id="L156">      HttpSession s = context.getRequest().getSession();</span>
+<span class="nc" id="L169">      account.setPassword(null);</span>
+<span class="nc" id="L170">      myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());</span>
+<span class="nc" id="L171">      authenticated = true;</span>
+<span class="nc" id="L172">      HttpSession s = context.getRequest().getSession();</span>
       // this bean is already registered as /actions/Account.action
-<span class="nc" id="L158">      s.setAttribute(&quot;accountBean&quot;, this);</span>
-<span class="nc" id="L159">      return new RedirectResolution(CatalogActionBean.class);</span>
+<span class="nc" id="L174">      s.setAttribute(&quot;accountBean&quot;, this);</span>
+<span class="nc" id="L175">      return new RedirectResolution(CatalogActionBean.class);</span>
     }
   }
 
+  /**
+   * Signoff.
+   *
+   * @return the resolution
+   */
   public Resolution signoff() {
-<span class="nc" id="L164">    context.getRequest().getSession().invalidate();</span>
-<span class="nc" id="L165">    clear();</span>
-<span class="nc" id="L166">    return new RedirectResolution(CatalogActionBean.class);</span>
+<span class="nc" id="L185">    context.getRequest().getSession().invalidate();</span>
+<span class="nc" id="L186">    clear();</span>
+<span class="nc" id="L187">    return new RedirectResolution(CatalogActionBean.class);</span>
   }
 
+  /**
+   * Checks if is authenticated.
+   *
+   * @return true, if is authenticated
+   */
   public boolean isAuthenticated() {
-<span class="nc bnc" id="L170" title="All 6 branches missed.">    return authenticated &amp;&amp; account != null &amp;&amp; account.getUsername() != null;</span>
+<span class="pc bpc" id="L196" title="5 of 6 branches missed.">    return authenticated &amp;&amp; account != null &amp;&amp; account.getUsername() != null;</span>
   }
 
+  /**
+   * Clear.
+   */
   public void clear() {
-<span class="nc" id="L174">    account = new Account();</span>
-<span class="nc" id="L175">    myList = null;</span>
-<span class="nc" id="L176">    authenticated = false;</span>
-<span class="nc" id="L177">  }</span>
+<span class="nc" id="L203">    account = new Account();</span>
+<span class="nc" id="L204">    myList = null;</span>
+<span class="nc" id="L205">    authenticated = false;</span>
+<span class="nc" id="L206">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

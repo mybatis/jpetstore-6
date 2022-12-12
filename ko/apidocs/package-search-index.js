@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.mybatis.jpetstore.domain"},{"l":"org.mybatis.jpetstore.mapper"},{"l":"org.mybatis.jpetstore.service"},{"l":"org.mybatis.jpetstore.web.actions"}];updateSearchResults();
