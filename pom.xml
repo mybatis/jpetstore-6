@@ -28,7 +28,7 @@
 
   <groupId>org.mybatis</groupId>
   <artifactId>jpetstore</artifactId>
-  <version>6.1.0</version>
+  <version>6.1.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>JPetStore Demo 6</name>
@@ -38,7 +38,7 @@
     <url>http://github.com/mybatis/jpetstore-6</url>
     <connection>scm:git:ssh://github.com/mybatis/jpetstore-6.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</developerConnection>
-    <tag>jpetstore-6.1.0</tag>
+    <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <system>GitHub Issue Management</system>
@@ -316,7 +316,7 @@
     <module.name>org.mybatis.jpetstore</module.name>
 
     <!-- Reproducible Builds -->
-    <project.build.outputTimestamp>1670876965</project.build.outputTimestamp>
+    <project.build.outputTimestamp>1670877034</project.build.outputTimestamp>
   </properties>
 
   <profiles>
