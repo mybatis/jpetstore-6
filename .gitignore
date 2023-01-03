@@ -6,3 +6,5 @@
 *.iml
 /build
 .mvn/wrapper/maven-wrapper.jar
+*.releaseBackup
+*.properties
