@@ -68,7 +68,7 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
 ## Run on Docker
 ```
 docker build . -t jpetstore
-docker run -p 8080:8080 
+docker run -p 8080:8080 jpetstore
 ```
 or with Docker Compose:
 ```
