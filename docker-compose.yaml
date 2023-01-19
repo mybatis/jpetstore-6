@@ -1,0 +1,7 @@
+version: "3.9"
+
+services:
+  jpetstore:
+    image: lanznx/jpetstore
+    ports:
+      - 8080:8080
