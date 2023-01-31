@@ -65,6 +65,15 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
 - Run application in browser http://localhost:8080/jpetstore/ 
 - Press Ctrl-C to stop the server.
 
+## Run on Docker
+```
+docker build . -t jpetstore
+docker run -p 8080:8080 jpetstore
+```
+or with Docker Compose:
+```
+docker compose up -d
+```
 
 ## Try integration tests
 

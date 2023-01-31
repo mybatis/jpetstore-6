@@ -8,3 +8,4 @@
 .mvn/wrapper/maven-wrapper.jar
 *.releaseBackup
 *.properties
+.env
