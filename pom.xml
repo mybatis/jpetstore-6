@@ -319,7 +319,7 @@
     <tomcat.version />
 
     <surefire.version>3.0.0-M7</surefire.version>
-    <cargo-maven3-plugin.version>1.10.4</cargo-maven3-plugin.version>
+    <cargo-maven3-plugin.version>1.10.5</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
     <spring.version>5.3.25</spring.version>
