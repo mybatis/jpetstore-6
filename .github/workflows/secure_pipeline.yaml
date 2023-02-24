@@ -131,6 +131,7 @@ jobs:
           sarif_file: snyk.sarif
 
   semgrep:
+    permissions: write-all
     name: SAST Scan using Semgrep
     runs-on: ubuntu-latest
 
