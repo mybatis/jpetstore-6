@@ -73,7 +73,7 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.5.11</version>
+      <version>3.5.13</version>
     </dependency>
     <dependency>
       <groupId>org.mybatis</groupId>
@@ -177,7 +177,7 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>6.11.2</version>
+      <version>6.12.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -218,7 +218,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.0.0-M8</version>
+          <version>3.0.0-M9</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -319,12 +319,12 @@
     <tomcat.version />
 
     <surefire.version>3.0.0-M7</surefire.version>
-    <cargo-maven3-plugin.version>1.10.4</cargo-maven3-plugin.version>
+    <cargo-maven3-plugin.version>1.10.6</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
     <spring.version>5.3.25</spring.version>
     <assertj.version>3.24.2</assertj.version>
-    <mockito.version>5.1.1</mockito.version>
+    <mockito.version>5.2.0</mockito.version>
     <hsqldb.version>2.7.1</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
 
