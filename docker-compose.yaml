@@ -18,33 +18,9 @@ version: "3.9"
 
 services:
   jpetstore:
-    container_name: jpetstore-test
+    container_name: jpetstore
     build:
       context: .
-    depends_on:
-      mysql: 
-        condition: service_healthy
     ports:
-      - 9050:8080
+      - 8080:8080
     restart: always
-
-  mysql:
-    image: mysql:8
-    volumes:
-      - db_data:/var/lib/mysql
-      - ./src/main/resources/database/jpetstore-hsqldb-data.sql:/docker-entrypoint-initdb.d/init.sql
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_USER: ${MYSQL_USERNAME}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: JPetStore
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 30s
-      timeout: 5s
-      retries: 5
-      start_period: 3s
-    restart: always
-
-volumes:
-  db_data:

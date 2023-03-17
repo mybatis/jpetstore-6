@@ -28,16 +28,10 @@
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
      http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
-    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-        <property name="url" value="${MYSQL_URL}" />
-        <property name="username" value="${MYSQL_USERNAME}" />
-        <property name="password" value="${MYSQL_PASSWORD}" />
-    </bean>
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="file:../../../../.env" />
-    </bean>
-
+    <jdbc:embedded-database id="dataSource">
+        <jdbc:script location="classpath:database/jpetstore-hsqldb-schema.sql"/>
+        <jdbc:script location="classpath:database/jpetstore-hsqldb-dataload.sql"/>
+    </jdbc:embedded-database>
 
     <!-- transaction manager, use DataSourceTransactionManager" for JDBC local tx -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
