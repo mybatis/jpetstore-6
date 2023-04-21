@@ -312,7 +312,7 @@
 
     <spring.version>5.3.27</spring.version>
     <assertj.version>3.24.2</assertj.version>
-    <mockito.version>5.3.0</mockito.version>
+    <mockito.version>5.3.1</mockito.version>
     <hsqldb.version>2.7.1</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
 
