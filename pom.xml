@@ -310,7 +310,7 @@
     <cargo-maven3-plugin.version>1.10.7</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <spring.version>5.3.27</spring.version>
+    <spring.version>5.3.28</spring.version>
     <assertj.version>3.24.2</assertj.version>
     <mockito.version>5.3.1</mockito.version>
     <hsqldb.version>2.7.2</hsqldb.version>
