@@ -1,3 +1,5 @@
+New comment
+
 MyBatis JPetStore
 =================
 
