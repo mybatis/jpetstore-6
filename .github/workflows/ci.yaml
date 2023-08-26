@@ -24,7 +24,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        java: [11, 17, 19, 20-ea]
+        java: [11, 17, 20, 21-ea]
         distribution: ['zulu']
       fail-fast: false
       max-parallel: 4
@@ -44,4 +44,4 @@ jobs:
             key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
             restore-keys: ${{ runner.os }}-m2
       - name: Test with Maven
-        run: ./mvnw test -B -D"license.skip=true"
+        run: ./mvnw test -B -V --no-transfer-progress -D"license.skip=true"
