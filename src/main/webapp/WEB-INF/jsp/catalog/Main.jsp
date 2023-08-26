@@ -1,6 +1,6 @@
 <%--
 
-       Copyright 2010-2022 the original author or authors.
+       Copyright 2010-2023 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -80,7 +80,7 @@ Exotic Varieties</div>
 		href="Catalog.action?viewCategory=&categoryId=CATS" shape="RECT" />
 	<area alt="Birds" coords="280,180,350,250"
 		href="Catalog.action?viewCategory=&categoryId=BIRDS" shape="RECT" />
-  </map> 
+  </map>
   <img height="355" src="../images/splash.gif" align="middle"
 	usemap="#estoremap" width="350" /></div>
 </div>
