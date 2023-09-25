@@ -24,7 +24,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        java: [11]
+        java: [17]
         distribution: ['zulu']
         token: ["tomcat85", "tomcat9", "tomee71", "tomee80", "wildfly13", "wildfly26", "liberty-ee7", "liberty-ee8", "jetty", "glassfish4", "glassfish5", "resin"]
       fail-fast: false
@@ -32,7 +32,7 @@ jobs:
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
 
     steps:
-      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      - uses: actions/checkout@v4
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
