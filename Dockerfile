@@ -14,7 +14,7 @@
 #    limitations under the License.
 #
 
-FROM openjdk:17.0.2
+FROM openjdk:21
 COPY . /usr/src/myapp
 WORKDIR /usr/src/myapp
 RUN ./mvnw clean package
