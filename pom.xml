@@ -345,7 +345,7 @@
       <id>tomee80</id>
       <properties>
         <tomee.major-version>8</tomee.major-version>
-        <tomee.version>8.0.13</tomee.version>
+        <tomee.version>8.0.16</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
