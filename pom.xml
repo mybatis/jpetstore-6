@@ -364,7 +364,7 @@
       <id>wildfly26</id>
       <properties>
         <wildfly.major-version>26</wildfly.major-version>
-        <wildfly.version>26.1.2.Final</wildfly.version>
+        <wildfly.version>26.1.3.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
