@@ -336,6 +336,7 @@
       </properties>
     </profile>
     <profile>
+      <!-- TODO: Remove tomcat 8.5 after 3/31/2024 as obsolete -->
       <id>tomcat85</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
@@ -352,6 +353,7 @@
       </properties>
     </profile>
     <profile>
+      <!-- TODO: Remove tomee71 after 3/31/2024 as obsolete -->
       <id>tomee71</id>
       <properties>
         <tomee.major-version>7</tomee.major-version>
@@ -370,6 +372,7 @@
       </properties>
     </profile>
     <profile>
+      <!-- TODO: Remove wildfly13 after 3/31/2024 as obsolete -->
       <id>wildfly13</id>
       <properties>
         <wildfly.major-version>13</wildfly.major-version>
@@ -413,6 +416,7 @@
       </properties>
     </profile>
     <profile>
+      <!-- TODO: Remove wildfly13 after 3/31/2024 as obsolete -->
       <id>glassfish4</id>
       <properties>
         <glassfish.major-version>4</glassfish.major-version>
