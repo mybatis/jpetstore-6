@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
        Copyright 2010-2024 the original author or authors.
@@ -36,10 +36,10 @@
   <url>https://www.mybatis.org/jpetstore-6/</url>
 
   <scm>
-    <url>https://github.com/mybatis/jpetstore-6/</url>
     <connection>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</developerConnection>
     <tag>HEAD</tag>
+    <url>https://github.com/mybatis/jpetstore-6/</url>
   </scm>
   <issueManagement>
     <system>GitHub Issue Management</system>
@@ -57,8 +57,28 @@
     </site>
   </distributionManagement>
 
+  <properties>
+    <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
+    <cargo.maven.containerUrl>https://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
+    <tomcat.major-version />
+    <tomcat.version />
+
+    <cargo-maven3-plugin.version>1.10.12</cargo-maven3-plugin.version>
+    <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
+
+    <slf4j.version>2.0.12</slf4j.version>
+    <spring.version>5.3.31</spring.version>
+    <assertj.version>3.25.3</assertj.version>
+    <mockito.version>5.10.0</mockito.version>
+    <hsqldb.version>2.7.2</hsqldb.version>
+    <module.name>org.mybatis.jpetstore</module.name>
+
+    <!-- Reproducible Builds -->
+    <project.build.outputTimestamp>1670877034</project.build.outputTimestamp>
+  </properties>
+
   <dependencies>
-    
+
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
@@ -189,6 +209,28 @@
     </dependency>
   </dependencies>
 
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>sonatype-oss-snapshots</id>
+      <name>Sonatype OSS Snapshots Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>sonatype-oss-snapshots</id>
+      <name>Sonatype OSS Snapshots Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </pluginRepository>
+  </pluginRepositories>
+
   <build>
     <finalName>jpetstore</finalName>
     <pluginManagement>
@@ -252,17 +294,17 @@
         <executions>
           <execution>
             <id>start-container</id>
-            <phase>pre-integration-test</phase>
             <goals>
               <goal>start</goal>
             </goals>
+            <phase>pre-integration-test</phase>
           </execution>
           <execution>
             <id>stop-container</id>
-            <phase>post-integration-test</phase>
             <goals>
               <goal>stop</goal>
             </goals>
+            <phase>post-integration-test</phase>
           </execution>
         </executions>
       </plugin>
@@ -280,48 +322,6 @@
       </plugin>
     </plugins>
   </build>
-
-  <repositories>
-    <repository>
-      <id>sonatype-oss-snapshots</id>
-      <name>Sonatype OSS Snapshots Repository</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>sonatype-oss-snapshots</id>
-      <name>Sonatype OSS Snapshots Repository</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
-
-  <properties>
-    <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
-    <cargo.maven.containerUrl>https://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
-    <tomcat.major-version />
-    <tomcat.version />
-
-    <cargo-maven3-plugin.version>1.10.12</cargo-maven3-plugin.version>
-    <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
-
-    <slf4j.version>2.0.12</slf4j.version>
-    <spring.version>5.3.31</spring.version>
-    <assertj.version>3.25.3</assertj.version>
-    <mockito.version>5.10.0</mockito.version>
-    <hsqldb.version>2.7.2</hsqldb.version>
-    <module.name>org.mybatis.jpetstore</module.name>
-
-    <!-- Reproducible Builds -->
-    <project.build.outputTimestamp>1670877034</project.build.outputTimestamp>
-  </properties>
 
   <profiles>
     <!-- Profiles for Application Server -->
