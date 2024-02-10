@@ -33,10 +33,10 @@
   <packaging>war</packaging>
 
   <name>JPetStore Demo 6</name>
-  <url>http://www.mybatis.org</url>
+  <url>https://www.mybatis.org/jpetstore-6/</url>
 
   <scm>
-    <url>http://github.com/mybatis/jpetstore-6</url>
+    <url>https://github.com/mybatis/jpetstore-6/</url>
     <connection>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</developerConnection>
     <tag>HEAD</tag>
