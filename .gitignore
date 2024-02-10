@@ -9,3 +9,4 @@
 *.releaseBackup
 *.properties
 .env
+.github/keys/
