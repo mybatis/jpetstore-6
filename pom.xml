@@ -191,8 +191,8 @@
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>htmlunit-driver</artifactId>
-      <version>4.13.0</version>
+      <artifactId>htmlunit3-driver</artifactId>
+      <version>4.17.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
