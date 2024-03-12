@@ -24,22 +24,22 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        java: [8,11]
+        java: [17]
         distribution: ['zulu']
-        token: ["tomcat70", "tomcat85", "tomcat85", "tomee71", "tomee80", "wildfly13", "wildfly20", "liberty-ee7", "liberty-ee8", "jetty", "glassfish4", "glassfish5", "resin"]
+        token: ["tomcat85", "tomcat9", "tomee71", "tomee80", "wildfly13", "wildfly26", "liberty-ee7", "liberty-ee8", "jetty", "glassfish4", "glassfish5", "resin"]
       fail-fast: false
       max-parallel: 4
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up JDK
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java }}
           distribution: ${{ matrix.distribution }}
       - name: Cache local Maven m2
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
             path: ~/.m2
             key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}

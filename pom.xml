@@ -1,13 +1,12 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
-
-       Copyright 2010-2022 the original author or authors.
+       Copyright 2010-2024 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
        You may obtain a copy of the License at
 
-          http://www.apache.org/licenses/LICENSE-2.0
+          https://www.apache.org/licenses/LICENSE-2.0
 
        Unless required by applicable law or agreed to in writing, software
        distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,56 +15,78 @@
        limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>34</version>
+    <version>42</version>
     <relativePath />
   </parent>
 
   <groupId>org.mybatis</groupId>
   <artifactId>jpetstore</artifactId>
-  <version>6.0.3-SNAPSHOT</version>
+  <version>6.1.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>JPetStore Demo 6</name>
-  <url>http://www.mybatis.org</url>
+  <url>https://www.mybatis.org/jpetstore-6/</url>
 
   <scm>
-    <url>http://github.com/mybatis/jpetstore-6</url>
-    <connection>scm:git:ssh://github.com/mybatis/jpetstore-6.git</connection>
+    <connection>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</developerConnection>
     <tag>HEAD</tag>
+    <url>https://github.com/mybatis/jpetstore-6/</url>
   </scm>
   <issueManagement>
     <system>GitHub Issue Management</system>
-    <url>https://github.com/mybatis/jpetstore/issues</url>
+    <url>https://github.com/mybatis/jpetstore-6/issues</url>
   </issueManagement>
   <ciManagement>
-    <system>Travis CI</system>
-    <url>https://travis-ci.org/mybatis/jpetstore-6</url>
+    <system>GitHub Actions</system>
+    <url>https://github.com/mybatis/jpetstore-6/actions</url>
   </ciManagement>
   <distributionManagement>
     <site>
-      <id>gh-pages</id>
+      <id>gh-pages-scm</id>
       <name>Mybatis GitHub Pages</name>
-      <url>git:ssh://git@github.com/mybatis/jpetstore-6.git?gh-pages#</url>
+      <url>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</url>
     </site>
   </distributionManagement>
 
+  <properties>
+    <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
+    <cargo.maven.containerUrl>https://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
+    <tomcat.major-version />
+    <tomcat.version />
+
+    <cargo-maven3-plugin.version>1.10.12</cargo-maven3-plugin.version>
+    <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
+
+    <slf4j.version>2.0.12</slf4j.version>
+    <spring.version>5.3.32</spring.version>
+    <assertj.version>3.25.3</assertj.version>
+    <mockito.version>5.11.0</mockito.version>
+    <hsqldb.version>2.7.2</hsqldb.version>
+    <module.name>org.mybatis.jpetstore</module.name>
+
+    <!-- Reproducible Builds -->
+    <project.build.outputTimestamp>1670877034</project.build.outputTimestamp>
+  </properties>
+
   <dependencies>
+
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.5.10</version>
+      <version>3.5.15</version>
     </dependency>
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis-spring</artifactId>
-      <version>2.0.7</version>
+      <version>2.1.2</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -121,30 +142,26 @@
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <version>1.7.36</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.36</version>
+      <version>${slf4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>1.7.36</version>
+      <version>${slf4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
       <version>${hsqldb.version}</version>
+      <classifier>jdk8</classifier>
     </dependency>
 
     <!-- Test dependencies -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.8.2</version>
+      <version>5.10.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -168,13 +185,13 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>6.6.6</version>
+      <version>7.2.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>htmlunit-driver</artifactId>
-      <version>3.62.0</version>
+      <artifactId>htmlunit3-driver</artifactId>
+      <version>4.18.1</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -191,6 +208,28 @@
     </dependency>
   </dependencies>
 
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>sonatype-oss-snapshots</id>
+      <name>Sonatype OSS Snapshots Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>sonatype-oss-snapshots</id>
+      <name>Sonatype OSS Snapshots Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </pluginRepository>
+  </pluginRepositories>
+
   <build>
     <finalName>jpetstore</finalName>
     <pluginManagement>
@@ -198,7 +237,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.3.2</version>
+          <version>3.4.0</version>
           <configuration>
             <archive>
               <manifestEntries>
@@ -208,14 +247,15 @@
           </configuration>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.0.0-M7</version>
+          <version>3.2.5</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
           <configuration>
-            <locales>en,es,ja,ko</locales>
+            <locales>default,es,ja,ko</locales>
           </configuration>
         </plugin>
         <plugin>
@@ -253,21 +293,22 @@
         <executions>
           <execution>
             <id>start-container</id>
-            <phase>pre-integration-test</phase>
             <goals>
               <goal>start</goal>
             </goals>
+            <phase>pre-integration-test</phase>
           </execution>
           <execution>
             <id>stop-container</id>
-            <phase>post-integration-test</phase>
             <goals>
               <goal>stop</goal>
             </goals>
+            <phase>post-integration-test</phase>
           </execution>
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
         <executions>
           <execution>
@@ -288,47 +329,6 @@
     </plugins>
   </build>
 
-  <repositories>
-    <repository>
-      <id>sonatype-oss-snapshots</id>
-      <name>Sonatype OSS Snapshots Repository</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>sonatype-oss-snapshots</id>
-      <name>Sonatype OSS Snapshots Repository</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
-
-  <properties>
-    <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
-    <cargo.maven.containerUrl>https://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
-    <tomcat.major-version />
-    <tomcat.version />
-
-    <surefire.version>3.0.0-M5</surefire.version>
-    <cargo-maven3-plugin.version>1.9.13</cargo-maven3-plugin.version>
-    <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
-    <enforcer.skip>true</enforcer.skip>
-
-    <spring.version>5.3.21</spring.version>
-    <assertj.version>3.23.1</assertj.version>
-    <mockito.version>4.6.1</mockito.version>
-    <hsqldb.version>2.5.2</hsqldb.version>
-    <module.name>org.mybatis.jpetstore</module.name>
-    <project.build.outputTimestamp>1645112687</project.build.outputTimestamp>
-  </properties>
-
   <profiles>
     <!-- Profiles for Application Server -->
     <profile>
@@ -338,33 +338,28 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.46</tomcat.version>
+        <tomcat.version>9.0.85</tomcat.version>
       </properties>
     </profile>
     <profile>
+      <!-- TODO: Remove tomcat 8.5 after 3/31/2024 as obsolete -->
       <id>tomcat85</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.66</tomcat.version>
-      </properties>
-    </profile>
-    <profile>
-      <id>tomcat70</id>
-      <properties>
-        <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.109</tomcat.version>
+        <tomcat.version>8.5.98</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomee80</id>
       <properties>
         <tomee.major-version>8</tomee.major-version>
-        <tomee.version>8.0.7</tomee.version>
+        <tomee.version>8.0.16</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
+      <!-- TODO: Remove tomee71 after 3/31/2024 as obsolete -->
       <id>tomee71</id>
       <properties>
         <tomee.major-version>7</tomee.major-version>
@@ -374,15 +369,16 @@
       </properties>
     </profile>
     <profile>
-      <id>wildfly22</id>
+      <id>wildfly26</id>
       <properties>
-        <wildfly.major-version>22</wildfly.major-version>
-        <wildfly.version>22.0.0.Final</wildfly.version>
+        <wildfly.major-version>26</wildfly.major-version>
+        <wildfly.version>26.1.3.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
+      <!-- TODO: Remove wildfly13 after 3/31/2024 as obsolete -->
       <id>wildfly13</id>
       <properties>
         <wildfly.major-version>13</wildfly.major-version>
@@ -394,7 +390,7 @@
     <profile>
       <id>liberty-ee8</id>
       <properties>
-        <liberty.version>21.0.0.5</liberty.version>
+        <liberty.version>24.0.0.1</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -402,7 +398,7 @@
     <profile>
       <id>liberty-ee7</id>
       <properties>
-        <liberty.version>21.0.0.5</liberty.version>
+        <liberty.version>24.0.0.1</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee7/${liberty.version}/wlp-javaee7-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -411,7 +407,7 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>9</jetty.major-version>
-        <jetty.version>9.4.40.v20210413</jetty.version>
+        <jetty.version>9.4.53.v20231009</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
@@ -426,6 +422,7 @@
       </properties>
     </profile>
     <profile>
+      <!-- TODO: Remove wildfly13 after 3/31/2024 as obsolete -->
       <id>glassfish4</id>
       <properties>
         <glassfish.major-version>4</glassfish.major-version>
@@ -438,7 +435,7 @@
       <id>resin</id>
       <properties>
         <resin.major-version>4</resin.major-version>
-        <resin.version>4.0.65</resin.version>
+        <resin.version>4.0.66</resin.version>
         <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
       </properties>
