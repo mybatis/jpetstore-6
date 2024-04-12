@@ -66,7 +66,7 @@
     <cargo-maven3-plugin.version>1.10.12</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <slf4j.version>2.0.12</slf4j.version>
+    <slf4j.version>2.0.13</slf4j.version>
     <spring.version>5.3.34</spring.version>
     <assertj.version>3.25.3</assertj.version>
     <mockito.version>5.11.0</mockito.version>
