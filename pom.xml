@@ -63,7 +63,7 @@
     <tomcat.major-version />
     <tomcat.version />
 
-    <cargo-maven3-plugin.version>1.10.12</cargo-maven3-plugin.version>
+    <cargo-maven3-plugin.version>1.10.13</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
     <slf4j.version>2.0.13</slf4j.version>
