@@ -276,7 +276,12 @@
               <zipUrlInstaller>
                 <url>${cargo.maven.containerUrl}</url>
               </zipUrlInstaller>
-            </container>
+            </container><!--
+            <configuration>
+              <properties>
+                <cargo.servlet.port>8081</cargo.servlet.port>
+              </properties>
+            </configuration>-->
             <daemon>
               <properties>
                 <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
