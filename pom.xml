@@ -287,7 +287,7 @@
             </deployables>
             <configuration>
               <properties>
-                <cargo.jvmargs>-javaagent:${project.basedir}/opentelemetry-javaagent.jar -Dotel.exporter.otlp.protocol=grpc -Dotel.exporter.otlp.endpoint=http://localhost:4317</cargo.jvmargs>
+                <cargo.jvmargs>-javaagent:${project.basedir}/otel-bin/opentelemetry-javaagent.jar -Dotel.exporter.otlp.protocol=grpc -Dotel.exporter.otlp.endpoint=http://localhost:4317</cargo.jvmargs>
                 <cargo.servlet.port>8081</cargo.servlet.port>
               </properties>
             </configuration>
