@@ -276,12 +276,21 @@
               <zipUrlInstaller>
                 <url>${cargo.maven.containerUrl}</url>
               </zipUrlInstaller>
-            </container><!--
+            </container>
+            <deployables>
+              <deployable>
+                <groupId>org.mybatis</groupId>
+                <artifactId>jpetstore-6</artifactId>
+                <type>war</type>
+                <location>${project.build.directory}/${project.build.finalName}.war</location>
+              </deployable>
+            </deployables>
             <configuration>
               <properties>
+                <cargo.jvmargs>-javaagent:${project.basedir}/opentelemetry-javaagent.jar -Dotel.exporter.otlp.protocol=grpc -Dotel.exporter.otlp.endpoint=http://localhost:4317</cargo.jvmargs>
                 <cargo.servlet.port>8081</cargo.servlet.port>
               </properties>
-            </configuration>-->
+            </configuration>
             <daemon>
               <properties>
                 <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
