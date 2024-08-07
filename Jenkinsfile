@@ -14,11 +14,11 @@ pipeline{
             }
         }
        
-        stage('File System Scan') {
-            steps {
+       // stage('File System Scan') {
+           // steps {
               //  sh "trivy fs --format table -o trivy-fs-report.html ."
-            }
-        }
+          //  }
+      //  }
 
         stage ('maven compile') {
             steps {
