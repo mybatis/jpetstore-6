@@ -11,4 +11,4 @@ COPY jpetstore.war $CATALINA_HOME/webapps/jpetstore.war
 EXPOSE 8080
 
 # Start Tomcat
-CMD ["catalina.sh", "run"]
+ENTRYPOINT ["catalina.sh", "run"]
