@@ -87,11 +87,14 @@ pipeline{
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-                sh "sed -i 's|image: .*|image: ${DOCKER_IMAGE}|' manifest/deployment.yml"
-                sh 'git add manifest/deployment.yml'
-                sh "git commit -m 'Update deployment image to ${DOCKER_IMAGE}'"
-                sh "git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:test"
-               
+               sh '''
+                    git config user.email "bhanu.xyz@gmail.com"
+                    git config user.name "hello"
+                    sed -i "s|image: .*|image: ${DOCKER_IMAGE}|" manifest/deployment.yml
+                    git add manifest/deployment.yml
+                    git commit -m "Update deployment image to version ${BUILD_IMAGE}"
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                '''
             }
         }
     }
