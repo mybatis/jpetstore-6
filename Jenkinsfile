@@ -18,6 +18,13 @@ pipeline{
                 git 'https://github.com/Aj7Ay/jpetstore-6.git'
             }
         }
+
+        stage('File System Scan') {
+            steps {
+                sh "trivy fs --format table -o trivy-fs-report.html ."
+            }
+        }
+
         stage ('maven compile') {
             steps {
                 sh 'mvn clean compile'
@@ -55,5 +62,23 @@ pipeline{
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
+        
+        stage('Build and Push Docker Image') {
+      environment {
+        DOCKER_IMAGE = "bhanu3333/jpetstore:${BUILD_NUMBER}"
+        REGISTRY_CREDENTIALS = credentials('docker')
+      }
+      steps {
+        script {
+            sh 'docker build -t ${DOCKER_IMAGE} .'
+			sh "trivy image --format table -o trivy-image-report.html ${DOCKER_IMAGE} "
+            def dockerImage = docker.image("${DOCKER_IMAGE}")
+            docker.withRegistry('https://index.docker.io/v1/', "docker") {
+                dockerImage.push()
+            }
+        }
+      }
+    }
+    
    }
 }
