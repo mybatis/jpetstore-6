@@ -83,6 +83,7 @@ pipeline{
         environment {
             GIT_REPO_NAME = "jpetstore-6"
             GIT_USER_NAME = "vuyyuru-bhanu"
+            DOCKER_IMAGE = "bhanu3333/jpetstore:${BUILD_NUMBER}"
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
