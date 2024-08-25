@@ -193,4 +193,9 @@ public class Account implements Serializable {
     this.bannerName = bannerName;
   }
 
+  // empty method
+  public void test() {
+    
+  }
+
 }
