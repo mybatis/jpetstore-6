@@ -1,3 +1,5 @@
+***This forked repository is for assignment purposes
+
 MyBatis JPetStore
 =================
 
