@@ -186,7 +186,7 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>7.5.0</version>
+      <version>7.5.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
