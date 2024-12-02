@@ -67,7 +67,7 @@
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
     <slf4j.version>2.0.16</slf4j.version>
-    <spring.version>5.3.39</spring.version>
+    <spring.version>6.1.14</spring.version>
     <assertj.version>3.26.3</assertj.version>
     <mockito.version>5.14.2</mockito.version>
     <hsqldb.version>2.7.4</hsqldb.version>
