@@ -26,7 +26,7 @@ jobs:
         os: [ubuntu-latest, macOS-latest, windows-latest]
         java: [17]
         distribution: ['zulu']
-        token: ["tomcat85", "tomcat9", "tomee71", "tomee80", "wildfly13", "wildfly26", "liberty-ee7", "liberty-ee8", "jetty", "glassfish4", "glassfish5", "resin"]
+        token: ["tomcat9", "tomee80", "wildfly26", "liberty-ee8", "jetty", "glassfish5", "resin"]
       fail-fast: false
       max-parallel: 4
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}

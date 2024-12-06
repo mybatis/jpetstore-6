@@ -326,24 +326,16 @@
   <profiles>
     <!-- Profiles for Application Server -->
     <profile>
-      <id>tomcat90</id>
+      <id>tomcat9</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.85</tomcat.version>
+        <tomcat.version>9.0.97</tomcat.version>
       </properties>
     </profile>
-    <profile>
-      <!-- TODO: Remove tomcat 8.5 after 3/31/2024 as obsolete -->
-      <id>tomcat85</id>
-      <properties>
-        <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.98</tomcat.version>
-      </properties>
-    </profile>
-    <profile>
+    <profile> <!-- TODO: Remove after we switch to jakarta as end of life -->
       <id>tomee80</id>
       <properties>
         <tomee.major-version>8</tomee.major-version>
@@ -353,17 +345,7 @@
       </properties>
     </profile>
     <profile>
-      <!-- TODO: Remove tomee71 after 3/31/2024 as obsolete -->
-      <id>tomee71</id>
-      <properties>
-        <tomee.major-version>7</tomee.major-version>
-        <tomee.version>7.1.4</tomee.version>
-        <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
-      </properties>
-    </profile>
-    <profile>
-      <id>wildfly26</id>
+      <id>wildfly26</id> <!-- TODO: Remove after we switch to jakarta as end of life -->
       <properties>
         <wildfly.major-version>26</wildfly.major-version>
         <wildfly.version>26.1.3.Final</wildfly.version>
@@ -372,36 +354,18 @@
       </properties>
     </profile>
     <profile>
-      <!-- TODO: Remove wildfly13 after 3/31/2024 as obsolete -->
-      <id>wildfly13</id>
-      <properties>
-        <wildfly.major-version>13</wildfly.major-version>
-        <wildfly.version>13.0.0.Final</wildfly.version>
-        <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
-      </properties>
-    </profile>
-    <profile>
       <id>liberty-ee8</id>
       <properties>
-        <liberty.version>24.0.0.1</liberty.version>
+        <liberty.version>24.0.0.9</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
-    <profile>
-      <id>liberty-ee7</id>
-      <properties>
-        <liberty.version>24.0.0.1</liberty.version>
-        <cargo.maven.containerId>liberty</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee7/${liberty.version}/wlp-javaee7-${liberty.version}.zip</cargo.maven.containerUrl>
-      </properties>
-    </profile>
-    <profile>
+    <profile> <!-- TODO: Replace with jetty 12 -->
       <id>jetty</id>
       <properties>
         <jetty.major-version>9</jetty.major-version>
-        <jetty.version>9.4.53.v20231009</jetty.version>
+        <jetty.version>9.4.56.v20240826</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
@@ -416,20 +380,10 @@
       </properties>
     </profile>
     <profile>
-      <!-- TODO: Remove wildfly13 after 3/31/2024 as obsolete -->
-      <id>glassfish4</id>
-      <properties>
-        <glassfish.major-version>4</glassfish.major-version>
-        <glassfish.version>4.1.2</glassfish.version>
-        <cargo.maven.containerId>glassfish${glassfish.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://download.java.net/glassfish/${glassfish.version}/release/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
-      </properties>
-    </profile>
-    <profile>
       <id>resin</id>
       <properties>
         <resin.major-version>4</resin.major-version>
-        <resin.version>4.0.66</resin.version>
+        <resin.version>4.0.67</resin.version>
         <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
       </properties>
