@@ -82,3 +82,10 @@ Perform integration tests for screen transition.
 ```
 $ ./mvnw clean verify -P tomcat90
 ```
+
+
+### Quick Start Guide
+1. Clone this repository
+   ```sh
+   $ git clone https://github.com/mybatis/jpetstore-6.git
+   $ cd jpetstore-6
