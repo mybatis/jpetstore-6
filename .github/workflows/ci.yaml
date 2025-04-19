@@ -17,19 +17,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up JDK ${{ matrix.java }} ${{ matrix.distribution }}
         uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java }}
           distribution: ${{ matrix.distribution }}
           cache: ${{ matrix.cache }}
-
       - name: Test with Maven
         run: ./mvnw test -B -V --no-transfer-progress -D"license.skip=true"
-
-      - name: Upload Test Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-report
-          path: target/surefire-reports
