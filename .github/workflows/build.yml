@@ -1,25 +1,37 @@
-name: Build Automation
+name: Build and Deploy
 
 on:
   push:
-    branches: [ master, main ]
-  pull_request:
-    branches: [ master, main ]
+    branches: [ main, master ]
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Set up JDK
+    - name: Set up Java
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
 
-    - - name: Build and Run Tests
-  run: mvn clean test
+    - name: Build with Maven
+      run: mvn clean package
 
+    - name: Deploy to Server via SSH
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.DEPLOY_HOST }}
+        username: ${{ secrets.DEPLOY_USERNAME }}
+        key: ${{ secrets.DEPLOY_KEY }}
+        source: "target/*.jar"
+        target: "/home/youruser/app"
+- name: Upload to GitHub Release
+  uses: softprops/action-gh-release@v1
+  with:
+    files: target/your-app.jar
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
