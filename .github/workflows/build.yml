@@ -27,11 +27,12 @@ jobs:
         host: ${{ secrets.DEPLOY_HOST }}
         username: ${{ secrets.DEPLOY_USERNAME }}
         key: ${{ secrets.DEPLOY_KEY }}
-        source: "target/*.jar"
-        target: "/home/youruser/app"
-- name: Upload to GitHub Release
-  uses: softprops/action-gh-release@v1
-  with:
-    files: target/your-app.jar
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        source: "target/*.war"
+        target: "/home/youruser/app"    
+
+    - name: Upload to GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: target/your-app.war
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
