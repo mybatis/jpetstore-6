@@ -68,9 +68,6 @@ public class Product implements Serializable {
     return getName();
   }
   // --- Non-functional method added for demonstration ---
-  public void printDebugInfo() {
-    LOGGER.info("Debug Product Info: " + this.toString());
-  }
 
   public boolean isEmpty() {
     return (productId == null || productId.isEmpty()) &&
