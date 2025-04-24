@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The Class Cart.
+ * The Class Cart.hit 
  *
  * @author Eduardo Macarron
  */
@@ -110,10 +110,7 @@ public class Cart implements Serializable {
     CartItem cartItem = itemMap.get(itemId);
     cartItem.setQuantity(quantity);
   }
-  public String getColor()
-  {
-    return color;
-  }
+  
 
   /**
    * Gets the sub total.
@@ -126,7 +123,4 @@ public class Cart implements Serializable {
         .reduce(BigDecimal.ZERO, BigDecimal::add);
   }
 
-
-=======
->>>>>>> LYHBranch
 }
