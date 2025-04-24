@@ -67,5 +67,10 @@ public class Product implements Serializable {
   public String toString() {
     return getName();
   }
+  // --- Non-functional method added for demonstration ---
 
+  public boolean isEmpty() {
+    return (productId == null || productId.isEmpty()) &&
+           (name == null || name.isEmpty());
+  }
 }
