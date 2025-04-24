@@ -192,5 +192,9 @@ public class Account implements Serializable {
   public void setBannerName(String bannerName) {
     this.bannerName = bannerName;
   }
+  public String getFullName() {
+  return (firstName != null ? firstName : "") + " " + (lastName != null ? lastName : "");
+}
+
 
 }
