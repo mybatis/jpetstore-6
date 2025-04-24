@@ -69,8 +69,5 @@ public class Product implements Serializable {
   }
   // --- Non-functional method added for demonstration ---
 
-  public boolean isEmpty() {
-    return (productId == null || productId.isEmpty()) &&
-           (name == null || name.isEmpty());
-  }
+  
 }
