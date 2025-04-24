@@ -24,7 +24,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        java: [17]
+        java: [17，19]
         distribution: ['zulu']
         token: ["tomcat9", "tomee80", "wildfly26", "liberty-ee8", "jetty", "glassfish5", "resin"]
       fail-fast: false
