@@ -1,19 +1,19 @@
-name: Build and Deploy
+name: Java CI
 
 on:
   push:
     branches: [ main, master ]
+  pull_request:
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
+    - name: Checkout code
       uses: actions/checkout@v4
 
     - name: Set up Java
-
       uses: actions/setup-java@v4
       with:
         java-version: '17'
@@ -22,18 +22,5 @@ jobs:
     - name: Build with Maven
       run: mvn clean package
 
-    - name: Deploy to Server via SSH
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.DEPLOY_HOST }}
-        username: ${{ secrets.DEPLOY_USERNAME }}
-        key: ${{ secrets.DEPLOY_KEY }}
-        source: "target/*.war"
-        target: "/home/youruser/app"    
-
-    - name: Upload to GitHub Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: target/your-app.war
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Run Tests
+      run: mvn test
