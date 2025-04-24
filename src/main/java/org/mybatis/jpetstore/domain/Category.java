@@ -29,6 +29,7 @@ public class Category implements Serializable {
   private String categoryId;
   private String name;
   private String description;
+  private String color;
 
   public String getCategoryId() {
     return categoryId;
@@ -40,6 +41,10 @@ public class Category implements Serializable {
 
   public String getName() {
     return name;
+  }
+
+  public String getColor() {
+    return color;
   }
 
   public void setName(String name) {
