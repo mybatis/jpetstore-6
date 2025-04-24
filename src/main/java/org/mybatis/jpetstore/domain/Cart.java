@@ -122,8 +122,4 @@ public class Cart implements Serializable {
         .reduce(BigDecimal.ZERO, BigDecimal::add);
   }
 
-  public String getCartColor() {
-    return cartColor;
-  }
-
 }
