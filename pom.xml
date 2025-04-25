@@ -267,6 +267,11 @@
           </configuration>
         </plugin>
         <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-report-plugin</artifactId>
+      <version>3.2.5</version> 
+    </plugin>
+        <plugin>
           <groupId>org.codehaus.cargo</groupId>
           <artifactId>cargo-maven3-plugin</artifactId>
           <version>${cargo-maven3-plugin.version}</version>
