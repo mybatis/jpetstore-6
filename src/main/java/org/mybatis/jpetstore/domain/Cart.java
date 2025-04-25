@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The Class Cart.
+ * The Class Cart.hit 
  *
  * @author Eduardo Macarron
  */
@@ -35,7 +35,8 @@ public class Cart implements Serializable {
   private static final long serialVersionUID = 8329559983943337176L;
   private final Map<String, CartItem> itemMap = Collections.synchronizedMap(new HashMap<>());
   private final List<CartItem> itemList = new ArrayList<>();
-  public String color;
+
+
 
   public Iterator<CartItem> getCartItems() {
     return itemList.iterator();
@@ -112,9 +113,6 @@ public class Cart implements Serializable {
     cartItem.setQuantity(quantity);
   }
 
-  public String getColor() {
-    return color;
-  }
 
   /**
    * Gets the sub total.
@@ -126,4 +124,5 @@ public class Cart implements Serializable {
         .map(cartItem -> cartItem.getItem().getListPrice().multiply(new BigDecimal(cartItem.getQuantity())))
         .reduce(BigDecimal.ZERO, BigDecimal::add);
   }
+
 }
