@@ -58,6 +58,10 @@
   </distributionManagement>
 
   <properties>
+    <!-- Java Usage -->
+    <java.version>17</java.version>
+    <java.release.version>17</java.release.version>
+
     <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
     <cargo.maven.containerUrl>https://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
     <tomcat.major-version />
