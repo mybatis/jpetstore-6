@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-       Copyright 2010-2024 the original author or authors.
+       Copyright 2010-2025 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -58,6 +58,10 @@
   </distributionManagement>
 
   <properties>
+    <!-- Java Usage -->
+    <java.version>17</java.version>
+    <java.release.version>17</java.release.version>
+
     <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
     <cargo.maven.containerUrl>https://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
     <tomcat.major-version />
@@ -67,7 +71,7 @@
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
     <slf4j.version>2.0.17</slf4j.version>
-    <spring.version>5.3.39</spring.version>
+    <spring.version>6.2.6</spring.version>
     <assertj.version>3.27.3</assertj.version>
     <mockito.version>5.17.0</mockito.version>
     <hsqldb.version>2.7.4</hsqldb.version>
@@ -87,7 +91,7 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis-spring</artifactId>
-      <version>2.1.2</version>
+      <version>3.0.4</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -102,7 +106,8 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>${spring.version}</version>
+      <!-- Keep spring-web at 5.3.39 until jakarta upgrade occurs -->
+      <version>5.3.39</version>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.stripes</groupId>
@@ -155,7 +160,6 @@
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
       <version>${hsqldb.version}</version>
-      <classifier>jdk8</classifier>
     </dependency>
 
     <!-- Test dependencies -->
@@ -332,10 +336,11 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.97</tomcat.version>
+        <tomcat.version>9.0.104</tomcat.version>
       </properties>
     </profile>
-    <profile> <!-- TODO: Remove after we switch to jakarta as end of life -->
+    <profile>
+      <!-- TODO: Remove after we switch to jakarta as end of life -->
       <id>tomee80</id>
       <properties>
         <tomee.major-version>8</tomee.major-version>
@@ -345,7 +350,8 @@
       </properties>
     </profile>
     <profile>
-      <id>wildfly26</id> <!-- TODO: Remove after we switch to jakarta as end of life -->
+      <id>wildfly26</id>
+      <!-- TODO: Remove after we switch to jakarta as end of life -->
       <properties>
         <wildfly.major-version>26</wildfly.major-version>
         <wildfly.version>26.1.3.Final</wildfly.version>
@@ -361,11 +367,12 @@
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
-    <profile> <!-- TODO: Replace with jetty 12 -->
+    <profile>
+      <!-- TODO: Replace with jetty 12 -->
       <id>jetty</id>
       <properties>
         <jetty.major-version>9</jetty.major-version>
-        <jetty.version>9.4.56.v20240826</jetty.version>
+        <jetty.version>9.4.57.v20241219</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
