@@ -335,7 +335,8 @@
         <tomcat.version>9.0.97</tomcat.version>
       </properties>
     </profile>
-    <profile> <!-- TODO: Remove after we switch to jakarta as end of life -->
+    <profile>
+      <!-- TODO: Remove after we switch to jakarta as end of life -->
       <id>tomee80</id>
       <properties>
         <tomee.major-version>8</tomee.major-version>
@@ -345,7 +346,8 @@
       </properties>
     </profile>
     <profile>
-      <id>wildfly26</id> <!-- TODO: Remove after we switch to jakarta as end of life -->
+      <id>wildfly26</id>
+      <!-- TODO: Remove after we switch to jakarta as end of life -->
       <properties>
         <wildfly.major-version>26</wildfly.major-version>
         <wildfly.version>26.1.3.Final</wildfly.version>
@@ -361,7 +363,8 @@
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
-    <profile> <!-- TODO: Replace with jetty 12 -->
+    <profile>
+      <!-- TODO: Replace with jetty 12 -->
       <id>jetty</id>
       <properties>
         <jetty.major-version>9</jetty.major-version>
