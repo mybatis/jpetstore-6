@@ -212,7 +212,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit3-driver</artifactId>
-      <version>4.32.0</version>
+      <version>4.33.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
