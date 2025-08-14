@@ -71,7 +71,7 @@
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
     <slf4j.version>2.0.17</slf4j.version>
-    <spring.version>6.2.9</spring.version>
+    <spring.version>6.2.10</spring.version>
     <assertj.version>3.27.4</assertj.version>
     <byte-buddy.version>1.17.6</byte-buddy.version>
     <mockito.version>5.18.0</mockito.version>
