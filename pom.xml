@@ -74,7 +74,7 @@
     <spring.version>6.2.9</spring.version>
     <assertj.version>3.27.4</assertj.version>
     <byte-buddy.version>1.17.6</byte-buddy.version>
-    <mockito.version>5.18.0</mockito.version>
+    <mockito.version>5.19.0</mockito.version>
     <hsqldb.version>2.7.4</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
 
