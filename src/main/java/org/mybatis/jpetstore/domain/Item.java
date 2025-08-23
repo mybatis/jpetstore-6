@@ -53,6 +53,10 @@ public class Item implements Serializable {
     return quantity;
   }
 
+  public void setQuantity() {
+    this.quantity = 0;
+  }
+
   public void setQuantity(int quantity) {
     this.quantity = quantity;
   }
