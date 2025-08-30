@@ -366,7 +366,7 @@
   <profiles>
     <!-- Profiles for Application Server -->
     <profile>
-      <id>tomcat9</id>
+      <id>tomcat90</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
