@@ -23,7 +23,7 @@ COPY . /usr/src/myapp
 # Set the working directory inside the container
 WORKDIR /usr/src/myapp
 
-# Compile and package the project using Maven Wrapper
+# Compile & package the project using Maven Wrapper
 RUN ./mvnw clean package
 
 # Run the application using Maven Cargo plugin with the 'tomcat90' profile
