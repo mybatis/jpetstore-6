@@ -31,9 +31,9 @@ jobs:
       - name: Build with Maven
         run: ./mvnw clean package -B -V --no-transfer-progress -D"license.skip=true"
 
-      #Run unit tests and generate code coverage report and test report
+      #Run unit tests, integration tests and generate code coverage report and test report
       - name: Test with Maven
-        run: ./mvnw test jacoco:report surefire-report:report -B -V --no-transfer-progress -D"license.skip=true"
+        run: ./mvnw verify surefire-report:report -B -V --no-transfer-progress -D"license.skip=true"
 
       #Upload test and coverage reports
       - name: Upload test and coverage reports
