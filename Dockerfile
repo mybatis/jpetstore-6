@@ -14,8 +14,18 @@
 #    limitations under the License.
 #
 
+# Use OpenJDK 21 as the base image
 FROM openjdk:21
+
+# Copy all files from the current directory into /usr/src/myapp in the container
 COPY . /usr/src/myapp
+
+# Specify the directory to work in within the container
 WORKDIR /usr/src/myapp
+
+# Compile & package the project using Maven Wrapper
 RUN ./mvnw clean package
+
+# Run the application using Maven Cargo plugin with the 'tomcat90' profile
 CMD ./mvnw cargo:run -P tomcat90
+
