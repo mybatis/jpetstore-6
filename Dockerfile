@@ -20,7 +20,7 @@ FROM openjdk:21
 # Copy all files from the current directory into /usr/src/myapp in the container
 COPY . /usr/src/myapp
 
-# Set the working directory inside the container
+# Specify the directory to work in within the container
 WORKDIR /usr/src/myapp
 
 # Compile & package the project using Maven Wrapper
