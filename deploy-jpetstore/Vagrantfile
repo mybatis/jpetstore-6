@@ -1,0 +1,71 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby
+
+Vagrant.configure("2") do |config|
+  # Use Ubuntu 18.04 (Bionic) base box
+  config.vm.box = "ubuntu/bionic64"
+
+  # VM resources
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "jpetstoreVB"
+    vb.cpus = 2
+    vb.memory = "2048"
+  end
+
+  # Forward port
+  config.vm.network "forwarded_port", guest: 8080, host: 8086
+
+  # Private network to access the VM directly
+  config.vm.network "private_network", ip: "192.168.33.10"
+
+  # Configuring VirtualBox folder settings
+  config.vm.synced_folder "..", "/vagrant/jpetstore-6"
+
+  config.vm.provision "shell", inline: <<-SHELL
+      # Step 1: Install required packages (not Java or Maven)
+      sudo apt-get update
+      sudo apt-get install -y tomcat9 unzip
+
+      # Step 2: Manually install the correct Java version (JDK 21)
+      sudo wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.tar.gz -P /tmp
+      sudo mkdir -p /opt/java
+      sudo tar xf /tmp/jdk-21_linux-x64_bin.tar.gz -C /opt/java --strip-components=1
+
+      # Step 3: Manually install the correct Maven version (3.9.9)
+      sudo wget https://archive.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz -P /tmp
+      sudo tar xf /tmp/apache-maven-3.9.9-bin.tar.gz -C /opt
+      sudo ln -s /opt/apache-maven-3.9.9 /opt/maven
+
+      # Step 4: Configure environment variables for Maven and Java
+      echo 'export JAVA_HOME=/opt/java' | sudo tee /etc/profile.d/java.sh
+      echo 'export PATH=${JAVA_HOME}/bin:${PATH}' | sudo tee -a /etc/profile.d/java.sh
+      echo 'export M2_HOME=/opt/maven' | sudo tee /etc/profile.d/maven.sh
+      echo 'export PATH=${M2_HOME}/bin:${PATH}' | sudo tee -a /etc/profile.d/maven.sh
+
+      # Source the new environment variables so the current shell knows them
+      source /etc/profile.d/java.sh
+      source /etc/profile.d/maven.sh
+
+      # Step 5: Stop tomcat to prevent file access issues
+      sudo systemctl stop tomcat9
+
+      # Step 6: Set JAVA_HOME specifically for Tomcat
+      # This command will first remove any existing JAVA_HOME setting and then add the correct one.
+      sudo sed -i '/^JAVA_HOME=/d' /etc/default/tomcat9
+      sudo sh -c "echo 'JAVA_HOME=/opt/java' >> /etc/default/tomcat9"
+      
+      # Step 7: Build the WAR file inside the VM
+      cd /vagrant/jpetstore-6
+      sudo -E /opt/maven/bin/mvn clean package
+
+      # Step 8: Deploy the application
+      # This approach is more reliable, as Tomcat handles the unzipping itself.
+      sudo rm -rf /var/lib/tomcat9/webapps/jpetstore*
+      sudo cp /vagrant/jpetstore-6/target/jpetstore.war /var/lib/tomcat9/webapps/
+      sudo chown tomcat:tomcat /var/lib/tomcat9/webapps/jpetstore.war
+
+      # Step 9: Restart tomcat to deploy the application
+      sudo systemctl start tomcat9
+      echo "JPetStore deployed successfully!"
+  SHELL
+end

@@ -5,13 +5,13 @@ on: [workflow_dispatch, push, pull_request]
 permissions: read-all
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         cache: [maven]
         distribution: [temurin]
-        java: [17, 21, 24, 25-ea]
+        java: [17, 21, 24]
         os: [ubuntu-latest, macos-latest, windows-latest]
       fail-fast: false
       max-parallel: 4
@@ -19,11 +19,49 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+
       - name: Set up JDK ${{ matrix.java }} ${{ matrix.distribution }}
         uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java }}
           distribution: ${{ matrix.distribution }}
           cache: ${{ matrix.cache }}
+
+      #Build the jpetstore-6 project
+      - name: Build with Maven
+        run: ./mvnw clean package -B -V --no-transfer-progress -D"license.skip=true"
+
+      #Run unit tests, integration tests and generate code coverage report and test report
       - name: Test with Maven
-        run: ./mvnw test -B -V --no-transfer-progress -D"license.skip=true"
+        run: ./mvnw verify surefire-report:report -B -V --no-transfer-progress -D"license.skip=true"
+
+      #Upload test and coverage reports
+      - name: Upload test and coverage reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports-${{ matrix.os }}-${{ matrix.java }}
+          path: |
+            target/site/jacoco
+            target/reports
+
+  docker-deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    steps:
+      - uses: actions/checkout@v5
+
+      #Build Docker Image
+      - name: Build Docker Image
+        run: docker compose build
+
+      #Deploy using Docker Compose
+      - name: Deploy using Docker Compose
+        run: docker compose up -d
+
+      - name: Check runing containers
+        run: docker ps
+
+      - name: Stop docker compose
+        run: docker compose down
+
+      
