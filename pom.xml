@@ -380,7 +380,7 @@
   </build>
 
   <profiles>
-    <!-- Profiles for Application Server -->
+    <!-- Profiles for Application Servers -->
     <profile>
       <id>tomcat90</id>
       <activation>
