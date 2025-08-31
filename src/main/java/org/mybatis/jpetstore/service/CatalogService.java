@@ -45,7 +45,8 @@ public class CatalogService {
   }
 
   public List<Category> getCategoryList() {
-    return categoryMapper.getCategoryList();
+    List<Category> categories = categoryMapper.getCategoryList();
+    return categories;
   }
 
   public Category getCategory(String categoryId) {
@@ -57,7 +58,8 @@ public class CatalogService {
   }
 
   public List<Product> getProductListByCategory(String categoryId) {
-    return productMapper.getProductListByCategory(categoryId);
+    List<Product> products = productMapper.getProductListByCategory(categoryId);
+    return products;
   }
 
   /**
