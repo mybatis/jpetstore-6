@@ -24,20 +24,28 @@ import org.mybatis.jpetstore.domain.Account;
  */
 public interface AccountMapper {
 
+  // Retrieve account by username
   Account getAccountByUsername(String username);
 
+  // Retrieve account by username and password
   Account getAccountByUsernameAndPassword(String username, String password);
 
+  // Insert a new account
   void insertAccount(Account account);
 
+  // Insert profile information for an account
   void insertProfile(Account account);
 
+  // Insert sign-on credentials for an account
   void insertSignon(Account account);
 
+  // Update account details
   void updateAccount(Account account);
 
+  // Update profile information for an account
   void updateProfile(Account account);
 
+  // Update sign-on credentials for an account
   void updateSignon(Account account);
 
 }
