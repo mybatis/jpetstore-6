@@ -122,7 +122,8 @@ public class OrderService {
     Sequence sequence = sequenceMapper.getSequence(new Sequence(name, -1));
     if (sequence == null) {
       throw new RuntimeException(
-          "Error: A null sequence was returned from the database (could not get next " + name + " sequence).");
+              "Error: Failed to fetch the next value for sequence \"" + name + "\". "
+              + "The database returned null instead of a valid sequence number.");
     }
     Sequence parameterObject = new Sequence(name, sequence.getNextId() + 1);
     sequenceMapper.updateSequence(parameterObject);
