@@ -189,7 +189,7 @@ public class CatalogActionBean extends AbstractActionBean {
    */
   public ForwardResolution searchProducts() {
     if (keyword == null || keyword.length() < 1) {
-      setMessage("Please enter a keyword to search for, then press the search button.");
+      setMessage("Type a keyword and press the search button to continue.");
       return new ForwardResolution(ERROR);
     } else {
       productList = catalogService.searchProductList(keyword.toLowerCase());
