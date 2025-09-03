@@ -90,7 +90,7 @@ public class CartActionBean extends AbstractActionBean {
     Item item = cart.removeItemById(workingItemId);
 
     if (item == null) {
-      setMessage("Attempted to remove null CartItem from Cart.");
+      setMessage("The selected item could not be found in the cart.");
       return new ForwardResolution(ERROR);
     } else {
       return new ForwardResolution(VIEW_CART);
