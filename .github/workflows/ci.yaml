@@ -33,16 +33,23 @@ jobs:
 
       #Run unit tests, integration tests and generate code coverage report and test report
       - name: Test with Maven
-        run: ./mvnw verify surefire-report:report -B -V --no-transfer-progress -D"license.skip=true"
+        run: ./mvnw verify -B -V --no-transfer-progress -D"license.skip=true"
 
-      #Upload test and coverage reports
+      #Generate Surefire and Failsafe HTML report
+      - name: Generate Surefire and Failsafe HTML reports
+        run: ./mvnw site -DskipTests -B -V --no-transfer-progress -D"license.skip=true"
+
+      #Upload tests and coverage reports
       - name: Upload test and coverage reports
         uses: actions/upload-artifact@v4
         with:
           name: reports-${{ matrix.os }}-${{ matrix.java }}
           path: |
             target/site/jacoco
-            target/reports
+            target/site/surefire-report.html
+            target/site/failsafe-report.html
+            target/failsafe-reports
+            target/surefire-repoorts
 
   docker-deploy:
     runs-on: ubuntu-latest
