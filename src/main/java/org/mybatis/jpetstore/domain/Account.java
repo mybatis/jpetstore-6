@@ -23,6 +23,8 @@ import net.sourceforge.stripes.validation.Validate;
  * The Class Account.
  *
  * @author Eduardo Macarron
+ * #    Add comment for test coderabbit
+ * 코드레빗 pr 테스트를 위해 추가되는 구문입니다.
  */
 public class Account implements Serializable {
 
