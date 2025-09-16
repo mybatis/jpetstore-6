@@ -1,0 +1,147 @@
+[INFO] Scanning for projects...
+[INFO] Inspecting build with total of 1 modules
+[INFO] Installing Central Publishing features
+[INFO] 
+[INFO] -----------------------< org.mybatis:jpetstore >------------------------
+[INFO] Building JPetStore Demo 6 21
+[INFO]   from pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ jpetstore ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-java) @ jpetstore ---
+[INFO] Rule 0: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] 
+[INFO] --- git-commit-id:9.0.2:revision (git-commit-id) @ jpetstore ---
+[INFO] 
+[INFO] --- jacoco:0.8.13:prepare-agent (prepare-agent) @ jpetstore ---
+[INFO] argLine set to -javaagent:/Users/sathwik/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/target/jacoco.exec -javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/1.17.7/byte-buddy-agent-1.17.7.jar
+[INFO] 
+[INFO] --- whitespace:1.5.0:trim (default) @ jpetstore ---
+[INFO] Processing the following extensions: 4gl,42m,c,cb,cfg,cpp,css,dat,groovy,h,html,ini,java,js,json,jsonp,jsp,jspx,jsx,ksh,kt,kts,md,mk,msg,pl,pm,properties,reg,scala,scss,sh,sql,toml,ts,tsx,wadl,wsdl,xhtml,xml,xsd,yaml,yml
+[INFO] 
+[INFO] --- formatter:2.26.0:format (default) @ jpetstore ---
+[INFO] Processed 41 files in 813ms (Formatted: 0, Skipped: 0, Unchanged: 41, Failed: 0, Readonly: 0)
+[INFO] 
+[INFO] --- impsort:1.12.0:sort (default) @ jpetstore ---
+[INFO] Processed 41 files in 00:00.241 (Already Sorted: 41, Needed Sorting: 0)
+[INFO] 
+[INFO] >>> rewrite:6.10.0:run (default) > process-test-classes @ jpetstore >>>
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-java) @ jpetstore ---
+[INFO] Rule 0: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] 
+[INFO] --- git-commit-id:9.0.2:revision (git-commit-id) @ jpetstore ---
+[INFO] 
+[INFO] --- jacoco:0.8.13:prepare-agent (prepare-agent) @ jpetstore ---
+[INFO] argLine set to -javaagent:/Users/sathwik/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/target/jacoco.exec -javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/1.17.7/byte-buddy-agent-1.17.7.jar
+[INFO] 
+[INFO] --- whitespace:1.5.0:trim (default) @ jpetstore ---
+[INFO] Processing the following extensions: 4gl,42m,c,cb,cfg,cpp,css,dat,groovy,h,html,ini,java,js,json,jsonp,jsp,jspx,jsx,ksh,kt,kts,md,mk,msg,pl,pm,properties,reg,scala,scss,sh,sql,toml,ts,tsx,wadl,wsdl,xhtml,xml,xsd,yaml,yml
+[INFO] 
+[INFO] --- formatter:2.26.0:format (default) @ jpetstore ---
+[INFO] Processed 41 files in 23ms (Formatted: 0, Skipped: 41, Unchanged: 0, Failed: 0, Readonly: 0)
+[INFO] 
+[INFO] --- impsort:1.12.0:sort (default) @ jpetstore ---
+[INFO] Processed 41 files in 00:00.003 (Already Sorted: 41, Needed Sorting: 0)
+[INFO] 
+[INFO] --- license:5.0.0:format (default) @ jpetstore ---
+[INFO] License Plugin is Skipped
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ jpetstore ---
+[INFO] Copying 11 resources from src/main/resources to target/classes
+[INFO] Copying 2 resources from  to target/classes/META-INF
+[INFO] 
+[INFO] --- compiler:3.12.1:compile (default-compile) @ jpetstore ---
+[INFO] Compiling 24 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- bnd:7.1.0:bnd-process (bnd-process) @ jpetstore ---
+[INFO] WAB mode enabled. Bnd output will be expanded into the 'maven-war-plugin' <webappDirectory>:/private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/target/jpetstore
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.logging is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.annotation is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.batch is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.batch.builder is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.config is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.mapper is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.support is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.transaction is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.jpetstore.domain,  has 1,  private references [net.sourceforge.stripes.validation]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.jpetstore.service,  has 2,  private references [org.springframework.stereotype, org.springframework.transaction.annotation]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.jpetstore.web.actions,  has 2,  private references [net.sourceforge.stripes.action, net.sourceforge.stripes.validation]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring,  has 20,  private references [org.apache.ibatis.cache, org.apache.ibatis.cursor, org.apache.ibatis.executor, org.apache.ibatis.io, org.apache.ibatis.mapping, org.apache.ibatis.plugin, org.apache.ibatis.reflection.factory, org.apache.ibatis.reflection.wrapper, org.apache.ibatis.scripting, org.apache.ibatis.session, org.apache.ibatis.transaction, org.apache.ibatis.type, org.springframework.beans.factory, org.springframework.context, org.springframework.context.event, org.springframework.core.io, org.springframework.dao, org.springframework.dao.support, org.springframework.jdbc.support, org.springframework.transaction.support]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.annotation,  has 6,  private references [org.springframework.beans.factory.support, org.springframework.context, org.springframework.context.annotation, org.springframework.core.annotation, org.springframework.core.io, org.springframework.core.type]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.batch,  has 3,  private references [org.apache.ibatis.session, org.springframework.beans.factory, org.springframework.core.convert.converter]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.batch.builder,  has 2,  private references [org.apache.ibatis.session, org.springframework.core.convert.converter]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.config,  has 2,  private references [org.springframework.beans.factory.support, org.springframework.beans.factory.xml]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.mapper,  has 9,  private references [org.apache.ibatis.session, org.springframework.beans.factory, org.springframework.beans.factory.annotation, org.springframework.beans.factory.config, org.springframework.beans.factory.support, org.springframework.context, org.springframework.context.annotation, org.springframework.core.env, org.springframework.core.type.filter]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.support,  has 2,  private references [org.apache.ibatis.session, org.springframework.dao.support]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.transaction,  has 2,  private references [org.apache.ibatis.session, org.apache.ibatis.transaction]
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ jpetstore ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.12.1:testCompile (default-testCompile) @ jpetstore ---
+[INFO] Compiling 17 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/src/test/java/org/mybatis/jpetstore/service/CatalogServiceTest.java: Some input files use or override a deprecated API.
+[INFO] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/src/test/java/org/mybatis/jpetstore/service/CatalogServiceTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] <<< rewrite:6.10.0:run (default) < process-test-classes @ jpetstore <<<
+[INFO] 
+[INFO] 
+[INFO] --- rewrite:6.10.0:run (default) @ jpetstore ---
+[INFO] Using active recipe(s) [org.openrewrite.java.RemoveUnusedImports]
+[INFO] Using active styles(s) []
+[INFO] Validating active recipes...
+[INFO] Project [JPetStore Demo 6] Resolving Poms...
+[INFO] Project [JPetStore Demo 6] Parsing source files
+[INFO] Running recipe(s)...
+[INFO] 
+[INFO] --- license:5.0.0:format (default) @ jpetstore ---
+[INFO] License Plugin is Skipped
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ jpetstore ---
+[INFO] Copying 11 resources from src/main/resources to target/classes
+[INFO] Copying 2 resources from  to target/classes/META-INF
+[INFO] 
+[INFO] --- compiler:3.12.1:compile (default-compile) @ jpetstore ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- bnd:7.1.0:bnd-process (bnd-process) @ jpetstore ---
+[INFO] WAB mode enabled. Bnd output will be expanded into the 'maven-war-plugin' <webappDirectory>:/private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/target/jpetstore
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.logging is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.annotation is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.batch is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.batch.builder is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.config is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.mapper is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.support is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Version for package org.mybatis.spring.transaction is set to different values in the source (21) and in the manifest (3.0.5). The version in the manifest is not picked up by an other sibling bundles in this project or projects that directly depend on this project
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.jpetstore.domain,  has 1,  private references [net.sourceforge.stripes.validation]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.jpetstore.service,  has 2,  private references [org.springframework.stereotype, org.springframework.transaction.annotation]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.jpetstore.web.actions,  has 2,  private references [net.sourceforge.stripes.action, net.sourceforge.stripes.validation]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring,  has 20,  private references [org.apache.ibatis.cache, org.apache.ibatis.cursor, org.apache.ibatis.executor, org.apache.ibatis.io, org.apache.ibatis.mapping, org.apache.ibatis.plugin, org.apache.ibatis.reflection.factory, org.apache.ibatis.reflection.wrapper, org.apache.ibatis.scripting, org.apache.ibatis.session, org.apache.ibatis.transaction, org.apache.ibatis.type, org.springframework.beans.factory, org.springframework.context, org.springframework.context.event, org.springframework.core.io, org.springframework.dao, org.springframework.dao.support, org.springframework.jdbc.support, org.springframework.transaction.support]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.annotation,  has 6,  private references [org.springframework.beans.factory.support, org.springframework.context, org.springframework.context.annotation, org.springframework.core.annotation, org.springframework.core.io, org.springframework.core.type]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.batch,  has 3,  private references [org.apache.ibatis.session, org.springframework.beans.factory, org.springframework.core.convert.converter]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.batch.builder,  has 2,  private references [org.apache.ibatis.session, org.springframework.core.convert.converter]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.config,  has 2,  private references [org.springframework.beans.factory.support, org.springframework.beans.factory.xml]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.mapper,  has 9,  private references [org.apache.ibatis.session, org.springframework.beans.factory, org.springframework.beans.factory.annotation, org.springframework.beans.factory.config, org.springframework.beans.factory.support, org.springframework.context, org.springframework.context.annotation, org.springframework.core.env, org.springframework.core.type.filter]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.support,  has 2,  private references [org.apache.ibatis.session, org.springframework.dao.support]
+[WARNING] /private/var/folders/v5/x4q2x4q55yx5z4f8qd65dwcm0000gn/T/originalCopy_39f92935-a892-4cca-aadc-ae3b4d023af1_89e9f6d1-4227-4909-9c9b-6501c1930595/sources/pom.xml [0:0]: Export org.mybatis.spring.transaction,  has 2,  private references [org.apache.ibatis.session, org.apache.ibatis.transaction]
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ jpetstore ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.12.1:testCompile (default-testCompile) @ jpetstore ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.537 s
+[INFO] Finished at: 2025-09-16T12:11:52+02:00
+[INFO] ------------------------------------------------------------------------

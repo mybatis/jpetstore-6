@@ -29,7 +29,7 @@
 
   <groupId>org.mybatis</groupId>
   <artifactId>jpetstore</artifactId>
-  <version>6.1.1-SNAPSHOT</version>
+  <version>21</version>
   <packaging>war</packaging>
 
   <name>JPetStore Demo 6</name>
@@ -59,8 +59,8 @@
 
   <properties>
     <!-- Java Usage -->
-    <java.version>17</java.version>
-    <java.release.version>17</java.release.version>
+    <java.version>21</java.version>
+    <java.release.version>21</java.release.version>
 
     <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
     <cargo.maven.containerUrl>https://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
@@ -339,6 +339,24 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.12.1</version>
+        <configuration>
+          <source>21</source>
+          <target>21</target>
+          <release>21</release>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>5.0.0</version>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
       </plugin>
     </plugins>
   </build>
