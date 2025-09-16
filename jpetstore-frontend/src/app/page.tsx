@@ -1,137 +1,67 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-
-interface Category {
-  categoryId: string;
-  name: string;
-  description: string;
-}
-
-interface Product {
-  productId: string;
-  name: string;
-  description: string;
-  categoryId: string;
-  categoryName: string;
-}
+import HeroSection from '@/components/home/HeroSection'
+import FeaturedPets from '@/components/home/FeaturedPets'
 
 export default function Home() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
-  const [loading, setLoading] = useState(true);
-
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8081/api';
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/catalog/categories`);
-      const data = await response.json();
-      setCategories(data);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-      setLoading(false);
-    }
-  };
-
-  const fetchProductsByCategory = async (categoryId: string) => {
-    try {
-      setLoading(true);
-      const response = await fetch(`${API_BASE_URL}/catalog/categories/${categoryId}/products`);
-      const data = await response.json();
-      setProducts(data);
-      setSelectedCategory(categoryId);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      setLoading(false);
-    }
-  };
-
-  if (loading && categories.length === 0) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl">Loading JPetStore...</div>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-blue-600 text-white p-6">
-        <h1 className="text-3xl font-bold">JPetStore - Modern Edition</h1>
-        <p className="text-blue-100 mt-2">Your favorite pet store, now with a modern API and frontend</p>
-      </header>
-
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Categories Sidebar */}
-          <div className="md:col-span-1">
-            <h2 className="text-2xl font-semibold mb-4">Categories</h2>
-            <div className="space-y-2">
-              {categories.map((category) => (
-                <button
-                  key={category.categoryId}
-                  onClick={() => fetchProductsByCategory(category.categoryId)}
-                  className={`w-full text-left p-3 rounded-lg border transition-colors ${
-                    selectedCategory === category.categoryId
-                      ? 'bg-blue-100 border-blue-300'
-                      : 'bg-white border-gray-200 hover:bg-gray-50'
-                  }`}
-                >
-                  <div className="font-medium">{category.name}</div>
-                  <div className="text-sm text-gray-600">{category.description}</div>
-                </button>
-              ))}
+    <main className="min-h-screen">
+      <HeroSection />
+      <FeaturedPets />
+      
+      {/* Additional sections can be added here */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4">Why Choose Our Pet Store?</h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              We&apos;re committed to connecting loving families with their perfect pet companions. 
+              With over 20 years of experience, we ensure every pet finds their forever home.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+              <div className="text-center">
+                <div className="text-4xl mb-4">🏆</div>
+                <h3 className="text-xl font-semibold mb-2">Trusted Since 2004</h3>
+                <p className="text-muted-foreground">
+                  Thousands of happy families and healthy pets
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-4">💝</div>
+                <h3 className="text-xl font-semibold mb-2">Health Guaranteed</h3>
+                <p className="text-muted-foreground">
+                  All pets come with complete health certifications
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-4">🌟</div>
+                <h3 className="text-xl font-semibold mb-2">Expert Support</h3>
+                <p className="text-muted-foreground">
+                  Lifetime guidance from our pet care specialists
+                </p>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Products Area */}
-          <div className="md:col-span-2">
-            {selectedCategory ? (
-              <>
-                <h2 className="text-2xl font-semibold mb-4">
-                  Products in {categories.find(c => c.categoryId === selectedCategory)?.name}
-                </h2>
-                {loading ? (
-                  <div className="text-center py-8">Loading products...</div>
-                ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {products.map((product) => (
-                      <div key={product.productId} className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                        <h3 className="font-semibold text-lg">{product.name}</h3>
-                        <p className="text-gray-600 text-sm mt-1">{product.description}</p>
-                        <div className="mt-3">
-                          <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
-                            {product.productId}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </>
-            ) : (
-              <div className="text-center py-16">
-                <h2 className="text-2xl font-semibold text-gray-600 mb-4">Welcome to JPetStore</h2>
-                <p className="text-gray-500">Select a category from the sidebar to browse products</p>
-              </div>
-            )}
+      {/* Newsletter Section */}
+      <section className="py-16 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">Stay Connected</h2>
+          <p className="text-lg mb-8 opacity-90">
+            Get updates on new arrivals and exclusive offers
+          </p>
+          <div className="max-w-md mx-auto flex gap-4">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 px-4 py-2 rounded-lg bg-background/10 backdrop-blur placeholder:text-primary-foreground/60 text-primary-foreground border border-primary-foreground/20"
+            />
+            <button className="px-6 py-2 bg-background text-primary rounded-lg font-semibold hover:bg-background/90 transition-colors">
+              Subscribe
+            </button>
           </div>
         </div>
-      </main>
-
-      <footer className="bg-gray-800 text-white p-6 mt-16">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2024 JPetStore - Modernized with Spring Boot API and Next.js Frontend</p>
-        </div>
-      </footer>
-    </div>
-  );
+      </section>
+    </main>
+  )
 }
