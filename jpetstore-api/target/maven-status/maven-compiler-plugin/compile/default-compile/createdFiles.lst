@@ -1,0 +1,17 @@
+com/jpetstore/api/entity/Inventory.class
+com/jpetstore/api/entity/Category.class
+com/jpetstore/api/dto/ItemDto.class
+com/jpetstore/api/repository/ItemRepository.class
+com/jpetstore/api/entity/Item.class
+com/jpetstore/api/repository/AccountRepository.class
+com/jpetstore/api/repository/CategoryRepository.class
+com/jpetstore/api/entity/SignOn.class
+com/jpetstore/api/service/CatalogService.class
+com/jpetstore/api/entity/Product.class
+com/jpetstore/api/dto/ProductDto.class
+com/jpetstore/api/dto/CategoryDto.class
+com/jpetstore/api/JPetStoreApiApplication.class
+com/jpetstore/api/repository/ProductRepository.class
+com/jpetstore/api/entity/Profile.class
+com/jpetstore/api/entity/Account.class
+com/jpetstore/api/controller/CatalogController.class
