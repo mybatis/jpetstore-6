@@ -12,150 +12,215 @@ import { catalogAPI } from '@/lib/api'
 const mockPets = {
   dogs: [
     {
-      id: 'dog-1',
-      name: 'Max',
+      id: 'K9-BD-01',
+      name: 'Bulldog',
+      breed: 'Bulldog',
+      category: 'Dogs',
+      price: 18.50,
+      image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500&h=500&fit=crop',
+      age: 'Adult',
+      gender: 'Male' as const,
+      traits: ['Friendly', 'From England', 'Loyal'],
+      description: 'Friendly dog from England',
+      isFeatured: true,
+    },
+    {
+      id: 'K9-PO-02',
+      name: 'Poodle',
+      breed: 'Poodle',
+      category: 'Dogs',
+      price: 18.50,
+      image: 'https://images.unsplash.com/photo-1616190264687-b7ebf7aa2eb4?w=500&h=500&fit=crop',
+      age: 'Adult',
+      gender: 'Female' as const,
+      traits: ['Cute', 'From France', 'Intelligent'],
+      description: 'Cute dog from France',
+    },
+    {
+      id: 'K9-DL-01',
+      name: 'Dalmation',
+      breed: 'Dalmation',
+      category: 'Dogs',
+      price: 18.50,
+      image: 'https://images.unsplash.com/photo-1605568427561-40dd23c2acea?w=500&h=500&fit=crop',
+      age: 'Adult',
+      gender: 'Male' as const,
+      traits: ['Spotted', 'Fire Station', 'Active'],
+      description: 'Great dog for a Fire Station',
+      isFeatured: true,
+    },
+    {
+      id: 'K9-RT-01',
+      name: 'Golden Retriever',
       breed: 'Golden Retriever',
       category: 'Dogs',
-      price: 899.99,
+      price: 155.29,
       image: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&h=500&fit=crop',
-      age: '2 years',
-      gender: 'Male' as const,
-      traits: ['Friendly', 'Trained', 'Vaccinated', 'Good with kids'],
+      age: 'Adult',
+      gender: 'Female' as const,
+      traits: ['Family-friendly', 'Loyal', 'Gentle'],
+      description: 'Great family dog',
       isNew: true,
-      isFeatured: true,
     },
     {
-      id: 'dog-2',
-      name: 'Bella',
-      breed: 'French Bulldog',
+      id: 'K9-RT-02',
+      name: 'Labrador Retriever',
+      breed: 'Labrador Retriever',
       category: 'Dogs',
-      price: 1299.99,
-      image: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=500&h=500&fit=crop',
-      age: '1 year',
-      gender: 'Female' as const,
-      traits: ['Playful', 'Apartment-friendly', 'Vaccinated'],
-    },
-    {
-      id: 'dog-3',
-      name: 'Charlie',
-      breed: 'Labrador',
-      category: 'Dogs',
-      price: 799.99,
+      price: 135.50,
       image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500&h=500&fit=crop',
-      age: '3 years',
+      age: 'Adult',
       gender: 'Male' as const,
-      traits: ['Energetic', 'Trained', 'Loyal'],
-      isFeatured: true,
+      traits: ['Hunting', 'Active', 'Loyal'],
+      description: 'Great hunting dog',
     },
     {
-      id: 'dog-4',
-      name: 'Luna',
-      breed: 'Husky',
+      id: 'K9-CW-01',
+      name: 'Chihuahua',
+      breed: 'Chihuahua',
       category: 'Dogs',
-      price: 999.99,
-      image: 'https://images.unsplash.com/photo-1605568427561-40dd23c2acea?w=500&h=500&fit=crop',
-      age: '2 years',
-      gender: 'Female' as const,
-      traits: ['Active', 'Beautiful coat', 'Needs exercise'],
+      price: 125.50,
+      image: 'https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?w=500&h=500&fit=crop',
+      age: 'Adult',
+      gender: 'Male' as const,
+      traits: ['Companion', 'Small', 'Alert'],
+      description: 'Great companion dog',
       isNew: true,
     },
   ],
   cats: [
     {
-      id: 'cat-1',
-      name: 'Whiskers',
-      breed: 'Persian',
+      id: 'FL-DSH-01',
+      name: 'Manx',
+      breed: 'Manx',
       category: 'Cats',
-      price: 599.99,
+      price: 58.50,
       image: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=500&h=500&fit=crop',
-      age: '1 year',
+      age: 'Adult',
       gender: 'Female' as const,
-      traits: ['Calm', 'Indoor', 'Groomed'],
+      traits: ['Tailless', 'Mouse hunter', 'Independent'],
+      description: 'Great for reducing mouse populations',
       isFeatured: true,
     },
     {
-      id: 'cat-2',
-      name: 'Shadow',
-      breed: 'Maine Coon',
+      id: 'FL-DLH-02',
+      name: 'Persian',
+      breed: 'Persian',
       category: 'Cats',
-      price: 799.99,
+      price: 93.50,
       image: 'https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=500&h=500&fit=crop',
-      age: '2 years',
+      age: 'Adult',
       gender: 'Male' as const,
-      traits: ['Large', 'Friendly', 'Fluffy'],
+      traits: ['Long hair', 'Princess-like', 'Friendly'],
+      description: 'Friendly house cat, doubles as a princess',
       isNew: true,
-    },
-    {
-      id: 'cat-3',
-      name: 'Mittens',
-      breed: 'Siamese',
-      category: 'Cats',
-      price: 499.99,
-      image: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=500&h=500&fit=crop',
-      age: '6 months',
-      gender: 'Female' as const,
-      traits: ['Playful', 'Vocal', 'Affectionate'],
-    },
-    {
-      id: 'cat-4',
-      name: 'Felix',
-      breed: 'British Shorthair',
-      category: 'Cats',
-      price: 699.99,
-      image: 'https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?w=500&h=500&fit=crop',
-      age: '1 year',
-      gender: 'Male' as const,
-      traits: ['Calm', 'Independent', 'Beautiful'],
     },
   ],
   birds: [
     {
-      id: 'bird-1',
-      name: 'Rio',
+      id: 'AV-CB-01',
+      name: 'Amazon Parrot',
       breed: 'Amazon Parrot',
       category: 'Birds',
-      price: 1499.99,
+      price: 193.50,
       image: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=500&h=500&fit=crop',
-      age: '2 years',
+      age: 'Adult',
       gender: 'Male' as const,
-      traits: ['Talkative', 'Colorful', 'Intelligent'],
+      traits: ['Talkative', 'Long-lived', 'Intelligent'],
+      description: 'Great companion for up to 75 years',
       isFeatured: true,
     },
     {
-      id: 'bird-2',
-      name: 'Sunny',
-      breed: 'Cockatiel',
+      id: 'AV-SB-02',
+      name: 'Finch',
+      breed: 'Finch',
       category: 'Birds',
-      price: 299.99,
+      price: 15.50,
       image: 'https://images.unsplash.com/photo-1586098710029-e07b8e9f5b1f?w=500&h=500&fit=crop',
-      age: '1 year',
-      gender: 'Female' as const,
-      traits: ['Friendly', 'Whistles', 'Easy care'],
+      age: 'Adult',
+      gender: 'Male' as const,
+      traits: ['Small', 'Peaceful', 'Easy care'],
+      description: 'Great stress reliever',
     },
   ],
   fish: [
     {
-      id: 'fish-1',
-      name: 'Nemo',
-      breed: 'Clownfish',
+      id: 'FI-SW-01',
+      name: 'Angelfish',
+      breed: 'Angelfish',
       category: 'Fish',
-      price: 39.99,
+      price: 16.50,
       image: 'https://images.unsplash.com/photo-1520301255226-bf5f144451c1?w=500&h=500&fit=crop',
       age: 'Adult',
       gender: 'Male' as const,
-      traits: ['Colorful', 'Hardy', 'Reef-safe'],
+      traits: ['Salt water', 'From Australia', 'Beautiful'],
+      description: 'Salt Water fish from Australia',
       isNew: true,
     },
     {
-      id: 'fish-2',
-      name: 'Bubbles',
-      breed: 'Betta',
+      id: 'FI-SW-02',
+      name: 'Tiger Shark',
+      breed: 'Tiger Shark',
       category: 'Fish',
-      price: 24.99,
+      price: 18.50,
+      image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500&h=500&fit=crop',
+      age: 'Adult',
+      gender: 'Male' as const,
+      traits: ['Salt water', 'From Australia', 'Predator'],
+      description: 'Salt Water fish from Australia',
+      isFeatured: true,
+    },
+    {
+      id: 'FI-FW-01',
+      name: 'Koi',
+      breed: 'Koi',
+      category: 'Fish',
+      price: 18.50,
+      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=500&fit=crop',
+      age: 'Adult',
+      gender: 'Male' as const,
+      traits: ['Fresh water', 'From Japan', 'Colorful'],
+      description: 'Fresh Water fish from Japan',
+    },
+    {
+      id: 'FI-FW-02',
+      name: 'Goldfish',
+      breed: 'Goldfish',
+      category: 'Fish',
+      price: 5.50,
       image: 'https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=500&h=500&fit=crop',
       age: 'Adult',
       gender: 'Male' as const,
-      traits: ['Beautiful fins', 'Low maintenance', 'Solitary'],
+      traits: ['Fresh water', 'From China', 'Easy care'],
+      description: 'Fresh Water fish from China',
+    },
+  ],
+  reptiles: [
+    {
+      id: 'RP-SN-01',
+      name: 'Rattlesnake',
+      breed: 'Rattlesnake',
+      category: 'Reptiles',
+      price: 18.50,
+      image: 'https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?w=500&h=500&fit=crop',
+      age: 'Adult',
+      gender: 'Male' as const,
+      traits: ['Venomous', 'Watch dog', 'Dangerous'],
+      description: 'Doubles as a watch dog',
+      isFeatured: true,
+    },
+    {
+      id: 'RP-LI-02',
+      name: 'Iguana',
+      breed: 'Iguana',
+      category: 'Reptiles',
+      price: 18.50,
+      image: 'https://images.unsplash.com/photo-1520315342629-6ea920342047?w=500&h=500&fit=crop',
+      age: 'Adult',
+      gender: 'Male' as const,
+      traits: ['Green', 'Friendly', 'Herbivore'],
+      description: 'Friendly green friend',
+      isNew: true,
     },
   ],
 }
@@ -240,7 +305,7 @@ export default function FeaturedPets() {
         description: product.description
       }))
     }
-    return [...mockPets.dogs, ...mockPets.cats, ...mockPets.birds, ...mockPets.fish]
+    return [...mockPets.dogs, ...mockPets.cats, ...mockPets.birds, ...mockPets.fish, ...mockPets.reptiles]
   }
 
   const getFeaturedPets = () => {
@@ -292,12 +357,13 @@ export default function FeaturedPets() {
 
         {/* Category Tabs */}
         <Tabs defaultValue="all" className="w-full" onValueChange={setActiveTab}>
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-5 mb-8">
+          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-6 mb-8">
             <TabsTrigger value="all">All Pets</TabsTrigger>
             <TabsTrigger value="dogs">🐕 Dogs</TabsTrigger>
             <TabsTrigger value="cats">🐈 Cats</TabsTrigger>
             <TabsTrigger value="birds">🦜 Birds</TabsTrigger>
             <TabsTrigger value="fish">🐠 Fish</TabsTrigger>
+            <TabsTrigger value="reptiles">🦎 Reptiles</TabsTrigger>
           </TabsList>
 
           <TabsContent value="all" className="mt-8">
@@ -358,6 +424,20 @@ export default function FeaturedPets() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {(getPetsByCategory('fish').length > 0 ? getPetsByCategory('fish') : mockPets.fish).map((pet: Pet) => (
+                  <PetCard key={pet.id} {...pet} />
+                ))}
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="reptiles" className="mt-8">
+            {loading ? (
+              <div className="flex justify-center py-12">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {(getPetsByCategory('reptiles').length > 0 ? getPetsByCategory('reptiles') : mockPets.reptiles).map((pet: Pet) => (
                   <PetCard key={pet.id} {...pet} />
                 ))}
               </div>

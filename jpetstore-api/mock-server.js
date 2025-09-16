@@ -62,26 +62,26 @@ const categories = [
 
 const products = {
   DOGS: [
-    { productId: 'K9-BD-01', name: 'Bulldog', categoryId: 'DOGS', description: 'Friendly bulldog' },
-    { productId: 'K9-PO-02', name: 'Poodle', categoryId: 'DOGS', description: 'Cute poodle' },
-    { productId: 'K9-DL-01', name: 'Dalmation', categoryId: 'DOGS', description: 'Great dog for a fire station' },
+    { productId: 'K9-BD-01', name: 'Bulldog', categoryId: 'DOGS', description: 'Friendly dog from England' },
+    { productId: 'K9-PO-02', name: 'Poodle', categoryId: 'DOGS', description: 'Cute dog from France' },
+    { productId: 'K9-DL-01', name: 'Dalmation', categoryId: 'DOGS', description: 'Great dog for a Fire Station' },
     { productId: 'K9-RT-01', name: 'Golden Retriever', categoryId: 'DOGS', description: 'Great family dog' },
-    { productId: 'K9-RT-02', name: 'Labrador Retriever', categoryId: 'DOGS', description: 'Great hunting dog' }
+    { productId: 'K9-RT-02', name: 'Labrador Retriever', categoryId: 'DOGS', description: 'Great hunting dog' },
+    { productId: 'K9-CW-01', name: 'Chihuahua', categoryId: 'DOGS', description: 'Great companion dog' }
   ],
   CATS: [
     { productId: 'FL-DSH-01', name: 'Manx', categoryId: 'CATS', description: 'Great for reducing mouse populations' },
-    { productId: 'FL-DLH-02', name: 'Persian', categoryId: 'CATS', description: 'Friendly house cat' },
-    { productId: 'FL-DLH-03', name: 'Siamese', categoryId: 'CATS', description: 'Vocal and affectionate' }
+    { productId: 'FL-DLH-02', name: 'Persian', categoryId: 'CATS', description: 'Friendly house cat, doubles as a princess' }
   ],
   BIRDS: [
-    { productId: 'AV-CB-01', name: 'Amazon Parrot', categoryId: 'BIRDS', description: 'Great companion' },
+    { productId: 'AV-CB-01', name: 'Amazon Parrot', categoryId: 'BIRDS', description: 'Great companion for up to 75 years' },
     { productId: 'AV-SB-02', name: 'Finch', categoryId: 'BIRDS', description: 'Great stress reliever' }
   ],
   FISH: [
-    { productId: 'FI-SW-01', name: 'Koi', categoryId: 'FISH', description: 'Fresh water fish from Japan' },
-    { productId: 'FI-SW-02', name: 'Goldfish', categoryId: 'FISH', description: 'Fresh water fish from China' },
-    { productId: 'FI-FW-01', name: 'Angelfish', categoryId: 'FISH', description: 'Salt water fish' },
-    { productId: 'FI-FW-02', name: 'Tiger Shark', categoryId: 'FISH', description: 'Salt water fish' }
+    { productId: 'FI-SW-01', name: 'Angelfish', categoryId: 'FISH', description: 'Salt Water fish from Australia' },
+    { productId: 'FI-SW-02', name: 'Tiger Shark', categoryId: 'FISH', description: 'Salt Water fish from Australia' },
+    { productId: 'FI-FW-01', name: 'Koi', categoryId: 'FISH', description: 'Fresh Water fish from Japan' },
+    { productId: 'FI-FW-02', name: 'Goldfish', categoryId: 'FISH', description: 'Fresh Water fish from China' }
   ],
   REPTILES: [
     { productId: 'RP-SN-01', name: 'Rattlesnake', categoryId: 'REPTILES', description: 'Doubles as a watch dog' },

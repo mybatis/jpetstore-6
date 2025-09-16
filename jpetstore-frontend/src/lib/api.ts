@@ -4,6 +4,8 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8081';
 // Helper function for API calls
 async function fetchAPI(endpoint: string, options: RequestInit = {}) {
   const url = `${API_URL}${endpoint}`;
+  console.log('API_URL:', API_URL);
+  console.log('Full URL:', url);
   
   const defaultOptions: RequestInit = {
     headers: {

@@ -11,3 +11,6 @@
 .env
 .github/keys/
 *node_modules*
+jpetstore-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+jpetstore-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+jpetstore-api/startup.log

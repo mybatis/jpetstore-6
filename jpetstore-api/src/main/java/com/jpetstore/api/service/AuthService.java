@@ -133,7 +133,7 @@ public class AuthService {
         // Try to save to database (if available)
         try {
             Account account = new Account();
-            account.setUserId(request.getUsername());
+            account.setUsername(request.getUsername());
             account.setEmail(request.getEmail());
             account.setFirstName(request.getFirstName());
             account.setLastName(request.getLastName());
@@ -161,7 +161,7 @@ public class AuthService {
     
     private UserDto convertToUserDto(Account account) {
         UserDto dto = new UserDto();
-        dto.setUsername(account.getUserId());
+        dto.setUsername(account.getUsername());
         dto.setEmail(account.getEmail());
         dto.setFirstName(account.getFirstName());
         dto.setLastName(account.getLastName());
