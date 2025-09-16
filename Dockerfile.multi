@@ -1,0 +1,140 @@
+# Multi-stage Dockerfile for JPetStore Modernization
+# This Dockerfile can build all three services using different targets
+
+# ============================================
+# Base Java image for Java services
+# ============================================
+FROM maven:3.9-openjdk-21-slim AS java-base
+WORKDIR /workspace
+
+# ============================================
+# Base Node image for Next.js
+# ============================================
+FROM node:18-alpine AS node-base
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+# ============================================
+# Legacy JPetStore Application Build
+# ============================================
+FROM java-base AS legacy-build
+COPY pom.xml .
+COPY mvnw .
+COPY .mvn .mvn
+RUN mvn dependency:go-offline -B || true
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# ============================================
+# Spring Boot API Build
+# ============================================
+FROM java-base AS api-build
+COPY jpetstore-api/pom.xml ./jpetstore-api/pom.xml
+WORKDIR /workspace/jpetstore-api
+RUN mvn dependency:go-offline -B || true
+COPY jpetstore-api/src ./src
+RUN mvn clean package -DskipTests
+
+# ============================================
+# Next.js Frontend Build
+# ============================================
+FROM node-base AS frontend-deps
+COPY jpetstore-frontend/package*.json ./
+RUN npm ci
+
+FROM node-base AS frontend-build
+COPY --from=frontend-deps /app/node_modules ./node_modules
+COPY jpetstore-frontend/ .
+RUN npm run build
+
+# ============================================
+# Legacy App Runtime (target: legacy)
+# ============================================
+FROM tomcat:10-jdk21-openjdk-slim AS legacy
+COPY --from=legacy-build /workspace/target/*.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+
+# ============================================
+# Spring Boot API Runtime (target: api)
+# ============================================
+FROM openjdk:21-jdk-slim AS api
+WORKDIR /app
+COPY --from=api-build /workspace/jpetstore-api/target/*.jar app.jar
+EXPOSE 8081
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# ============================================
+# Next.js Frontend Runtime (target: frontend)
+# ============================================
+FROM node-base AS frontend
+ENV NODE_ENV production
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
+# Copy built application
+COPY --from=frontend-build /app/public ./public
+COPY --from=frontend-build --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=frontend-build --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+EXPOSE 3000
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+CMD ["node", "server.js"]
+
+# ============================================
+# All-in-One Development Image (target: all-in-one)
+# ============================================
+FROM ubuntu:22.04 AS all-in-one
+
+# Install Java, Node.js, and other dependencies
+RUN apt-get update && apt-get install -y \
+    openjdk-21-jdk \
+    maven \
+    curl \
+    supervisor \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy all source code
+COPY . .
+COPY --from=legacy-build /workspace/target/*.war ./legacy.war
+COPY --from=api-build /workspace/jpetstore-api/target/*.jar ./api.jar
+COPY --from=frontend-build /app/.next ./jpetstore-frontend/.next
+COPY --from=frontend-build /app/public ./jpetstore-frontend/public
+COPY --from=frontend-build /app/node_modules ./jpetstore-frontend/node_modules
+
+# Create supervisor configuration
+RUN echo '[supervisord]\n\
+nodaemon=true\n\
+\n\
+[program:legacy]\n\
+command=java -jar -Dserver.port=8080 legacy.war\n\
+autostart=true\n\
+autorestart=true\n\
+stderr_logfile=/var/log/legacy.err.log\n\
+stdout_logfile=/var/log/legacy.out.log\n\
+\n\
+[program:api]\n\
+command=java -jar api.jar\n\
+autostart=true\n\
+autorestart=true\n\
+stderr_logfile=/var/log/api.err.log\n\
+stdout_logfile=/var/log/api.out.log\n\
+\n\
+[program:frontend]\n\
+directory=/app/jpetstore-frontend\n\
+command=npm start\n\
+autostart=true\n\
+autorestart=true\n\
+stderr_logfile=/var/log/frontend.err.log\n\
+stdout_logfile=/var/log/frontend.out.log' > /etc/supervisor/conf.d/supervisord.conf
+
+EXPOSE 8080 8081 3000
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
