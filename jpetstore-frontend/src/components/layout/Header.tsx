@@ -1,10 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
-import { ShoppingCart, User, Menu, Search, Heart, PawPrint } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { ShoppingCart, User, Menu, Search, Heart, PawPrint, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useAuth } from '@/contexts/AuthContext'
+import AuthModal from '@/components/auth/AuthModal'
+import { cartAPI } from '@/lib/api'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -52,8 +55,37 @@ const categories = [
 ]
 
 export default function Header() {
-  const [cartCount, setCartCount] = useState(3)
+  const { user, logout } = useAuth()
+  const [cartCount, setCartCount] = useState(0)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  
+  // Fetch cart count on mount and when user changes
+  useEffect(() => {
+    if (user) {
+      fetchCartCount()
+    } else {
+      setCartCount(0)
+    }
+  }, [user])
+  
+  const fetchCartCount = async () => {
+    try {
+      const response = await cartAPI.getCartCount()
+      setCartCount(response.count)
+    } catch (error) {
+      console.error('Failed to fetch cart count:', error)
+    }
+  }
+  
+  const handleLogout = async () => {
+    try {
+      await logout()
+      setCartCount(0)
+    } catch (error) {
+      console.error('Logout failed:', error)
+    }
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -160,9 +192,20 @@ export default function Header() {
             </Sheet>
 
             {/* User Account */}
-            <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
-            </Button>
+            {user ? (
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium hidden md:inline">
+                  Hi, {user.firstName || user.username}
+                </span>
+                <Button variant="ghost" size="icon" onClick={handleLogout} title="Logout">
+                  <LogOut className="h-5 w-5" />
+                </Button>
+              </div>
+            ) : (
+              <Button variant="ghost" size="icon" onClick={() => setIsAuthModalOpen(true)}>
+                <User className="h-5 w-5" />
+              </Button>
+            )}
 
             {/* Mobile Menu */}
             <Sheet>
@@ -216,6 +259,9 @@ export default function Header() {
           </div>
         )}
       </div>
+      
+      {/* Auth Modal */}
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
     </header>
   )
 }

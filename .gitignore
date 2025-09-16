@@ -10,3 +10,4 @@
 *.properties
 .env
 .github/keys/
+*node_modules*
