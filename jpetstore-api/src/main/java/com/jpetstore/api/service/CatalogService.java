@@ -9,6 +9,7 @@ import com.jpetstore.api.entity.Item;
 import com.jpetstore.api.repository.CategoryRepository;
 import com.jpetstore.api.repository.ProductRepository;
 import com.jpetstore.api.repository.ItemRepository;
+import com.jpetstore.api.repository.InventoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,13 +24,16 @@ public class CatalogService {
     private final CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
     private final ItemRepository itemRepository;
+    private final InventoryRepository inventoryRepository;
 
     public CatalogService(CategoryRepository categoryRepository, 
                          ProductRepository productRepository, 
-                         ItemRepository itemRepository) {
+                         ItemRepository itemRepository,
+                         InventoryRepository inventoryRepository) {
         this.categoryRepository = categoryRepository;
         this.productRepository = productRepository;
         this.itemRepository = itemRepository;
+        this.inventoryRepository = inventoryRepository;
     }
 
     public List<CategoryDto> getAllCategories() {
@@ -90,7 +94,10 @@ public class CatalogService {
     }
 
     private ItemDto convertToDto(Item item) {
-        Integer quantity = item.getInventory() != null ? item.getInventory().getQuantity() : 0;
+        // Fetch inventory separately since we removed the bidirectional relationship
+        Integer quantity = inventoryRepository.findById(item.getItemId())
+                .map(inventory -> inventory.getQuantity())
+                .orElse(0);
         boolean inStock = quantity > 0;
         
         return new ItemDto(

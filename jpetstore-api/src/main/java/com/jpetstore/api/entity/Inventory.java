@@ -19,7 +19,6 @@ public class Inventory {
     @Column(name = "qty")
     private Integer quantity;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "itemid", referencedColumnName = "itemid")
-    private Item item;
+    // Removed OneToOne relationship to avoid Hibernate issues
+    // The relationship can be handled at the service layer if needed
 }

@@ -20,7 +20,7 @@ public class Profile {
     private String languagePreference;
     
     @Column(name = "favcategory")
-    private String favouriteCategoryId;
+    private String favoriteCategory;
     
     @Column(name = "mylistopt")
     private Boolean listOption;
@@ -29,6 +29,6 @@ public class Profile {
     private Boolean bannerOption;
     
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userid", referencedColumnName = "userid")
+    @JoinColumn(name = "userid", referencedColumnName = "userid", insertable = false, updatable = false)
     private Account account;
 }

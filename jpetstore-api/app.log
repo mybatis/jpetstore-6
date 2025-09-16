@@ -1,0 +1,2203 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.5)
+
+2025-09-16T13:42:09.401+02:00  INFO 41944 --- [           main] c.jpetstore.api.JPetStoreApiApplication  : Starting JPetStoreApiApplication v1.0.0-SNAPSHOT using Java 21.0.8 with PID 41944 (/Users/sathwik/jpetstore-6/jpetstore-api/target/jpetstore-api-1.0.0-SNAPSHOT.jar started by sathwik in /Users/sathwik/jpetstore-6/jpetstore-api)
+2025-09-16T13:42:09.401+02:00 DEBUG 41944 --- [           main] c.jpetstore.api.JPetStoreApiApplication  : Running with Spring Boot v3.1.5, Spring v6.0.13
+2025-09-16T13:42:09.402+02:00  INFO 41944 --- [           main] c.jpetstore.api.JPetStoreApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-09-16T13:42:09.775+02:00  INFO 41944 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-16T13:42:09.817+02:00  INFO 41944 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 8 JPA repository interfaces.
+2025-09-16T13:42:10.134+02:00  INFO 41944 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-09-16T13:42:10.139+02:00  INFO 41944 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-16T13:42:10.139+02:00  INFO 41944 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.15]
+2025-09-16T13:42:10.177+02:00  INFO 41944 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-09-16T13:42:10.177+02:00  INFO 41944 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 750 ms
+2025-09-16T13:42:10.194+02:00  INFO 41944 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-16T13:42:10.308+02:00  INFO 41944 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:jpetstore user=SA
+2025-09-16T13:42:10.309+02:00  INFO 41944 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-16T13:42:10.316+02:00  INFO 41944 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:jpetstore'
+2025-09-16T13:42:10.390+02:00  INFO 41944 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-16T13:42:10.425+02:00  INFO 41944 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.13.Final
+2025-09-16T13:42:10.426+02:00  INFO 41944 --- [           main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2025-09-16T13:42:10.570+02:00  INFO 41944 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-16T13:42:10.594+02:00  WARN 41944 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-16T13:42:11.128+02:00  INFO 41944 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-16T13:42:11.136+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists account cascade 
+Hibernate: 
+    drop table if exists account cascade 
+2025-09-16T13:42:11.139+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists category cascade 
+Hibernate: 
+    drop table if exists category cascade 
+2025-09-16T13:42:11.139+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists inventory cascade 
+Hibernate: 
+    drop table if exists inventory cascade 
+2025-09-16T13:42:11.139+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists item cascade 
+Hibernate: 
+    drop table if exists item cascade 
+2025-09-16T13:42:11.139+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists product cascade 
+Hibernate: 
+    drop table if exists product cascade 
+2025-09-16T13:42:11.139+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists profile cascade 
+Hibernate: 
+    drop table if exists profile cascade 
+2025-09-16T13:42:11.139+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists signon cascade 
+Hibernate: 
+    drop table if exists signon cascade 
+2025-09-16T13:42:11.139+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists supplier cascade 
+Hibernate: 
+    drop table if exists supplier cascade 
+2025-09-16T13:42:11.142+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    create table account (
+        addr1 varchar(255),
+        addr2 varchar(255),
+        city varchar(255),
+        country varchar(255),
+        email varchar(255),
+        firstname varchar(255),
+        lastname varchar(255),
+        phone varchar(255),
+        state varchar(255),
+        status varchar(255),
+        userid varchar(255) not null,
+        zip varchar(255),
+        primary key (userid)
+    )
+Hibernate: 
+    create table account (
+        addr1 varchar(255),
+        addr2 varchar(255),
+        city varchar(255),
+        country varchar(255),
+        email varchar(255),
+        firstname varchar(255),
+        lastname varchar(255),
+        phone varchar(255),
+        state varchar(255),
+        status varchar(255),
+        userid varchar(255) not null,
+        zip varchar(255),
+        primary key (userid)
+    )
+2025-09-16T13:42:11.145+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    create table category (
+        catid varchar(255) not null,
+        descn varchar(255),
+        name varchar(255),
+        primary key (catid)
+    )
+Hibernate: 
+    create table category (
+        catid varchar(255) not null,
+        descn varchar(255),
+        name varchar(255),
+        primary key (catid)
+    )
+2025-09-16T13:42:11.146+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    create table inventory (
+        qty integer,
+        itemid varchar(255) not null,
+        primary key (itemid)
+    )
+Hibernate: 
+    create table inventory (
+        qty integer,
+        itemid varchar(255) not null,
+        primary key (itemid)
+    )
+2025-09-16T13:42:11.147+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    create table item (
+        listprice numeric(38,2),
+        supplier integer,
+        unitcost numeric(38,2),
+        attr1 varchar(255),
+        attr2 varchar(255),
+        attr3 varchar(255),
+        attr4 varchar(255),
+        attr5 varchar(255),
+        itemid varchar(255) not null,
+        productid varchar(255),
+        status varchar(255),
+        primary key (itemid)
+    )
+Hibernate: 
+    create table item (
+        listprice numeric(38,2),
+        supplier integer,
+        unitcost numeric(38,2),
+        attr1 varchar(255),
+        attr2 varchar(255),
+        attr3 varchar(255),
+        attr4 varchar(255),
+        attr5 varchar(255),
+        itemid varchar(255) not null,
+        productid varchar(255),
+        status varchar(255),
+        primary key (itemid)
+    )
+2025-09-16T13:42:11.148+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    create table product (
+        category varchar(255),
+        descn varchar(255),
+        name varchar(255),
+        productid varchar(255) not null,
+        primary key (productid)
+    )
+Hibernate: 
+    create table product (
+        category varchar(255),
+        descn varchar(255),
+        name varchar(255),
+        productid varchar(255) not null,
+        primary key (productid)
+    )
+2025-09-16T13:42:11.148+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    create table profile (
+        banneropt boolean,
+        mylistopt boolean,
+        favcategory varchar(255),
+        langpref varchar(255),
+        userid varchar(255) not null,
+        primary key (userid)
+    )
+Hibernate: 
+    create table profile (
+        banneropt boolean,
+        mylistopt boolean,
+        favcategory varchar(255),
+        langpref varchar(255),
+        userid varchar(255) not null,
+        primary key (userid)
+    )
+2025-09-16T13:42:11.149+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    create table signon (
+        password varchar(255),
+        username varchar(255) not null,
+        primary key (username)
+    )
+Hibernate: 
+    create table signon (
+        password varchar(255),
+        username varchar(255) not null,
+        primary key (username)
+    )
+2025-09-16T13:42:11.149+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    create table supplier (
+        status varchar(2) not null,
+        suppid integer not null,
+        zip varchar(5),
+        addr1 varchar(80),
+        addr2 varchar(80),
+        city varchar(80),
+        name varchar(80),
+        phone varchar(80),
+        state varchar(80),
+        primary key (suppid)
+    )
+Hibernate: 
+    create table supplier (
+        status varchar(2) not null,
+        suppid integer not null,
+        zip varchar(5),
+        addr1 varchar(80),
+        addr2 varchar(80),
+        city varchar(80),
+        name varchar(80),
+        phone varchar(80),
+        state varchar(80),
+        primary key (suppid)
+    )
+2025-09-16T13:42:11.150+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists item 
+       add constraint FK2ltdskt1syqkei1yxj8c1eiug 
+       foreign key (productid) 
+       references product
+Hibernate: 
+    alter table if exists item 
+       add constraint FK2ltdskt1syqkei1yxj8c1eiug 
+       foreign key (productid) 
+       references product
+2025-09-16T13:42:11.157+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists item 
+       add constraint FKl54nt66s2uam75j8m51gutnwu 
+       foreign key (supplier) 
+       references supplier
+Hibernate: 
+    alter table if exists item 
+       add constraint FKl54nt66s2uam75j8m51gutnwu 
+       foreign key (supplier) 
+       references supplier
+2025-09-16T13:42:11.158+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists product 
+       add constraint FKqx9wikktsev17ctu0kcpkrafc 
+       foreign key (category) 
+       references category
+Hibernate: 
+    alter table if exists product 
+       add constraint FKqx9wikktsev17ctu0kcpkrafc 
+       foreign key (category) 
+       references category
+2025-09-16T13:42:11.161+02:00  INFO 41944 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-16T13:42:11.377+02:00  INFO 41944 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-16T13:42:11.845+02:00  WARN 41944 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-16T13:42:12.068+02:00  INFO 41944 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path '/api'
+2025-09-16T13:42:12.077+02:00  INFO 41944 --- [           main] c.jpetstore.api.JPetStoreApiApplication  : Started JPetStoreApiApplication in 2.905 seconds (process running for 3.164)
+2025-09-16T13:42:12.078+02:00  INFO 41944 --- [           main] c.jpetstore.api.config.DataInitializer   : Initializing database with sample data...
+2025-09-16T13:42:12.114+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        category c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        category c1_0
+2025-09-16T13:42:12.139+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        s1_0.suppid,
+        s1_0.addr1,
+        s1_0.addr2,
+        s1_0.city,
+        s1_0.name,
+        s1_0.phone,
+        s1_0.state,
+        s1_0.status,
+        s1_0.zip 
+    from
+        supplier s1_0 
+    where
+        s1_0.suppid=?
+Hibernate: 
+    select
+        s1_0.suppid,
+        s1_0.addr1,
+        s1_0.addr2,
+        s1_0.city,
+        s1_0.name,
+        s1_0.phone,
+        s1_0.state,
+        s1_0.status,
+        s1_0.zip 
+    from
+        supplier s1_0 
+    where
+        s1_0.suppid=?
+2025-09-16T13:42:12.147+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        s1_0.suppid,
+        s1_0.addr1,
+        s1_0.addr2,
+        s1_0.city,
+        s1_0.name,
+        s1_0.phone,
+        s1_0.state,
+        s1_0.status,
+        s1_0.zip 
+    from
+        supplier s1_0 
+    where
+        s1_0.suppid=?
+Hibernate: 
+    select
+        s1_0.suppid,
+        s1_0.addr1,
+        s1_0.addr2,
+        s1_0.city,
+        s1_0.name,
+        s1_0.phone,
+        s1_0.state,
+        s1_0.status,
+        s1_0.zip 
+    from
+        supplier s1_0 
+    where
+        s1_0.suppid=?
+2025-09-16T13:42:12.161+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        supplier
+        (addr1,addr2,city,name,phone,state,status,zip,suppid) 
+    values
+        (?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        supplier
+        (addr1,addr2,city,name,phone,state,status,zip,suppid) 
+    values
+        (?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.163+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        supplier
+        (addr1,addr2,city,name,phone,state,status,zip,suppid) 
+    values
+        (?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        supplier
+        (addr1,addr2,city,name,phone,state,status,zip,suppid) 
+    values
+        (?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.164+02:00  INFO 41944 --- [           main] c.jpetstore.api.config.DataInitializer   : Suppliers initialized
+2025-09-16T13:42:12.165+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        c1_0.catid,
+        c1_0.descn,
+        c1_0.name 
+    from
+        category c1_0 
+    where
+        c1_0.catid=?
+Hibernate: 
+    select
+        c1_0.catid,
+        c1_0.descn,
+        c1_0.name 
+    from
+        category c1_0 
+    where
+        c1_0.catid=?
+2025-09-16T13:42:12.166+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        c1_0.catid,
+        c1_0.descn,
+        c1_0.name 
+    from
+        category c1_0 
+    where
+        c1_0.catid=?
+Hibernate: 
+    select
+        c1_0.catid,
+        c1_0.descn,
+        c1_0.name 
+    from
+        category c1_0 
+    where
+        c1_0.catid=?
+2025-09-16T13:42:12.167+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        c1_0.catid,
+        c1_0.descn,
+        c1_0.name 
+    from
+        category c1_0 
+    where
+        c1_0.catid=?
+Hibernate: 
+    select
+        c1_0.catid,
+        c1_0.descn,
+        c1_0.name 
+    from
+        category c1_0 
+    where
+        c1_0.catid=?
+2025-09-16T13:42:12.167+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        c1_0.catid,
+        c1_0.descn,
+        c1_0.name 
+    from
+        category c1_0 
+    where
+        c1_0.catid=?
+Hibernate: 
+    select
+        c1_0.catid,
+        c1_0.descn,
+        c1_0.name 
+    from
+        category c1_0 
+    where
+        c1_0.catid=?
+2025-09-16T13:42:12.168+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        c1_0.catid,
+        c1_0.descn,
+        c1_0.name 
+    from
+        category c1_0 
+    where
+        c1_0.catid=?
+Hibernate: 
+    select
+        c1_0.catid,
+        c1_0.descn,
+        c1_0.name 
+    from
+        category c1_0 
+    where
+        c1_0.catid=?
+2025-09-16T13:42:12.169+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (descn,name,catid) 
+    values
+        (?,?,?)
+Hibernate: 
+    insert 
+    into
+        category
+        (descn,name,catid) 
+    values
+        (?,?,?)
+2025-09-16T13:42:12.169+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (descn,name,catid) 
+    values
+        (?,?,?)
+Hibernate: 
+    insert 
+    into
+        category
+        (descn,name,catid) 
+    values
+        (?,?,?)
+2025-09-16T13:42:12.170+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (descn,name,catid) 
+    values
+        (?,?,?)
+Hibernate: 
+    insert 
+    into
+        category
+        (descn,name,catid) 
+    values
+        (?,?,?)
+2025-09-16T13:42:12.170+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (descn,name,catid) 
+    values
+        (?,?,?)
+Hibernate: 
+    insert 
+    into
+        category
+        (descn,name,catid) 
+    values
+        (?,?,?)
+2025-09-16T13:42:12.170+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (descn,name,catid) 
+    values
+        (?,?,?)
+Hibernate: 
+    insert 
+    into
+        category
+        (descn,name,catid) 
+    values
+        (?,?,?)
+2025-09-16T13:42:12.170+02:00  INFO 41944 --- [           main] c.jpetstore.api.config.DataInitializer   : Categories initialized
+2025-09-16T13:42:12.172+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.176+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.177+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.177+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.178+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.178+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.179+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.179+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.179+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.180+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.180+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.180+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.181+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.181+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.182+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.182+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+Hibernate: 
+    select
+        p1_0.productid,
+        p1_0.category,
+        p1_0.descn,
+        p1_0.name 
+    from
+        product p1_0 
+    where
+        p1_0.productid=?
+2025-09-16T13:42:12.184+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.184+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.185+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.185+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.185+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.185+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.186+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.186+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.186+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.187+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.187+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.187+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.187+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.188+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.188+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.188+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        product
+        (category,descn,name,productid) 
+    values
+        (?,?,?,?)
+2025-09-16T13:42:12.189+02:00  INFO 41944 --- [           main] c.jpetstore.api.config.DataInitializer   : Products initialized
+2025-09-16T13:42:12.193+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.194+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.195+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.195+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.195+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.196+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.196+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.197+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.197+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.198+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.199+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.199+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.199+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.200+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.201+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.201+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.202+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.202+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.203+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.203+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.204+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.attr1,
+        i1_0.attr2,
+        i1_0.attr3,
+        i1_0.attr4,
+        i1_0.attr5,
+        i1_0.listprice,
+        i1_0.productid,
+        i1_0.status,
+        i1_0.supplier,
+        i1_0.unitcost 
+    from
+        item i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.205+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.206+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.207+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.207+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.207+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.208+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.208+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.209+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.209+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.209+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.209+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.210+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.210+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.210+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.211+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.211+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.211+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.212+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.212+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.212+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.212+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: 
+    insert 
+    into
+        item
+        (attr1,attr2,attr3,attr4,attr5,listprice,productid,status,supplier,unitcost,itemid) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?)
+2025-09-16T13:42:12.213+02:00  INFO 41944 --- [           main] c.jpetstore.api.config.DataInitializer   : Items initialized
+2025-09-16T13:42:12.214+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    select
+        i1_0.itemid,
+        i1_0.qty 
+    from
+        inventory i1_0 
+    where
+        i1_0.itemid=?
+Hibernate: 
+    select
+        i1_0.itemid,
+        i1_0.qty 
+    from
+        inventory i1_0 
+    where
+        i1_0.itemid=?
+2025-09-16T13:42:12.215+02:00 ERROR 41944 --- [           main] org.hibernate.AssertionFailure           : HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null identifier (com.jpetstore.api.entity.Inventory)
+2025-09-16T13:42:12.219+02:00  INFO 41944 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-16T13:42:12.229+02:00 ERROR 41944 --- [           main] o.s.boot.SpringApplication               : Application run failed
+
+java.lang.IllegalStateException: Failed to execute CommandLineRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774) ~[spring-boot-3.1.5.jar!/:3.1.5]
+	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:755) ~[spring-boot-3.1.5.jar!/:3.1.5]
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184) ~[na:na]
+	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151) ~[na:na]
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596) ~[na:na]
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:750) ~[spring-boot-3.1.5.jar!/:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323) ~[spring-boot-3.1.5.jar!/:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.5.jar!/:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.5.jar!/:3.1.5]
+	at com.jpetstore.api.JPetStoreApiApplication.main(JPetStoreApiApplication.java:14) ~[classes!/:1.0.0-SNAPSHOT]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:49) ~[jpetstore-api-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:95) ~[jpetstore-api-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:58) ~[jpetstore-api-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:65) ~[jpetstore-api-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+Caused by: org.hibernate.AssertionFailure: null identifier (com.jpetstore.api.entity.Inventory)
+	at org.hibernate.engine.spi.EntityKey.<init>(EntityKey.java:50) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.generateEntityKey(AbstractSharedSessionContract.java:618) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.type.OneToOneType.isNull(OneToOneType.java:75) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.type.EntityType.resolve(EntityType.java:415) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.type.EntityType.replace(EntityType.java:340) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.type.AbstractType.replace(AbstractType.java:143) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.type.TypeHelper.replace(TypeHelper.java:155) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.event.internal.DefaultMergeEventListener.copyValues(DefaultMergeEventListener.java:541) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.event.internal.DefaultMergeEventListener.entityIsTransient(DefaultMergeEventListener.java:231) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.event.internal.DefaultMergeEventListener.entityIsDetached(DefaultMergeEventListener.java:346) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.event.internal.DefaultMergeEventListener.merge(DefaultMergeEventListener.java:149) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.event.internal.DefaultMergeEventListener.doMerge(DefaultMergeEventListener.java:142) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:126) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:80) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.internal.SessionImpl.fireMerge(SessionImpl.java:848) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at org.hibernate.internal.SessionImpl.merge(SessionImpl.java:834) ~[hibernate-core-6.2.13.Final.jar!/:6.2.13.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-6.0.13.jar!/:6.0.13]
+	at jdk.proxy2/jdk.proxy2.$Proxy109.merge(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:621) ~[spring-data-jpa-3.1.5.jar!/:3.1.5]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:288) ~[spring-data-commons-3.1.5.jar!/:3.1.5]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136) ~[spring-data-commons-3.1.5.jar!/:3.1.5]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120) ~[spring-data-commons-3.1.5.jar!/:3.1.5]
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516) ~[spring-data-commons-3.1.5.jar!/:3.1.5]
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-3.1.5.jar!/:3.1.5]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628) ~[spring-data-commons-3.1.5.jar!/:3.1.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.13.jar!/:6.0.13]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:168) ~[spring-data-commons-3.1.5.jar!/:3.1.5]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.1.5.jar!/:3.1.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.13.jar!/:6.0.13]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:72) ~[spring-data-commons-3.1.5.jar!/:3.1.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.13.jar!/:6.0.13]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.13.jar!/:6.0.13]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.13.jar!/:6.0.13]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.13.jar!/:6.0.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.13.jar!/:6.0.13]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.13.jar!/:6.0.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.13.jar!/:6.0.13]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:164) ~[spring-data-jpa-3.1.5.jar!/:3.1.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.13.jar!/:6.0.13]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.13.jar!/:6.0.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.13.jar!/:6.0.13]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:244) ~[spring-aop-6.0.13.jar!/:6.0.13]
+	at jdk.proxy2/jdk.proxy2.$Proxy120.save(Unknown Source) ~[na:na]
+	at com.jpetstore.api.config.DataInitializer.lambda$initDatabase$0(DataInitializer.java:158) ~[classes!/:1.0.0-SNAPSHOT]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:771) ~[spring-boot-3.1.5.jar!/:3.1.5]
+	... 20 common frames omitted
+
+2025-09-16T13:42:12.245+02:00  INFO 41944 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-16T13:42:12.246+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists account cascade 
+Hibernate: 
+    drop table if exists account cascade 
+2025-09-16T13:42:12.247+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists category cascade 
+Hibernate: 
+    drop table if exists category cascade 
+2025-09-16T13:42:12.247+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists inventory cascade 
+Hibernate: 
+    drop table if exists inventory cascade 
+2025-09-16T13:42:12.247+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists item cascade 
+Hibernate: 
+    drop table if exists item cascade 
+2025-09-16T13:42:12.247+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists product cascade 
+Hibernate: 
+    drop table if exists product cascade 
+2025-09-16T13:42:12.248+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists profile cascade 
+Hibernate: 
+    drop table if exists profile cascade 
+2025-09-16T13:42:12.248+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists signon cascade 
+Hibernate: 
+    drop table if exists signon cascade 
+2025-09-16T13:42:12.249+02:00 DEBUG 41944 --- [           main] org.hibernate.SQL                        : 
+    drop table if exists supplier cascade 
+Hibernate: 
+    drop table if exists supplier cascade 
+2025-09-16T13:42:12.250+02:00  INFO 41944 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-16T13:42:12.251+02:00  INFO 41944 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
