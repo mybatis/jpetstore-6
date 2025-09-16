@@ -1,7 +1,5 @@
 server:
   port: 8081
-  servlet:
-    context-path: /api
 
 spring:
   application:
@@ -21,6 +19,11 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: never
 
   h2:
     console:

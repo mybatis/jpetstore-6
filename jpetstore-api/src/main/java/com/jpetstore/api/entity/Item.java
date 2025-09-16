@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.math.BigDecimal;
 
@@ -24,8 +25,9 @@ public class Item {
     @Column(name = "unitcost")
     private BigDecimal unitCost;
     
-    @Column(name = "supplier")
-    private Integer supplierId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplier", referencedColumnName = "suppid")
+    private Supplier supplier;
     
     @Column(name = "status")
     private String status;
@@ -47,8 +49,9 @@ public class Item {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productid", referencedColumnName = "productid")
+    @JsonBackReference
     private Product product;
     
-    @OneToOne(mappedBy = "item", fetch = FetchType.LAZY)
-    private Inventory inventory;
+    // Removed bidirectional relationship to avoid Hibernate mapping issues
+    // Inventory can be fetched separately if needed
 }
