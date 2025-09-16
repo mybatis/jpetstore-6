@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Heart, ShoppingCart, Star, Eye, Info } from 'lucide-react'
+import { Heart, ShoppingCart, Star, Eye, Info, CheckCircle } from 'lucide-react'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { cartAPI } from '@/lib/api'
 
 interface PetCardProps {
   id: string
@@ -52,11 +53,54 @@ export default function PetCard({
 }: PetCardProps) {
   const [isLiked, setIsLiked] = useState(false)
   const [imageLoading, setImageLoading] = useState(true)
+  const [isAddingToCart, setIsAddingToCart] = useState(false)
+  const [addedToCart, setAddedToCart] = useState(false)
 
-  const handleAddToCart = (e: React.MouseEvent) => {
+  const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault()
-    // Add to cart logic here
-    console.log('Added to cart:', { id, name, price })
+    e.stopPropagation()
+    
+    if (isAddingToCart || status !== 'Available') return
+    
+    setIsAddingToCart(true)
+    setAddedToCart(false)
+    
+    try {
+      // Prepare cart item data
+      const cartItem = {
+        itemId: id,
+        productId: id,
+        name: name,
+        description: description,
+        imageUrl: image,
+        price: price,
+        quantity: 1,
+        total: price,
+        category: category,
+        breed: breed
+      }
+      
+      // Call the API to add item to cart
+      await cartAPI.addToCart(cartItem)
+      
+      // Show success feedback
+      setAddedToCart(true)
+      
+      // Reset the success state after 2 seconds
+      setTimeout(() => {
+        setAddedToCart(false)
+      }, 2000)
+      
+      // Trigger a custom event to update cart count in header
+      window.dispatchEvent(new CustomEvent('cartUpdated'))
+      
+    } catch (error) {
+      console.error('Failed to add item to cart:', error)
+      // You could add a toast notification here for error feedback
+      alert('Failed to add item to cart. Please try again.')
+    } finally {
+      setIsAddingToCart(false)
+    }
   }
 
   const handleToggleLike = (e: React.MouseEvent) => {
@@ -217,11 +261,26 @@ export default function PetCard({
         <Button
           size="sm"
           onClick={handleAddToCart}
-          disabled={status !== 'Available'}
+          disabled={status !== 'Available' || isAddingToCart}
           className="gap-2"
+          variant={addedToCart ? "secondary" : "default"}
         >
-          <ShoppingCart className="h-4 w-4" />
-          Add to Cart
+          {isAddingToCart ? (
+            <>
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+              Adding...
+            </>
+          ) : addedToCart ? (
+            <>
+              <CheckCircle className="h-4 w-4" />
+              Added!
+            </>
+          ) : (
+            <>
+              <ShoppingCart className="h-4 w-4" />
+              Add to Cart
+            </>
+          )}
         </Button>
       </CardFooter>
     </Card>
