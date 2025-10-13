@@ -101,6 +101,9 @@
 
 <div id="QuickLinks"><stripes:link
 	beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+	event="viewAllItems">All
+</stripes:link> <img src="../images/separator.gif" /> <stripes:link
+	beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
 	event="viewCategory">
 	<stripes:param name="categoryId" value="FISH" />
 	<img src="../images/sm_fish.gif" />

@@ -30,6 +30,12 @@
 <div id="Sidebar">
 <div id="SidebarContent"><stripes:link
 	beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+	event="viewAllItems">
+	<strong>All</strong>
+</stripes:link> <br />
+All Products <br />
+<stripes:link
+	beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
 	event="viewCategory">
 	<stripes:param name="categoryId" value="FISH" />
 	<img src="../images/fish_icon.gif" />
