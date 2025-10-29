@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2025 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -27,15 +27,15 @@ import org.mybatis.jpetstore.domain.Item;
  */
 public interface ItemMapper {
 
-    void updateInventoryQuantity(Map<String, Object> param);
+  void updateInventoryQuantity(Map<String, Object> param);
 
-    int getInventoryQuantity(String itemId);
+  int getInventoryQuantity(String itemId);
 
-    List<Item> getItemListByProduct(String productId);
+  List<Item> getItemListByProduct(String productId);
 
-    Item getItem(String itemId);
+  Item getItem(String itemId);
 
-    // 모든 세부 상품 목록 가져오기
-    List<Item> getAllItemList();
+  // 모든 세부 상품 목록 가져오기
+  List<Item> getAllItemList();
 
 }

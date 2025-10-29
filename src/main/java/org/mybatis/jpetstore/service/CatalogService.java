@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2023 the original author or authors.
+ *    Copyright 2010-2025 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -34,67 +34,67 @@ import org.springframework.stereotype.Service;
 @Service
 public class CatalogService {
 
-    private final CategoryMapper categoryMapper;
-    private final ItemMapper itemMapper;
-    private final ProductMapper productMapper;
+  private final CategoryMapper categoryMapper;
+  private final ItemMapper itemMapper;
+  private final ProductMapper productMapper;
 
-    public CatalogService(CategoryMapper categoryMapper, ItemMapper itemMapper, ProductMapper productMapper) {
-        this.categoryMapper = categoryMapper;
-        this.itemMapper = itemMapper;
-        this.productMapper = productMapper;
+  public CatalogService(CategoryMapper categoryMapper, ItemMapper itemMapper, ProductMapper productMapper) {
+    this.categoryMapper = categoryMapper;
+    this.itemMapper = itemMapper;
+    this.productMapper = productMapper;
+  }
+
+  public List<Category> getCategoryList() {
+    return categoryMapper.getCategoryList();
+  }
+
+  public Category getCategory(String categoryId) {
+    return categoryMapper.getCategory(categoryId);
+  }
+
+  public Product getProduct(String productId) {
+    return productMapper.getProduct(productId);
+  }
+
+  public List<Product> getProductListByCategory(String categoryId) {
+    return productMapper.getProductListByCategory(categoryId);
+  }
+
+  /**
+   * Search product list.
+   *
+   * @param keywords
+   *          the keywords
+   *
+   * @return the list
+   */
+  public List<Product> searchProductList(String keywords) {
+    List<Product> products = new ArrayList<>();
+    for (String keyword : keywords.split("\\s+")) {
+      products.addAll(productMapper.searchProductList("%" + keyword.toLowerCase() + "%"));
     }
+    return products;
+  }
 
-    public List<Category> getCategoryList() {
-        return categoryMapper.getCategoryList();
-    }
+  public List<Item> getItemListByProduct(String productId) {
+    return itemMapper.getItemListByProduct(productId);
+  }
 
-    public Category getCategory(String categoryId) {
-        return categoryMapper.getCategory(categoryId);
-    }
+  public Item getItem(String itemId) {
+    return itemMapper.getItem(itemId);
+  }
 
-    public Product getProduct(String productId) {
-        return productMapper.getProduct(productId);
-    }
+  public boolean isItemInStock(String itemId) {
+    return itemMapper.getInventoryQuantity(itemId) > 0;
+  }
 
-    public List<Product> getProductListByCategory(String categoryId) {
-        return productMapper.getProductListByCategory(categoryId);
-    }
+  // 새로 추가한 모든 동물 가져오는 메소드
+  public List<Item> getAllItemList() {
+    return itemMapper.getAllItemList();
+  }
 
-    /**
-     * Search product list.
-     *
-     * @param keywords
-     *          the keywords
-     *
-     * @return the list
-     */
-    public List<Product> searchProductList(String keywords) {
-        List<Product> products = new ArrayList<>();
-        for (String keyword : keywords.split("\\s+")) {
-            products.addAll(productMapper.searchProductList("%" + keyword.toLowerCase() + "%"));
-        }
-        return products;
-    }
-
-    public List<Item> getItemListByProduct(String productId) {
-        return itemMapper.getItemListByProduct(productId);
-    }
-
-    public Item getItem(String itemId) {
-        return itemMapper.getItem(itemId);
-    }
-
-    public boolean isItemInStock(String itemId) {
-        return itemMapper.getInventoryQuantity(itemId) > 0;
-    }
-
-    // 새로 추가한 모든 동물 가져오는 메소드
-    public List<Item> getAllItemList() {
-        return itemMapper.getAllItemList();
-    }
-
-// 이것도 product 기준이 아니라 item 기준으로 수정!
-//  public List<Product> getAllProductList() {
-//    return productMapper.getAllProductList(); // ProductMapper에게 모든 상품을 달라고 요청
-//  }
+  // 이것도 product 기준이 아니라 item 기준으로 수정!
+  // public List<Product> getAllProductList() {
+  // return productMapper.getAllProductList(); // ProductMapper에게 모든 상품을 달라고 요청
+  // }
 }
