@@ -17,66 +17,88 @@
 
 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.mybatis.jpetstore.mapper.ItemMapper">
 
-  <cache />
+    <cache />
 
-  <select id="getItemListByProduct" resultType="Item">
-    SELECT
-      I.ITEMID,
-      LISTPRICE,
-      UNITCOST,
-      SUPPLIER AS supplierId,
-      I.PRODUCTID AS "product.productId",
-      NAME AS "product.name",
-      DESCN AS "product.description",
-      CATEGORY AS "product.categoryId",
-      STATUS,
-      ATTR1 AS attribute1,
-      ATTR2 AS attribute2,
-      ATTR3 AS attribute3,
-      ATTR4 AS attribute4,
-      ATTR5 AS attribute5
-    FROM ITEM I, PRODUCT P
-    WHERE P.PRODUCTID = I.PRODUCTID
-    AND I.PRODUCTID = #{value}
-  </select>
+    <select id="getItemListByProduct" resultType="Item">
+        SELECT
+            I.ITEMID,
+            LISTPRICE,
+            UNITCOST,
+            SUPPLIER AS supplierId,
+            I.PRODUCTID AS "product.productId",
+            NAME AS "product.name",
+            DESCN AS "product.description",
+            CATEGORY AS "product.categoryId",
+            STATUS,
+            ATTR1 AS attribute1,
+            ATTR2 AS attribute2,
+            ATTR3 AS attribute3,
+            ATTR4 AS attribute4,
+            ATTR5 AS attribute5
+        FROM ITEM I, PRODUCT P
+        WHERE P.PRODUCTID = I.PRODUCTID
+          AND I.PRODUCTID = #{value}
+    </select>
 
-  <select id="getItem" resultType="Item">
-    select
-      I.ITEMID,
-      LISTPRICE,
-      UNITCOST,
-      SUPPLIER AS supplierId,
-      I.PRODUCTID AS "product.productId",
-      NAME AS "product.name",
-      DESCN AS "product.description",
-      CATEGORY AS "product.categoryId",
-      STATUS,
-      ATTR1 AS attribute1,
-      ATTR2 AS attribute2,
-      ATTR3 AS attribute3,
-      ATTR4 AS attribute4,
-      ATTR5 AS attribute5,
-      QTY AS quantity
-    from ITEM I, INVENTORY V, PRODUCT P
-    where P.PRODUCTID = I.PRODUCTID
-      and I.ITEMID = V.ITEMID
-      and I.ITEMID = #{value}
-  </select>
+    <select id="getItem" resultType="Item">
+        select
+            I.ITEMID,
+            LISTPRICE,
+            UNITCOST,
+            SUPPLIER AS supplierId,
+            I.PRODUCTID AS "product.productId",
+            NAME AS "product.name",
+            DESCN AS "product.description",
+            CATEGORY AS "product.categoryId",
+            STATUS,
+            ATTR1 AS attribute1,
+            ATTR2 AS attribute2,
+            ATTR3 AS attribute3,
+            ATTR4 AS attribute4,
+            ATTR5 AS attribute5,
+            QTY AS quantity
+        from ITEM I, INVENTORY V, PRODUCT P
+        where P.PRODUCTID = I.PRODUCTID
+          and I.ITEMID = V.ITEMID
+          and I.ITEMID = #{value}
+    </select>
 
-  <select id="getInventoryQuantity" resultType="int">
-    SELECT QTY AS value
-    FROM INVENTORY
-    WHERE ITEMID = #{itemId}
-  </select>
+    <!--  세부 상품 관련 내용들 가져오기  -->
+    <select id="getAllItemList" resultType="Item">
+        SELECT
+            I.ITEMID,
+            I.LISTPRICE,
+            I.UNITCOST,
+            I.SUPPLIER AS supplierId,
+            I.PRODUCTID AS "product.productId",
+            P.NAME AS "product.name",
+            P.DESCN AS "product.description",
+            P.CATEGORY AS "product.categoryId",
+            I.STATUS,
+            I.ATTR1 AS attribute1,
+            I.ATTR2 AS attribute2,
+            I.ATTR3 AS attribute3,
+            I.ATTR4 AS attribute4,
+            I.ATTR5 AS attribute5
+        FROM ITEM I, PRODUCT P
+        WHERE P.PRODUCTID = I.PRODUCTID
+--     ORDER BY I.ITEMID
+    </select>
 
-  <update id="updateInventoryQuantity">
-    UPDATE INVENTORY SET
-      QTY = QTY - #{increment}
-    WHERE ITEMID = #{itemId}
-  </update>
+    <select id="getInventoryQuantity" resultType="int">
+        SELECT QTY AS value
+        FROM INVENTORY
+        WHERE ITEMID = #{itemId}
+    </select>
+
+    <update id="updateInventoryQuantity">
+        UPDATE INVENTORY SET
+            QTY = QTY - #{increment}
+        WHERE ITEMID = #{itemId}
+    </update>
 
 </mapper>
