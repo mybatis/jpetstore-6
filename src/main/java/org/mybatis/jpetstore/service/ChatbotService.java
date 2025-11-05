@@ -19,7 +19,11 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
+import org.mybatis.jpetstore.domain.Category;
+import org.mybatis.jpetstore.domain.Item;
+import org.mybatis.jpetstore.domain.Product;
 import org.springframework.stereotype.Service;
 
 /**
@@ -35,10 +39,12 @@ public class ChatbotService {
 
   private final HttpClient httpClient;
   private final String apiKey;
+  private final CatalogService catalogService;
 
-  public ChatbotService() {
+  public ChatbotService(CatalogService catalogService) {
     this.httpClient = HttpClient.newHttpClient();
     this.apiKey = System.getenv(API_KEY_ENV);
+    this.catalogService = catalogService;
   }
 
   /**
@@ -79,14 +85,50 @@ public class ChatbotService {
   }
 
   /**
-   * Build a chat prompt for the AI.
+   * Build a chat prompt for the AI with actual database product information.
    */
   private String buildChatPrompt(String userMessage) {
+    // 실제 데이터베이스의 카테고리와 제품 정보 조회
+    StringBuilder productInfo = new StringBuilder();
+    try {
+      List<Category> categories = catalogService.getCategoryList();
+      productInfo.append("현재 JPetStore에서 판매 중인 실제 애완동물 목록:\n\n");
+
+      for (Category category : categories) {
+        List<Product> products = catalogService.getProductListByCategory(category.getCategoryId());
+        if (!products.isEmpty()) {
+          productInfo.append(String.format("【%s 카테고리】\n", category.getName()));
+          int count = 0;
+          for (Product product : products) {
+            if (count >= 3)
+              break; // 카테고리당 3개만 표시
+            List<Item> items = catalogService.getItemListByProduct(product.getProductId());
+            if (!items.isEmpty() && catalogService.isItemInStock(items.get(0).getItemId())) {
+              productInfo.append(String.format("  - %s: %s (가격: $%.2f~)\n", product.getName(), product.getDescription(),
+                  items.get(0).getListPrice()));
+              count++;
+            }
+          }
+          productInfo.append("\n");
+        }
+      }
+
+      // 디버깅용 로그
+      System.out.println("[CHATBOT] Product info for AI:\n" + productInfo.toString());
+
+    } catch (Exception e) {
+      System.err.println("Error fetching product info for chatbot: " + e.getMessage());
+      e.printStackTrace();
+      productInfo.append("(제품 정보를 불러오는 중 오류가 발생했습니다)\n");
+    }
+
     return String.format(
-        "당신은 JPetStore 애완동물 쇼핑몰의 친절한 AI 고객 지원 도우미입니다.\n\n" + "다음 질문에 친절하고 도움이 되는 답변을 제공해주세요:\n\n" + "고객 질문: %s\n\n"
-            + "답변 시 다음을 고려해주세요:\n" + "1. 애완동물 용품에 대한 전문적인 조언\n" + "2. JPetStore에서 판매하는 상품 (물고기, 강아지, 고양이, 새, 파충류 용품)\n"
-            + "3. 간단명료하고 친근한 톤\n" + "4. 필요시 구체적인 상품 추천\n\n" + "3-4문장 이내로 답변해주세요.",
-        userMessage);
+        "당신은 JPetStore 애완동물 판매 쇼핑몰의 친절한 AI 고객 지원 도우미입니다.\n\n"
+            + "**중요**: JPetStore는 살아있는 애완동물(물고기, 강아지, 고양이, 새, 파충류)을 직접 판매하는 펫샵입니다.\n\n" + "%s\n" + "고객 질문: %s\n\n"
+            + "답변 시 다음을 고려해주세요:\n" + "1. 위에 나열된 것은 실제 살아있는 애완동물들입니다 (용품이 아님)\n"
+            + "2. 고객이 동물을 사고 싶다고 하면, 해당 동물의 특징과 가격을 구체적으로 안내\n" + "3. 간단명료하고 친근한 톤\n"
+            + "4. 예: '고양이를 사고 싶으시군요! Manx($10.50)는 쥐 잡기에 탁월하고, Persian($12.50)은 온순한 성격입니다'\n\n" + "3-4문장 이내로 답변해주세요.",
+        productInfo.toString(), userMessage);
   }
 
   /**

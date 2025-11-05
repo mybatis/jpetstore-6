@@ -271,7 +271,7 @@
 		}
 	}
 
-	// Save chat history to localStorage
+	// Save chat history to localStorage (최근 20개만 유지)
 	function saveChatHistory() {
 		var messages = [];
 		var messageElements = chatbotMessages.querySelectorAll('.chatbot-message');
@@ -280,6 +280,12 @@
 			var text = elem.querySelector('.chatbot-message-content').textContent;
 			messages.push({ type: type, text: text });
 		});
+
+		// 최근 20개 메시지만 유지 (너무 많은 히스토리가 쌓이지 않도록)
+		if (messages.length > 20) {
+			messages = messages.slice(messages.length - 20);
+		}
+
 		localStorage.setItem('jpetstore_chat_history', JSON.stringify(messages));
 	}
 

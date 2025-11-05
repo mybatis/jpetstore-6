@@ -77,7 +77,7 @@
 		<ul style="list-style-type: none; padding-left: 0;">
 			<c:forEach var="recommendation" items="${actionBean.aiRecommendations}">
 				<li style="margin-bottom: 10px; padding: 10px; background-color: white; border-radius: 5px; border-left: 4px solid #007bff;">
-					${recommendation}
+					<c:out value="${recommendation}" escapeXml="false" />
 				</li>
 			</c:forEach>
 		</ul>
