@@ -331,3 +331,33 @@ body>#Banner {
   background-color:#ccc;
   text-align:left;
 }
+
+/* 1. 팝업의 '기준'이 될 링크 */
+.item-link {
+    position: relative; /* 팝업을 이 요소 기준으로 띄웁니다. */
+    display: inline-block;
+}
+
+/* 2. '팝업'의 기본 스타일 */
+.item-link .image-popup {
+    display: none; /* ★★★ 평소에는 숨김 ★★★ */
+    position: absolute; /* 부모(item-link) 위에 겹쳐서 뜸 */
+    left: 100%;    /* 링크 바로 오른쪽에 */
+    top: 0;         /* 링크 상단에 맞춰서 */
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    z-index: 10; /* 다른 요소들보다 위에 보이도록 */
+}
+
+/* 3. 팝업 안의 이미지 크기 */
+.item-link .image-popup img {
+    width: 200px; /* 팝업 이미지 크기를 적절히 조절 */
+    height: auto;
+}
+
+/* 4. ★★★ 마우스를 올렸을 때 팝업을 보여줌 ★★★ */
+.item-link:hover .image-popup {
+    display: block;
+}
