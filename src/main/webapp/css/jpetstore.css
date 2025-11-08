@@ -342,12 +342,12 @@ body>#Banner {
 .item-link .image-popup {
     display: none; /* ★★★ 평소에는 숨김 ★★★ */
     position: absolute; /* 부모(item-link) 위에 겹쳐서 뜸 */
-    left: 100%;    /* 링크 바로 오른쪽에 */
+    right: 100%;    /* 링크 바로 왼쪽에 */
     top: 0;         /* 링크 상단에 맞춰서 */
     padding: 10px;
     background-color: white;
     border: 1px solid #ccc;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    box-shadow: -2px 2px 5px rgba(0,0,0,0.2);
     z-index: 10; /* 다른 요소들보다 위에 보이도록 */
 }
 
