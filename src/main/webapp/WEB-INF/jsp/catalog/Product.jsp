@@ -52,12 +52,22 @@
         </tr>
         <c:forEach var="item" items="${actionBean.itemList}">
             <tr>
-                <td><stripes:link
-                        beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
-                        event="viewItem">
-                    <stripes:param name="itemId" value="${item.itemId}" />
-                    ${item.itemId}
-                </stripes:link></td>
+                <td>
+                    <%-- 1. 기존 stripes:link에 CSS 클래스 "item-link"를 추가합니다. --%>
+                    <stripes:link
+                            beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+                            event="viewItem"
+                            class="item-link"> <%-- item-link 추가 --%>
+                        <stripes:param name="itemId" value="${item.itemId}" />
+                        ${item.itemId}
+                        <%-- 2. 숨겨진 팝업 <div>를 링크 안에 추가합니다. --%>
+                        <div class="image-popup">
+                            <img src="/jpetstore/images/placeholder.gif" alt="Item Image" />
+                        </div>
+                        <%-- 3. JavaScript가 이미지 경로를 찾을 수 있도록 상품 설명을 숨겨둡니다. --%>
+                        <span class="popup-data" style="display: none;">${item.product.description}</span>
+                    </stripes:link>
+                </td>
                 <td>${item.product.productId}</td>
                 <td>${item.attribute1} ${item.attribute2} ${item.attribute3}
                         ${item.attribute4} ${item.attribute5} ${item.product.name}</td>
