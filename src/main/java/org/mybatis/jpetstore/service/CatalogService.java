@@ -88,3 +88,5 @@ public class CatalogService {
     return itemMapper.getInventoryQuantity(itemId) > 0;
   }
 }
+
+//test
