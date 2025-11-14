@@ -1,5 +1,5 @@
 --
---    Copyright 2010-2022 the original author or authors.
+--    Copyright 2010-2025 the original author or authors.
 --
 --    Licensed under the Apache License, Version 2.0 (the "License");
 --    you may not use this file except in compliance with the License.
@@ -55,6 +55,12 @@ create table profile (
     favcategory varchar(30),
     mylistopt int,
     banneropt int,
+    residence_env varchar(255),
+    care_period varchar(255),
+    pet_color_pref varchar(255),
+    pet_size_pref varchar(255),
+    activity_time varchar(255),
+    diet_management varchar(255),
     constraint pk_profile primary key (userid)
 );
 
