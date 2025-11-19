@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-       Copyright 2010-2022 the original author or authors.
+       Copyright 2010-2025 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -41,6 +41,12 @@
           PROFILE.FAVCATEGORY AS favouriteCategoryId,
           PROFILE.MYLISTOPT AS listOption,
           PROFILE.BANNEROPT AS bannerOption,
+          PROFILE.RESIDENCE_ENV AS residenceEnv,
+          PROFILE.CARE_PERIOD AS carePeriod,
+          PROFILE.PET_COLOR_PREF AS petColorPref,
+          PROFILE.PET_SIZE_PREF AS petSizePref,
+          PROFILE.ACTIVITY_TIME AS activityTime,
+          PROFILE.DIET_MANAGEMENT AS dietManagement,
           BANNERDATA.BANNERNAME
     FROM ACCOUNT, PROFILE, SIGNON, BANNERDATA
     WHERE ACCOUNT.USERID = #{username}
@@ -67,6 +73,12 @@
       PROFILE.FAVCATEGORY AS favouriteCategoryId,
       PROFILE.MYLISTOPT AS listOption,
       PROFILE.BANNEROPT AS bannerOption,
+      PROFILE.RESIDENCE_ENV AS residenceEnv,
+      PROFILE.CARE_PERIOD AS carePeriod,
+      PROFILE.PET_COLOR_PREF AS petColorPref,
+      PROFILE.PET_SIZE_PREF AS petSizePref,
+      PROFILE.ACTIVITY_TIME AS activityTime,
+      PROFILE.DIET_MANAGEMENT AS dietManagement,
       BANNERDATA.BANNERNAME
     FROM ACCOUNT, PROFILE, SIGNON, BANNERDATA
     WHERE ACCOUNT.USERID = #{param1}
@@ -107,7 +119,13 @@
     LANGPREF = #{languagePreference},
     FAVCATEGORY = #{favouriteCategoryId},
     MYLISTOPT = #{listOptionValue},
-    BANNEROPT = #{bannerOptionValue}
+    BANNEROPT = #{bannerOptionValue},
+    RESIDENCE_ENV = #{residenceEnv},
+    CARE_PERIOD = #{carePeriod},
+    PET_COLOR_PREF = #{petColorPref},
+    PET_SIZE_PREF = #{petSizePref},
+    ACTIVITY_TIME = #{activityTime},
+    DIET_MANAGEMENT = #{dietManagement}
     WHERE USERID = #{username}
   </update>
 
@@ -115,8 +133,8 @@
     <bind name="listOptionValue" value="_parameter.isListOption() ? 1 : 0" />
     <bind name="bannerOptionValue" value="_parameter.isBannerOption() ? 1 : 0" />
 
-    INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, MYLISTOPT, BANNEROPT, USERID)
-    VALUES (#{languagePreference}, #{favouriteCategoryId}, #{listOptionValue}, #{bannerOptionValue}, #{username})
+    INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, MYLISTOPT, BANNEROPT, RESIDENCE_ENV, CARE_PERIOD, PET_COLOR_PREF, PET_SIZE_PREF, ACTIVITY_TIME, DIET_MANAGEMENT, USERID)
+    VALUES (#{languagePreference}, #{favouriteCategoryId}, #{listOptionValue}, #{bannerOptionValue}, #{residenceEnv}, #{carePeriod}, #{petColorPref}, #{petSizePref}, #{activityTime}, #{dietManagement}, #{username})
   </insert>
 
   <update id="updateSignon" parameterType="Account">
