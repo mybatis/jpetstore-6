@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2025 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -46,6 +46,14 @@ public class Account implements Serializable {
   private boolean listOption;
   private boolean bannerOption;
   private String bannerName;
+
+  // New survey-related fields
+  private String residenceEnv;
+  private String carePeriod;
+  private String petColorPref;
+  private String petSizePref;
+  private String activityTime;
+  private String dietManagement;
 
   public String getUsername() {
     return username;
@@ -191,6 +199,55 @@ public class Account implements Serializable {
 
   public void setBannerName(String bannerName) {
     this.bannerName = bannerName;
+  }
+
+  // New survey-related getters and setters
+  public String getResidenceEnv() {
+    return residenceEnv;
+  }
+
+  public void setResidenceEnv(String residenceEnv) {
+    this.residenceEnv = residenceEnv;
+  }
+
+  public String getCarePeriod() {
+    return carePeriod;
+  }
+
+  public void setCarePeriod(String carePeriod) {
+    this.carePeriod = carePeriod;
+  }
+
+  public String getPetColorPref() {
+    return petColorPref;
+  }
+
+  public void setPetColorPref(String petColorPref) {
+    this.petColorPref = petColorPref;
+  }
+
+  public String getPetSizePref() {
+    return petSizePref;
+  }
+
+  public void setPetSizePref(String petSizePref) {
+    this.petSizePref = petSizePref;
+  }
+
+  public String getActivityTime() {
+    return activityTime;
+  }
+
+  public void setActivityTime(String activityTime) {
+    this.activityTime = activityTime;
+  }
+
+  public String getDietManagement() {
+    return dietManagement;
+  }
+
+  public void setDietManagement(String dietManagement) {
+    this.dietManagement = dietManagement;
   }
 
 }

@@ -1,5 +1,5 @@
 --
---    Copyright 2010-2023 the original author or authors.
+--    Copyright 2010-2025 the original author or authors.
 --
 --    Licensed under the Apache License, Version 2.0 (the "License");
 --    you may not use this file except in compliance with the License.
@@ -173,8 +173,8 @@ INSERT INTO SIGNON VALUES('ACID','ACID');
 INSERT INTO ACCOUNT VALUES('j2ee','yourname@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555');
 INSERT INTO ACCOUNT VALUES('ACID','acid@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555');
 
-INSERT INTO PROFILE VALUES('j2ee','english','DOGS',1,1);
-INSERT INTO PROFILE VALUES('ACID','english','CATS',1,1);
+INSERT INTO PROFILE VALUES('j2ee','english','DOGS',1,1, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO PROFILE VALUES('ACID','english','CATS',1,1, NULL, NULL, NULL, NULL, NULL, NULL);
 
 INSERT INTO BANNERDATA VALUES ('FISH','<image src="../images/banner_fish.gif">');
 INSERT INTO BANNERDATA VALUES ('CATS','<image src="../images/banner_cats.gif">');
