@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2025 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -35,7 +35,8 @@ public class MapperTestContext {
   DataSource dataSource() {
     return new EmbeddedDatabaseBuilder().generateUniqueName(true).setType(EmbeddedDatabaseType.HSQL)
         .setScriptEncoding("UTF-8").ignoreFailedDrops(true).addScript("database/jpetstore-hsqldb-schema.sql")
-        .addScripts("database/jpetstore-hsqldb-dataload.sql").build();
+        .addScripts("database/jpetstore-hsqldb-dataload.sql")
+        .addScripts("database/jpetstore-hsqldb-recommendations.sql").build();
   }
 
   @Bean
