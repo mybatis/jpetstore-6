@@ -101,7 +101,7 @@ public class RecommendationDataGenerator {
                   System.out.println("Generated recommendation for combination " + (idCounter - 1));
                   // Add a small delay to avoid hitting OpenAI rate limits during generation
                   try {
-                    Thread.sleep(1000); // 1 second delay
+                    Thread.sleep(500); // 0.5 second delay
                   } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                   }
