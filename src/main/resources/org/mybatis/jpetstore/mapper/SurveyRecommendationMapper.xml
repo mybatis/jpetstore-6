@@ -61,6 +61,26 @@
     WHERE survey_recommendation_id = #{surveyRecommendationId}
   </select>
 
+  <select id="getSurveyRecommendationBySurvey" resultMap="surveyRecommendationResult">
+    SELECT
+      survey_recommendation_id,
+      residence_env,
+      care_period,
+      pet_color_pref,
+      pet_size_pref,
+      activity_time,
+      diet_management,
+      recommended_json_data
+    FROM SURVEY_RECOMMENDATIONS
+    WHERE residence_env = #{residenceEnv}
+      AND care_period = #{carePeriod}
+      AND pet_color_pref = #{petColorPref}
+      AND pet_size_pref = #{petSizePref}
+      AND activity_time = #{activityTime}
+      AND diet_management = #{dietManagement}
+    FETCH FIRST 1 ROWS ONLY
+  </select>
+
   <insert id="insertSurveyRecommendation" parameterType="org.mybatis.jpetstore.domain.SurveyRecommendation">
     INSERT INTO SURVEY_RECOMMENDATIONS (
       residence_env,

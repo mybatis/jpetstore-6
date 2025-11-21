@@ -25,6 +25,9 @@ public interface SurveyRecommendationMapper {
 
   SurveyRecommendation getSurveyRecommendationById(int surveyRecommendationId);
 
+  SurveyRecommendation getSurveyRecommendationBySurvey(String residenceEnv, String carePeriod, String petColorPref,
+      String petSizePref, String activityTime, String dietManagement);
+
   void insertSurveyRecommendation(SurveyRecommendation surveyRecommendation);
 
   void updateSurveyRecommendation(SurveyRecommendation surveyRecommendation);
