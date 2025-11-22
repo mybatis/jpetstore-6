@@ -1,6 +1,6 @@
 <%--
 
-       Copyright 2010-2023 the original author or authors.
+       Copyright 2010-2025 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -85,6 +85,11 @@
 			beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
 			event="editAccountForm">
             My Account
+	      </stripes:link>
+		<img align="middle" src="../images/separator.gif" />
+		<stripes:link
+			beanclass="org.mybatis.jpetstore.web.actions.LiveRecommendationActionBean">
+            AI Recommendation
 	      </stripes:link>
 	</c:if>
 </c:if> <img align="middle" src="../images/separator.gif" /> <a
