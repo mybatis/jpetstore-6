@@ -1,6 +1,6 @@
 <%--
 
-       Copyright 2010-2022 the original author or authors.
+       Copyright 2010-2025 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -17,6 +17,12 @@
 --%>
 <%@ include file="../common/IncludeTop.jsp"%>
 
+<!-- ★★★ 추가됨 START: 우측 상단 비교하기 버튼 ★★★ -->
+<button class="compare-btn-fixed" id="compareBtn" onclick="openComparisonPopup()" disabled>
+  Compare
+</button>
+<!-- ★★★ 추가됨 END: 우측 상단 비교하기 버튼 ★★★ -->
+
 <jsp:useBean id="catalog"
 	class="org.mybatis.jpetstore.web.actions.CatalogActionBean" />
 
@@ -32,7 +38,7 @@
 
 <h2>${actionBean.product.name}</h2>
 
-<table>
+<table class = "itemList">
 	<tr>
 		<th>Item ID</th>
 		<th>Product ID</th>
@@ -61,10 +67,7 @@
         </stripes:link></td>
 		</tr>
 	</c:forEach>
-	<tr>
-		<td>
-		</td>
-	</tr>
+
 </table>
 
 </div>

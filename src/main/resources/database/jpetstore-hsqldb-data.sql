@@ -55,6 +55,13 @@ create table PROFILE (
     favcategory varchar(30),
     mylistopt int,
     banneropt int,
+    <!--new field-->
+    residence_env varchar(100),
+    care_period varchar(100),
+    pet_color_pref varchar(100),
+    pet_size_pref varchar(100),
+    activity_time varchar(100),
+    diet_management varchar(100),
     constraint pk_profile primary key (userid)
 );
 
