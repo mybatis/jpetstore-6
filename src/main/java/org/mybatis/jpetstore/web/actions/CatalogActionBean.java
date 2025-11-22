@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2025 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import net.sourceforge.stripes.integration.spring.SpringBean;
 import org.mybatis.jpetstore.domain.Category;
 import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.Product;
+import org.mybatis.jpetstore.service.AIRecommendationService;
 import org.mybatis.jpetstore.service.CatalogService;
 
 /**
@@ -42,9 +43,13 @@ public class CatalogActionBean extends AbstractActionBean {
   private static final String VIEW_PRODUCT = "/WEB-INF/jsp/catalog/Product.jsp";
   private static final String VIEW_ITEM = "/WEB-INF/jsp/catalog/Item.jsp";
   private static final String SEARCH_PRODUCTS = "/WEB-INF/jsp/catalog/SearchProducts.jsp";
+  private static final String VIEW_ALL_ITEMS = "/WEB-INF/jsp/catalog/AllItems.jsp";
 
   @SpringBean
   private transient CatalogService catalogService;
+
+  @SpringBean
+  private transient AIRecommendationService aiRecommendationService;
 
   private String keyword;
 
@@ -59,6 +64,8 @@ public class CatalogActionBean extends AbstractActionBean {
   private String itemId;
   private Item item;
   private List<Item> itemList;
+
+  private List<String> aiRecommendations;
 
   public String getKeyword() {
     return keyword;
@@ -140,6 +147,14 @@ public class CatalogActionBean extends AbstractActionBean {
     this.itemList = itemList;
   }
 
+  public List<String> getAiRecommendations() {
+    return aiRecommendations;
+  }
+
+  public void setAiRecommendations(List<String> aiRecommendations) {
+    this.aiRecommendations = aiRecommendations;
+  }
+
   @DefaultHandler
   public ForwardResolution viewMain() {
     return new ForwardResolution(MAIN);
@@ -179,6 +194,10 @@ public class CatalogActionBean extends AbstractActionBean {
   public ForwardResolution viewItem() {
     item = catalogService.getItem(itemId);
     product = item.getProduct();
+
+    // Get AI-powered recommendations
+    aiRecommendations = aiRecommendationService.getRecommendations(item);
+
     return new ForwardResolution(VIEW_ITEM);
   }
 
@@ -195,6 +214,16 @@ public class CatalogActionBean extends AbstractActionBean {
       productList = catalogService.searchProductList(keyword.toLowerCase());
       return new ForwardResolution(SEARCH_PRODUCTS);
     }
+  }
+
+  /**
+   * View all items.
+   *
+   * @return the forward resolution
+   */
+  public ForwardResolution viewAllItems() {
+    itemList = catalogService.getAllItems();
+    return new ForwardResolution(VIEW_ALL_ITEMS);
   }
 
   /**

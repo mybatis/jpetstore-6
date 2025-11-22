@@ -1,6 +1,6 @@
 <%--
 
-       Copyright 2010-2022 the original author or authors.
+       Copyright 2010-2025 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -27,22 +27,39 @@
 
 <div id="Catalog">
 
-<h2>${actionBean.category.name}</h2>
+<h2>All Products</h2>
 
 <table>
 	<tr>
+		<th>Item ID</th>
 		<th>Product ID</th>
-		<th>Name</th>
+		<th>Description</th>
+		<th>List Price</th>
+		<th>&nbsp;</th>
 	</tr>
-	<c:forEach var="product" items="${actionBean.productList}">
+	<c:forEach var="item" items="${actionBean.itemList}">
 		<tr>
 			<td><stripes:link
 				beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
-				event="viewProduct">
-				<stripes:param name="productId" value="${product.productId}" />
-				${product.productId}
+				event="viewItem">
+				<stripes:param name="itemId" value="${item.itemId}" />
+				${item.itemId}
 			</stripes:link></td>
-			<td>${product.name}</td>
+			<td>${item.product.productId}</td>
+			<td>
+				${item.attribute1} ${item.attribute2} ${item.attribute3}
+				${item.attribute4} ${item.attribute5} ${item.product.name}
+			</td>
+			<td><fmt:formatNumber value="${item.listPrice}"
+				pattern="$#,##0.00" /></td>
+			<td>
+				<stripes:link
+					beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
+					event="addItemToCart">
+					<stripes:param name="workingItemId" value="${item.itemId}" />
+					Add to Cart
+				</stripes:link>
+			</td>
 		</tr>
 	</c:forEach>
 </table>
@@ -50,5 +67,3 @@
 </div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
-
-

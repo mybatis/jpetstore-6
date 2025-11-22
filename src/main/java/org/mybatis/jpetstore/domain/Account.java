@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2025 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import net.sourceforge.stripes.validation.Validate;
 /**
  * The Class Account.
  *
- * @author Eduardo Macarron
+ * @author Eduardo Macarron # Add comment for test coderabbit 코드레빗 pr 테스트를 위해 추가되는 구문입니다.
  */
 public class Account implements Serializable {
 

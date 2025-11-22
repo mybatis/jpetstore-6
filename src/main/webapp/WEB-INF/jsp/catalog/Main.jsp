@@ -1,20 +1,7 @@
-<%--
+<%@ page language="java"
+		 contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8" %>
 
-       Copyright 2010-2023 the original author or authors.
-
-       Licensed under the Apache License, Version 2.0 (the "License");
-       you may not use this file except in compliance with the License.
-       You may obtain a copy of the License at
-
-          https://www.apache.org/licenses/LICENSE-2.0
-
-       Unless required by applicable law or agreed to in writing, software
-       distributed under the License is distributed on an "AS IS" BASIS,
-       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-       See the License for the specific language governing permissions and
-       limitations under the License.
-
---%>
 <%@ include file="../common/IncludeTop.jsp"%>
 
 <div id="Welcome">
@@ -29,6 +16,12 @@
 <div id="Main">
 <div id="Sidebar">
 <div id="SidebarContent"><stripes:link
+	beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+	event="viewAllItems">
+	<strong>All</strong>
+</stripes:link> <br />
+All Products <br />
+<stripes:link
 	beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
 	event="viewCategory">
 	<stripes:param name="categoryId" value="FISH" />
@@ -87,6 +80,136 @@ Exotic Varieties</div>
 
 <div id="Separator">&nbsp;</div>
 </div>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<h3>AI 반려동물 시뮬레이션 (테스트용)</h3>
+
+<button type="button" onclick="startGame('고양이')">
+	🐱 AI 고양이 키워보기 (테스트)
+</button>
+<button type="button" onclick="startGame('강아지')">
+	🐶 AI 강아지 키워보기 (테스트)
+</button>
+<button type="button" onclick="startGame('새')">
+	🐦 AI 새 키워보기 (테스트)
+</button>
+
+
+<div id="game-area" style="margin-top:16px; padding:12px; border:1px solid #ccc;">
+	<div id="game-message" style="margin-bottom:8px; white-space:pre-wrap;"></div>
+	<div id="game-status" style="font-size:12px; color:#555; margin-bottom:8px;"></div>
+	<div id="game-options"></div>
+</div>
+
+<pre id="game-debug" style="margin-top:12px; font-size:11px; background:#f9f9f9; padding:8px;"></pre>
+
+<script type="text/javascript">
+	// 전역 세션 ID 저장
+	let currentSessionId = null;
+
+	const ctx = '${pageContext.request.contextPath}'; // 보통 /jpetstore
+
+	function startGame(animal) {
+		const url = ctx + '/actions/GameSimulation.action?startGame=&breedId='
+				+ encodeURIComponent(animal);
+
+		fetch(url, {
+			headers: { 'Accept': 'application/json' }
+		})
+				.then(res => res.json())
+				.then(data => {
+					currentSessionId = data.sessionId;
+					renderGameTurn(data);
+				})
+				.catch(err => {
+					console.error(err);
+					document.getElementById('game-message').innerText = '게임 시작 실패';
+				});
+	}
+
+	function nextStep(optionId) {
+		if (!currentSessionId) {
+			alert('먼저 게임을 시작해 주세요.');
+			return;
+		}
+
+		const params = new URLSearchParams({
+			nextStep: '',
+			sessionId: currentSessionId,
+			optionId: optionId
+		});
+
+		const url = ctx + '/actions/GameSimulation.action?' + params.toString();
+
+		fetch(url, {
+			headers: { 'Accept': 'application/json' }
+		})
+				.then(res => res.json())
+				.then(data => {
+					currentSessionId = data.sessionId; // 그대로 유지
+					renderGameTurn(data);
+				})
+				.catch(err => {
+					console.error(err);
+					document.getElementById('game-message').innerText = '다음 턴 요청 실패';
+				});
+	}
+
+	function renderGameTurn(data) {
+		// 디버그용 원본 JSON
+		document.getElementById('game-debug').innerText = JSON.stringify(data, null, 2);
+		// 메시지
+		document.getElementById('game-message').innerText = data.message || '';
+
+		// 상태 표시
+		const statusText =
+				'시간: ' + data.timeHour +
+				' | 건강: ' + data.health +
+				' | 행복도: ' + data.happiness +
+				' | 비용: ' + data.cost +
+				(data.finished ? '  [종료]' : '');
+		document.getElementById('game-status').innerText = statusText;
+
+		// 옵션 버튼 렌더링
+		const optionsDiv = document.getElementById('game-options');
+		optionsDiv.innerHTML = '';
+
+		if (data.finished) {
+			const optionsDiv = document.getElementById('game-options');
+			optionsDiv.innerHTML = '';
+
+			// 종합 점수 표시
+			const scoreDiv = document.createElement('div');
+			if (data.finalScore != null) {
+				scoreDiv.innerText = '종합 점수: ' + data.finalScore + '점';
+			} else {
+				scoreDiv.innerText = '시뮬레이션이 종료되었습니다.'; // 혹시 finalScore 없을 때 fallback
+			}
+			optionsDiv.appendChild(scoreDiv);
+
+			// 버튼은 더 이상 안 띄움
+			return;
+		}
+
+		if (data.options && data.options.length > 0) {
+			data.options.forEach(opt => {
+				const btn = document.createElement('button');
+				btn.type = 'button';
+				btn.style.marginRight = '8px';
+				btn.innerText = opt.id + ') ' + opt.text;
+				btn.onclick = function() {
+					nextStep(opt.id);
+				};
+				optionsDiv.appendChild(btn);
+			});
+		} else {
+			const span = document.createElement('span');
+			span.innerText = '선택지가 없습니다.';
+			optionsDiv.appendChild(span);
+		}
+	}
+</script>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
 
