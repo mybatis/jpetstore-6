@@ -72,6 +72,24 @@
       margin-bottom: 20px;
       border-bottom: 2px solid #008CBA;
       padding-bottom: 10px;
+      position: relative;
+    }
+
+    .close-x {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 35px;
+      font-weight: bold;
+      color: #aaa;
+      cursor: pointer;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .close-x:hover,
+    .close-x:focus {
+      color: #000;
     }
 
     .modal-body {
@@ -83,6 +101,11 @@
 
     .modal-footer {
       text-align: right;
+      position: sticky;
+      bottom: 0;
+      background-color: #fefefe;
+      padding-top: 15px;
+      z-index: 10;
     }
 
     .close-btn {
@@ -221,7 +244,7 @@
       .then(responseText => {
          console.log('Response text:', responseText);
 
-         // ✅ 수동으로 JSON 파싱
+         // 수동으로 JSON 파싱
          try {
              const responseData = JSON.parse(responseText);
              console.log('GPT Response (parsed):', responseData);
@@ -268,7 +291,7 @@
           const activityTimeUser = responseData.user_activity_time || 'Not specified';
           console.log('user info:', livingEnvUser, petSizeUser, activityTimeUser);
 
-          // ✅ gpt_analysis 안전하게 접근
+          // gpt_analysis 안전하게 접근
           let gptAnalysis = responseData.gpt_analysis;
           console.log('gpt_analysis (raw):', gptAnalysis);
           console.log('typeof gpt_analysis:', typeof gptAnalysis);
@@ -288,10 +311,9 @@
               gptAnalysis = {};
           }
 
-          console.log('gpt_analysis (final):', gptAnalysis);
-          console.log('gpt_analysis keys:', Object.keys(gptAnalysis));
 
-          // ✅ GPT 분석 데이터 추출
+
+          // GPT 분석 데이터 추출
           const activityTimeAnalysis = gptAnalysis.activity_time || 'No analysis available';
           const livingEnvAnalysis = gptAnalysis.living_environment || 'No analysis available';
           const petSizeAnalysis = gptAnalysis.pet_size || 'No analysis available';
@@ -300,89 +322,79 @@
           const product2Better = gptAnalysis.product2_better || 'No recommendation available';
           const recommendation = gptAnalysis.recommendation || 'No recommendation available';
 
-          console.log('=== Extracted GPT Analysis ===');
-          console.log('activityTimeAnalysis:', activityTimeAnalysis);
-          console.log('livingEnvAnalysis:', livingEnvAnalysis);
-          console.log('petSizeAnalysis:', petSizeAnalysis);
-          console.log('priceAnalysis:', priceAnalysis);
-          console.log('product1Better:', product1Better);
-          console.log('product2Better:', product2Better);
-          console.log('recommendation:', recommendation);
 
-          // ✅ HTML 생성 (옵션 2: 3열 구조)
+
+          // HTML 생성 (옵션 2: 3열 구조)
           const comparisonContent = `
             <div style="margin-bottom: 20px; text-align: center;">
-                <h2>\${productName1} vs \${productName2}</h2>
-              </div>
+                    <h2>\${productName1} vs \${productName2}</h2>
+          </div>
+                  <!-- Product Comparison: 가격만 -->
+                  <div style="margin-bottom: 20px; padding: 15px; background-color: #f9f9f9; border-radius: 4px;">
+                    <h3>Product Comparison</h3>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                      <tr style="background-color: #e8f4f8;">
+                        <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 30%;">Category</th>
+                        <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 35%;">\${productName1}</th>
+                        <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 35%;">\${productName2}</th>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">Price</td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">\${item1Price}</td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">\${item2Price}</td>
+                      </tr>
+                    </table>
+                  </div>
 
-              <div style="margin-bottom: 20px; padding: 15px; background-color: #f9f9f9; border-radius: 4px;">
-                <h3>Basic Information</h3>
-                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                  <tr style="background-color: #e8f4f8;">
-                    <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 30%;">Category</th>
-                    <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 35%;">\${productName1}</th>
-                    <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 35%;">\${productName2}</th>
-                  </tr>
-                  <tr>
-                    <td style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">Price</td>
-                    <td style="border: 1px solid #ddd; padding: 10px;">\${item1Price}</td>
-                    <td style="border: 1px solid #ddd; padding: 10px;">\${item2Price}</td>
-                  </tr>
-                  <tr>
-                    <td style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">Living Environment</td>
-                    <td colspan="2" style="border: 1px solid #ddd; padding: 10px;">\${livingEnvUser}</td>
-                  </tr>
-                  <tr>
-                    <td style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">Pet Size Preference</td>
-                    <td colspan="2" style="border: 1px solid #ddd; padding: 10px;">\${petSizeUser}</td>
-                  </tr>
-                  <tr>
-                    <td style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">Activity Time</td>
-                    <td colspan="2" style="border: 1px solid #ddd; padding: 10px;">\${activityTimeUser}</td>
-                  </tr>
-                </table>
-              </div>
+                  <!-- Your Preferences: 별도 박스 -->
+                  <div style="margin-bottom: 20px; padding: 15px; background-color: #fff9e6; border-radius: 4px; border-left: 4px solid #ffc107;">
+                    <h3>Your Preferences</h3>
+                    <p style="margin: 5px 0; line-height: 1.6;"><strong>Living Environment:</strong> \${livingEnvUser}</p>
+                    <p style="margin: 5px 0; line-height: 1.6;"><strong>Pet Size Preference:</strong> \${petSizeUser}</p>
+                    <p style="margin: 5px 0; line-height: 1.6;"><strong>Activity Time:</strong> \${activityTimeUser}</p>
+                  </div>
 
-              <div style="margin-bottom: 20px; padding: 15px; background-color: #e3f2fd; border-radius: 4px;">
-                <h3>AI Analysis</h3>
-                <div style="margin-bottom: 10px;">
-                  <p><strong>Price:</strong> \${priceAnalysis}</p>
-                </div>
-                <div style="margin-bottom: 10px;">
-                  <p><strong>Living Environment:</strong> \${livingEnvAnalysis}</p>
-                </div>
-                <div style="margin-bottom: 10px;">
-                  <p><strong>Pet Size:</strong> \${petSizeAnalysis}</p>
-                </div>
-                <div style="margin-bottom: 10px;">
-                  <p><strong>Activity Time:</strong> \${activityTimeAnalysis}</p>
-                </div>
-              </div>
+                  <!-- AI Analysis -->
+                  <div style="margin-bottom: 20px; padding: 15px; background-color: #e3f2fd; border-radius: 4px;">
+                    <h3>AI Analysis</h3>
+                    <div style="margin-bottom: 10px;">
+                      <p><strong>Price:</strong> \${priceAnalysis}</p>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                      <p><strong>Living Environment:</strong> \${livingEnvAnalysis}</p>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                      <p><strong>Pet Size:</strong> \${petSizeAnalysis}</p>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                      <p><strong>Activity Time:</strong> \${activityTimeAnalysis}</p>
+                    </div>
+                  </div>
 
-              <div style="padding: 15px; background-color: #f1f8e9; border-radius: 4px;">
-                <h3>Recommendations</h3>
+                  <!-- Recommendations -->
+                  <div style="padding: 15px; background-color: #f1f8e9; border-radius: 4px;">
+                    <h3>Recommendations</h3>
 
-                <div style="margin-bottom: 15px;">
-                  <strong>\${productName1} is better when:</strong>
-                  <p style="margin: 5px 0 0 0; line-height: 1.6;">\${product1Better}</p>
-                </div>
+                    <div style="margin-bottom: 15px;">
+                      <strong>\${productName1} is better when:</strong>
+                      <p style="margin: 5px 0 0 0; line-height: 1.6;">\${product1Better}</p>
+                    </div>
 
-                <div style="margin-bottom: 15px;">
-                  <strong>\${productName2} is better when:</strong>
-                  <p style="margin: 5px 0 0 0; line-height: 1.6;">\${product2Better}</p>
-                </div>
+                    <div style="margin-bottom: 15px;">
+                      <strong>\${productName2} is better when:</strong>
+                      <p style="margin: 5px 0 0 0; line-height: 1.6;">\${product2Better}</p>
+                    </div>
 
-                <div style="margin-top: 15px; padding: 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
-                  <strong style="font-size: 16px;">📌 Final Recommendation</strong>
-                  <p style="margin: 10px 0 0 0; line-height: 1.6;">\${recommendation}</p>
-                </div>
-              </div>
-            `;
+                    <div style="margin-top: 15px; padding: 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
+                      <strong style="font-size: 16px;">📌 Final Recommendation</strong>
+                      <p style="margin: 10px 0 0 0; line-height: 1.6;">\${recommendation}</p>
+                    </div>
+                  </div>
+                `;
 
-      console.log('=== Setting innerHTML ===');
+
       document.getElementById('comparisonContent').innerHTML = comparisonContent;
-      console.log('innerHTML set successfully');
-      console.log('========================================');
+
   }
 
   function closeComparisonModal() {
@@ -395,11 +407,12 @@
 
 <body>
 
-<!-- ★★★ 추가됨 START: 비교 팝업 Modal ★★★ -->
+
   <div id="comparisonModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
         Product Comparison
+        <span class="close-x" onclick="closeComparisonModal()">&times;</span>
       </div>
       <div class="modal-body" id="comparisonContent">
         <!-- 여기에 비교 내용이 들어갑니다 -->
@@ -409,7 +422,6 @@
       </div>
     </div>
   </div>
-<!-- ★★★ 추가됨 END: 비교 팝업 Modal ★★★ -->
 
 <div id="Header">
 

@@ -81,12 +81,12 @@ public class ComparisonActionBean implements ActionBean {
         account = accountBean.getAccount();
       }
 
-      // GPT 분석 결과 받기
+
       String gptAnalysisStr = gptComparisonService.compareItems(item1, item2, account);
 
       logger.info("GPT Analysis String: {}", gptAnalysisStr);
 
-      // ✅ Map으로 응답 데이터 구조화
+
       Map<String, Object> response = new HashMap<>();
       response.put("item1_id", item1.getItemId());
       response.put("item2_id", item2.getItemId());
@@ -100,7 +100,7 @@ public class ComparisonActionBean implements ActionBean {
       response.put("user_activity_time",
           account.getActivityTime() != null ? account.getActivityTime() : "Not specified");
 
-      // ✅ gpt_analysis를 Object로 파싱해서 넣기
+
       try {
         Object gptAnalysisObj = objectMapper.readValue(gptAnalysisStr, Object.class);
         response.put("gpt_analysis", gptAnalysisObj);
@@ -110,7 +110,7 @@ public class ComparisonActionBean implements ActionBean {
         response.put("gpt_analysis", new HashMap<>()); // 빈 객체
       }
 
-      // ✅ Jackson으로 안전하게 JSON 변환
+
       String fullResponse = objectMapper.writeValueAsString(response);
 
       logger.info("Final Response JSON: {}", fullResponse);
