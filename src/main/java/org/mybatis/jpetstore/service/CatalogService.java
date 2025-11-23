@@ -98,3 +98,5 @@ public class CatalogService {
   // return productMapper.getAllProductList(); // ProductMapper에게 모든 상품을 달라고 요청
   // }
 }
+
+// test11
