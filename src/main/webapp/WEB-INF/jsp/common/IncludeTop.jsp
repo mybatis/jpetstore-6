@@ -86,6 +86,11 @@
 			event="editAccountForm">
             My Account
 	      </stripes:link>
+		<img align="middle" src="../images/separator.gif" />
+		<stripes:link
+			beanclass="org.mybatis.jpetstore.web.actions.InitialRecommendationActionBean">
+            맞춤 추천
+	      </stripes:link>
 	</c:if>
 </c:if> <img align="middle" src="../images/separator.gif" /> <a
 	href="../help.html">?</a></div>
