@@ -163,3 +163,19 @@ CREATE TABLE sequence
     nextid             int          not null,
     constraint pk_sequence primary key (name)
 );
+
+CREATE TABLE GAME_SESSION (
+                              SESSION_ID    VARCHAR(64)  NOT NULL,
+                              ACCOUNT_ID    VARCHAR(80)  NOT NULL,
+                              BREED_ID      VARCHAR(40)  NOT NULL,
+                              TIME_HOUR     INTEGER      NOT NULL,
+                              HEALTH        INTEGER      NOT NULL,
+                              HAPPINESS     INTEGER      NOT NULL,
+                              COST          INTEGER      NOT NULL,
+                              FINISHED      BOOLEAN      NOT NULL,
+                              LAST_MESSAGE  VARCHAR(4000),
+                              LAST_OPTION_JSON VARCHAR(4000),
+                              FINAL_SCORE INTEGER,
+                              CONSTRAINT PK_GAME_SESSION PRIMARY KEY (SESSION_ID)
+);
+

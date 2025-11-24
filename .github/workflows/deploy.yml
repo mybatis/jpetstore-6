@@ -1,0 +1,88 @@
+name: Deploy to Oracle Cloud
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build with Maven
+        run: ./mvnw clean package -DskipTests
+
+      - name: Deploy to Oracle Cloud
+        env:
+          ORACLE_HOST: ${{ secrets.ORACLE_HOST }}
+          ORACLE_USER: ${{ secrets.ORACLE_USER }}
+          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          # SSH 키 설정
+          mkdir -p ~/.ssh
+          echo "$ORACLE_SSH_KEY" > ~/.ssh/oracle_key
+          chmod 600 ~/.ssh/oracle_key
+
+          # known_hosts에 호스트 추가
+          ssh-keyscan -H $ORACLE_HOST >> ~/.ssh/known_hosts
+
+          # WAR 파일을 서버로 전송
+          scp -i ~/.ssh/oracle_key target/jpetstore.war $ORACLE_USER@$ORACLE_HOST:/tmp/
+
+          # 서버에서 배포 스크립트 실행
+          ssh -i ~/.ssh/oracle_key $ORACLE_USER@$ORACLE_HOST << 'ENDSSH'
+            # Tomcat 중지
+            sudo systemctl stop tomcat || true
+
+            # 기존 애플리케이션 백업 및 삭제
+            sudo rm -rf /opt/tomcat/webapps/jpetstore
+            sudo rm -f /opt/tomcat/webapps/jpetstore.war
+
+            # 새 WAR 파일 배포
+            sudo mv /tmp/jpetstore.war /opt/tomcat/webapps/
+            sudo chown tomcat:tomcat /opt/tomcat/webapps/jpetstore.war
+
+            # 환경 변수 설정 (GEMINI_API_KEY)
+            echo "GEMINI_API_KEY=$GEMINI_API_KEY" | sudo tee /opt/tomcat/bin/setenv.sh
+            sudo chmod +x /opt/tomcat/bin/setenv.sh
+
+            # Tomcat 시작
+            sudo systemctl start tomcat
+
+            # 상태 확인
+            sleep 10
+            sudo systemctl status tomcat
+          ENDSSH
+
+      - name: Health Check
+        env:
+          ORACLE_HOST: ${{ secrets.ORACLE_HOST }}
+        run: |
+          echo "Waiting for application to start..."
+          sleep 30
+
+          # 헬스 체크 (최대 5번 시도)
+          for i in {1..5}; do
+            if curl -f http://$ORACLE_HOST:8080/jpetstore/; then
+              echo "✅ Application is running!"
+              exit 0
+            fi
+            echo "Attempt $i failed, retrying..."
+            sleep 10
+          done
+
+          echo "❌ Health check failed"
+          exit 1

@@ -1,6 +1,6 @@
 <%--
 
-       Copyright 2010-2023 the original author or authors.
+       Copyright 2010-2025 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
        limitations under the License.
 
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
 <%@ taglib prefix="stripes"
 	uri="http://stripes.sourceforge.net/stripes.tld"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -33,7 +33,7 @@
 <meta name="generator"
 	content="HTML Tidy for Linux/x86 (vers 1st November 2002), see www.w3.org" />
 <title>JPetStore Demo</title>
-<meta content="text/html; charset=windows-1252"
+<meta content="text/html; charset=UTF-8"
 	http-equiv="Content-Type" />
 <meta http-equiv="Cache-Control" content="max-age=0" />
 <meta http-equiv="Cache-Control" content="no-cache" />
@@ -100,6 +100,9 @@
 </div>
 
 <div id="QuickLinks"><stripes:link
+	beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+	event="viewAllItems">All
+</stripes:link> <img src="../images/separator.gif" /> <stripes:link
 	beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
 	event="viewCategory">
 	<stripes:param name="categoryId" value="FISH" />
