@@ -117,7 +117,7 @@ public class AccountActionBean extends AbstractActionBean {
     account = accountService.getAccount(account.getUsername());
     myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());
     authenticated = true;
-    return new RedirectResolution(CatalogActionBean.class);
+    return new RedirectResolution(InitialRecommendationActionBean.class);
   }
 
   /**
