@@ -25,7 +25,6 @@ import net.sourceforge.stripes.integration.spring.SpringBean;
 import org.mybatis.jpetstore.domain.Category;
 import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.Product;
-import org.mybatis.jpetstore.service.AIRecommendationService;
 import org.mybatis.jpetstore.service.CatalogService;
 
 /**
@@ -48,9 +47,6 @@ public class CatalogActionBean extends AbstractActionBean {
   @SpringBean
   private transient CatalogService catalogService;
 
-  @SpringBean
-  private transient AIRecommendationService aiRecommendationService;
-
   private String keyword;
 
   private String categoryId;
@@ -64,8 +60,6 @@ public class CatalogActionBean extends AbstractActionBean {
   private String itemId;
   private Item item;
   private List<Item> itemList;
-
-  private List<String> aiRecommendations;
 
   public String getKeyword() {
     return keyword;
@@ -147,14 +141,6 @@ public class CatalogActionBean extends AbstractActionBean {
     this.itemList = itemList;
   }
 
-  public List<String> getAiRecommendations() {
-    return aiRecommendations;
-  }
-
-  public void setAiRecommendations(List<String> aiRecommendations) {
-    this.aiRecommendations = aiRecommendations;
-  }
-
   @DefaultHandler
   public ForwardResolution viewMain() {
     return new ForwardResolution(MAIN);
@@ -194,9 +180,6 @@ public class CatalogActionBean extends AbstractActionBean {
   public ForwardResolution viewItem() {
     item = catalogService.getItem(itemId);
     product = item.getProduct();
-
-    // Get AI-powered recommendations
-    aiRecommendations = aiRecommendationService.getRecommendations(item);
 
     return new ForwardResolution(VIEW_ITEM);
   }

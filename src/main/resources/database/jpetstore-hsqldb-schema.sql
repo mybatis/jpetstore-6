@@ -46,6 +46,12 @@ create table account (
     zip varchar(20) not null,
     country varchar(20) not null,
     phone varchar(80) not null,
+    age integer null,
+    occupation varchar(100) null,
+    home_hours varchar(20) null,
+    housing_type varchar(20) null,
+    monthly_budget varchar(30) null,
+    has_allergy boolean default false,
     constraint pk_account primary key (userid)
 );
 

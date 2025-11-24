@@ -47,6 +47,14 @@ public class Account implements Serializable {
   private boolean bannerOption;
   private String bannerName;
 
+  // Lifestyle information for AI recommendation
+  private Integer age;
+  private String occupation;
+  private String homeHours;
+  private String housingType;
+  private String monthlyBudget;
+  private Boolean hasAllergy;
+
   public String getUsername() {
     return username;
   }
@@ -191,6 +199,54 @@ public class Account implements Serializable {
 
   public void setBannerName(String bannerName) {
     this.bannerName = bannerName;
+  }
+
+  public Integer getAge() {
+    return age;
+  }
+
+  public void setAge(Integer age) {
+    this.age = age;
+  }
+
+  public String getOccupation() {
+    return occupation;
+  }
+
+  public void setOccupation(String occupation) {
+    this.occupation = occupation;
+  }
+
+  public String getHomeHours() {
+    return homeHours;
+  }
+
+  public void setHomeHours(String homeHours) {
+    this.homeHours = homeHours;
+  }
+
+  public String getHousingType() {
+    return housingType;
+  }
+
+  public void setHousingType(String housingType) {
+    this.housingType = housingType;
+  }
+
+  public String getMonthlyBudget() {
+    return monthlyBudget;
+  }
+
+  public void setMonthlyBudget(String monthlyBudget) {
+    this.monthlyBudget = monthlyBudget;
+  }
+
+  public Boolean getHasAllergy() {
+    return hasAllergy;
+  }
+
+  public void setHasAllergy(Boolean hasAllergy) {
+    this.hasAllergy = hasAllergy;
   }
 
 }
