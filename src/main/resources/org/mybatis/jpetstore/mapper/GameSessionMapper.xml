@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.mapper.GameSessionMapper">
+
+  <resultMap id="gameSessionResultMap" type="org.mybatis.jpetstore.domain.gamesimulation.GameSession">
+    <id     property="sessionId"  column="SESSION_ID"/>
+    <result property="accountId"  column="ACCOUNT_ID"/>
+    <result property="breedId"    column="BREED_ID"/>
+    <result property="timeHour"   column="TIME_HOUR"/>
+    <result property="health"     column="HEALTH"/>
+    <result property="happiness"  column="HAPPINESS"/>
+    <result property="cost"       column="COST"/>
+    <result property="finished"   column="FINISHED"/>
+    <result property="lastMessage" column="LAST_MESSAGE"/>
+    <result property="lastOptionJson" column="LAST_OPTION_JSON"/>
+    <result property="finalScore" column="FINAL_SCORE"/>
+  </resultMap>
+
+  <select id="getGameSession" resultMap="gameSessionResultMap">
+    SELECT
+      SESSION_ID,
+      ACCOUNT_ID,
+      BREED_ID,
+      TIME_HOUR,
+      HEALTH,
+      HAPPINESS,
+      COST,
+      FINISHED,
+      LAST_MESSAGE,
+      LAST_OPTION_JSON,
+      FINAL_SCORE
+    FROM GAME_SESSION
+    WHERE SESSION_ID = #{sessionId}
+  </select>
+
+  <insert id="insertGameSession">
+    INSERT INTO GAME_SESSION (
+      SESSION_ID,
+      ACCOUNT_ID,
+      BREED_ID,
+      TIME_HOUR,
+      HEALTH,
+      HAPPINESS,
+      COST,
+      FINISHED,
+      LAST_MESSAGE,
+      LAST_OPTION_JSON,
+      FINAL_SCORE
+    ) VALUES (
+      #{sessionId},
+      #{accountId},
+      #{breedId},
+      #{timeHour},
+      #{health},
+      #{happiness},
+      #{cost},
+      #{finished},
+      #{lastMessage},
+      #{lastOptionJson},
+      #{finalScore}
+    )
+  </insert>
+
+  <update id="updateGameSession">
+    UPDATE GAME_SESSION
+    SET
+      TIME_HOUR    = #{timeHour},
+      HEALTH       = #{health},
+      HAPPINESS    = #{happiness},
+      COST         = #{cost},
+      FINISHED     = #{finished},
+      LAST_MESSAGE = #{lastMessage},
+      LAST_OPTION_JSON = #{lastOptionJson},
+      FINAL_SCORE = #{finalScore}
+    WHERE SESSION_ID = #{sessionId}
+  </update>
+
+</mapper>

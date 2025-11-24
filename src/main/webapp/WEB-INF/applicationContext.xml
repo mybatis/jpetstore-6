@@ -52,4 +52,14 @@
 
     <!-- scan for mappers and let them be autowired -->
     <mybatis:scan base-package="org.mybatis.jpetstore.mapper" />
+
+    <context:property-placeholder system-properties-mode="ENVIRONMENT" />
+
+    <!-- GeminiClient Bean -->
+    <bean id="geminiClient" class="org.mybatis.jpetstore.service.GeminiClient">
+        <!-- 실제 키는 환경변수나 외부 프로퍼티로 뺄 것 -->
+        <property name="apiKey" value="${GEMINI_API_KEY}"/>
+        <property name="model" value="gemini-2.0-flash"/>
+    </bean>
+
 </beans>
