@@ -483,7 +483,14 @@
 </stripes:form></div>
 </div>
 
-<div id="QuickLinks"><stripes:link
+<div id="QuickLinks">
+    <stripes:link
+            beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+            event="viewCategory">
+        <stripes:param name="categoryId" value="ALL" />
+        <font color="black" style="font-weight:bold; font-size:1.0em; vertical-align:middle;">[ ALL ]</font>
+    </stripes:link>
+    <stripes:link
 	beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
 	event="viewCategory">
 	<stripes:param name="categoryId" value="FISH" />

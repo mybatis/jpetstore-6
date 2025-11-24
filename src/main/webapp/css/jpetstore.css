@@ -361,3 +361,54 @@ body>#Banner {
 .item-link:hover .image-popup {
     display: block;
 }
+
+/* ========================================= */
+/* Header Layout Fix (Flexbox for AI Menu)  */
+/* ========================================= */
+
+/* 기존의 float 기반 레이아웃 무력화 */
+#Logo, #Menu, #Search {
+    float: none;
+    width: auto;
+    border: none; /* 불필요한 테두리 제거 */
+}
+
+/* 헤더 전체를 Flexbox 컨테이너로 변경 */
+#Header {
+    display: flex;
+    flex-wrap: wrap; /* 화면이 너무 좁으면 줄바꿈 허용 */
+    justify-content: space-between; /* 양쪽 끝 배분 */
+    align-items: center; /* 수직 중앙 정렬 */
+    background-color: #000; /* 배경색 통일 */
+    color: #fff;
+    padding: 5px 0;
+}
+
+/* 로고 영역 */
+#Logo {
+    flex: 0 0 auto; /* 크기 고정 */
+    padding-left: 10px;
+}
+
+/* 메뉴 영역 (가운데, 가장 넓게 차지) */
+#Menu {
+    flex: 1 1 auto; /* 남은 공간 차지 */
+    text-align: right; /* 오른쪽 정렬 */
+    padding-right: 20px;
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+/* 검색창 영역 */
+#Search {
+    flex: 0 0 auto; /* 크기 고정 */
+    padding-right: 10px;
+    text-align: right;
+}
+
+/* 링크 스타일 보정 */
+#Menu a {
+    color: #eaac00;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 5px;
+}
