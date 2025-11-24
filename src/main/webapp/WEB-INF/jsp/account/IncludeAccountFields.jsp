@@ -89,3 +89,57 @@
 	</tr>
 
 </table>
+
+<h3>Lifestyle Information (for AI Recommendation)</h3>
+
+<table>
+	<tr>
+		<td>Age:</td>
+		<td><stripes:text name="account.age" type="number" size="10" /></td>
+	</tr>
+	<tr>
+		<td>Occupation:</td>
+		<td><stripes:text name="account.occupation" size="30" /></td>
+	</tr>
+	<tr>
+		<td>Daily Home Hours:</td>
+		<td>
+			<stripes:select name="account.homeHours">
+				<stripes:option value="">선택하세요</stripes:option>
+				<stripes:option value="LESS_THAN_2">2시간 미만</stripes:option>
+				<stripes:option value="TWO_TO_SIX">2-6시간</stripes:option>
+				<stripes:option value="MORE_THAN_6">6시간 이상</stripes:option>
+			</stripes:select>
+		</td>
+	</tr>
+	<tr>
+		<td>Housing Type:</td>
+		<td>
+			<stripes:select name="account.housingType">
+				<stripes:option value="">선택하세요</stripes:option>
+				<stripes:option value="STUDIO">원룸</stripes:option>
+				<stripes:option value="APARTMENT">아파트</stripes:option>
+				<stripes:option value="HOUSE">단독주택</stripes:option>
+			</stripes:select>
+		</td>
+	</tr>
+	<tr>
+		<td>Monthly Pet Budget:</td>
+		<td>
+			<stripes:select name="account.monthlyBudget">
+				<stripes:option value="">선택하세요</stripes:option>
+				<stripes:option value="UNDER_100K">10만원 미만</stripes:option>
+				<stripes:option value="BETWEEN_100K_300K">10-30만원</stripes:option>
+				<stripes:option value="OVER_300K">30만원 이상</stripes:option>
+			</stripes:select>
+		</td>
+	</tr>
+	<tr>
+		<td>Animal Fur Allergy:</td>
+		<td>
+			<stripes:radio name="account.hasAllergy" value="true" /> Yes
+			<stripes:radio name="account.hasAllergy" value="false" checked="checked" /> No
+		</td>
+	</tr>
+
+</table>

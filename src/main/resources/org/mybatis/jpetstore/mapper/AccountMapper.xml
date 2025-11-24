@@ -37,6 +37,12 @@
           ACCOUNT.ZIP,
           ACCOUNT.COUNTRY,
           ACCOUNT.PHONE,
+          ACCOUNT.AGE,
+          ACCOUNT.OCCUPATION,
+          ACCOUNT.HOME_HOURS AS homeHours,
+          ACCOUNT.HOUSING_TYPE AS housingType,
+          ACCOUNT.MONTHLY_BUDGET AS monthlyBudget,
+          ACCOUNT.HAS_ALLERGY AS hasAllergy,
           PROFILE.LANGPREF AS languagePreference,
           PROFILE.FAVCATEGORY AS favouriteCategoryId,
           PROFILE.MYLISTOPT AS listOption,
@@ -63,6 +69,12 @@
       ACCOUNT.ZIP,
       ACCOUNT.COUNTRY,
       ACCOUNT.PHONE,
+      ACCOUNT.AGE,
+      ACCOUNT.OCCUPATION,
+      ACCOUNT.HOME_HOURS AS homeHours,
+      ACCOUNT.HOUSING_TYPE AS housingType,
+      ACCOUNT.MONTHLY_BUDGET AS monthlyBudget,
+      ACCOUNT.HAS_ALLERGY AS hasAllergy,
       PROFILE.LANGPREF AS languagePreference,
       PROFILE.FAVCATEGORY AS favouriteCategoryId,
       PROFILE.MYLISTOPT AS listOption,
@@ -88,15 +100,21 @@
       STATE = #{state},
       ZIP = #{zip},
       COUNTRY = #{country},
-      PHONE = #{phone}
+      PHONE = #{phone},
+      AGE = #{age,jdbcType=INTEGER},
+      OCCUPATION = #{occupation,jdbcType=VARCHAR},
+      HOME_HOURS = #{homeHours,jdbcType=VARCHAR},
+      HOUSING_TYPE = #{housingType,jdbcType=VARCHAR},
+      MONTHLY_BUDGET = #{monthlyBudget,jdbcType=VARCHAR},
+      HAS_ALLERGY = #{hasAllergy,jdbcType=BOOLEAN}
     WHERE USERID = #{username}
   </update>
 
   <insert id="insertAccount" parameterType="Account">
     INSERT INTO ACCOUNT
-      (EMAIL, FIRSTNAME, LASTNAME, STATUS, ADDR1, ADDR2, CITY, STATE, ZIP, COUNTRY, PHONE, USERID)
+      (EMAIL, FIRSTNAME, LASTNAME, STATUS, ADDR1, ADDR2, CITY, STATE, ZIP, COUNTRY, PHONE, AGE, OCCUPATION, HOME_HOURS, HOUSING_TYPE, MONTHLY_BUDGET, HAS_ALLERGY, USERID)
     VALUES
-      (#{email}, #{firstName}, #{lastName}, #{status}, #{address1},  #{address2,jdbcType=VARCHAR}, #{city}, #{state}, #{zip}, #{country}, #{phone}, #{username})
+      (#{email}, #{firstName}, #{lastName}, #{status}, #{address1}, #{address2,jdbcType=VARCHAR}, #{city}, #{state}, #{zip}, #{country}, #{phone}, #{age,jdbcType=INTEGER}, #{occupation,jdbcType=VARCHAR}, #{homeHours,jdbcType=VARCHAR}, #{housingType,jdbcType=VARCHAR}, #{monthlyBudget,jdbcType=VARCHAR}, #{hasAllergy,jdbcType=BOOLEAN}, #{username})
   </insert>
 
   <update id="updateProfile" parameterType="Account">
