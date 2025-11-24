@@ -58,7 +58,6 @@ public class GameSimulationActionBean extends AbstractActionBean implements Seri
     }
 
     // ====== 게임 시작 (첫 턴) ======
-    // 호출 예: /jpetstore/actions/GameSimulation.action?startGame=&breedId=CATS
     public Resolution startGame() {
         try {
             String accountId = resolveCurrentUsername(); // 로그인 안 돼 있으면 GUEST 등으로 처리
@@ -76,7 +75,6 @@ public class GameSimulationActionBean extends AbstractActionBean implements Seri
     }
 
     // ====== 다음 턴 진행 ======
-    // 호출 예: /jpetstore/actions/GameSimulation.action?nextStep=&sessionId=...&optionId=A
     public Resolution nextStep() {
         try {
             String accountId = resolveCurrentUsername(); // 필요하면 사용

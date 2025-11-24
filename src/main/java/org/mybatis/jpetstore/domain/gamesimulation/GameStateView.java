@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class GameStateView implements Serializable {
+    private static final long serialVersionUID = 1234L;
 
     private String sessionId;      // 이걸로 다음 스텝 요청
     private int timeHour;          // 7, 8, 9...

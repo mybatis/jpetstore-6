@@ -26,8 +26,14 @@ public class GameSimulationService {
 
     public GameStateView startGame(String accountId, String breedId) throws JsonProcessingException {
         String prompt = promptBuilder.buildStartPrompt(accountId, breedId);
-        String json = geminiClient.chat(prompt); // JSON 문자열
+        String json;
 
+        try {
+            json = geminiClient.chat(prompt);
+        } catch (Exception e) {
+            throw new RuntimeException("Gemini API 호출 실패: 잠시 후 다시 시도해주세요.", e);
+
+        }
         GameStateView view = parseGameStateJson(json);
 
         String sessionId = UUID.randomUUID().toString();
@@ -117,35 +123,7 @@ public class GameSimulationService {
 
     private GameStateView parseGameStateJson(String json) {
         try {
-            Map<String, Object> map = objectMapper.readValue(json, Map.class);
-
-            GameStateView view = new GameStateView();
-            view.setTimeHour((Integer) map.get("timeHour"));
-            view.setHealth((Integer) map.get("health"));
-            view.setHappiness((Integer) map.get("happiness"));
-            view.setCost((Integer) map.get("cost"));
-            view.setFinished((Boolean) map.get("finished"));
-            view.setMessage((String) map.get("message"));
-
-            List<Map<String, Object>> optList =
-                    (List<Map<String, Object>>) map.get("options");
-
-            if (optList != null) {
-                List<GameOption> options = new ArrayList<>();
-                for (Map<String, Object> o : optList) {
-                    String id = (String) o.get("id");
-                    String text = (String) o.get("text");
-                    options.add(new GameOption(id, text));
-                }
-                view.setOptions(options);
-            }
-
-            Object fs = map.get("finalScore");
-            if (fs instanceof Number) {
-                view.setFinalScore(((Number) fs).intValue());
-            }
-
-            return view;
+            return objectMapper.readValue(json, GameStateView.class);
         } catch (Exception e) {
             throw new RuntimeException("Gemini JSON 파싱 실패: " + json, e);
         }

@@ -56,7 +56,7 @@
     <!-- GeminiClient Bean -->
     <bean id="geminiClient" class="org.mybatis.jpetstore.service.GeminiClient">
         <!-- 실제 키는 환경변수나 외부 프로퍼티로 뺄 것 -->
-        <property name="apiKey" value="AIzaSyDMkrGwZ5goIoz1PgwNRKUKtqzemUUPI_Y"/>
+        <property name="apiKey" value="${GEMINI_API_KEY}"/>
         <property name="model" value="gemini-2.0-flash"/>
         <!-- baseUrl 기본값은 generativelanguage.googleapis.com 이라면 생략 가능 -->
         <!-- <property name="baseUrl" value="https://generativelanguage.googleapis.com"/> -->

@@ -139,25 +139,7 @@ public class GamePromptBuilder {
     public String buildNextPrompt(GameSession session,
                                   GameStateView lastView,
                                   String chosenOptionId) {
-        // 응답안넘어가서 응답 저장됬는지 확인하는 디버깅 용입니다.
-        System.out.println("=== [buildNextPrompt] 디버그 ===");
-        System.out.println("chosenOptionId = " + chosenOptionId);
 
-        if (lastView == null) {
-            System.out.println("lastView == null");
-        } else {
-            System.out.println("lastView.timeHour = " + lastView.getTimeHour());
-            System.out.println("lastView.message = " + lastView.getMessage());
-
-            if (lastView.getOptions() == null) {
-                System.out.println("lastView.options == null");
-            } else {
-                System.out.println("lastView.options.size = " + lastView.getOptions().size());
-                for (GameOption opt : lastView.getOptions()) {
-                    System.out.println("  opt.id = " + opt.getId() + ", opt.text = " + opt.getText());
-                }
-            }
-        }
         String breedName = session.getBreedId();
 
         // 직전 턴 상태/옵션 JSON
