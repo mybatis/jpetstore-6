@@ -1,5 +1,5 @@
 --
---    Copyright 2010-2022 the original author or authors.
+--    Copyright 2010-2025 the original author or authors.
 --
 --    Licensed under the Apache License, Version 2.0 (the "License");
 --    you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ INSERT INTO sequence VALUES('ordernum', 1000);
 INSERT INTO signon VALUES('j2ee','j2ee');
 INSERT INTO signon VALUES('ACID','ACID');
 
-INSERT INTO account VALUES('j2ee','yourname@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555');
-INSERT INTO account VALUES('ACID','acid@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555');
+INSERT INTO account VALUES('j2ee','yourname@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555', 30, 'Engineer', 'MORE_THAN_6', 'APARTMENT', 'BETWEEN_100K_300K', false);
+INSERT INTO account VALUES('ACID','acid@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555', 25, 'Designer', 'TWO_TO_SIX', 'STUDIO', 'UNDER_100K', false);
 
 INSERT INTO profile VALUES('j2ee','english','DOGS',1,1);
 INSERT INTO profile VALUES('ACID','english','CATS',1,1);

@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2025 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -121,7 +121,7 @@ class AccountMapperTest {
 
     // then
     Map<String, Object> record = jdbcTemplate.queryForMap("SELECT * FROM account WHERE userid = ?", "mybatis");
-    assertThat(record).hasSize(12).containsEntry("USERID", account.getUsername())
+    assertThat(record).hasSize(18).containsEntry("USERID", account.getUsername())
         .containsEntry("EMAIL", account.getEmail()).containsEntry("FIRSTNAME", account.getFirstName())
         .containsEntry("LASTNAME", account.getLastName()).containsEntry("STATUS", account.getStatus())
         .containsEntry("ADDR1", account.getAddress1()).containsEntry("ADDR2", account.getAddress2())
@@ -195,7 +195,7 @@ class AccountMapperTest {
     // then
     Map<String, Object> record = jdbcTemplate.queryForMap("SELECT * FROM account WHERE userid = ?", "j2ee");
 
-    assertThat(record).hasSize(12).containsEntry("USERID", account.getUsername())
+    assertThat(record).hasSize(18).containsEntry("USERID", account.getUsername())
         .containsEntry("EMAIL", account.getEmail()).containsEntry("FIRSTNAME", account.getFirstName())
         .containsEntry("LASTNAME", account.getLastName()).containsEntry("STATUS", account.getStatus())
         .containsEntry("ADDR1", account.getAddress1()).containsEntry("ADDR2", account.getAddress2())
