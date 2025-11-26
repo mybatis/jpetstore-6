@@ -1,29 +1,43 @@
+/*
+ *    Copyright 2010-2025 the original author or authors.
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *       https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
 package org.mybatis.jpetstore.service;
-
-import org.mybatis.jpetstore.domain.gamesimulation.GameSession;
-import org.mybatis.jpetstore.domain.gamesimulation.GameStateView;
-import org.mybatis.jpetstore.domain.gamesimulation.GameOption;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import org.mybatis.jpetstore.domain.gamesimulation.GameOption;
+import org.mybatis.jpetstore.domain.gamesimulation.GameSession;
+import org.mybatis.jpetstore.domain.gamesimulation.GameStateView;
+import org.springframework.stereotype.Component;
+
 /**
- * Gemini에게 보낼 프롬프트를 만들어주는 빌더.
- * - 게임 규칙 설명
- * - JSON 형식 강제
- * - 직전 상태/선택 정보 포함
+ * Gemini에게 보낼 프롬프트를 만들어주는 빌더. - 게임 규칙 설명 - JSON 형식 강제 - 직전 상태/선택 정보 포함
  */
 @Component
 public class GamePromptBuilder {
 
-    /**
-     * 게임 처음 시작할 때 사용하는 프롬프트.
-     *
-     * @param accountId 유저 ID (필요 없으면 프롬프트에서 안 써도 됨)
-     * @param breedName 시뮬레이션할 반려동물 품종 이름 (예: Persian, Bulldog 등)
-     */
-    public String buildStartPrompt(String accountId, String breedName) {
-        return """
+  /**
+   * 게임 처음 시작할 때 사용하는 프롬프트.
+   *
+   * @param accountId
+   *          유저 ID (필요 없으면 프롬프트에서 안 써도 됨)
+   * @param breedName
+   *          시뮬레이션할 반려동물 품종 이름 (예: Persian, Bulldog 등)
+   */
+  public String buildStartPrompt(String accountId, String breedName) {
+    return """
         당신은 반려동물 돌봄 시뮬레이션 게임 엔진입니다.
         사용자는 24시간 동안 %s를 돌보는 게임을 진행합니다.
 
@@ -49,7 +63,15 @@ public class GamePromptBuilder {
         - 새:
             - 새장 내 환경(물, 모이, 횃대, 목욕, 햇볕) 관리가 중요합니다.
             - 청결, 목욕을 소홀히 하면 health/happiness가 감소합니다.
-        
+        - 물고기:
+            - 수질 관리(물갈이, pH, 수온)가 매우 중요합니다.
+            - 먹이 양 조절이 중요하며, 과식하면 수질이 악화되고 health가 감소합니다.
+            - 수온이 적정 범위를 벗어나면 health가 급격히 감소합니다.
+        - 파충류:
+            - 온습도 관리가 필수이며, 히터와 습도계를 활용해야 합니다.
+            - 자외선 조사(UVB 램프)가 필요하며, 부족하면 health가 감소합니다.
+            - 먹이는 살아있는 먹이 또는 냉동 먹이를 급여하며, 급여 주기를 지켜야 합니다.
+
         ### 선택지(옵션) 설계 규칙 (자연스럽고 현실적인 선택 분포)
         - 각 턴의 옵션(options[])은 '누가 봐도 티 나는 극단적인 선택지'가 아니라
             **현실에서 반려동물을 키우다 보면 흔히 발생하는 자연스러운 선택들로 구성합니다.**
@@ -65,7 +87,7 @@ public class GamePromptBuilder {
                     - “밖에 나갈 준비가 귀찮아 짧은 산책만 하고 돌아온다”
                     - “게임 중이라 반응은 해주지만 제대로 신경 쓰지는 못한다”
                     - “사료는 줬지만 물은 깜박했다”
-                    - health/happiness 변화는 작거나, 한쪽이 오르고 다른 한쪽이 미세하게 떨어지는 등 
+                    - health/happiness 변화는 작거나, 한쪽이 오르고 다른 한쪽이 미세하게 떨어지는 등
                     **미묘한 결과**를 만들어야 합니다.
             3) **눈에 띄지 않지만 실제로는 좋지 않은 선택지**
                 - 지나치게 부정적인 표현을 사용하지 말고,
@@ -84,7 +106,7 @@ public class GamePromptBuilder {
             - 애매한 선택: +1 ~ -4
             - 인간적 실수/게으름 선택: -6 ~ -15
             (하지만 표현은 부드럽고 자연스럽게)
-                
+
         ### 숫자 표기 규칙 (매우 중요)
         - timeHour, health, happiness, cost, finished 값은 반드시 **단일 리터럴 값**으로만 작성하세요.
           - 예: 7, 100, 50, 0, false
@@ -124,44 +146,41 @@ public class GamePromptBuilder {
         - 각 동물의 대표적인 습성/관리 포인트(산책, 배변, 화장실, 새장 관리 등)를 message와 options.text에 자연스럽게 반영하세요.
         - 아직 게임 시작 턴이므로 finished는 **반드시 false**로 유지합니다.
         - 응답은 반드시 위 JSON 형식으로만 반환하세요.
-        """.formatted(breedName, breedName,breedName);
+        """.formatted(breedName, breedName, breedName);
+  }
+
+  /**
+   * 다음 스텝으로 넘어갈 때 사용하는 프롬프트.
+   *
+   * @param session
+   *          DB에 저장된 세션 정보
+   * @param lastView
+   *          우리가 가진 마지막 상태 (프론트에 보냈던 값 기준)
+   * @param chosenOptionId
+   *          사용자가 고른 옵션 ID (예: "A", "B", "C")
+   */
+  public String buildNextPrompt(GameSession session, GameStateView lastView, String chosenOptionId) {
+
+    String breedName = session.getBreedId();
+
+    // 직전 턴 상태/옵션 JSON
+    String lastStateJson = toStateJsonForPrompt(lastView);
+    String lastOptionsJson = toOptionsJsonForPrompt(lastView != null ? lastView.getOptions() : null);
+
+    // 선택한 옵션의 text 추출 (없으면 빈 문자열)
+    String chosenOptionText = "";
+    if (lastView != null && lastView.getOptions() != null) {
+      for (GameOption opt : lastView.getOptions()) {
+        if (chosenOptionId != null && chosenOptionId.equals(opt.getId())) {
+          chosenOptionText = opt.getText();
+          break;
+        }
+      }
     }
 
+    int prevTimeHour = (lastView != null) ? lastView.getTimeHour() : session.getTimeHour();
 
-
-    /**
-     * 다음 스텝으로 넘어갈 때 사용하는 프롬프트.
-     *
-     * @param session        DB에 저장된 세션 정보
-     * @param lastView       우리가 가진 마지막 상태 (프론트에 보냈던 값 기준)
-     * @param chosenOptionId 사용자가 고른 옵션 ID (예: "A", "B", "C")
-     */
-    public String buildNextPrompt(GameSession session,
-                                  GameStateView lastView,
-                                  String chosenOptionId) {
-
-        String breedName = session.getBreedId();
-
-        // 직전 턴 상태/옵션 JSON
-        String lastStateJson = toStateJsonForPrompt(lastView);
-        String lastOptionsJson = toOptionsJsonForPrompt(
-                lastView != null ? lastView.getOptions() : null
-        );
-
-        // 선택한 옵션의 text 추출 (없으면 빈 문자열)
-        String chosenOptionText = "";
-        if (lastView != null && lastView.getOptions() != null) {
-            for (GameOption opt : lastView.getOptions()) {
-                if (chosenOptionId != null && chosenOptionId.equals(opt.getId())) {
-                    chosenOptionText = opt.getText();
-                    break;
-                }
-            }
-        }
-
-        int prevTimeHour = (lastView != null) ? lastView.getTimeHour() : session.getTimeHour();
-
-        String prompt = """
+    String prompt = """
         당신은 반려동물 돌봄 시뮬레이션 게임 엔진입니다.
         사용자는 24시간 동안 동물을 돌보는 게임을 진행합니다.
 
@@ -171,7 +190,7 @@ public class GamePromptBuilder {
           - health : 0 ~ 150 범위
           - happiness : 0 ~ 150 범위
           - cost : 한국 원화 기준 누적 비용 (정수)
-       
+
         ### 동물별 특별 규칙 (반드시 계속 유지할 것)
         - 이번 시뮬레이션의 대상 동물: "%s"
         - 강아지(대형견·소형견 포함):
@@ -184,6 +203,14 @@ public class GamePromptBuilder {
         - 새:
             - 새장 내 환경(물, 모이, 횃대, 목욕, 햇볕) 관리가 중요합니다.
             - 청결, 목욕을 소홀히 하면 health/happiness가 감소합니다.
+        - 물고기:
+            - 수질 관리(물갈이, pH, 수온)가 매우 중요합니다.
+            - 먹이 양 조절이 중요하며, 과식하면 수질이 악화되고 health가 감소합니다.
+            - 수온이 적정 범위를 벗어나면 health가 급격히 감소합니다.
+        - 파충류:
+            - 온습도 관리가 필수이며, 히터와 습도계를 활용해야 합니다.
+            - 자외선 조사(UVB 램프)가 필요하며, 부족하면 health가 감소합니다.
+            - 먹이는 살아있는 먹이 또는 냉동 먹이를 급여하며, 급여 주기를 지켜야 합니다.
 
         ### 1. 직전 턴 정보
         아래 JSON은 직전 턴에서 사용자에게 보여줬던 상태/선택지입니다.
@@ -204,7 +231,7 @@ public class GamePromptBuilder {
         2. 이번 턴의 message에는 이 선택 하나의 결과만을 서술해야 합니다.
            - 사용자가 선택하지 않은 다른 행동(예: 산책, 목욕, 다른 메뉴)은 message에 등장시키지 마세요.
         3. health, happiness, cost 변화는 이 선택의 효과를 현실적으로 반영해야 합니다.
-    
+
         ### 선택지(옵션) 설계 규칙 (자연스럽고 현실적인 선택 분포)
         - 각 턴의 옵션(options[])은 '누가 봐도 티 나는 극단적인 선택지'가 아니라
             **현실에서 반려동물을 키우다 보면 흔히 발생하는 자연스러운 선택들로 구성합니다.**
@@ -219,7 +246,7 @@ public class GamePromptBuilder {
             - “밖에 나갈 준비가 귀찮아 짧은 산책만 하고 돌아온다”
             - “게임 중이라 반응은 해주지만 제대로 신경 쓰지는 못한다”
             - “사료는 줬지만 물은 깜박했다”
-            - health/happiness 변화는 작거나, 한쪽이 오르고 다른 한쪽이 미세하게 떨어지는 등 
+            - health/happiness 변화는 작거나, 한쪽이 오르고 다른 한쪽이 미세하게 떨어지는 등
         **미묘한 결과**를 만들어야 합니다.
         3) **눈에 띄지 않지만 실제로는 좋지 않은 선택지**
         - 지나치게 부정적인 표현을 사용하지 말고,
@@ -236,7 +263,7 @@ public class GamePromptBuilder {
             - 애매한 선택: +1 ~ -4
             - 인간적 실수/게으름 선택: -6 ~ -15
             (하지만 표현은 부드럽고 자연스럽게)
-             
+
         ### 3. timeHour 규칙
         - 이번 턴의 timeHour는 **반드시 이전 턴(%d)보다 크거나 같아야 합니다.**
           - timeHour가 이전 값보다 작아지는 경우(예: 21 → 9)는 허용되지 않습니다.
@@ -299,76 +326,61 @@ public class GamePromptBuilder {
         }
         """;
 
-        // %s / %d 순서: 9개 인자 (문자열/정수 혼합)
-        return prompt.formatted(
-                breedName,
-                lastStateJson,                     // 1: lastState
-                lastOptionsJson,                   // 2: lastOptions
-                prevTimeHour,                      // 3: 직전 timeHour (int)
-                chosenOptionId,                    // 4: 직전 선택 id
-                escapeForPrompt(chosenOptionText), // 5: 직전 선택 text
-                chosenOptionId,                    // 6: 규칙용 id
-                escapeForPrompt(chosenOptionText), // 7: 규칙용 text
-                prevTimeHour,                      // 8: timeHour 규칙에 들어가는 이전 timeHour
-                chosenOptionId,                    // 9: 마지막 설명용 id (문장 내)
-                escapeForPrompt(chosenOptionText)  // 10: 마지막 설명용 text (문장 내)
-        );
-    }
+    // %s / %d 순서: 9개 인자 (문자열/정수 혼합)
+    return prompt.formatted(breedName, lastStateJson, // 1: lastState
+        lastOptionsJson, // 2: lastOptions
+        prevTimeHour, // 3: 직전 timeHour (int)
+        chosenOptionId, // 4: 직전 선택 id
+        escapeForPrompt(chosenOptionText), // 5: 직전 선택 text
+        chosenOptionId, // 6: 규칙용 id
+        escapeForPrompt(chosenOptionText), // 7: 규칙용 text
+        prevTimeHour, // 8: timeHour 규칙에 들어가는 이전 timeHour
+        chosenOptionId, // 9: 마지막 설명용 id (문장 내)
+        escapeForPrompt(chosenOptionText) // 10: 마지막 설명용 text (문장 내)
+    );
+  }
 
-    /**
-     * lastView를 프롬프트에 넣기 위한 간단 JSON 문자열
-     * (우리가 Gemini에게 맥락을 보여주기 위한 용도라 대략적인 구조만 있으면 됨)
-     */
-    private String toStateJsonForPrompt(GameStateView view) {
-        if (view == null) {
-            return "{}";
-        }
-        return String.format(
-                "{ \"timeHour\": %d, \"health\": %d, \"happiness\": %d, \"cost\": %d, \"finished\": %b, \"message\": \"%s\" }",
-                view.getTimeHour(),
-                view.getHealth(),
-                view.getHappiness(),
-                view.getCost(),
-                view.isFinished(),
-                escapeForPrompt(view.getMessage())
-        );
+  /**
+   * lastView를 프롬프트에 넣기 위한 간단 JSON 문자열 (우리가 Gemini에게 맥락을 보여주기 위한 용도라 대략적인 구조만 있으면 됨)
+   */
+  private String toStateJsonForPrompt(GameStateView view) {
+    if (view == null) {
+      return "{}";
     }
+    return String.format(
+        "{ \"timeHour\": %d, \"health\": %d, \"happiness\": %d, \"cost\": %d, \"finished\": %b, \"message\": \"%s\" }",
+        view.getTimeHour(), view.getHealth(), view.getHappiness(), view.getCost(), view.isFinished(),
+        escapeForPrompt(view.getMessage()));
+  }
 
-    /**
-     * options 리스트를 프롬프트에 넣기 위한 JSON 비슷한 문자열
-     */
-    private String toOptionsJsonForPrompt(List<GameOption> options) {
-        if (options == null || options.isEmpty()) {
-            return "[]";
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        for (int i = 0; i < options.size(); i++) {
-            GameOption opt = options.get(i);
-            if (i > 0) {
-                sb.append(", ");
-            }
-            sb.append(String.format(
-                    "{ \"id\": \"%s\", \"text\": \"%s\" }",
-                    escapeForPrompt(opt.getId()),
-                    escapeForPrompt(opt.getText())
-            ));
-        }
-        sb.append("]");
-        return sb.toString();
+  /**
+   * options 리스트를 프롬프트에 넣기 위한 JSON 비슷한 문자열
+   */
+  private String toOptionsJsonForPrompt(List<GameOption> options) {
+    if (options == null || options.isEmpty()) {
+      return "[]";
     }
+    StringBuilder sb = new StringBuilder();
+    sb.append("[");
+    for (int i = 0; i < options.size(); i++) {
+      GameOption opt = options.get(i);
+      if (i > 0) {
+        sb.append(", ");
+      }
+      sb.append(String.format("{ \"id\": \"%s\", \"text\": \"%s\" }", escapeForPrompt(opt.getId()),
+          escapeForPrompt(opt.getText())));
+    }
+    sb.append("]");
+    return sb.toString();
+  }
 
-    /**
-     * 프롬프트 안에 들어가는 문자열에서 큰따옴표/줄바꿈 정도만 간단히 이스케이프
-     */
-    private String escapeForPrompt(String text) {
-        if (text == null) {
-            return "";
-        }
-        return text
-                .replace("\\", "\\\\")
-                .replace("\"", "\\\"")
-                .replace("\n", " ")
-                .replace("\r", " ");
+  /**
+   * 프롬프트 안에 들어가는 문자열에서 큰따옴표/줄바꿈 정도만 간단히 이스케이프
+   */
+  private String escapeForPrompt(String text) {
+    if (text == null) {
+      return "";
     }
+    return text.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", " ").replace("\r", " ");
+  }
 }

@@ -17,39 +17,39 @@ package org.mybatis.jpetstore.domain.recommendation;
 
 import java.io.Serializable;
 
-public class BreedRecommendation implements Serializable {
+public class CategoryRecommendation implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private String breedId;
-  private String breedName;
+  private String categoryId;
+  private String categoryName;
   private int confidence;
   private String reason;
 
-  public BreedRecommendation() {
+  public CategoryRecommendation() {
   }
 
-  public BreedRecommendation(String breedId, String breedName, int confidence, String reason) {
-    this.breedId = breedId;
-    this.breedName = breedName;
+  public CategoryRecommendation(String categoryId, String categoryName, int confidence, String reason) {
+    this.categoryId = categoryId;
+    this.categoryName = categoryName;
     this.confidence = confidence;
     this.reason = reason;
   }
 
-  public String getBreedId() {
-    return breedId;
+  public String getCategoryId() {
+    return categoryId;
   }
 
-  public void setBreedId(String breedId) {
-    this.breedId = breedId;
+  public void setCategoryId(String categoryId) {
+    this.categoryId = categoryId;
   }
 
-  public String getBreedName() {
-    return breedName;
+  public String getCategoryName() {
+    return categoryName;
   }
 
-  public void setBreedName(String breedName) {
-    this.breedName = breedName;
+  public void setCategoryName(String categoryName) {
+    this.categoryName = categoryName;
   }
 
   public int getConfidence() {

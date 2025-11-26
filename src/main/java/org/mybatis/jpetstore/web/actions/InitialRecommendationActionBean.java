@@ -1,16 +1,32 @@
+/*
+ *    Copyright 2010-2025 the original author or authors.
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *       https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
 package org.mybatis.jpetstore.web.actions;
+
+import java.io.Serializable;
+import java.util.List;
 
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
-import org.mybatis.jpetstore.domain.Account;
-import org.mybatis.jpetstore.domain.recommendation.BreedRecommendation;
-import org.mybatis.jpetstore.service.InitialRecommendationService;
 
-import java.io.Serializable;
-import java.util.List;
+import org.mybatis.jpetstore.domain.Account;
+import org.mybatis.jpetstore.domain.recommendation.CategoryRecommendation;
+import org.mybatis.jpetstore.service.InitialRecommendationService;
 
 @SessionScope
 public class InitialRecommendationActionBean extends AbstractActionBean implements Serializable {
@@ -22,14 +38,14 @@ public class InitialRecommendationActionBean extends AbstractActionBean implemen
   @SpringBean
   private transient InitialRecommendationService initialRecommendationService;
 
-  private List<BreedRecommendation> top3Breeds;
+  private List<CategoryRecommendation> top5Categories;
 
-  public List<BreedRecommendation> getTop3Breeds() {
-    return top3Breeds;
+  public List<CategoryRecommendation> getTop5Categories() {
+    return top5Categories;
   }
 
-  public void setTop3Breeds(List<BreedRecommendation> top3Breeds) {
-    this.top3Breeds = top3Breeds;
+  public void setTop5Categories(List<CategoryRecommendation> top5Categories) {
+    this.top5Categories = top5Categories;
   }
 
   @DefaultHandler
@@ -52,8 +68,8 @@ public class InitialRecommendationActionBean extends AbstractActionBean implemen
     }
 
     try {
-      // Top 3 품종 추천 받기
-      top3Breeds = initialRecommendationService.getTop3Breeds(account);
+      // Top 5 카테고리 추천 받기
+      top5Categories = initialRecommendationService.getTop5Categories(account);
 
       return new ForwardResolution(INITIAL_RECOMMENDATION);
 
