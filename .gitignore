@@ -10,3 +10,5 @@
 *.properties
 .env
 .github/keys/
+.DS_Store
+src/main/resources/credentials/

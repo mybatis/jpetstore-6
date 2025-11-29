@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2025 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -147,10 +147,15 @@ class AccountMapperTest {
     // then
     Map<String, Object> record = jdbcTemplate.queryForMap("SELECT * FROM profile WHERE userid = ?", "mybatis");
 
-    assertThat(record).hasSize(5).containsEntry("USERID", account.getUsername())
+    assertThat(record).hasSize(11).containsEntry("USERID", account.getUsername())
         .containsEntry("LANGPREF", account.getLanguagePreference())
         .containsEntry("FAVCATEGORY", account.getFavouriteCategoryId()).containsEntry("MYLISTOPT", 1)
-        .containsEntry("BANNEROPT", 0);
+        .containsEntry("BANNEROPT", 0).containsEntry("RESIDENCE_ENV", account.getResidenceEnv())
+        .containsEntry("CARE_PERIOD", account.getCarePeriod())
+        .containsEntry("PET_COLOR_PREF", account.getPetColorPref())
+        .containsEntry("PET_SIZE_PREF", account.getPetSizePref())
+        .containsEntry("ACTIVITY_TIME", account.getActivityTime())
+        .containsEntry("DIET_MANAGEMENT", account.getDietManagement());
   }
 
   @Test
@@ -221,10 +226,15 @@ class AccountMapperTest {
     // then
     Map<String, Object> record = jdbcTemplate.queryForMap("SELECT * FROM profile WHERE userid = ?", "j2ee");
 
-    assertThat(record).hasSize(5).containsEntry("USERID", account.getUsername())
+    assertThat(record).hasSize(11).containsEntry("USERID", account.getUsername())
         .containsEntry("LANGPREF", account.getLanguagePreference())
         .containsEntry("FAVCATEGORY", account.getFavouriteCategoryId()).containsEntry("MYLISTOPT", 0)
-        .containsEntry("BANNEROPT", 0);
+        .containsEntry("BANNEROPT", 0).containsEntry("RESIDENCE_ENV", account.getResidenceEnv())
+        .containsEntry("CARE_PERIOD", account.getCarePeriod())
+        .containsEntry("PET_COLOR_PREF", account.getPetColorPref())
+        .containsEntry("PET_SIZE_PREF", account.getPetSizePref())
+        .containsEntry("ACTIVITY_TIME", account.getActivityTime())
+        .containsEntry("DIET_MANAGEMENT", account.getDietManagement());
   }
 
   @Test

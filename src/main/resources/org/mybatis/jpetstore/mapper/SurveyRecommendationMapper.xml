@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright 2010-2025 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          https://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.mapper.SurveyRecommendationMapper">
+
+  <cache />
+
+  <resultMap id="surveyRecommendationResult" type="org.mybatis.jpetstore.domain.SurveyRecommendation">
+    <id property="surveyRecommendationId" column="survey_recommendation_id"/>
+    <result property="residenceEnv" column="residence_env"/>
+    <result property="carePeriod" column="care_period"/>
+    <result property="petColorPref" column="pet_color_pref"/>
+    <result property="petSizePref" column="pet_size_pref"/>
+    <result property="activityTime" column="activity_time"/>
+    <result property="dietManagement" column="diet_management"/>
+    <result property="recommendedJsonData" column="recommended_json_data"/>
+  </resultMap>
+
+  <select id="getSurveyRecommendations" resultMap="surveyRecommendationResult">
+    SELECT
+      survey_recommendation_id,
+      residence_env,
+      care_period,
+      pet_color_pref,
+      pet_size_pref,
+      activity_time,
+      diet_management,
+      recommended_json_data
+    FROM SURVEY_RECOMMENDATIONS
+  </select>
+
+  <select id="getSurveyRecommendationById" parameterType="int" resultMap="surveyRecommendationResult">
+    SELECT
+      survey_recommendation_id,
+      residence_env,
+      care_period,
+      pet_color_pref,
+      pet_size_pref,
+      activity_time,
+      diet_management,
+      recommended_json_data
+    FROM SURVEY_RECOMMENDATIONS
+    WHERE survey_recommendation_id = #{surveyRecommendationId}
+  </select>
+
+  <insert id="insertSurveyRecommendation" parameterType="org.mybatis.jpetstore.domain.SurveyRecommendation">
+    INSERT INTO SURVEY_RECOMMENDATIONS (
+      residence_env,
+      care_period,
+      pet_color_pref,
+      pet_size_pref,
+      activity_time,
+      diet_management,
+      recommended_json_data
+    ) VALUES (
+      #{residenceEnv},
+      #{carePeriod},
+      #{petColorPref},
+      #{petSizePref},
+      #{activityTime},
+      #{dietManagement},
+      #{recommendedJsonData}
+    )
+  </insert>
+
+  <update id="updateSurveyRecommendation" parameterType="org.mybatis.jpetstore.domain.SurveyRecommendation">
+    UPDATE SURVEY_RECOMMENDATIONS
+    SET
+      residence_env = #{residenceEnv},
+      care_period = #{carePeriod},
+      pet_color_pref = #{petColorPref},
+      pet_size_pref = #{petSizePref},
+      activity_time = #{activityTime},
+      diet_management = #{dietManagement},
+      recommended_json_data = #{recommendedJsonData}
+    WHERE survey_recommendation_id = #{surveyRecommendationId}
+  </update>
+
+  <delete id="deleteSurveyRecommendation" parameterType="int">
+    DELETE FROM SURVEY_RECOMMENDATIONS
+    WHERE survey_recommendation_id = #{surveyRecommendationId}
+  </delete>
+
+</mapper>
