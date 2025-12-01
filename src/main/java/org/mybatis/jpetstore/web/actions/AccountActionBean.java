@@ -113,6 +113,11 @@ public class AccountActionBean extends AbstractActionBean {
    * @return the resolution
    */
   public Resolution newAccount() {
+    // 모든 필수 필드 검증
+    if (!validateAccountFields()) {
+      return new ForwardResolution(NEW_ACCOUNT);
+    }
+
     accountService.insertAccount(account);
     account = accountService.getAccount(account.getUsername());
     myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());
@@ -135,6 +140,11 @@ public class AccountActionBean extends AbstractActionBean {
    * @return the resolution
    */
   public Resolution editAccount() {
+    // 모든 필수 필드 검증
+    if (!validateAccountFields()) {
+      return new ForwardResolution(EDIT_ACCOUNT);
+    }
+
     accountService.updateAccount(account);
     account = accountService.getAccount(account.getUsername());
     myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());
@@ -161,8 +171,7 @@ public class AccountActionBean extends AbstractActionBean {
     String username = getUsername();
     String password = getPassword();
 
-    if (username == null || username.trim().isEmpty() ||
-        password == null || password.trim().isEmpty()) {
+    if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
       setMessage("사용자 정보를 모두 입력해주세요.");
       return new ForwardResolution(SIGNON);
     }
@@ -212,6 +221,50 @@ public class AccountActionBean extends AbstractActionBean {
     account = new Account();
     myList = null;
     authenticated = false;
+  }
+
+  /**
+   * Validate all required account fields.
+   *
+   * @return true if all required fields are filled, false otherwise
+   */
+  private boolean validateAccountFields() {
+    StringBuilder errors = new StringBuilder();
+
+    if (account.getFirstName() == null || account.getFirstName().trim().isEmpty()) {
+      errors.append("First name is required. ");
+    }
+    if (account.getLastName() == null || account.getLastName().trim().isEmpty()) {
+      errors.append("Last name is required. ");
+    }
+    if (account.getEmail() == null || account.getEmail().trim().isEmpty()) {
+      errors.append("Email is required. ");
+    }
+    if (account.getPhone() == null || account.getPhone().trim().isEmpty()) {
+      errors.append("Phone is required. ");
+    }
+    if (account.getAddress1() == null || account.getAddress1().trim().isEmpty()) {
+      errors.append("Address 1 is required. ");
+    }
+    if (account.getCity() == null || account.getCity().trim().isEmpty()) {
+      errors.append("City is required. ");
+    }
+    if (account.getState() == null || account.getState().trim().isEmpty()) {
+      errors.append("State is required. ");
+    }
+    if (account.getZip() == null || account.getZip().trim().isEmpty()) {
+      errors.append("Zip is required. ");
+    }
+    if (account.getCountry() == null || account.getCountry().trim().isEmpty()) {
+      errors.append("Country is required. ");
+    }
+
+    if (errors.length() > 0) {
+      setMessage("모든 필수 정보를 입력해주세요: " + errors.toString());
+      return false;
+    }
+
+    return true;
   }
 
 }

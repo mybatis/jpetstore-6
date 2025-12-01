@@ -22,22 +22,34 @@
 <%@ include file="../common/IncludeTop.jsp"%>
 
 <div id="Catalog">
-	<c:if test="${actionBean.message != null}">
-		<p style="color: red; font-weight: bold;">${actionBean.message}</p>
-	</c:if>
+	<stripes:messages/>
+	<stripes:errors/>
 
 	<stripes:form
 	beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
-	focus="">
+	focus="" id="signonForm">
 
 	<p>Please enter your username and password.</p>
-	<p>Username:<stripes:text name="username" value="j2ee" /> <br />
-	Password:<stripes:password name="password" value="j2ee" /></p>
-	<stripes:submit name="signon" value="Login" />
+	<p>Username:<stripes:text name="username" value="j2ee" id="username" /> <br />
+	Password:<stripes:password name="password" value="j2ee" id="password" /></p>
+	<stripes:submit name="signon" value="Login" onclick="return validateSignonForm();" />
 
 </stripes:form> Need a user name and password? <stripes:link
 	beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
 	event="newAccountForm">Register Now!</stripes:link></div>
+
+<script type="text/javascript">
+function validateSignonForm() {
+	var username = document.getElementById('username').value.trim();
+	var password = document.getElementById('password').value.trim();
+
+	if (username === '' || password === '') {
+		alert('사용자 정보를 모두 입력해주세요.');
+		return false;
+	}
+	return true;
+}
+</script>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
 

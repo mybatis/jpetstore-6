@@ -21,31 +21,65 @@
 
 <%@ include file="../common/IncludeTop.jsp"%>
 
-<div id="Catalog"><stripes:form
+<div id="Catalog">
+	<stripes:messages/>
+	<stripes:errors/>
+
+	<stripes:form
 	beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
-	focus="">
+	focus="" id="newAccountForm">
 
 	<h3>User Information</h3>
 
 	<table>
 		<tr>
 			<td>User ID:</td>
-			<td><stripes:text name="username" /></td>
+			<td><stripes:text name="username" id="username" /></td>
 		</tr>
 		<tr>
 			<td>New password:</td>
-			<td><stripes:text name="password" /></td>
+			<td><stripes:password name="password" id="password" /></td>
 		</tr>
 		<tr>
 			<td>Repeat password:</td>
-			<td><stripes:text name="repeatedPassword" /></td>
+			<td><stripes:password name="repeatedPassword" id="repeatedPassword" /></td>
 		</tr>
 	</table>
 
 	<%@ include file="IncludeAccountFields.jsp"%>
 
-	<stripes:submit name="newAccount" value="Save Account Information" />
+	<stripes:submit name="newAccount" value="Save Account Information" onclick="return validateNewAccountForm();" />
 
 </stripes:form></div>
+
+<script type="text/javascript">
+function validateNewAccountForm() {
+	var username = document.getElementById('username').value.trim();
+	var password = document.getElementById('password').value.trim();
+	var repeatedPassword = document.getElementById('repeatedPassword').value.trim();
+	var firstName = document.getElementById('account.firstName').value.trim();
+	var lastName = document.getElementById('account.lastName').value.trim();
+	var email = document.getElementById('account.email').value.trim();
+	var phone = document.getElementById('account.phone').value.trim();
+	var address1 = document.getElementById('account.address1').value.trim();
+	var city = document.getElementById('account.city').value.trim();
+	var state = document.getElementById('account.state').value.trim();
+	var zip = document.getElementById('account.zip').value.trim();
+	var country = document.getElementById('account.country').value.trim();
+
+	if (!username || !password || !repeatedPassword || !firstName || !lastName ||
+	    !email || !phone || !address1 || !city || !state || !zip || !country) {
+		alert('모든 필수 정보를 입력해주세요.');
+		return false;
+	}
+
+	if (password !== repeatedPassword) {
+		alert('비밀번호가 일치하지 않습니다.');
+		return false;
+	}
+
+	return true;
+}
+</script>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
