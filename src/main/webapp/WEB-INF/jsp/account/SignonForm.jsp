@@ -21,7 +21,12 @@
 
 <%@ include file="../common/IncludeTop.jsp"%>
 
-<div id="Catalog"><stripes:form
+<div id="Catalog">
+	<c:if test="${actionBean.message != null}">
+		<p style="color: red; font-weight: bold;">${actionBean.message}</p>
+	</c:if>
+
+	<stripes:form
 	beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
 	focus="">
 
