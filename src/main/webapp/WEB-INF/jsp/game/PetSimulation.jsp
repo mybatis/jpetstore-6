@@ -46,9 +46,16 @@
 
 <script type="text/javascript">
   let currentSessionId = null;
+  let isProcessing = false; // 처리 중 플래그 추가
   const ctx = '${pageContext.request.contextPath}';
 
   function startGame(breedId) {
+    // 이미 처리 중이면 무시
+    if (isProcessing) return;
+
+    isProcessing = true;
+    disableAllButtons(true);
+
     const url = ctx + '/actions/GameSimulation.action?startGame=&breedId=' + encodeURIComponent(breedId);
 
     fetch(url, {
@@ -66,6 +73,10 @@
     .catch(err => {
       console.error(err);
       alert('게임 시작 중 오류가 발생했습니다.');
+    })
+    .finally(() => {
+      isProcessing = false;
+      disableAllButtons(false);
     });
   }
 
@@ -74,6 +85,12 @@
       alert('먼저 게임을 시작해 주세요.');
       return;
     }
+
+    // 이미 처리 중이면 무시 (중복 클릭 방지)
+    if (isProcessing) return;
+
+    isProcessing = true;
+    disableAllButtons(true);
 
     const params = new URLSearchParams({
       nextStep: '',
@@ -97,7 +114,29 @@
     .catch(err => {
       console.error(err);
       alert('다음 턴 진행 중 오류가 발생했습니다.');
+    })
+    .finally(() => {
+      isProcessing = false;
+      disableAllButtons(false);
     });
+  }
+
+  // 모든 버튼 비활성화/활성화 함수
+  function disableAllButtons(disabled) {
+    const optionsDiv = document.getElementById('game-options');
+    if (optionsDiv) {
+      const buttons = optionsDiv.querySelectorAll('button');
+      buttons.forEach(btn => {
+        btn.disabled = disabled;
+        if (disabled) {
+          btn.style.opacity = '0.5';
+          btn.style.cursor = 'not-allowed';
+        } else {
+          btn.style.opacity = '1';
+          btn.style.cursor = 'pointer';
+        }
+      });
+    }
   }
 
   function renderGameTurn(data) {
