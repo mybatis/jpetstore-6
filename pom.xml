@@ -271,7 +271,6 @@
           <configuration>
             <container>
               <containerId>${cargo.maven.containerId}</containerId>
-              <jvmArgs>--add-opens java.base/java.util=ALL-UNNAMED</jvmArgs>
               <zipUrlInstaller>
                 <url>${cargo.maven.containerUrl}</url>
               </zipUrlInstaller>
@@ -280,6 +279,7 @@
               <properties>
                 <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
                 <cargo.daemon.handleid>${project.artifactId}</cargo.daemon.handleid>
+                <cargo.jvmargs>--add-opens java.base/java.util=ALL-UNNAMED</cargo.jvmargs>
               </properties>
             </daemon>
           </configuration>
