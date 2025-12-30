@@ -82,7 +82,7 @@
     <project.build.outputTimestamp>1670877034</project.build.outputTimestamp>
 
     <!-- Surefire Setup -->
-    <argLine>-javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar</argLine>
+    <argLine>-javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar --add-opens java.base/java.util=ALL-UNNAMED</argLine>
   </properties>
 
   <dependencies>
