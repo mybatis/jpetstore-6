@@ -389,7 +389,9 @@
         <payara.version>5.2022.5</payara.version>
         <cargo.maven.containerId>payara${payara.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
-        <type>installed</type>
+        <containerId combine.children="append">
+          <type>installed</type>
+        </containerId>
       </properties>
     </profile>
     <profile>
@@ -398,7 +400,7 @@
         <resin.major-version>4</resin.major-version>
         <resin.version>4.0.67</resin.version>
         <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://caucho.com/download/resin-pro-${resin.version}.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
   </profiles>
