@@ -279,7 +279,6 @@
               <properties>
                 <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
                 <cargo.daemon.handleid>${project.artifactId}</cargo.daemon.handleid>
-                <cargo.jvmargs>--add-opens java.base/java.util=ALL-UNNAMED</cargo.jvmargs>
               </properties>
             </daemon>
           </configuration>
@@ -352,6 +351,7 @@
         <wildfly.version>26.1.3.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
+        <cargo.jvmargs>--add-opens=java.base/java.util=ALL-UNNAMED</cargo.jvmargs>
       </properties>
     </profile>
     <profile>
