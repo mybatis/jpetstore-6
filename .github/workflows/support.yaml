@@ -42,5 +42,5 @@ jobs:
           cache: ${{ matrix.cache }}
           distribution: ${{ matrix.distribution }}
           java-version: ${{ matrix.java }}
-      - name: Test with ${{ matrix.token }}
-        run: ./mvnw test -P ${{ matrix.token }}
+      - name: Integration Test with ${{ matrix.token }}
+        run: ./mvnw verify -P ${{ matrix.token }}
