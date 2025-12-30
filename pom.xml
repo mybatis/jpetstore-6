@@ -389,9 +389,9 @@
         <payara.version>5.2022.5</payara.version>
         <cargo.maven.containerId>payara${payara.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
-        <containerId combine.children="append">
+        <container combine.children="append">
           <type>installed</type>
-        </containerId>
+        </container>
       </properties>
     </profile>
     <profile>
