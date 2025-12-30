@@ -371,6 +371,7 @@
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/eclipse/jetty/ee8/jetty-ee8-home//${jetty.version}/jetty-ee8-home-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
     </profile>
+    <!-- Does not support java 9+
     <profile>
       <id>glassfish5</id>
       <properties>
@@ -378,6 +379,16 @@
         <glassfish.version>5.1.0</glassfish.version>
         <cargo.maven.containerId>glassfish${glassfish.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/org/glassfish/main/distributions/glassfish/${glassfish.version}/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
+      </properties>
+    </profile>
+    -->
+    <profile>
+      <id>payara5</id>
+      <properties>
+        <payara.major-version>5</payara.major-version>
+        <payara.version>5.2022.5</payara.version>
+        <cargo.maven.containerId>payara${payara.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
