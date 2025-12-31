@@ -161,6 +161,13 @@
       <version>${hsqldb.version}</version>
     </dependency>
 
+    <!-- Due to osgi issue with mybatis spring, its required here for liberty -->
+    <dependency>
+      <groupId>org.springframework.batch</groupId>
+      <artifactId>spring-batch-infrastructure</artifactId>
+      <version>5.2.2</version>
+    </dependency>
+
     <!-- Test dependencies -->
     <dependency>
       <groupId>net.bytebuddy</groupId>
