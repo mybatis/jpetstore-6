@@ -62,11 +62,6 @@
     <java.version>17</java.version>
     <java.release.version>17</java.release.version>
 
-    <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
-    <cargo.maven.containerUrl>https://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
-    <tomcat.major-version />
-    <tomcat.version />
-
     <cargo-maven3-plugin.version>1.10.25</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
@@ -269,13 +264,6 @@
           <artifactId>cargo-maven3-plugin</artifactId>
           <version>${cargo-maven3-plugin.version}</version>
           <configuration>
-            <container>
-              <containerId>${cargo.maven.containerId}</containerId>
-              <type>installed</type>
-              <zipUrlInstaller>
-                <url>${cargo.maven.containerUrl}</url>
-              </zipUrlInstaller>
-            </container>
             <daemon>
               <properties>
                 <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
@@ -332,7 +320,26 @@
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
         <tomcat.version>9.0.113</tomcat.version>
+        <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <!-- TODO: Remove after we switch to jakarta as end of life -->
@@ -343,6 +350,23 @@
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>wildfly26</id>
@@ -354,6 +378,23 @@
         <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
         <cargo.jvmargs>--add-opens=java.base/java.util=ALL-UNNAMED</cargo.jvmargs>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>liberty-ee8</id>
@@ -362,6 +403,23 @@
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>jetty</id>
@@ -369,8 +427,27 @@
         <jetty.major-version>12</jetty.major-version>
         <jetty.version>12.1.5</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/eclipse/jetty/ee8/jetty-ee8-home/${jetty.version}/jetty-ee8-home-${jetty.version}.tar.gz</cargo.maven.containerUrl>
+        <cargo.jetty.deployer.ee.version>ee8</cargo.jetty.deployer.ee.version>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>jetty12x</containerId>
+                <type>installed</type>
+                <artifactInstaller>
+                  <groupId>org.eclipse.jetty</groupId>
+                  <artifactId>jetty-home</artifactId>
+                  <version>${jetty.version}</version>
+                </artifactInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <!-- Does not support java 9+
     <profile>
@@ -381,6 +458,23 @@
         <cargo.maven.containerId>glassfish${glassfish.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/org/glassfish/main/distributions/glassfish/${glassfish.version}/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     -->
     <profile>
@@ -391,6 +485,23 @@
         <cargo.maven.containerId>payara${payara.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>resin</id>
@@ -400,6 +511,23 @@
         <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 
