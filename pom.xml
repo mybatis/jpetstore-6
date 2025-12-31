@@ -451,6 +451,7 @@
       </build>
     </profile>
     <profile>
+      <!-- Use 'payara5' as this is not supported with java 17 due to hk2 'dcs' is null error. -->
       <id>glassfish5</id>
       <properties>
         <glassfish.major-version>5</glassfish.major-version>
