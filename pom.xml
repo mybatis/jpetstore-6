@@ -450,7 +450,6 @@
         </plugins>
       </build>
     </profile>
-    <!-- Does not support java 9+
     <profile>
       <id>glassfish5</id>
       <properties>
@@ -477,7 +476,6 @@
         </plugins>
       </build>
     </profile>
-    -->
     <profile>
       <id>payara5</id>
       <properties>
