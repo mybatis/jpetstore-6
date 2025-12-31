@@ -423,6 +423,9 @@
                 <zipUrlInstaller>
                   <url>${cargo.maven.containerUrl}</url>
                 </zipUrlInstaller>
+                <systemProperties>
+                  <ws.jar.cache.disable>true</ws.jar.cache.disable>
+                </systemProperties>
               </container>
             </configuration>
           </plugin>
