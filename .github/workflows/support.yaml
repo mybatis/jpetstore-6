@@ -48,7 +48,8 @@ jobs:
           java-version: ${{ matrix.java }}
       - name: Build, start, test, and stop with ${{ matrix.token }}
         run: |
+          export RUNNER_TRACKING_ID=""  
           ./mvnw package -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
-          RUNNER_TRACKING_ID="" ./mvnw cargo:start -P ${{ matrix.token }} &
+          ./mvnw cargo:start -P ${{ matrix.token }} &
           ./mvnw failsafe:integration-test -P ${{ matrix.token }}
           ./mvnw cargo:stop -P ${{ matrix.token }}
