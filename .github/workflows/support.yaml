@@ -50,6 +50,6 @@ jobs:
         run: |
           export RUNNER_TRACKING_ID=""  
           ./mvnw package -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
-          ./mvnw cargo:start -P ${{ matrix.token }} &
+          ./mvnw cargo:start -P ${{ matrix.token }}
           ./mvnw failsafe:integration-test -P ${{ matrix.token }}
           ./mvnw cargo:stop -P ${{ matrix.token }}
