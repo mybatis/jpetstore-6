@@ -46,5 +46,11 @@ jobs:
           cache: ${{ matrix.cache }}
           distribution: ${{ matrix.distribution }}
           java-version: ${{ matrix.java }}
+      - name: Build and package
+        run: ./mvnw package -DskipTests
+      - name: Start cargo containers with ${{ matrix.token }}
+        run: ./mvnw cargo:start -P ${{ matrix.token }}
       - name: Integration Test with ${{ matrix.token }}
-        run: ./mvnw verify -P ${{ matrix.token }}
+        run: ./mvnw failsafe:integration-test -P ${{ matrix.token }}
+      - name: Stop cargo containers with ${{ matrix.token }}
+        run: ./mvnw cargo:stop -P ${{ matrix.token }}

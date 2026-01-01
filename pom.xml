@@ -282,6 +282,7 @@
       </plugins>
     </pluginManagement>
     <plugins>
+      <!-- Keep disabled until jakarta upgrade occurs due to issues with liberty holding stdin/stdout open with ee8
       <plugin>
         <groupId>org.codehaus.cargo</groupId>
         <artifactId>cargo-maven3-plugin</artifactId>
@@ -302,6 +303,7 @@
           </execution>
         </executions>
       </plugin>
+      -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
