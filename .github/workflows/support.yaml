@@ -35,11 +35,11 @@ jobs:
         java: [17]
         os: [macos-latest, ubuntu-latest, windows-latest]
         token: ["tomcat9", "tomee80", "wildfly26", "liberty-ee8", "jetty", "payara5", "resin"]
+        exclude:
+          - os: windows-latest
+            token: liberty-ee8
       fail-fast: false
       max-parallel: 6
-      exclude:
-        - os: windows-latest
-          container: liberty-ee8
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
 
     steps:
