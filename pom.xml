@@ -330,7 +330,7 @@
         <tomcat.major-version>9</tomcat.major-version>
         <tomcat.version>9.0.113</tomcat.version>
         <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://archive.apache.org/dist/tomcat/tomcat-${tomcat.major-version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/${tomcat.version}/tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
       </properties>
       <build>
         <plugins>
