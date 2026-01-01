@@ -27,6 +27,7 @@ concurrency:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
     strategy:
       matrix:
         cache: [maven]
@@ -48,8 +49,20 @@ jobs:
           java-version: ${{ matrix.java }}
       - name: Build, start, test, and stop with ${{ matrix.token }}
         run: |
-          export RUNNER_TRACKING_ID=""  
-          ./mvnw package -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
-          ./mvnw cargo:start -P ${{ matrix.token }}
-          ./mvnw failsafe:integration-test -P ${{ matrix.token }}
-          ./mvnw cargo:stop -P ${{ matrix.token }}
+         # Step 0: export so all children in this shell know not to be tracked
+         export RUNNER_TRACKING_ID=""
+
+         # Step 1: Build/package
+         ./mvnw package --batch-mode --no-transfer-progress --show-version -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
+
+         # Step 2: start Cargo container in background and prevent GitHub from killing it
+         nohup ./mvnw cargo:start -P ${{ matrix.token }} > cargo.log 2>&1 &
+         CARGO_PID="${!}"
+         echo "${CARGO_PID}" > _cargo_pid
+         disown ${CARGO_PID}
+
+         # Step 3: run integration tests in a separate Maven execution
+         ./mvnw failsafe:integration-test -P ${{ matrix.token }}
+
+         # Step 4: stop Cargo container using stored PID
+         kill $(cat _cargo_pid)
