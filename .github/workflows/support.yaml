@@ -20,18 +20,26 @@ on: [push, pull_request]
 
 permissions: read-all
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
     strategy:
       matrix:
         cache: [maven]
         distribution: ['zulu']
-        java: [21]
+        java: [17]
         os: [macos-latest, ubuntu-latest, windows-latest]
-        token: ["tomcat9", "tomee80", "wildfly26", "liberty-ee8", "jetty", "glassfish5", "resin"]
+        token: ["tomcat9", "tomee80", "wildfly26", "liberty-ee8", "jetty", "payara5", "resin"]
       fail-fast: false
       max-parallel: 6
+      exclude:
+        - os: windows-latest
+          container: liberty-ee8
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
 
     steps:
@@ -42,5 +50,22 @@ jobs:
           cache: ${{ matrix.cache }}
           distribution: ${{ matrix.distribution }}
           java-version: ${{ matrix.java }}
-      - name: Test with ${{ matrix.token }}
-        run: ./mvnw test -P ${{ matrix.token }}
+      - name: Build, start, test, and stop with ${{ matrix.token }}
+        run: |
+          echo "Running package..."
+          ./mvnw package --batch-mode --no-transfer-progress --show-version -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
+
+          echo "Starting container..."
+          nohup ./mvnw cargo:run -P ${{ matrix.token }} > cargo.log 2>&1 &
+
+          echo "Waiting 60s for server to start..."
+          sleep 60
+
+          echo "Running integration tests..."
+          ./mvnw failsafe:integration-test -P ${{ matrix.token }}
+
+          echo "Verify integration tests..."
+          ./mvnw failsafe:verify -P${{ matrix.token }}
+
+          echo "Stopping container..."
+          ./mvnw cargo:stop -P${{ matrix.token }}
