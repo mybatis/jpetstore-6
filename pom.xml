@@ -66,7 +66,7 @@
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
     <slf4j.version>2.0.17</slf4j.version>
-    <spring.version>6.2.15</spring.version>
+    <spring.version>7.0.2</spring.version>
     <assertj.version>3.27.6</assertj.version>
     <byte-buddy.version>1.18.3</byte-buddy.version>
     <mockito.version>5.21.0</mockito.version>
@@ -106,7 +106,7 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
       <!-- Keep spring-web at 5.3.39 until jakarta upgrade occurs -->
-      <version>5.3.39</version>
+      <version>7.0.2</version>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.stripes</groupId>
