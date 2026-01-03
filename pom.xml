@@ -62,7 +62,7 @@
     <java.version>17</java.version>
     <java.release.version>17</java.release.version>
 
-    <cargo-maven3-plugin.version>1.10.25</cargo-maven3-plugin.version>
+    <cargo-maven3-plugin.version>1.10.26</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
     <slf4j.version>2.0.17</slf4j.version>
