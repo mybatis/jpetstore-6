@@ -66,6 +66,12 @@ public class CartActionBean extends AbstractActionBean {
    * @return the resolution
    */
   public Resolution addItemToCart() {
+
+    if (workingItemId == null || workingItemId.trim().isEmpty()) {
+      setMessage("Invalid item ID: cannot add item to cart.");
+      return new ForwardResolution(ERROR);
+    }
+
     if (cart.containsItemId(workingItemId)) {
       cart.incrementQuantityByItemId(workingItemId);
     } else {
@@ -86,6 +92,11 @@ public class CartActionBean extends AbstractActionBean {
    * @return the resolution
    */
   public Resolution removeItemFromCart() {
+
+    if (workingItemId == null || workingItemId.trim().isEmpty()) {
+      setMessage("Invalid item ID: cannot remove item from cart.");
+      return new ForwardResolution(ERROR);
+    }
 
     Item item = cart.removeItemById(workingItemId);
 
@@ -115,8 +126,8 @@ public class CartActionBean extends AbstractActionBean {
         if (quantity < 1) {
           cartItems.remove();
         }
-      } catch (Exception e) {
-        // ignore parse exceptions on purpose
+      } catch (NumberFormatException e) {
+        // ignore invalid numeric input on purpose
       }
     }
 
