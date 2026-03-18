@@ -1,0 +1,63 @@
+flow_id: catalog_search
+flow_name: Catalog Product Search
+business_purpose: Find catalog products by keyword so users can discover products quickly without browsing category-by-category.
+legacy_flow_scope: Stripes/JSP request handling for catalog search through Spring service orchestration to MyBatis SQL on PRODUCT.
+
+legacy_entry_points:
+  - route: "*.action"
+    action: CatalogActionBean.searchProducts
+    params:
+      - keyword
+
+legacy_components:
+  controllers:
+    - CatalogActionBean
+  services:
+    - CatalogService.searchProductList
+  data_access:
+    - ProductMapper.searchProductList
+    - ProductMapper.xml
+
+entities:
+  - Product
+
+input_signals:
+  - name: keyword
+    type: string
+    source: request_parameter
+    required: true
+
+expected_outputs:
+  result: List<Product>
+  success_view: /WEB-INF/jsp/catalog/SearchProducts.jsp
+  error_view: /WEB-INF/jsp/common/Error.jsp
+  error_case: empty keyword
+
+dependencies:
+  - Stripes
+  - Spring
+  - MyBatis
+  - JSP
+  - PRODUCT table
+  - HSQLDB/demo DB
+
+trace_path:
+  - "*.action request"
+  - CatalogActionBean.searchProducts()
+  - CatalogService.searchProductList()
+  - ProductMapper.searchProductList()
+  - "SQL: lower(name) like #{value}"
+  - List<Product>
+  - SearchProducts.jsp
+
+assumptions:
+  - Search targets product name only
+  - Input is split on whitespace and lowercased
+  - No separate repository layer beyond MyBatis mappers
+
+risks_or_unknowns:
+  - Possible duplicate products across multiple keywords
+  - Exact URL/event binding depends on JSP form wiring
+  - Search behavior beyond PRODUCT.NAME is not implemented
+
+notes: Suitable modernization demo because it is small, read-only, user-visible, and easy to validate end-to-end.
