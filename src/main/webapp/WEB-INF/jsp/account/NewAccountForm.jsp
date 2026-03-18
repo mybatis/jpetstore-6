@@ -31,11 +31,15 @@
 <td>New password:</td>
 <td><input type="password" name="password" /></td>
 </tr>
+<tr>
+<td>Repeat password:</td>
+<td><input type="password" name="repeatedPassword" /></td>
+</tr>
 </table>
 
 <%@ include file="IncludeAccountFields.jsp"%>
 
-<input type="submit" value="Save Account Information" />
+<input type="submit" name="newAccount" value="Save Account Information" />
 
 </form></div>
 

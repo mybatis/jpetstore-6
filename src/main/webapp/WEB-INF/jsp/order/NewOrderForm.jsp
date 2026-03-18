@@ -84,7 +84,7 @@ Ship to different address...</td>
 
 </table>
 
-<input type="submit" value="Continue" />
+<input type="submit" name="newOrder" value="Continue" />
 
 </form></div>
 

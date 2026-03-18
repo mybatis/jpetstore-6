@@ -19,10 +19,6 @@
 
 <div id="BackLink"><a href="${pageContext.request.contextPath}/catalog">Return to Main Menu</a></div>
 
-<c:if test="${not empty message}">
-    <p>${message}</p>
-</c:if>
-
 <div id="Catalog">
 
 <table>

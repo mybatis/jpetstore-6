@@ -62,7 +62,7 @@ pattern="#,##0.00" /></td>
 <tr>
 <td colspan="7">Sub Total: $<fmt:formatNumber
 value="${cart.subTotal}" pattern="#,##0.00" />
-<input type="submit" value="Update Cart" /></td>
+<input type="submit" name="updateCartQuantities" value="Update Cart" /></td>
 <td>&nbsp;</td>
 </tr>
 </table>
