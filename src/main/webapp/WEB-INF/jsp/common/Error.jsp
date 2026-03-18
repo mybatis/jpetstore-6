@@ -17,6 +17,8 @@
 --%>
 <%@ include file="../common/IncludeTop.jsp"%>
 
-<stripes:messages />
+<c:if test="${not empty message}">
+    <p>${message}</p>
+</c:if>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
