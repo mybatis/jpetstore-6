@@ -267,7 +267,6 @@
       </plugins>
     </pluginManagement>
     <plugins>
-      <!-- Integration tests disabled by default; enable by activating cargo plugin executions
       <plugin>
         <groupId>org.codehaus.cargo</groupId>
         <artifactId>cargo-maven3-plugin</artifactId>
@@ -300,7 +299,6 @@
           </execution>
         </executions>
       </plugin>
-      -->
     </plugins>
   </build>
 
@@ -336,11 +334,11 @@
       </build>
     </profile>
     <profile>
-      <id>liberty-ee8</id>
+      <id>liberty</id>
       <properties>
         <liberty.version>25.0.0.12</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/io/openliberty/openliberty-jakartaee10/${liberty.version}/openliberty-jakartaee10-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
       <build>
         <plugins>
@@ -369,7 +367,7 @@
         <jetty.major-version>12</jetty.major-version>
         <jetty.version>12.1.5</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
-        <cargo.jetty.deployer.ee.version>ee8</cargo.jetty.deployer.ee.version>
+        <cargo.jetty.deployer.ee.version>ee10</cargo.jetty.deployer.ee.version>
       </properties>
       <build>
         <plugins>
@@ -385,6 +383,83 @@
                   <artifactId>jetty-home</artifactId>
                   <version>${jetty.version}</version>
                 </artifactInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>wildfly</id>
+      <properties>
+        <wildfly.version>33.0.0.Final</wildfly.version>
+        <cargo.maven.containerId>wildfly33x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>glassfish7</id>
+      <properties>
+        <glassfish.version>7.0.21</glassfish.version>
+        <cargo.maven.containerId>glassfish7x</cargo.maven.containerId>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <artifactInstaller>
+                  <groupId>org.glassfish.main.distributions</groupId>
+                  <artifactId>glassfish</artifactId>
+                  <version>${glassfish.version}</version>
+                  <type>zip</type>
+                </artifactInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>payara6</id>
+      <properties>
+        <payara.version>6.2024.6</payara.version>
+        <cargo.maven.containerId>glassfish7x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
               </container>
             </configuration>
           </plugin>

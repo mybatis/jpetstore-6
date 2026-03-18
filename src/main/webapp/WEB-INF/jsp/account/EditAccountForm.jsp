@@ -32,10 +32,14 @@
 <td>New password:</td>
 <td><input type="password" name="password" /></td>
 </tr>
+<tr>
+<td>Repeat password:</td>
+<td><input type="password" name="repeatedPassword" /></td>
+</tr>
 </table>
 <%@ include file="IncludeAccountFields.jsp"%>
 
-<input type="submit" value="Save Account Information" />
+<input type="submit" name="editAccount" value="Save Account Information" />
 
 </form> <a href="${pageContext.request.contextPath}/order/list">My Orders</a></div>
 

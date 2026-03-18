@@ -17,8 +17,4 @@
 --%>
 <%@ include file="../common/IncludeTop.jsp"%>
 
-<c:if test="${not empty message}">
-    <p>${message}</p>
-</c:if>
-
 <%@ include file="../common/IncludeBottom.jsp"%>

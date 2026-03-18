@@ -16,8 +16,8 @@
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c"%>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -70,7 +70,7 @@ http-equiv="Content-Type" />
 <div id="SearchContent">
 <form method="get" action="${pageContext.request.contextPath}/catalog/searchProducts">
     <input type="text" name="keyword" size="14" />
-    <input type="submit" value="Search" />
+    <input type="submit" name="searchProducts" value="Search" />
 </form>
 </div>
 </div>
@@ -90,3 +90,6 @@ http-equiv="Content-Type" />
 </div>
 
 <div id="Content">
+<c:if test="${not empty message}">
+<ul class="messages"><li>${message}</li></ul>
+</c:if>
