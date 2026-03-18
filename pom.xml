@@ -267,7 +267,7 @@
       </plugins>
     </pluginManagement>
     <plugins>
-      <!-- Keep disabled until jakarta upgrade occurs due to issues with liberty holding stdin/stdout open with ee8
+      <!-- Integration tests disabled by default; enable by activating cargo plugin executions
       <plugin>
         <groupId>org.codehaus.cargo</groupId>
         <artifactId>cargo-maven3-plugin</artifactId>
@@ -307,7 +307,7 @@
   <profiles>
     <!-- Profiles for Application Server -->
     <profile>
-      <id>tomcat9</id>
+      <id>tomcat10</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
