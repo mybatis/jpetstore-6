@@ -1,6 +1,6 @@
 <%--
 
-       Copyright 2010-2023 the original author or authors.
+       Copyright 2010-2026 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -17,52 +17,53 @@
 --%>
 <%@ include file="../common/IncludeTop.jsp"%>
 
-<div id="Catalog"><stripes:form
-	beanclass="org.mybatis.jpetstore.web.actions.OrderActionBean">
+<div id="Catalog">
+<form method="post" action="${pageContext.request.contextPath}/order/new">
+<input type="hidden" name="confirmed" value="false" />
 
-	<table>
-		<tr>
-			<th colspan=2>Shipping Address</th>
-		</tr>
+<table>
+<tr>
+<th colspan=2>Shipping Address</th>
+</tr>
 
-		<tr>
-			<td>First name:</td>
-			<td><stripes:text name="order.shipToFirstName" /></td>
-		</tr>
-		<tr>
-			<td>Last name:</td>
-			<td><stripes:text name="order.shipToLastName" /></td>
-		</tr>
-		<tr>
-			<td>Address 1:</td>
-			<td><stripes:text size="40" name="order.shipAddress1" /></td>
-		</tr>
-		<tr>
-			<td>Address 2:</td>
-			<td><stripes:text size="40" name="order.shipAddress2" /></td>
-		</tr>
-		<tr>
-			<td>City:</td>
-			<td><stripes:text name="order.shipCity" /></td>
-		</tr>
-		<tr>
-			<td>State:</td>
-			<td><stripes:text size="4" name="order.shipState" /></td>
-		</tr>
-		<tr>
-			<td>Zip:</td>
-			<td><stripes:text size="10" name="order.shipZip" /></td>
-		</tr>
-		<tr>
-			<td>Country:</td>
-			<td><stripes:text size="15" name="order.shipCountry" /></td>
-		</tr>
+<tr>
+<td>First name:</td>
+<td><input type="text" name="shipToFirstName" value="${order.shipToFirstName}" /></td>
+</tr>
+<tr>
+<td>Last name:</td>
+<td><input type="text" name="shipToLastName" value="${order.shipToLastName}" /></td>
+</tr>
+<tr>
+<td>Address 1:</td>
+<td><input type="text" size="40" name="shipAddress1" value="${order.shipAddress1}" /></td>
+</tr>
+<tr>
+<td>Address 2:</td>
+<td><input type="text" size="40" name="shipAddress2" value="${order.shipAddress2}" /></td>
+</tr>
+<tr>
+<td>City:</td>
+<td><input type="text" name="shipCity" value="${order.shipCity}" /></td>
+</tr>
+<tr>
+<td>State:</td>
+<td><input type="text" size="4" name="shipState" value="${order.shipState}" /></td>
+</tr>
+<tr>
+<td>Zip:</td>
+<td><input type="text" size="10" name="shipZip" value="${order.shipZip}" /></td>
+</tr>
+<tr>
+<td>Country:</td>
+<td><input type="text" size="15" name="shipCountry" value="${order.shipCountry}" /></td>
+</tr>
 
 
-	</table>
+</table>
 
-	<stripes:submit name="newOrder" value="Continue" />
+<input type="submit" value="Continue" />
 
-</stripes:form></div>
+</form></div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
