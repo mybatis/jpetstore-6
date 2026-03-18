@@ -1,0 +1,126 @@
+flow_id: catalog_search
+domain: catalog
+source_context:
+  file: modernization-work/context/catalog-search-context.yaml
+  flow_name: Catalog Product Search
+  business_purpose: Find catalog products by keyword for product discovery.
+legacy_entrypoints:
+  - route: "*.action"
+    action: CatalogActionBean.searchProducts
+    params: [keyword]
+
+legacy_traceability:
+  source_action: CatalogActionBean.searchProducts
+  source_service: CatalogService.searchProductList
+  source_mapper: ProductMapper.searchProductList
+  source_sql_behavior: SELECT from PRODUCT where lower(name) like #{value}; input is split on whitespace, each token lowercased and wrapped with %...%.
+  target_api: GET /api/catalog/products/search
+
+target_service:
+  name: catalog-search-api
+  type: read_only_rest_facade
+
+api_contract:
+  method: GET
+  path: /api/catalog/products/search
+  query_params:
+    - name: keyword
+      type: string
+      required: true
+
+entities:
+  - name: Product
+    fields: [productId, name, description, categoryId]
+
+dependencies:
+  - CatalogService
+  - ProductMapper
+  - MyBatis SQL mapping
+  - PRODUCT table
+  - HSQLDB/demo DB
+  - Stripes/JSP legacy UI
+
+business_rules:
+  - Reject empty keyword with validation error.
+  - Preserve case-insensitive name search.
+  - Preserve whitespace tokenization behavior.
+  - Preserve read-only execution; no writes to DB.
+  - Return product search results only.
+
+behavioral_traceability:
+  must_preserve:
+    - keyword-based product lookup against PRODUCT.NAME
+    - error on empty keyword
+    - current result shape based on Product fields
+    - no database rewrite
+    - no UI rewrite
+  may_change:
+    - transport format may change from JSP model to JSON
+    - endpoint path and HTTP contract can replace Stripes action eventing
+    - duplicate-result handling may be normalized if explicitly approved
+
+observability:
+  structured_logging:
+    - flow_id
+    - request_id
+    - keyword_present
+    - token_count
+    - result_count
+    - status
+  metrics:
+    - catalog_search_requests_total
+    - catalog_search_errors_total
+    - catalog_search_latency_ms
+    - catalog_search_results_count
+
+performance:
+  caching:
+    strategy: optional_read_through
+    scope: query_result_cache
+    enabled_by_default: false
+    notes: Use only if query volume justifies it; DB remains the source of truth.
+
+acceptance_tests:
+  - GET with valid keyword returns 200 and a Product list payload.
+  - GET with mixed-case keyword is case-insensitive.
+  - GET with multi-word keyword searches per token using existing split behavior.
+  - GET with empty keyword returns a validation error.
+  - Flow performs no insert, update, or delete operations.
+
+uat_scenarios:
+  - id: UAT-01
+    scenario: Search with a valid keyword
+    input:
+      keyword: fish
+    expected_result: 200 response with one or more Product results matching product name.
+  - id: UAT-02
+    scenario: Search is case-insensitive
+    input:
+      keyword: FiSh
+    expected_result: Same logical results as keyword=fish.
+  - id: UAT-03
+    scenario: Search with multiple terms
+    input:
+      keyword: angelfish koi
+    expected_result: Products are aggregated using current per-token search behavior.
+  - id: UAT-04
+    scenario: Empty keyword rejected
+    input:
+      keyword: ""
+    expected_result: Validation error equivalent to legacy empty-keyword behavior.
+
+assumptions:
+  - Product search remains backed by existing CatalogService and ProductMapper.
+  - Existing Stripes/JSP flow remains in place; the new API is additive.
+  - Search targets PRODUCT.NAME only.
+  - Multi-token searches may return duplicate products.
+
+risks_or_unknowns:
+  - Exact parity for duplicate handling should be confirmed before deduping.
+  - Existing JSP event binding details are outside the target API contract.
+  - API error payload shape still needs to be standardized.
+
+notes:
+  - Primary demo path only: request -> CatalogActionBean.searchProducts -> CatalogService.searchProductList -> ProductMapper.searchProductList -> List<Product>.
+  - This flow is a good modernization starter because it is user-visible, read-only, and easy to validate end-to-end.
+
