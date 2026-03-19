@@ -315,8 +315,37 @@
       </activation>
       <properties>
         <tomcat.major-version>10.1</tomcat.major-version>
-        <tomcat.version>10.1.40</tomcat.version>
+        <tomcat.version>10.1.52</tomcat.version>
         <cargo.maven.containerId>tomcat10x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/${tomcat.version}/tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>tomcat11</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <tomcat.major-version>11.0</tomcat.major-version>
+        <tomcat.version>11.0.18</tomcat.version>
+        <cargo.maven.containerId>tomcat11x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/${tomcat.version}/tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
       </properties>
       <build>
@@ -340,7 +369,7 @@
     <profile>
       <id>liberty</id>
       <properties>
-        <liberty.version>25.0.0.12</liberty.version>
+        <liberty.version>26.0.0.2</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/io/openliberty/openliberty-jakartaee10/${liberty.version}/openliberty-jakartaee10-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -369,7 +398,7 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>12</jetty.major-version>
-        <jetty.version>12.1.5</jetty.version>
+        <jetty.version>12.1.7</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.jetty.deployer.ee.version>ee10</cargo.jetty.deployer.ee.version>
       </properties>
@@ -396,7 +425,7 @@
     <profile>
       <id>wildfly</id>
       <properties>
-        <wildfly.version>33.0.0.Final</wildfly.version>
+        <wildfly.version>39.0.1.Final</wildfly.version>
         <cargo.maven.containerId>wildfly33x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -421,7 +450,7 @@
     <profile>
       <id>glassfish7</id>
       <properties>
-        <glassfish.version>7.0.21</glassfish.version>
+        <glassfish.version>7.1.0</glassfish.version>
         <cargo.maven.containerId>glassfish7x</cargo.maven.containerId>
       </properties>
       <build>
@@ -448,7 +477,7 @@
     <profile>
       <id>payara6</id>
       <properties>
-        <payara.version>6.2024.6</payara.version>
+        <payara.version>6.2025.9</payara.version>
         <cargo.maven.containerId>glassfish7x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
       </properties>
