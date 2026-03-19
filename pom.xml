@@ -339,9 +339,6 @@
     </profile>
     <profile>
       <id>tomcat11</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
       <properties>
         <tomcat.major-version>11.0</tomcat.major-version>
         <tomcat.version>11.0.18</tomcat.version>

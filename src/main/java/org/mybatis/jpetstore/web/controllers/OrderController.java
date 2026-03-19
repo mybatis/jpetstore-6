@@ -93,6 +93,22 @@ public class OrderController {
       @RequestParam(value = "confirmed", defaultValue = "false") boolean confirmed, HttpSession session, Model model) {
 
     Order sessionOrder = (Order) session.getAttribute("order");
+
+    // When confirming, use the session order directly - the confirm form only
+    // submits confirmed=true with no other fields, so @ModelAttribute Order is empty
+    if (confirmed) {
+      if (sessionOrder != null) {
+        orderService.insertOrder(sessionOrder);
+        session.setAttribute("cart", new Cart());
+        model.addAttribute("message", "Thank you, your order has been submitted.");
+        model.addAttribute("order", sessionOrder);
+        return VIEW_ORDER_VIEW;
+      } else {
+        model.addAttribute("message", "An error occurred processing your order (order was null).");
+        return ERROR_VIEW;
+      }
+    }
+
     if (sessionOrder != null) {
       sessionOrder.setCardType(order.getCardType());
       sessionOrder.setCreditCard(order.getCreditCard());
@@ -122,19 +138,10 @@ public class OrderController {
       session.setAttribute("order", order);
       model.addAttribute("order", order);
       return SHIPPING_VIEW;
-    } else if (!confirmed) {
+    } else {
       session.setAttribute("order", order);
       model.addAttribute("order", order);
       return CONFIRM_VIEW;
-    } else if (order != null) {
-      orderService.insertOrder(order);
-      session.setAttribute("cart", new Cart());
-      model.addAttribute("message", "Thank you, your order has been submitted.");
-      model.addAttribute("order", order);
-      return VIEW_ORDER_VIEW;
-    } else {
-      model.addAttribute("message", "An error occurred processing your order (order was null).");
-      return ERROR_VIEW;
     }
   }
 

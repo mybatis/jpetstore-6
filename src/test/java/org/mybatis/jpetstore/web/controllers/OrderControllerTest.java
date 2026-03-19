@@ -16,7 +16,10 @@
 package org.mybatis.jpetstore.web.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import jakarta.servlet.http.HttpSession;
@@ -81,5 +84,43 @@ class OrderControllerTest {
 
     assertThat(view).isEqualTo("order/ListOrders");
     assertThat(model.asMap()).containsKey("orderList");
+  }
+
+  @Test
+  void confirmOrderUsesBillingAddressFromSession() {
+    // When the ConfirmOrder form is submitted it only posts confirmed=true.
+    // The @ModelAttribute Order is therefore all-null. The controller must use
+    // the session order (which has the full billing address) and must NOT
+    // overwrite it with the null-filled model attribute.
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+
+    org.mybatis.jpetstore.domain.Order sessionOrder = new org.mybatis.jpetstore.domain.Order();
+    sessionOrder.setBillAddress1("901 San Antonio Road");
+    sessionOrder.setBillCity("Palo Alto");
+    sessionOrder.setBillState("CA");
+    sessionOrder.setBillZip("94303");
+    sessionOrder.setBillCountry("USA");
+    sessionOrder.setBillToFirstName("ABC");
+    sessionOrder.setBillToLastName("Banner");
+    sessionOrder.setCreditCard("999 9999 9999 9999");
+    sessionOrder.setExpiryDate("12/03");
+    sessionOrder.setCardType("Visa");
+
+    when(session.getAttribute("order")).thenReturn(sessionOrder);
+
+    // Simulate ConfirmOrder POST: empty @ModelAttribute (all fields null), confirmed=true
+    org.mybatis.jpetstore.domain.Order emptyOrder = new org.mybatis.jpetstore.domain.Order();
+    String view = orderController.newOrder(emptyOrder, false, true, session, model);
+
+    assertThat(view).isEqualTo("order/ViewOrder");
+    assertThat(model.asMap().get("message")).isEqualTo("Thank you, your order has been submitted.");
+
+    // Verify insertOrder was called exactly once
+    verify(orderService, times(1)).insertOrder(any(org.mybatis.jpetstore.domain.Order.class));
+
+    // The session order must NOT have been overwritten with null
+    assertThat(sessionOrder.getBillAddress1()).isEqualTo("901 San Antonio Road");
+    assertThat(sessionOrder.getBillCity()).isEqualTo("Palo Alto");
   }
 }
