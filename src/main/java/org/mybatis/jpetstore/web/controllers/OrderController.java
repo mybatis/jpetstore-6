@@ -110,17 +110,31 @@ public class OrderController {
     }
 
     if (sessionOrder != null) {
-      sessionOrder.setCardType(order.getCardType());
-      sessionOrder.setCreditCard(order.getCreditCard());
-      sessionOrder.setExpiryDate(order.getExpiryDate());
-      sessionOrder.setBillToFirstName(order.getBillToFirstName());
-      sessionOrder.setBillToLastName(order.getBillToLastName());
-      sessionOrder.setBillAddress1(order.getBillAddress1());
-      sessionOrder.setBillAddress2(order.getBillAddress2());
-      sessionOrder.setBillCity(order.getBillCity());
-      sessionOrder.setBillState(order.getBillState());
-      sessionOrder.setBillZip(order.getBillZip());
-      sessionOrder.setBillCountry(order.getBillCountry());
+      // Only overwrite fields that were actually submitted (non-null).
+      // ShippingForm only posts ship fields; NewOrderForm only posts billing/payment fields.
+      // Unconditional setters would null-out whichever set is absent from the current form.
+      if (order.getCardType() != null)
+        sessionOrder.setCardType(order.getCardType());
+      if (order.getCreditCard() != null)
+        sessionOrder.setCreditCard(order.getCreditCard());
+      if (order.getExpiryDate() != null)
+        sessionOrder.setExpiryDate(order.getExpiryDate());
+      if (order.getBillToFirstName() != null)
+        sessionOrder.setBillToFirstName(order.getBillToFirstName());
+      if (order.getBillToLastName() != null)
+        sessionOrder.setBillToLastName(order.getBillToLastName());
+      if (order.getBillAddress1() != null)
+        sessionOrder.setBillAddress1(order.getBillAddress1());
+      if (order.getBillAddress2() != null)
+        sessionOrder.setBillAddress2(order.getBillAddress2());
+      if (order.getBillCity() != null)
+        sessionOrder.setBillCity(order.getBillCity());
+      if (order.getBillState() != null)
+        sessionOrder.setBillState(order.getBillState());
+      if (order.getBillZip() != null)
+        sessionOrder.setBillZip(order.getBillZip());
+      if (order.getBillCountry() != null)
+        sessionOrder.setBillCountry(order.getBillCountry());
       if (order.getShipToFirstName() != null) {
         sessionOrder.setShipToFirstName(order.getShipToFirstName());
         sessionOrder.setShipToLastName(order.getShipToLastName());

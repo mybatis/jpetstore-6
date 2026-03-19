@@ -87,9 +87,6 @@ public class AccountController {
   @PostMapping("/new")
   public String newAccount(@ModelAttribute Account account, HttpSession session) {
     accountService.insertAccount(account);
-    Account savedAccount = accountService.getAccount(account.getUsername());
-    List<Product> myList = catalogService.getProductListByCategory(savedAccount.getFavouriteCategoryId());
-    session.setAttribute("accountBean", new AccountSession(savedAccount, myList, true));
     return "redirect:/catalog";
   }
 
@@ -110,7 +107,7 @@ public class AccountController {
     Account updatedAccount = accountService.getAccount(account.getUsername());
     List<Product> myList = catalogService.getProductListByCategory(updatedAccount.getFavouriteCategoryId());
     session.setAttribute("accountBean", new AccountSession(updatedAccount, myList, true));
-    return "redirect:/catalog";
+    return "redirect:/account/edit";
   }
 
   /**

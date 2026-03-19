@@ -17,6 +17,8 @@ package org.mybatis.jpetstore.web.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import jakarta.servlet.http.HttpSession;
@@ -100,5 +102,37 @@ class AccountControllerTest {
     AccountController.AccountSession session = new AccountController.AccountSession(null, Collections.emptyList(),
         true);
     assertThat(session.isAuthenticated()).isFalse();
+  }
+
+  @Test
+  void newAccountRedirectsToCatalogWithoutLoggingIn() {
+    // Registration should insert the account and redirect to catalog WITHOUT
+    // auto-logging the user in - the IT test expects the user to manually sign in.
+    HttpSession session = mock(HttpSession.class);
+    Account account = new Account();
+    account.setUsername("newuser");
+
+    String view = accountController.newAccount(account, session);
+
+    assertThat(view).isEqualTo("redirect:/catalog");
+    // Must NOT set accountBean session (no auto-login)
+    verify(session, times(0)).setAttribute(org.mockito.ArgumentMatchers.eq("accountBean"),
+        org.mockito.ArgumentMatchers.any());
+  }
+
+  @Test
+  void editAccountRedirectsToEditPageNotCatalog() {
+    // After saving account, should redirect to /account/edit so the user stays
+    // on their profile page (the IT test expects the edit form to reload).
+    HttpSession session = mock(HttpSession.class);
+    Account account = new Account();
+    account.setUsername("j2ee");
+    account.setFavouriteCategoryId("FISH");
+    when(accountService.getAccount("j2ee")).thenReturn(account);
+    when(catalogService.getProductListByCategory("FISH")).thenReturn(Collections.emptyList());
+
+    String view = accountController.editAccount(account, session);
+
+    assertThat(view).isEqualTo("redirect:/account/edit");
   }
 }
