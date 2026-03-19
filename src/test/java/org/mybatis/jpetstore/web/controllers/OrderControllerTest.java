@@ -123,4 +123,54 @@ class OrderControllerTest {
     assertThat(sessionOrder.getBillAddress1()).isEqualTo("901 San Antonio Road");
     assertThat(sessionOrder.getBillCity()).isEqualTo("Palo Alto");
   }
+
+  @Test
+  void shippingFormSubmissionDoesNotOverwriteBillingFields() {
+    // ShippingForm only posts shipping fields (shipToFirstName etc.) + confirmed=false.
+    // The billing/payment fields in @ModelAttribute Order are null (not in the form).
+    // The controller must NOT overwrite the billing address stored in the session
+    // with these null values, or the subsequent insertOrder will fail with a
+    // NOT NULL constraint violation on BILLADDR1.
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+
+    org.mybatis.jpetstore.domain.Order sessionOrder = new org.mybatis.jpetstore.domain.Order();
+    sessionOrder.setBillAddress1("901 San Antonio Road");
+    sessionOrder.setBillCity("Palo Alto");
+    sessionOrder.setBillState("CA");
+    sessionOrder.setBillZip("94303");
+    sessionOrder.setBillCountry("USA");
+    sessionOrder.setBillToFirstName("ABC");
+    sessionOrder.setBillToLastName("Banner");
+    sessionOrder.setCreditCard("999 9999 9999 9999");
+    sessionOrder.setExpiryDate("12/03");
+    sessionOrder.setCardType("Visa");
+
+    when(session.getAttribute("order")).thenReturn(sessionOrder);
+
+    // Simulate ShippingForm POST: only shipping fields present, billing all null
+    org.mybatis.jpetstore.domain.Order shippingFormOrder = new org.mybatis.jpetstore.domain.Order();
+    shippingFormOrder.setShipToFirstName("ABC");
+    shippingFormOrder.setShipToLastName("Banner");
+    shippingFormOrder.setShipAddress1("901 San Antonio Road");
+    shippingFormOrder.setShipAddress2("MS UCUP02-207");
+    shippingFormOrder.setShipCity("Palo Alto");
+    shippingFormOrder.setShipState("CA");
+    shippingFormOrder.setShipZip("94303");
+    shippingFormOrder.setShipCountry("USA");
+    // billing/payment fields left null (not submitted by ShippingForm)
+
+    String view = orderController.newOrder(shippingFormOrder, false, false, session, model);
+
+    assertThat(view).isEqualTo("order/ConfirmOrder");
+
+    // Billing fields in the session order must still have their original values
+    assertThat(sessionOrder.getBillAddress1()).isEqualTo("901 San Antonio Road");
+    assertThat(sessionOrder.getBillCity()).isEqualTo("Palo Alto");
+    assertThat(sessionOrder.getCreditCard()).isEqualTo("999 9999 9999 9999");
+    assertThat(sessionOrder.getCardType()).isEqualTo("Visa");
+
+    // Shipping fields must have been updated from the form
+    assertThat(sessionOrder.getShipAddress2()).isEqualTo("MS UCUP02-207");
+  }
 }
