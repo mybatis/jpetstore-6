@@ -51,10 +51,12 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   > | -------------- | ----------- |
   > | tomcat10       | Running under Tomcat 10.1 |
   > } tomcat11       | Running under Tomcat 11.0 |
+  > } tomee          | Running under Tomcat 10.0 |
+  > | wildfly        | Running under the WildFly 39 (Jakarta EE 10) |
   > | liberty        | Running under WebSphere Liberty 26 |
   > | jetty          | Running under Jetty 12 (Jakarta EE 10) |
   > | glassfish7     | Running under GlassFish 7 (Jakarta EE 10) |
-  > | payara5        | Running under Payara 6 (Jakarta EE 10) |
+  > | payara6        | Running under Payara 6 (Jakarta EE 10) |
 
 - Run application in browser http://localhost:8080/jpetstore/
 - Press Ctrl-C to stop the server.
