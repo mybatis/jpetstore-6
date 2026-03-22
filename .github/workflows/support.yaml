@@ -37,7 +37,7 @@ jobs:
         token: ["tomcat10", "tomcat11", "tomee", "wildfly", "liberty", "jetty", "glassfish7", "payara6"]
         exclude:
           - os: windows-latest
-            token: liberty-ee8
+            token: liberty
       fail-fast: false
       max-parallel: 6
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}

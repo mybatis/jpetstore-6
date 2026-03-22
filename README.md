@@ -50,8 +50,8 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   > | Profile        | Description |
   > | -------------- | ----------- |
   > | tomcat10       | Running under Tomcat 10.1 |
-  > } tomcat11       | Running under Tomcat 11.0 |
-  > } tomee          | Running under Tomcat 10.0 |
+  > | tomcat11       | Running under Tomcat 11.0 |
+  > | tomee          | Running under TomEE 10.1 |
   > | wildfly        | Running under the WildFly 39 (Jakarta EE 10) |
   > | liberty        | Running under WebSphere Liberty 26 |
   > | jetty          | Running under Jetty 12 (Jakarta EE 10) |
