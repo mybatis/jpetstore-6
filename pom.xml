@@ -105,44 +105,33 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <!-- Keep spring-web at 5.3.39 until jakarta upgrade occurs -->
-      <version>5.3.39</version>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
-      <groupId>net.sourceforge.stripes</groupId>
-      <artifactId>stripes</artifactId>
-      <version>1.6.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.taglibs</groupId>
-      <artifactId>taglibs-standard-spec</artifactId>
-      <version>1.2.5</version>
+      <groupId>jakarta.servlet.jsp.jstl</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+      <version>3.0.0</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.taglibs</groupId>
-      <artifactId>taglibs-standard-impl</artifactId>
-      <version>1.2.5</version>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+      <version>3.0.1</version>
     </dependency>
     <dependency>
       <groupId>jakarta.servlet.jsp</groupId>
       <artifactId>jakarta.servlet.jsp-api</artifactId>
-      <version>2.3.6</version>
+      <version>3.1.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
-      <version>4.0.4</version>
+      <version>6.0.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -282,7 +271,6 @@
       </plugins>
     </pluginManagement>
     <plugins>
-      <!-- Keep disabled until jakarta upgrade occurs due to issues with liberty holding stdin/stdout open with ee8
       <plugin>
         <groupId>org.codehaus.cargo</groupId>
         <artifactId>cargo-maven3-plugin</artifactId>
@@ -315,21 +303,20 @@
           </execution>
         </executions>
       </plugin>
-      -->
     </plugins>
   </build>
 
   <profiles>
     <!-- Profiles for Application Server -->
     <profile>
-      <id>tomcat9</id>
+      <id>tomcat10</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
-        <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.113</tomcat.version>
-        <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
+        <tomcat.major-version>10.1</tomcat.major-version>
+        <tomcat.version>10.1.52</tomcat.version>
+        <cargo.maven.containerId>tomcat10x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/${tomcat.version}/tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
       </properties>
       <build>
@@ -351,13 +338,12 @@
       </build>
     </profile>
     <profile>
-      <!-- TODO: Remove after we switch to jakarta as end of life -->
-      <id>tomee80</id>
+      <id>tomcat11</id>
       <properties>
-        <tomee.major-version>8</tomee.major-version>
-        <tomee.version>8.0.16</tomee.version>
-        <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
+        <tomcat.major-version>11.0</tomcat.major-version>
+        <tomcat.version>11.0.18</tomcat.version>
+        <cargo.maven.containerId>tomcat11x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/${tomcat.version}/tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
       </properties>
       <build>
         <plugins>
@@ -378,39 +364,11 @@
       </build>
     </profile>
     <profile>
-      <id>wildfly26</id>
-      <!-- TODO: Remove after we switch to jakarta as end of life -->
+      <id>liberty</id>
       <properties>
-        <wildfly.major-version>26</wildfly.major-version>
-        <wildfly.version>26.1.3.Final</wildfly.version>
-        <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
-        <cargo.jvmargs>--add-opens=java.base/java.util=ALL-UNNAMED</cargo.jvmargs>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.cargo</groupId>
-            <artifactId>cargo-maven3-plugin</artifactId>
-            <configuration>
-              <container>
-                <containerId>${cargo.maven.containerId}</containerId>
-                <type>installed</type>
-                <zipUrlInstaller>
-                  <url>${cargo.maven.containerUrl}</url>
-                </zipUrlInstaller>
-              </container>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>liberty-ee8</id>
-      <properties>
-        <liberty.version>25.0.0.12</liberty.version>
+        <liberty.version>26.0.0.2</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/io/openliberty/openliberty-jakartaee10/${liberty.version}/openliberty-jakartaee10-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
       <build>
         <plugins>
@@ -437,9 +395,9 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>12</jetty.major-version>
-        <jetty.version>12.1.5</jetty.version>
+        <jetty.version>12.1.7</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
-        <cargo.jetty.deployer.ee.version>ee8</cargo.jetty.deployer.ee.version>
+        <cargo.jetty.deployer.ee.version>ee10</cargo.jetty.deployer.ee.version>
       </properties>
       <build>
         <plugins>
@@ -462,13 +420,12 @@
       </build>
     </profile>
     <profile>
-      <!-- Use 'payara5' as this is not supported with java 17 due to hk2 'dcs' is null error. -->
-      <id>glassfish5</id>
+      <id>tomee</id>
       <properties>
-        <glassfish.major-version>5</glassfish.major-version>
-        <glassfish.version>5.1.0</glassfish.version>
-        <cargo.maven.containerId>glassfish${glassfish.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/org/glassfish/main/distributions/glassfish/${glassfish.version}/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
+        <tomee.major-version>10</tomee.major-version>
+        <tomee.version>10.1.4</tomee.version>
+        <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
       <build>
         <plugins>
@@ -489,13 +446,11 @@
       </build>
     </profile>
     <profile>
-      <id>payara5</id>
+      <id>wildfly</id>
       <properties>
-        <payara.major-version>5</payara.major-version>
-        <payara.version>5.2022.5</payara.version>
-        <cargo.maven.containerId>payara</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
-        <cargo.startup.timeout>300000</cargo.startup.timeout>
+        <wildfly.version>39.0.1.Final</wildfly.version>
+        <cargo.maven.containerId>wildfly33x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
       <build>
         <plugins>
@@ -516,23 +471,41 @@
       </build>
     </profile>
     <profile>
-      <id>resin</id>
+      <id>glassfish7</id>
       <properties>
-        <resin.major-version>4</resin.major-version>
-        <resin.version>4.0.67</resin.version>
-        <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
-        <!-- Do not use https as the certificate is bad which prevents this from working! -->
-        <cargo.maven.containerUrl>http://caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
+        <glassfish.version>7.1.0</glassfish.version>
+        <cargo.maven.containerId>glassfish7x</cargo.maven.containerId>
       </properties>
       <build>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
             <configuration>
-              <packagingExcludes>WEB-INF/beans.xml</packagingExcludes>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <artifactInstaller>
+                  <groupId>org.glassfish.main.distributions</groupId>
+                  <artifactId>glassfish</artifactId>
+                  <version>${glassfish.version}</version>
+                  <type>zip</type>
+                </artifactInstaller>
+              </container>
             </configuration>
           </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>payara6</id>
+      <properties>
+        <payara.version>6.2025.9</payara.version>
+        <cargo.maven.containerId>glassfish7x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
+      </properties>
+      <build>
+        <plugins>
           <plugin>
             <groupId>org.codehaus.cargo</groupId>
             <artifactId>cargo-maven3-plugin</artifactId>
