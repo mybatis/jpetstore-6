@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
        Copyright 2010-2026 the original author or authors.
@@ -15,8 +16,12 @@
        limitations under the License.
 
 -->
-<beans xmlns="https://jakarta.ee/xml/ns/jakartaee"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
-                           https://jakarta.ee/xml/ns/jakartaee/beans_4_0.xsd"
-       version="4.0" bean-discovery-mode="none"/>
+<Context>
+  <!--
+    Prevent Tomcat/TomEE from scanning server-classpath JARs for TLD files.
+    WEB-INF/lib JARs (including jakarta.servlet.jsp.jstl) are still scanned.
+    This avoids duplicate-URI conflicts when TomEE ships its own JSTL TLD
+    alongside the one bundled in the WAR's WEB-INF/lib.
+  -->
+  <JarScanner scanBootstrapClassPath="false" scanClassPath="false"/>
+</Context>
