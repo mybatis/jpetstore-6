@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
        Copyright 2010-2026 the original author or authors.
@@ -16,12 +15,15 @@
        limitations under the License.
 
 -->
-<Context>
-  <!--
-    Prevent Tomcat/TomEE from scanning server-classpath JARs for TLD files.
-    WEB-INF/lib JARs (including jakarta.servlet.jsp.jstl) are still scanned.
-    This avoids duplicate-URI conflicts when TomEE ships its own JSTL TLD
-    alongside the one bundled in the WAR's WEB-INF/lib.
-  -->
-  <JarScanner scanBootstrapClassPath="false" scanClassPath="false"/>
-</Context>
+<!DOCTYPE glassfish-web-app PUBLIC
+    "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN"
+    "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
+<!--
+  GlassFish / Payara deployment descriptor.
+  delegate="false": load WEB-INF/lib classes (Spring, MyBatis, HSQLDB) before
+  server-level classes, preventing GlassFish's own frameworks from shadowing the
+  application's dependencies and interfering with Spring's class wiring.
+-->
+<glassfish-web-app>
+  <class-loader delegate="false"/>
+</glassfish-web-app>
