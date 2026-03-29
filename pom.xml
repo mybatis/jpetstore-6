@@ -427,6 +427,23 @@
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
+      <dependencies>
+        <!-- TomEE plume bundles its own JSTL implementation; mark as provided
+             so WEB-INF/lib does not contain a second copy that would cause
+             Jasper to register the jakarta.tags.core URI twice. -->
+        <dependency>
+          <groupId>jakarta.servlet.jsp.jstl</groupId>
+          <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+          <version>3.0.0</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.glassfish.web</groupId>
+          <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+          <version>3.0.1</version>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
       <build>
         <plugins>
           <plugin>
@@ -476,6 +493,23 @@
         <glassfish.version>7.1.0</glassfish.version>
         <cargo.maven.containerId>glassfish7x</cargo.maven.containerId>
       </properties>
+      <dependencies>
+        <!-- GlassFish bundles its own JSTL; mark as provided to avoid a
+             duplicate TLD URI registration when Jasper scans both the server
+             lib and WEB-INF/lib. -->
+        <dependency>
+          <groupId>jakarta.servlet.jsp.jstl</groupId>
+          <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+          <version>3.0.0</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.glassfish.web</groupId>
+          <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+          <version>3.0.1</version>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
       <build>
         <plugins>
           <plugin>
@@ -504,6 +538,23 @@
         <cargo.maven.containerId>glassfish7x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
       </properties>
+      <dependencies>
+        <!-- Payara bundles its own JSTL; mark as provided to avoid a
+             duplicate TLD URI registration when Jasper scans both the server
+             lib and WEB-INF/lib. -->
+        <dependency>
+          <groupId>jakarta.servlet.jsp.jstl</groupId>
+          <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+          <version>3.0.0</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.glassfish.web</groupId>
+          <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+          <version>3.0.1</version>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
       <build>
         <plugins>
           <plugin>
