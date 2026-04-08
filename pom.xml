@@ -281,42 +281,6 @@
         </plugin>
       </plugins>
     </pluginManagement>
-    <plugins>
-      <!-- Keep disabled until jakarta upgrade occurs due to issues with liberty holding stdin/stdout open with ee8
-      <plugin>
-        <groupId>org.codehaus.cargo</groupId>
-        <artifactId>cargo-maven3-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>start-container</id>
-            <goals>
-              <goal>start</goal>
-            </goals>
-            <phase>pre-integration-test</phase>
-          </execution>
-          <execution>
-            <id>stop-container</id>
-            <goals>
-              <goal>stop</goal>
-            </goals>
-            <phase>post-integration-test</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>integration-test</goal>
-              <goal>verify</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      -->
-    </plugins>
   </build>
 
   <profiles>
