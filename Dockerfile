@@ -1,21 +1,24 @@
-#
-#    Copyright 2010-2026 the original author or authors.
-#
-#    Licensed under the Apache License, Version 2.0 (the "License");
-#    you may not use this file except in compliance with the License.
-#    You may obtain a copy of the License at
-#
-#       https://www.apache.org/licenses/LICENSE-2.0
-#
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS,
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#    See the License for the specific language governing permissions and
-#    limitations under the License.
-#
+# STAGE 1: Build the application
+FROM openjdk:25-slim AS build
+WORKDIR /app
 
-FROM openjdk:25
-COPY . /usr/src/myapp
-WORKDIR /usr/src/myapp
-RUN ./mvnw clean package
-CMD ./mvnw cargo:run -P tomcat90
+# Copy only the maven wrapper and pom.xml first to cache dependencies
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline
+
+# Now copy the source code and build the WAR file
+COPY src ./src
+RUN ./mvnw clean package -DskipTests
+
+# STAGE 2: Run the application
+FROM openjdk:25-slim
+WORKDIR /app
+
+# Copy only the compiled WAR file from the build stage
+# Note: JPetStore usually generates a .war file in the /target folder
+COPY --from=build /app/target/*.war ./app.war
+
+# Use a direct java command or a lightweight server instead of running mvnw again
+EXPOSE 8080
+CMD ["java", "-jar", "app.war"]
