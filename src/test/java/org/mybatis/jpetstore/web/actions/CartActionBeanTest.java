@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -24,119 +24,120 @@ import java.util.ArrayList;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import net.sourceforge.stripes.action.Message;
 import net.sourceforge.stripes.action.Resolution;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mybatis.jpetstore.domain.Cart;
 
 class CartActionBeanTest {
 
-    private CartActionBean cartActionBean;
-    private ActionBeanContext mockContext;
+  private CartActionBean cartActionBean;
+  private ActionBeanContext mockContext;
 
-    @BeforeEach
-    void setUp() {
-        cartActionBean = new CartActionBean();
-        cartActionBean.setCart(new Cart());
+  @BeforeEach
+  void setUp() {
+    cartActionBean = new CartActionBean();
+    cartActionBean.setCart(new Cart());
 
-        // Mock ActionBeanContext to avoid NPE in setMessage()
-        mockContext = mock(ActionBeanContext.class);
-        when(mockContext.getMessages()).thenReturn(new ArrayList<Message>());
-        cartActionBean.setContext(mockContext);
-    }
+    // Mock ActionBeanContext to avoid NPE in setMessage()
+    mockContext = mock(ActionBeanContext.class);
+    when(mockContext.getMessages()).thenReturn(new ArrayList<Message>());
+    cartActionBean.setContext(mockContext);
+  }
 
-    @Test
-    void constructorOutputNotNull() {
-        final CartActionBean actual = new CartActionBean();
+  @Test
+  void constructorOutputNotNull() {
+    final CartActionBean actual = new CartActionBean();
 
-        assertThat(actual).isNotNull();
-        assertThat(actual.getCart()).isNotNull();
-        assertThat(actual.getContext()).isNull();
-    }
+    assertThat(actual).isNotNull();
+    assertThat(actual.getCart()).isNotNull();
+    assertThat(actual.getContext()).isNull();
+  }
 
-    @Test
-    void getCartOutputNotNull() {
-        final CartActionBean bean = new CartActionBean();
+  @Test
+  void getCartOutputNotNull() {
+    final CartActionBean bean = new CartActionBean();
 
-        assertThat(bean.getCart()).isNotNull();
-    }
+    assertThat(bean.getCart()).isNotNull();
+  }
 
-    @Test
-    void addItemToCart_WithNullWorkingItemId_ShouldReturnError() {
-        cartActionBean.setWorkingItemId(null);
+  @Test
+  void addItemToCart_WithNullWorkingItemId_ShouldReturnError() {
+    cartActionBean.setWorkingItemId(null);
 
-        Resolution resolution = cartActionBean.addItemToCart();
+    Resolution resolution = cartActionBean.addItemToCart();
 
-        assertThat(resolution).isNotNull();
-        assertThat(resolution.toString()).contains("Error.jsp");
-    }
+    assertThat(resolution).isNotNull();
+    assertThat(resolution.toString()).contains("Error.jsp");
+  }
 
-    @Test
-    void addItemToCart_WithEmptyWorkingItemId_ShouldReturnError() {
-        cartActionBean.setWorkingItemId("");
+  @Test
+  void addItemToCart_WithEmptyWorkingItemId_ShouldReturnError() {
+    cartActionBean.setWorkingItemId("");
 
-        Resolution resolution = cartActionBean.addItemToCart();
+    Resolution resolution = cartActionBean.addItemToCart();
 
-        assertThat(resolution).isNotNull();
-        assertThat(resolution.toString()).contains("Error.jsp");
-    }
+    assertThat(resolution).isNotNull();
+    assertThat(resolution.toString()).contains("Error.jsp");
+  }
 
-    @Test
-    void addItemToCart_WithBlankWorkingItemId_ShouldReturnError() {
-        cartActionBean.setWorkingItemId("   ");
+  @Test
+  void addItemToCart_WithBlankWorkingItemId_ShouldReturnError() {
+    cartActionBean.setWorkingItemId("   ");
 
-        Resolution resolution = cartActionBean.addItemToCart();
+    Resolution resolution = cartActionBean.addItemToCart();
 
-        assertThat(resolution).isNotNull();
-        assertThat(resolution.toString()).contains("Error.jsp");
-    }
+    assertThat(resolution).isNotNull();
+    assertThat(resolution.toString()).contains("Error.jsp");
+  }
 
-    @Test
-    void removeItemFromCart_WithNullWorkingItemId_ShouldReturnError() {
-        cartActionBean.setWorkingItemId(null);
+  @Test
+  void removeItemFromCart_WithNullWorkingItemId_ShouldReturnError() {
+    cartActionBean.setWorkingItemId(null);
 
-        Resolution resolution = cartActionBean.removeItemFromCart();
+    Resolution resolution = cartActionBean.removeItemFromCart();
 
-        assertThat(resolution).isNotNull();
-        assertThat(resolution.toString()).contains("Error.jsp");
-    }
+    assertThat(resolution).isNotNull();
+    assertThat(resolution.toString()).contains("Error.jsp");
+  }
 
-    @Test
-    void removeItemFromCart_WithEmptyWorkingItemId_ShouldReturnError() {
-        cartActionBean.setWorkingItemId("");
+  @Test
+  void removeItemFromCart_WithEmptyWorkingItemId_ShouldReturnError() {
+    cartActionBean.setWorkingItemId("");
 
-        Resolution resolution = cartActionBean.removeItemFromCart();
+    Resolution resolution = cartActionBean.removeItemFromCart();
 
-        assertThat(resolution).isNotNull();
-        assertThat(resolution.toString()).contains("Error.jsp");
-    }
+    assertThat(resolution).isNotNull();
+    assertThat(resolution.toString()).contains("Error.jsp");
+  }
 
-    @Test
-    void removeItemFromCart_WithBlankWorkingItemId_ShouldReturnError() {
-        cartActionBean.setWorkingItemId("   ");
+  @Test
+  void removeItemFromCart_WithBlankWorkingItemId_ShouldReturnError() {
+    cartActionBean.setWorkingItemId("   ");
 
-        Resolution resolution = cartActionBean.removeItemFromCart();
+    Resolution resolution = cartActionBean.removeItemFromCart();
 
-        assertThat(resolution).isNotNull();
-        assertThat(resolution.toString()).contains("Error.jsp");
-    }
+    assertThat(resolution).isNotNull();
+    assertThat(resolution.toString()).contains("Error.jsp");
+  }
 
-    @Test
-    void removeItemFromCart_WithNonExistentItem_ShouldReturnError() {
-        cartActionBean.setWorkingItemId("NON_EXISTENT_ITEM");
+  @Test
+  void removeItemFromCart_WithNonExistentItem_ShouldReturnError() {
+    cartActionBean.setWorkingItemId("NON_EXISTENT_ITEM");
 
-        Resolution resolution = cartActionBean.removeItemFromCart();
+    Resolution resolution = cartActionBean.removeItemFromCart();
 
-        assertThat(resolution).isNotNull();
-        assertThat(resolution.toString()).contains("Error.jsp");
-    }
+    assertThat(resolution).isNotNull();
+    assertThat(resolution.toString()).contains("Error.jsp");
+  }
 
-    @Test
-    void clearShouldResetCartAndWorkingItemId() {
-        cartActionBean.setWorkingItemId("EST-1");
+  @Test
+  void clearShouldResetCartAndWorkingItemId() {
+    cartActionBean.setWorkingItemId("EST-1");
 
-        cartActionBean.clear();
+    cartActionBean.clear();
 
-        assertThat(cartActionBean.getCart()).isNotNull();
-        assertThat(cartActionBean.getCart().getNumberOfItems()).isZero();
-    }
+    assertThat(cartActionBean.getCart()).isNotNull();
+    assertThat(cartActionBean.getCart().getNumberOfItems()).isZero();
+  }
 }
