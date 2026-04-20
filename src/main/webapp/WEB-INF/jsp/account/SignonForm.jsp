@@ -1,6 +1,6 @@
 <%--
 
-       Copyright 2010-2022 the original author or authors.
+       Copyright 2010-2026 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -17,18 +17,14 @@
 --%>
 <%@ include file="../common/IncludeTop.jsp"%>
 
-<div id="Catalog"><stripes:form
-	beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
-	focus="">
+<div id="Catalog">
+<form method="post" action="${pageContext.request.contextPath}/account/signon">
 
-	<p>Please enter your username and password.</p>
-	<p>Username:<stripes:text name="username" value="j2ee" /> <br />
-	Password:<stripes:password name="password" value="j2ee" /></p>
-	<stripes:submit name="signon" value="Login" />
+<p>Please enter your username and password.</p>
+<p>Username:<input type="text" name="username" value="j2ee" /> <br />
+Password:<input type="password" name="password" value="j2ee" /></p>
+<input type="submit" name="signon" value="Login" />
 
-</stripes:form> Need a user name and password? <stripes:link
-	beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
-	event="newAccountForm">Register Now!</stripes:link></div>
+</form> Need a user name and password? <a href="${pageContext.request.contextPath}/account/new">Register Now!</a></div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
-

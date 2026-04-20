@@ -34,10 +34,10 @@ jobs:
         distribution: ['zulu']
         java: [17]
         os: [macos-latest, ubuntu-latest, windows-latest]
-        token: ["tomcat9", "tomee80", "wildfly26", "liberty-ee8", "jetty", "payara5", "resin"]
+        token: ["tomcat10", "tomcat11", "tomee", "wildfly", "liberty", "jetty", "glassfish7", "payara6"]
         exclude:
           - os: windows-latest
-            token: liberty-ee8
+            token: liberty
       fail-fast: false
       max-parallel: 6
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
@@ -51,6 +51,7 @@ jobs:
           distribution: ${{ matrix.distribution }}
           java-version: ${{ matrix.java }}
       - name: Build, start, test, and stop with ${{ matrix.token }}
+        shell: bash
         run: |
           echo "Running package..."
           ./mvnw package --batch-mode --no-transfer-progress --show-version -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
@@ -58,8 +59,21 @@ jobs:
           echo "Starting container..."
           nohup ./mvnw cargo:run -P ${{ matrix.token }} > cargo.log 2>&1 &
 
-          echo "Waiting 60s for server to start..."
-          sleep 60
+          echo "Waiting for server to start (up to 120s)..."
+          SERVER_READY=false
+          for i in $(seq 1 24); do
+            sleep 5
+            if curl -sf --max-time 5 http://localhost:8080/jpetstore/ -o /dev/null 2>/dev/null; then
+              echo "Server ready after $((i * 5))s"
+              SERVER_READY=true
+              break
+            fi
+            echo "Server not ready yet ($((i * 5))s elapsed)..."
+          done
+          if [ "$SERVER_READY" != "true" ]; then
+            echo "WARNING: server did not respond within 120s; cargo.log follows:"
+            cat cargo.log
+          fi
 
           echo "Running integration tests..."
           ./mvnw failsafe:integration-test -P ${{ matrix.token }}
