@@ -65,7 +65,7 @@
     <cargo-maven3-plugin.version>1.10.27</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <slf4j.version>2.0.17</slf4j.version>
+    <slf4j.version>2.0.18</slf4j.version>
     <spring.version>6.2.18</spring.version>
     <assertj.version>3.27.7</assertj.version>
     <byte-buddy.version>1.18.8</byte-buddy.version>
