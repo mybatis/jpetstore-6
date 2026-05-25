@@ -62,14 +62,14 @@
     <java.version>17</java.version>
     <java.release.version>17</java.release.version>
 
-    <cargo-maven3-plugin.version>1.10.26</cargo-maven3-plugin.version>
+    <cargo-maven3-plugin.version>1.10.27</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <slf4j.version>2.0.17</slf4j.version>
-    <spring.version>6.2.17</spring.version>
+    <slf4j.version>2.0.18</slf4j.version>
+    <spring.version>6.2.18</spring.version>
     <assertj.version>3.27.7</assertj.version>
-    <byte-buddy.version>1.18.7-jdk5</byte-buddy.version>
-    <mockito.version>5.22.0</mockito.version>
+    <byte-buddy.version>1.18.8</byte-buddy.version>
+    <mockito.version>5.23.0</mockito.version>
     <hsqldb.version>2.7.4</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
 
@@ -173,7 +173,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>6.0.3</version>
+      <version>6.1.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -197,13 +197,13 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>7.14.0</version>
+      <version>7.16.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit3-driver</artifactId>
-      <version>4.41.0</version>
+      <version>4.44.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
