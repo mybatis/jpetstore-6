@@ -63,7 +63,7 @@ jobs:
           SERVER_READY=false
           for i in $(seq 1 24); do
             sleep 5
-            if curl -sf --max-time 5 http://localhost:8080/jpetstore/ -o /dev/null 2>/dev/null; then
+            if curl -sf --max-time 5 http://localhost:8080/jpetstore/catalog -o /dev/null 2>/dev/null; then
               echo "Server ready after $((i * 5))s"
               SERVER_READY=true
               break
