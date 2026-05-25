@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -124,14 +124,14 @@ class ScreenTransitionIT {
     $(By.name("shippingAddressRequired")).click();
     $(By.name("newOrder")).click();
     $(By.cssSelector("#Catalog tr th")).shouldBe(text("Shipping Address"));
-    $(By.name("order.shipAddress2")).setValue("MS UCUP02-207");
+    $(By.name("shipAddress2")).setValue("MS UCUP02-207");
 
     // Confirm order information
     $(By.name("newOrder")).click();
     $(By.cssSelector("#Catalog")).shouldBe(text("Please confirm the information below and then press continue..."));
 
     // Submit order
-    $(By.linkText("Confirm")).click();
+    $(By.cssSelector("input.Button[value='Confirm']")).click();
     $(By.cssSelector(".messages li")).shouldBe(text("Thank you, your order has been submitted."));
     String orderId = extractOrderId($(By.cssSelector("#Catalog table tr")).text());
 
@@ -176,11 +176,11 @@ class ScreenTransitionIT {
     $$(By.cssSelector("#Catalog table td")).get(1).shouldBe(text("j2ee"));
 
     // Edit account
-    $(By.name("account.phone")).setValue("555-555-5556");
+    $(By.name("phone")).setValue("555-555-5556");
     $(By.name("editAccount")).click();
     $(By.cssSelector("#Catalog h3")).shouldBe(text("User Information"));
     $$(By.cssSelector("#Catalog table td")).get(1).shouldBe(text("j2ee"));
-    $(By.name("account.phone")).shouldBe(value("555-555-5556"));
+    $(By.name("phone")).shouldBe(value("555-555-5556"));
   }
 
   @Test
@@ -206,20 +206,20 @@ class ScreenTransitionIT {
     $(By.name("username")).setValue(userId);
     $(By.name("password")).setValue("password");
     $(By.name("repeatedPassword")).setValue("password");
-    $(By.name("account.firstName")).setValue("Jon");
-    $(By.name("account.lastName")).setValue("MyBatis");
-    $(By.name("account.email")).setValue("jon.mybatis@test.com");
-    $(By.name("account.phone")).setValue("09012345678");
-    $(By.name("account.address1")).setValue("Address1");
-    $(By.name("account.address2")).setValue("Address2");
-    $(By.name("account.city")).setValue("Minato-Ku");
-    $(By.name("account.state")).setValue("Tokyo");
-    $(By.name("account.zip")).setValue("0001234");
-    $(By.name("account.country")).setValue("Japan");
-    $(By.name("account.languagePreference")).selectOption("japanese");
-    $(By.name("account.favouriteCategoryId")).selectOption("CATS");
-    $(By.name("account.listOption")).setSelected(true);
-    $(By.name("account.bannerOption")).setSelected(true);
+    $(By.name("firstName")).setValue("Jon");
+    $(By.name("lastName")).setValue("MyBatis");
+    $(By.name("email")).setValue("jon.mybatis@test.com");
+    $(By.name("phone")).setValue("09012345678");
+    $(By.name("address1")).setValue("Address1");
+    $(By.name("address2")).setValue("Address2");
+    $(By.name("city")).setValue("Minato-Ku");
+    $(By.name("state")).setValue("Tokyo");
+    $(By.name("zip")).setValue("0001234");
+    $(By.name("country")).setValue("Japan");
+    $(By.name("languagePreference")).selectOption("japanese");
+    $(By.name("favouriteCategoryId")).selectOption("CATS");
+    $(By.name("listOption")).setSelected(true);
+    $(By.name("bannerOption")).setSelected(true);
     $(By.name("newAccount")).click();
     $(By.id("WelcomeContent")).shouldBe(empty);
 
