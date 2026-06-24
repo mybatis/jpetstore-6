@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,8 +16,6 @@
 package org.mybatis.jpetstore.domain;
 
 import java.io.Serializable;
-
-import net.sourceforge.stripes.validation.Validate;
 
 /**
  * The Class Account.
@@ -75,7 +73,6 @@ public class Account implements Serializable {
     return firstName;
   }
 
-  @Validate(required = true, on = { "newAccount", "editAccount" })
   public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
@@ -84,7 +81,6 @@ public class Account implements Serializable {
     return lastName;
   }
 
-  @Validate(required = true, on = { "newAccount", "editAccount" })
   public void setLastName(String lastName) {
     this.lastName = lastName;
   }

@@ -40,7 +40,7 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
 - Startup the Tomcat server and deploy web application
 
   ```
-  $ ./mvnw cargo:run -P tomcat90
+  $ ./mvnw cargo:run -P tomcat10
   ```
 
   > Note:
@@ -49,14 +49,14 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   >
   > | Profile        | Description |
   > | -------------- | ----------- |
-  > | tomcat9        | Running under the Tomcat 9.0 |
-  > | tomee80        | Running under the TomEE 8.0(Java EE 8) |
-  > | wildfly26      | Running under the WildFly 26(Java EE 8) |
-  > | liberty-ee8    | Running under the WebSphere Liberty(Java EE 8) |
-  > | jetty          | Running under the Jetty 12 (Java EE 8) |
-  > | glassfish5 (disabled)     | Running under the GlassFish 5(Java EE 8) |
-  > | payara5        | Running under the Payara 5 (Java EE 8) |
-  > | resin          | Running under the Resin 4 |
+  > | tomcat10       | Running under Tomcat 10.1 |
+  > | tomcat11       | Running under Tomcat 11.0 |
+  > | tomee          | Running under TomEE 10.1 |
+  > | wildfly        | Running under the WildFly 39 (Jakarta EE 10) |
+  > | liberty        | Running under WebSphere Liberty 26 |
+  > | jetty          | Running under Jetty 12 (Jakarta EE 10) |
+  > | glassfish7     | Running under GlassFish 7 (Jakarta EE 10) |
+  > | payara6        | Running under Payara 6 (Jakarta EE 10) |
 
 - Run application in browser http://localhost:8080/jpetstore/
 - Press Ctrl-C to stop the server.
