@@ -328,7 +328,7 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.113</tomcat.version>
+        <tomcat.version>9.0.120</tomcat.version>
         <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/${tomcat.version}/tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -408,7 +408,7 @@
     <profile>
       <id>liberty-ee8</id>
       <properties>
-        <liberty.version>25.0.0.12</liberty.version>
+        <liberty.version>26.0.0.6</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -437,7 +437,7 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>12</jetty.major-version>
-        <jetty.version>12.1.5</jetty.version>
+        <jetty.version>12.1.11</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.jetty.deployer.ee.version>ee8</cargo.jetty.deployer.ee.version>
       </properties>
