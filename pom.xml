@@ -521,6 +521,7 @@
                 <zipUrlInstaller>
                   <url>${cargo.maven.containerUrl}</url>
                 </zipUrlInstaller>
+                <timeout>${cargo.startup.timeout}</timeout>
               </container>
             </configuration>
           </plugin>
