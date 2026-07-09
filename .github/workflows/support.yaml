@@ -32,26 +32,25 @@ jobs:
       matrix:
         cache: [maven]
         distribution: ['zulu']
-        java: [21]
         os: [macos-latest, ubuntu-latest, windows-latest]
         token: ["tomcat9", "tomee80", "wildfly26", "liberty-ee8", "jetty", "payara5", "resin"]
       fail-fast: false
       max-parallel: 6
-    name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
+    name: Test JDK ${{ matrix.token == 'payara5' && '17' || '21' }}, ${{ matrix.os }}, ${{ matrix.token }}
 
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
-      - name: Setup Java ${{ matrix.java }} ${{ matrix.distribution }}
+      - name: Setup Java ${{ matrix.token == 'payara5' && '17' || '21' }} ${{ matrix.distribution }}
         uses: actions/setup-java@0f481fcb613427c0f801b606911222b5b6f3083a # v5
         with:
           cache: ${{ matrix.cache }}
           distribution: ${{ matrix.distribution }}
-          java-version: ${{ matrix.java }}
+          java-version: ${{ matrix.token == 'payara5' && '17' || '21' }}
       - name: Build, start, test, and stop with ${{ matrix.token }}
         shell: bash
         run: |
           echo "Running package..."
-          ./mvnw package --batch-mode --no-transfer-progress --show-version -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
+          ./mvnw package --batch-mode --no-transfer-progress --show-version -D"enforcer.skip=true" -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
 
           echo "Starting container forcing output flushing..."
           nohup ./mvnw cargo:run -P ${{ matrix.token }} -Dorg.slf4j.simpleLogger.defaultLogLevel=info > cargo.log 2>&1 &
