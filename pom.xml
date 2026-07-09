@@ -38,7 +38,7 @@
   <scm>
     <connection>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</developerConnection>
-    <tag>jpetstore-6.2.0</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/mybatis/jpetstore-6/</url>
   </scm>
   <issueManagement>
