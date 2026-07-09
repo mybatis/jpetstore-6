@@ -62,7 +62,7 @@ jobs:
           for i in $(seq 1 24); do
             sleep 5
 
-            # Target the jpetstore context path
+            # Target 127.0.0.1 to avoid IPv6 loopback resolution mismatches to jpetstore context path
             if curl -s --max-time 2 http://127.0.0.1:8080/jpetstore/ > /dev/null; then
               echo "Server ready after $((i * 5))s"
               SERVER_READY=true
@@ -75,6 +75,8 @@ jobs:
           if [ "${SERVER_READY}" != "true" ]; then
             echo "WARNING: server did not respond within 120s; cargo.log follows:"
             cat cargo.log
+            echo "----------------------------"
+            exit 1
           fi
 
           echo "Running integration tests..."
