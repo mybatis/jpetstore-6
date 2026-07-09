@@ -65,7 +65,7 @@ jobs:
           ./mvnw failsafe:integration-test -P ${{ matrix.token }}
 
           echo "Verify integration tests..."
-          ./mvnw failsafe:verify -P${{ matrix.token }}
+          ./mvnw failsafe:verify -P ${{ matrix.token }}
 
           echo "Stopping container..."
-          ./mvnw cargo:stop -P${{ matrix.token }}
+          ./mvnw cargo:stop -P ${{ matrix.token }}
