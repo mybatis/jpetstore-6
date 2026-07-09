@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>51</version>
+    <version>52</version>
     <relativePath />
   </parent>
 
@@ -62,13 +62,13 @@
     <java.version>17</java.version>
     <java.release.version>17</java.release.version>
 
-    <cargo-maven3-plugin.version>1.10.27</cargo-maven3-plugin.version>
+    <cargo-maven3-plugin.version>1.10.28</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <slf4j.version>2.0.17</slf4j.version>
-    <spring.version>6.2.17</spring.version>
+    <slf4j.version>2.0.18</slf4j.version>
+    <spring.version>6.2.19</spring.version>
     <assertj.version>3.27.7</assertj.version>
-    <byte-buddy.version>1.18.8</byte-buddy.version>
+    <byte-buddy.version>1.18.11</byte-buddy.version>
     <mockito.version>5.23.0</mockito.version>
     <hsqldb.version>2.7.4</hsqldb.version>
     <module.name>org.mybatis.jpetstore</module.name>
@@ -79,6 +79,18 @@
     <!-- Surefire Setup -->
     <argLine>-javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar</argLine>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-bom</artifactId>
+        <version>4.45.0</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
 
@@ -165,7 +177,7 @@
     <dependency>
       <groupId>org.springframework.batch</groupId>
       <artifactId>spring-batch-infrastructure</artifactId>
-      <version>5.2.5</version>
+      <version>5.2.6</version>
     </dependency>
 
     <!-- Test dependencies -->
@@ -184,7 +196,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>6.0.3</version>
+      <version>6.1.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -208,13 +220,13 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>7.15.1</version>
+      <version>7.16.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit3-driver</artifactId>
-      <version>4.41.0</version>
+      <version>4.45.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -250,7 +262,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.5.5</version>
+          <version>3.5.6</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -328,7 +340,7 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.113</tomcat.version>
+        <tomcat.version>9.0.120</tomcat.version>
         <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/${tomcat.version}/tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -408,7 +420,7 @@
     <profile>
       <id>liberty-ee8</id>
       <properties>
-        <liberty.version>25.0.0.12</liberty.version>
+        <liberty.version>26.0.0.6</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -437,7 +449,7 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>12</jetty.major-version>
-        <jetty.version>12.1.5</jetty.version>
+        <jetty.version>12.1.11</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.jetty.deployer.ee.version>ee8</cargo.jetty.deployer.ee.version>
       </properties>

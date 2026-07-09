@@ -32,7 +32,7 @@ jobs:
       matrix:
         cache: [maven]
         distribution: ['zulu']
-        java: [17]
+        java: [21]
         os: [macos-latest, ubuntu-latest, windows-latest]
         token: ["tomcat9", "tomee80", "wildfly26", "liberty-ee8", "jetty", "payara5", "resin"]
         exclude:
@@ -43,9 +43,9 @@ jobs:
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
 
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
       - name: Setup Java ${{ matrix.java }} ${{ matrix.distribution }}
-        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5
+        uses: actions/setup-java@0f481fcb613427c0f801b606911222b5b6f3083a # v5
         with:
           cache: ${{ matrix.cache }}
           distribution: ${{ matrix.distribution }}
