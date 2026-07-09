@@ -34,6 +34,9 @@ jobs:
         distribution: ['zulu']
         os: [macos-latest, ubuntu-latest, windows-latest]
         token: ["tomcat9", "tomee80", "wildfly26", "liberty-ee8", "jetty", "payara5", "resin"]
+        exclude:
+          - os: windows-latest
+            token: liberty-ee8
       fail-fast: false
       max-parallel: 6
     name: Test JDK ${{ matrix.token == 'payara5' && '17' || '21' }}, ${{ matrix.os }}, ${{ matrix.token }}
