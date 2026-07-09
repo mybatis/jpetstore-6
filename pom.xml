@@ -38,7 +38,7 @@
   <scm>
     <connection>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/mybatis/jpetstore-6.git</developerConnection>
-    <tag>jpetstore-6.2.0</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/mybatis/jpetstore-6/</url>
   </scm>
   <issueManagement>
@@ -275,7 +275,7 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
           <configuration>
-            <overwrite>true</overwrite>
+            <changeDetection>always</changeDetection>
           </configuration>
         </plugin>
         <plugin>
@@ -521,6 +521,7 @@
                 <zipUrlInstaller>
                   <url>${cargo.maven.containerUrl}</url>
                 </zipUrlInstaller>
+                <timeout>${cargo.startup.timeout}</timeout>
               </container>
             </configuration>
           </plugin>
