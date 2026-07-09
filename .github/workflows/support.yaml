@@ -51,15 +51,34 @@ jobs:
           distribution: ${{ matrix.distribution }}
           java-version: ${{ matrix.java }}
       - name: Build, start, test, and stop with ${{ matrix.token }}
+        shell: bash
         run: |
           echo "Running package..."
           ./mvnw package --batch-mode --no-transfer-progress --show-version -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
 
-          echo "Starting container..."
-          nohup ./mvnw cargo:run -P ${{ matrix.token }} > cargo.log 2>&1 &
+          echo "Starting container forcing output flushing..."
+          nohup ./mvnw cargo:run -P ${{ matrix.token }} -Dorg.slf4j.simpleLogger.defaultLogLevel=info > cargo.log 2>&1 &
 
-          echo "Waiting 60s for server to start..."
-          sleep 60
+          echo "Waiting for server port 8080 to open (up to 120s)..."
+          SERVER_READY=false
+
+          for i in $(seq 1 24); do
+            sleep 5
+
+            # Target the jpetstore context path
+            if curl -s --max-time 2 http://127.0.0.1:8080/jpetstore/ > /dev/null; then
+              echo "Server ready after $((i * 5))s"
+              SERVER_READY=true
+              break
+            fi
+
+            echo "Server not ready yet ($((i * 5))s elapsed)..."
+          done
+
+          if [ "${SERVER_READY}" != "true" ]; then
+            echo "WARNING: server did not respond within 120s; cargo.log follows:"
+            cat cargo.log
+          fi
 
           echo "Running integration tests..."
           ./mvnw failsafe:integration-test -P ${{ matrix.token }}
