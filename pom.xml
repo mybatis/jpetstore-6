@@ -275,7 +275,7 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
           <configuration>
-            <overwrite>true</overwrite>
+            <changeDetection>always</changeDetection>
           </configuration>
         </plugin>
         <plugin>
