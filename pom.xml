@@ -226,7 +226,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit3-driver</artifactId>
-      <version>4.45.0</version>
+      <version>4.46.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
