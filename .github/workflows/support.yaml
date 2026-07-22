@@ -57,6 +57,10 @@ jobs:
 
           echo "Starting container forcing output flushing..."
           nohup ./mvnw cargo:run -P ${{ matrix.token }} -Dorg.slf4j.simpleLogger.defaultLogLevel=info > cargo.log 2>&1 &
+          
+          # Stream cargo.log to the background job output so you can see boot progress live
+          tail -f cargo.log &
+          TAIL_PID=$!
 
           echo "Waiting for server port 8080 to open (up to 240s)..."
           SERVER_READY=false
@@ -64,7 +68,6 @@ jobs:
           for i in $(seq 1 48); do
             sleep 5
 
-            # Target 127.0.0.1 to avoid IPv6 loopback resolution mismatches to jpetstore context path
             if curl -s --max-time 2 http://127.0.0.1:8080/jpetstore/ > /dev/null; then
               echo "Server ready after $((i * 5))s"
               SERVER_READY=true
@@ -73,9 +76,12 @@ jobs:
 
             echo "Server not ready yet ($((i * 5))s elapsed)..."
           done
+      
+          # Kill the background tail process
+          kill $TAIL_PID 2>/dev/null || true
 
           if [ "${SERVER_READY}" != "true" ]; then
-            echo "WARNING: server did not respond within 120s; cargo.log follows:"
+            echo "WARNING: server did not respond within time limit; full cargo.log follows:"
             cat cargo.log
             echo "----------------------------"
             exit 1
@@ -89,3 +95,13 @@ jobs:
 
           echo "Stopping container..."
           ./mvnw cargo:stop -P ${{ matrix.token }}
+      
+      - name: Upload Container Logs on Failure
+        if: failure()
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf888 # v4
+        with:
+          name: cargo-logs-${{ matrix.token }}-${{ matrix.os }}
+          path: |
+            cargo.log
+            **/target/cargo/logs/**/*
+            **/target/*.log
