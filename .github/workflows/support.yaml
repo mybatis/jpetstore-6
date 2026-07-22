@@ -68,6 +68,7 @@ jobs:
           for i in $(seq 1 48); do
             sleep 5
 
+            # Target 127.0.0.1 to avoid IPv6 loopback resolution mismatches to jpetstore context path
             if curl -s --max-time 2 http://127.0.0.1:8080/jpetstore/ > /dev/null; then
               echo "Server ready after $((i * 5))s"
               SERVER_READY=true
