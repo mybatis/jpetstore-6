@@ -351,12 +351,29 @@
     </profile>
 
     <profile>
-      <id>liberty26</id>
+      <id>glassfish8</id>
       <properties>
-        <liberty.version>26.0.0.7</liberty.version>
-        <cargo.maven.containerId>liberty</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/io/openliberty/openliberty-jakartaee11/${liberty.version}/openliberty-jakartaee11-${liberty.version}.zip</cargo.maven.containerUrl>
+        <glassfish.version>8.0.3</glassfish.version>
+        <cargo.maven.containerId>glassfish8x</cargo.maven.containerId>
+        <cargo.server.start.timeout>180000</cargo.server.start.timeout>
       </properties>
+      <dependencies>
+        <!-- GlassFish bundles its own JSTL; mark as provided to avoid a
+             duplicate TLD URI registration when Jasper scans both the server
+             lib and WEB-INF/lib. -->
+        <dependency>
+          <groupId>jakarta.servlet.jsp.jstl</groupId>
+          <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+          <version>3.0.0</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.glassfish.web</groupId>
+          <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+          <version>3.0.1</version>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
       <build>
         <plugins>
           <plugin>
@@ -366,12 +383,12 @@
               <container>
                 <containerId>${cargo.maven.containerId}</containerId>
                 <type>installed</type>
-                <zipUrlInstaller>
-                  <url>${cargo.maven.containerUrl}</url>
-                </zipUrlInstaller>
-                <systemProperties>
-                  <ws.jar.cache.disable>true</ws.jar.cache.disable>
-                </systemProperties>
+                <artifactInstaller>
+                  <groupId>org.glassfish.main.distributions</groupId>
+                  <artifactId>glassfish</artifactId>
+                  <version>${glassfish.version}</version>
+                  <type>zip</type>
+                </artifactInstaller>
               </container>
             </configuration>
           </plugin>
@@ -401,6 +418,79 @@
                   <artifactId>jetty-home</artifactId>
                   <version>${jetty.version}</version>
                 </artifactInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>liberty26</id>
+      <properties>
+        <liberty.version>26.0.0.7</liberty.version>
+        <cargo.maven.containerId>liberty</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/io/openliberty/openliberty-jakartaee11/${liberty.version}/openliberty-jakartaee11-${liberty.version}.zip</cargo.maven.containerUrl>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+                <systemProperties>
+                  <ws.jar.cache.disable>true</ws.jar.cache.disable>
+                </systemProperties>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>payara7</id>
+      <properties>
+        <payara.version>7.2026.6</payara.version>
+        <cargo.maven.containerId>payara</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
+        <cargo.server.start.timeout>180000</cargo.server.start.timeout>
+      </properties>
+      <dependencies>
+        <!-- Payara bundles its own JSTL; mark as provided to avoid a
+             duplicate TLD URI registration when Jasper scans both the server
+             lib and WEB-INF/lib. -->
+        <dependency>
+          <groupId>jakarta.servlet.jsp.jstl</groupId>
+          <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+          <version>3.0.0</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.glassfish.web</groupId>
+          <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+          <version>3.0.1</version>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
               </container>
             </configuration>
           </plugin>
@@ -460,96 +550,6 @@
         <cargo.maven.containerId>wildfly40x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.cargo</groupId>
-            <artifactId>cargo-maven3-plugin</artifactId>
-            <configuration>
-              <container>
-                <containerId>${cargo.maven.containerId}</containerId>
-                <type>installed</type>
-                <zipUrlInstaller>
-                  <url>${cargo.maven.containerUrl}</url>
-                </zipUrlInstaller>
-              </container>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>glassfish8</id>
-      <properties>
-        <glassfish.version>8.0.3</glassfish.version>
-        <cargo.maven.containerId>glassfish8x</cargo.maven.containerId>
-        <cargo.server.start.timeout>180000</cargo.server.start.timeout>
-      </properties>
-      <dependencies>
-        <!-- GlassFish bundles its own JSTL; mark as provided to avoid a
-             duplicate TLD URI registration when Jasper scans both the server
-             lib and WEB-INF/lib. -->
-        <dependency>
-          <groupId>jakarta.servlet.jsp.jstl</groupId>
-          <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-          <version>3.0.0</version>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.glassfish.web</groupId>
-          <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-          <version>3.0.1</version>
-          <scope>provided</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.cargo</groupId>
-            <artifactId>cargo-maven3-plugin</artifactId>
-            <configuration>
-              <container>
-                <containerId>${cargo.maven.containerId}</containerId>
-                <type>installed</type>
-                <artifactInstaller>
-                  <groupId>org.glassfish.main.distributions</groupId>
-                  <artifactId>glassfish</artifactId>
-                  <version>${glassfish.version}</version>
-                  <type>zip</type>
-                </artifactInstaller>
-              </container>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>payara7</id>
-      <properties>
-        <payara.version>7.2026.6</payara.version>
-        <cargo.maven.containerId>payara</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
-        <cargo.server.start.timeout>180000</cargo.server.start.timeout>
-      </properties>
-      <dependencies>
-        <!-- Payara bundles its own JSTL; mark as provided to avoid a
-             duplicate TLD URI registration when Jasper scans both the server
-             lib and WEB-INF/lib. -->
-        <dependency>
-          <groupId>jakarta.servlet.jsp.jstl</groupId>
-          <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-          <version>3.0.0</version>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.glassfish.web</groupId>
-          <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-          <version>3.0.1</version>
-          <scope>provided</scope>
-        </dependency>
-      </dependencies>
       <build>
         <plugins>
           <plugin>
