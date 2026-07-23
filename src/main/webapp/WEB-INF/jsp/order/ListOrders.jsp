@@ -43,5 +43,3 @@
 </table>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
-
-
