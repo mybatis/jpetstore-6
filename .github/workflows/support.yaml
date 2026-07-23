@@ -32,23 +32,21 @@ jobs:
       matrix:
         cache: [maven]
         distribution: ['zulu']
+        java: [21]
         os: [macos-latest, ubuntu-latest, windows-latest]
         token: ["tomcat11", "tomee10", "wildfly40", "liberty26", "jetty12", "glassfish8", "payara7"]
-        exclude:
-          - os: windows-latest
-            token: liberty
       fail-fast: false
       max-parallel: 6
-    name: Test JDK ${{ matrix.token == 'payara5' && '17' || '21' }}, ${{ matrix.os }}, ${{ matrix.token }}
+    name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - name: Setup Java ${{ matrix.token == 'payara5' && '17' || '21' }} ${{ matrix.distribution }}
+      - name: Setup Java ${{ matrix.java }} ${{ matrix.distribution }}
         uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95 # v5
         with:
           cache: ${{ matrix.cache }}
           distribution: ${{ matrix.distribution }}
-          java-version: ${{ matrix.token == 'payara5' && '17' || '21' }}
+          java-version: ${{ matrix.java }}
       - name: Build, start, test, and stop with ${{ matrix.token }}
         shell: bash
         run: |
