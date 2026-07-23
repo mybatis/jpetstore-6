@@ -33,7 +33,7 @@ jobs:
         cache: [maven]
         distribution: ['zulu']
         os: [macos-latest, ubuntu-latest, windows-latest]
-        token: ["tomcat10", "tomcat11", "tomee", "wildfly", "liberty", "jetty", "glassfish8", "payara7"]
+        token: ["tomcat11", "tomee10", "wildfly40", "liberty26", "jetty12", "glassfish8", "payara7"]
         exclude:
           - os: windows-latest
             token: liberty
