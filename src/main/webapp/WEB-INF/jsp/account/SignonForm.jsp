@@ -31,4 +31,3 @@
 	event="newAccountForm">Register Now!</stripes:link></div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
-
