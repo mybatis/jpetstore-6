@@ -429,6 +429,11 @@
                   <url>${cargo.maven.containerUrl}</url>
                 </zipUrlInstaller>
               </container>
+              <configuration>
+                <properties>
+                  <cargo.logging>high</cargo.logging>
+                </properties>
+              </configuration>
             </configuration>
           </plugin>
         </plugins>
@@ -500,6 +505,11 @@
                   <type>zip</type>
                 </artifactInstaller>
               </container>
+              <configuration>
+                <properties>
+                  <cargo.logging>high</cargo.logging>
+                </properties>
+              </configuration>
             </configuration>
           </plugin>
         </plugins>
@@ -543,6 +553,11 @@
                   <url>${cargo.maven.containerUrl}</url>
                 </zipUrlInstaller>
               </container>
+              <configuration>
+                <properties>
+                  <cargo.logging>high</cargo.logging>
+                </properties>
+              </configuration>
             </configuration>
           </plugin>
         </plugins>
