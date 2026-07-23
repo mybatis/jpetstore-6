@@ -415,6 +415,7 @@
         <tomee.version>10.2.0</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
+        <cargo.server.start.timeout>180000</cargo.server.start.timeout>
       </properties>
       <dependencies>
         <!-- GlassFish bundles its own JSTL; mark as provided to avoid a
@@ -430,12 +431,6 @@
           <groupId>org.glassfish.web</groupId>
           <artifactId>jakarta.servlet.jsp.jstl</artifactId>
           <version>3.0.1</version>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-simple</artifactId>
-          <version>${slf4j.version}</version>
           <scope>provided</scope>
         </dependency>
       </dependencies>
@@ -489,6 +484,7 @@
       <properties>
         <glassfish.version>8.0.3</glassfish.version>
         <cargo.maven.containerId>glassfish8x</cargo.maven.containerId>
+        <cargo.server.start.timeout>180000</cargo.server.start.timeout>
       </properties>
       <dependencies>
         <!-- GlassFish bundles its own JSTL; mark as provided to avoid a
@@ -504,12 +500,6 @@
           <groupId>org.glassfish.web</groupId>
           <artifactId>jakarta.servlet.jsp.jstl</artifactId>
           <version>3.0.1</version>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-simple</artifactId>
-          <version>${slf4j.version}</version>
           <scope>provided</scope>
         </dependency>
       </dependencies>
@@ -541,6 +531,7 @@
         <payara.version>7.2026.6</payara.version>
         <cargo.maven.containerId>payara</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
+        <cargo.server.start.timeout>180000</cargo.server.start.timeout>
       </properties>
       <dependencies>
         <!-- Payara bundles its own JSTL; mark as provided to avoid a
@@ -556,12 +547,6 @@
           <groupId>org.glassfish.web</groupId>
           <artifactId>jakarta.servlet.jsp.jstl</artifactId>
           <version>3.0.1</version>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-simple</artifactId>
-          <version>${slf4j.version}</version>
           <scope>provided</scope>
         </dependency>
       </dependencies>
