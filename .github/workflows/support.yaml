@@ -32,23 +32,21 @@ jobs:
       matrix:
         cache: [maven]
         distribution: ['zulu']
+        java: [21]
         os: [macos-latest, ubuntu-latest, windows-latest]
-        token: ["tomcat9", "tomee80", "wildfly26", "liberty-ee8", "jetty", "payara5", "resin"]
-        exclude:
-          - os: windows-latest
-            token: liberty-ee8
+        token: ["tomcat11", "glassfish8", "jetty12", "liberty26", "payara7", "tomee10", "wildfly40"]
       fail-fast: false
       max-parallel: 6
-    name: Test JDK ${{ matrix.token == 'payara5' && '17' || '21' }}, ${{ matrix.os }}, ${{ matrix.token }}
+    name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - name: Setup Java ${{ matrix.token == 'payara5' && '17' || '21' }} ${{ matrix.distribution }}
+      - name: Setup Java ${{ matrix.java }} ${{ matrix.distribution }}
         uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95 # v5
         with:
           cache: ${{ matrix.cache }}
           distribution: ${{ matrix.distribution }}
-          java-version: ${{ matrix.token == 'payara5' && '17' || '21' }}
+          java-version: ${{ matrix.java }}
       - name: Build, start, test, and stop with ${{ matrix.token }}
         shell: bash
         run: |
@@ -56,7 +54,7 @@ jobs:
           ./mvnw package --batch-mode --no-transfer-progress --show-version -D"enforcer.skip=true" -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
 
           echo "Starting container forcing output flushing..."
-          nohup ./mvnw cargo:run -P ${{ matrix.token }} -Dorg.slf4j.simpleLogger.defaultLogLevel=info > cargo.log 2>&1 &
+          nohup ./mvnw cargo:run -P ${{ matrix.token }} -Dorg.slf4j.simpleLogger.defaultLogLevel=debug > cargo.log 2>&1 &
 
           # Stream cargo.log to the background job output so you can see boot progress live
           tail -f cargo.log &
@@ -77,6 +75,9 @@ jobs:
 
             echo "Server not ready yet ($((i * 5))s elapsed)..."
           done
+      
+          # Kill the background tail process
+          kill $TAIL_PID 2>/dev/null || true
 
           # Kill the background tail process
           kill $TAIL_PID 2>/dev/null || true
@@ -96,7 +97,6 @@ jobs:
 
           echo "Stopping container..."
           ./mvnw cargo:stop -P ${{ matrix.token }}
-
       
       - name: Upload Container Logs on Failure
         if: failure()

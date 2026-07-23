@@ -28,8 +28,8 @@
 
   <body>
     <section name="Sample Code">
-      <p>JPetStore 6은 마이바티스 3, <a href="http://projects.spring.io/spring-framework/">스프링 4</a> 과
-      <a href="http://www.stripesframework.org/">스트라이프(Stripes)</a>을 사용하는 완전한 웹 애플리케이션이다.
+      <p>JPetStore 6은 마이바티스 3, <a href="http://projects.spring.io/spring-framework/">스프링 6</a> 과
+      <a href="https://spring.io/projects/spring-framework">Spring Web MVC</a>을 사용하는 완전한 웹 애플리케이션이다.
        마이바티스 프로젝트 사이트에서 <a href="https://github.com/mybatis/jpetstore-6/releases">다운로드(downloads)</a>
        페이지에서 다운로드가 가능하다. 여기서는 샘플을 빌드하는 방법을 이해하고 실행하는 방법에 대해 배워볼것이다. </p>
       <subsection name="Purpose">
