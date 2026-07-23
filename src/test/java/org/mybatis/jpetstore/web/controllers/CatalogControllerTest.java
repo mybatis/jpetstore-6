@@ -18,7 +18,6 @@ package org.mybatis.jpetstore.web.controllers;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -50,7 +49,7 @@ class CatalogControllerTest {
   void viewCategoryWithValidId() {
     Model model = new ExtendedModelMap();
     Category category = new Category();
-    List<Product> products = Collections.emptyList();
+    List<Product> products = List.of();
     when(catalogService.getCategory("FISH")).thenReturn(category);
     when(catalogService.getProductListByCategory("FISH")).thenReturn(products);
 
@@ -72,7 +71,7 @@ class CatalogControllerTest {
   @Test
   void searchProductsWithValidKeyword() {
     Model model = new ExtendedModelMap();
-    List<Product> products = Collections.emptyList();
+    List<Product> products = List.of();
     when(catalogService.searchProductList("dog")).thenReturn(products);
 
     String view = catalogController.searchProducts("dog", model, null);

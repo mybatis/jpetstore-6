@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 
 import jakarta.servlet.http.HttpSession;
 
-import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -72,7 +72,7 @@ class AccountControllerTest {
     account.setUsername("j2ee");
     account.setFavouriteCategoryId("FISH");
     when(accountService.getAccount("j2ee", "j2ee")).thenReturn(account);
-    when(catalogService.getProductListByCategory("FISH")).thenReturn(Collections.emptyList());
+    when(catalogService.getProductListByCategory("FISH")).thenReturn(List.of());
 
     String view = accountController.signon("j2ee", "j2ee", session, model);
 
@@ -92,15 +92,13 @@ class AccountControllerTest {
   void accountSessionIsAuthenticatedWithValidAccount() {
     Account account = new Account();
     account.setUsername("j2ee");
-    AccountController.AccountSession session = new AccountController.AccountSession(account, Collections.emptyList(),
-        true);
+    AccountController.AccountSession session = new AccountController.AccountSession(account, List.of(), true);
     assertThat(session.isAuthenticated()).isTrue();
   }
 
   @Test
   void accountSessionIsNotAuthenticatedWithNullAccount() {
-    AccountController.AccountSession session = new AccountController.AccountSession(null, Collections.emptyList(),
-        true);
+    AccountController.AccountSession session = new AccountController.AccountSession(null, List.of(), true);
     assertThat(session.isAuthenticated()).isFalse();
   }
 
@@ -129,7 +127,7 @@ class AccountControllerTest {
     account.setUsername("j2ee");
     account.setFavouriteCategoryId("FISH");
     when(accountService.getAccount("j2ee")).thenReturn(account);
-    when(catalogService.getProductListByCategory("FISH")).thenReturn(Collections.emptyList());
+    when(catalogService.getProductListByCategory("FISH")).thenReturn(List.of());
 
     String view = accountController.editAccount(account, session);
 

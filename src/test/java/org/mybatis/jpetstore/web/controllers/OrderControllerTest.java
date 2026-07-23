@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 
 import jakarta.servlet.http.HttpSession;
 
-import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -75,10 +75,9 @@ class OrderControllerTest {
     Model model = new ExtendedModelMap();
     org.mybatis.jpetstore.domain.Account account = new org.mybatis.jpetstore.domain.Account();
     account.setUsername("j2ee");
-    AccountController.AccountSession accountSession = new AccountController.AccountSession(account,
-        Collections.emptyList(), true);
+    AccountController.AccountSession accountSession = new AccountController.AccountSession(account, List.of(), true);
     when(session.getAttribute("accountBean")).thenReturn(accountSession);
-    when(orderService.getOrdersByUsername("j2ee")).thenReturn(Collections.emptyList());
+    when(orderService.getOrdersByUsername("j2ee")).thenReturn(List.of());
 
     String view = orderController.listOrders(session, model);
 
