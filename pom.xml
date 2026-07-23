@@ -349,8 +349,9 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
-      <id>liberty</id>
+      <id>liberty26</id>
       <properties>
         <liberty.version>26.0.0.7</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
@@ -377,8 +378,9 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
-      <id>jetty</id>
+      <id>jetty12</id>
       <properties>
         <jetty.major-version>12</jetty.major-version>
         <jetty.version>12.1.11</jetty.version>
@@ -405,8 +407,9 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
-      <id>tomee</id>
+      <id>tomee10</id>
       <properties>
         <tomee.major-version>10</tomee.major-version>
         <tomee.version>10.2.0</tomee.version>
@@ -431,8 +434,9 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
-      <id>wildfly</id>
+      <id>wildfly40</id>
       <properties>
         <wildfly.version>40.0.1.Final</wildfly.version>
         <cargo.maven.containerId>wildfly40x</cargo.maven.containerId>
@@ -456,6 +460,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>glassfish8</id>
       <properties>
@@ -500,6 +505,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>payara7</id>
       <properties>
