@@ -54,7 +54,7 @@ jobs:
           ./mvnw package --batch-mode --no-transfer-progress --show-version -D"enforcer.skip=true" -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
 
           echo "Starting container forcing output flushing..."
-          nohup ./mvnw cargo:run -P ${{ matrix.token }} -Dorg.slf4j.simpleLogger.defaultLogLevel=info > cargo.log 2>&1 &
+          nohup ./mvnw cargo:run -P ${{ matrix.token }} -Dorg.slf4j.simpleLogger.defaultLogLevel=debug > cargo.log 2>&1 &
 
           # Stream cargo.log to the background job output so you can see boot progress live
           tail -f cargo.log &
