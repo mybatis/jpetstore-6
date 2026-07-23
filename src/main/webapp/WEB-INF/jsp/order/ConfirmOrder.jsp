@@ -116,7 +116,3 @@ Confirm
 
 <%@ include file="../common/IncludeBottom.jsp"%>
 
-
-
-
-
