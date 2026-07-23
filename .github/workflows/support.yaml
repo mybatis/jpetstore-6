@@ -57,7 +57,7 @@ jobs:
 
           echo "Starting container forcing output flushing..."
           nohup ./mvnw cargo:run -P ${{ matrix.token }} -Dorg.slf4j.simpleLogger.defaultLogLevel=info > cargo.log 2>&1 &
-          
+
           # Stream cargo.log to the background job output so you can see boot progress live
           tail -f cargo.log &
           TAIL_PID=$!
