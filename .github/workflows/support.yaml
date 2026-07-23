@@ -105,4 +105,5 @@ jobs:
           path: |
             cargo.log
             **/target/cargo/logs/**/*
+            **/target/cargo/configurations/**/logs/**/*.log
             **/target/*.log
