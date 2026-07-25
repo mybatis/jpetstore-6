@@ -28,17 +28,25 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The Class AccountMapperTest.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MapperTestContext.class)
 @Transactional
 class AccountMapperTest {
 
+  /** The mapper. */
   @Autowired
   private AccountMapper mapper;
 
+  /** The jdbc template. */
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
+  /**
+   * Gets the account by username.
+   */
   @Test
   void getAccountByUsername() {
     // given
@@ -68,6 +76,9 @@ class AccountMapperTest {
 
   }
 
+  /**
+   * Gets the account by username and password.
+   */
   @Test
   void getAccountByUsernameAndPassword() {
     // given
@@ -98,6 +109,9 @@ class AccountMapperTest {
 
   }
 
+  /**
+   * Insert account.
+   */
   @Test
   void insertAccount() {
 
@@ -130,6 +144,9 @@ class AccountMapperTest {
         .containsEntry("PHONE", account.getPhone());
   }
 
+  /**
+   * Insert profile.
+   */
   @Test
   void insertProfile() {
 
@@ -153,6 +170,9 @@ class AccountMapperTest {
         .containsEntry("BANNEROPT", 0);
   }
 
+  /**
+   * Insert signon.
+   */
   @Test
   void insertSignon() {
 
@@ -171,6 +191,9 @@ class AccountMapperTest {
         account.getPassword());
   }
 
+  /**
+   * Update account.
+   */
   @Test
   void updateAccount() {
 
@@ -204,6 +227,9 @@ class AccountMapperTest {
         .containsEntry("PHONE", account.getPhone());
   }
 
+  /**
+   * Update profile.
+   */
   @Test
   void updateProfile() {
 
@@ -227,6 +253,9 @@ class AccountMapperTest {
         .containsEntry("BANNEROPT", 0);
   }
 
+  /**
+   * Update signon.
+   */
   @Test
   void updateSignon() {
 

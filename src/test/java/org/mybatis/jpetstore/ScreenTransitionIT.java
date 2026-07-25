@@ -51,6 +51,9 @@ import org.openqa.selenium.By;
 @ExtendWith(ScreenShooterExtension.class)
 class ScreenTransitionIT {
 
+  /**
+   * Setup selenide.
+   */
   @BeforeAll
   static void setupSelenide() {
     browser = CHROME;
@@ -59,6 +62,9 @@ class ScreenTransitionIT {
     baseUrl = "http://127.0.0.1:8080/jpetstore";
   }
 
+  /**
+   * Logout.
+   */
   @AfterEach
   void logout() {
     SelenideElement element = $(By.linkText("Sign Out"));
@@ -67,6 +73,9 @@ class ScreenTransitionIT {
     }
   }
 
+  /**
+   * Test order.
+   */
   @Test
   void testOrder() {
 
@@ -153,6 +162,9 @@ class ScreenTransitionIT {
 
   }
 
+  /**
+   * Test update profile.
+   */
   @Test
   void testUpdateProfile() {
     // Open the home page
@@ -183,6 +195,9 @@ class ScreenTransitionIT {
     $(By.name("account.phone")).shouldBe(value("555-555-5556"));
   }
 
+  /**
+   * Test registration user.
+   */
   @Test
   void testRegistrationUser() {
     // Open the home page
@@ -232,6 +247,9 @@ class ScreenTransitionIT {
 
   }
 
+  /**
+   * Test select items.
+   */
   @Test
   void testSelectItems() {
     // Open the home page
@@ -268,6 +286,9 @@ class ScreenTransitionIT {
 
   }
 
+  /**
+   * Test view cart.
+   */
   @Test
   void testViewCart() {
 
@@ -285,6 +306,9 @@ class ScreenTransitionIT {
 
   }
 
+  /**
+   * Test view help.
+   */
   @Test
   void testViewHelp() {
 
@@ -302,6 +326,9 @@ class ScreenTransitionIT {
 
   }
 
+  /**
+   * Test sidebar content on top page.
+   */
   @Test
   void testSidebarContentOnTopPage() {
     // Open the home page
@@ -338,6 +365,9 @@ class ScreenTransitionIT {
     $(By.linkText("Return to Main Menu")).click();
   }
 
+  /**
+   * Test quick links.
+   */
   @Test
   void testQuickLinks() {
     // Open the home page
@@ -369,6 +399,9 @@ class ScreenTransitionIT {
     $(By.cssSelector("#Catalog h2")).shouldBe(text("Birds"));
   }
 
+  /**
+   * Test main image content on top page.
+   */
   @Test
   void testMainImageContentOnTopPage() {
     // Open the home page
@@ -410,6 +443,9 @@ class ScreenTransitionIT {
     $(By.linkText("Return to Main Menu")).click();
   }
 
+  /**
+   * Test logo content.
+   */
   @Test
   void testLogoContent() {
     // Open the home page
@@ -432,6 +468,14 @@ class ScreenTransitionIT {
     $(By.cssSelector("#Catalog h2")).shouldBe(text("Cats"));
   }
 
+  /**
+   * Extract order id.
+   *
+   * @param target
+   *          the target
+   *
+   * @return the string
+   */
   private static String extractOrderId(String target) {
     Matcher matcher = Pattern.compile("Order #(\\d{4}) .*").matcher(target);
     String orderId = "";

@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -37,64 +37,130 @@ import org.mybatis.jpetstore.service.OrderService;
 @SessionScope
 public class OrderActionBean extends AbstractActionBean {
 
+  /** The serial version uid. */
   private static final long serialVersionUID = -6171288227470176272L;
 
+  /** The confirm order. */
   private static final String CONFIRM_ORDER = "/WEB-INF/jsp/order/ConfirmOrder.jsp";
+  /** The list orders. */
   private static final String LIST_ORDERS = "/WEB-INF/jsp/order/ListOrders.jsp";
+  /** The new order. */
   private static final String NEW_ORDER = "/WEB-INF/jsp/order/NewOrderForm.jsp";
+  /** The shipping. */
   private static final String SHIPPING = "/WEB-INF/jsp/order/ShippingForm.jsp";
+  /** The view order. */
   private static final String VIEW_ORDER = "/WEB-INF/jsp/order/ViewOrder.jsp";
 
+  /** The card type list. */
   private static final List<String> CARD_TYPE_LIST;
 
+  /** The order service. */
   @SpringBean
   private transient OrderService orderService;
 
+  /** The order. */
   private Order order = new Order();
+  /** The shipping address required. */
   private boolean shippingAddressRequired;
+  /** The confirmed. */
   private boolean confirmed;
+  /** The order list. */
   private List<Order> orderList;
 
   static {
     CARD_TYPE_LIST = Collections.unmodifiableList(Arrays.asList("Visa", "MasterCard", "American Express"));
   }
 
+  /**
+   * Gets the order id.
+   *
+   * @return the order id
+   */
   public int getOrderId() {
     return order.getOrderId();
   }
 
+  /**
+   * Sets the order id.
+   *
+   * @param orderId
+   *          the order id
+   */
   public void setOrderId(int orderId) {
     order.setOrderId(orderId);
   }
 
+  /**
+   * Gets the order.
+   *
+   * @return the order
+   */
   public Order getOrder() {
     return order;
   }
 
+  /**
+   * Sets the order.
+   *
+   * @param order
+   *          the order
+   */
   public void setOrder(Order order) {
     this.order = order;
   }
 
+  /**
+   * Checks if is shipping address required.
+   *
+   * @return true, if successful
+   */
   public boolean isShippingAddressRequired() {
     return shippingAddressRequired;
   }
 
+  /**
+   * Sets the shipping address required.
+   *
+   * @param shippingAddressRequired
+   *          the shipping address required
+   */
   public void setShippingAddressRequired(boolean shippingAddressRequired) {
     this.shippingAddressRequired = shippingAddressRequired;
   }
 
+  /**
+   * Checks if is confirmed.
+   *
+   * @return true, if successful
+   */
   public boolean isConfirmed() {
     return confirmed;
   }
 
+  /**
+   * Sets the confirmed.
+   *
+   * @param confirmed
+   *          the confirmed
+   */
   public void setConfirmed(boolean confirmed) {
     this.confirmed = confirmed;
   }
 
+  /**
+   * Gets the credit card types.
+   *
+   * @return the credit card types
+   */
   public List<String> getCreditCardTypes() {
     return CARD_TYPE_LIST;
   }
 
+  /**
+   * Gets the order list.
+   *
+   * @return the order list
+   */
   public List<Order> getOrderList() {
     return orderList;
   }

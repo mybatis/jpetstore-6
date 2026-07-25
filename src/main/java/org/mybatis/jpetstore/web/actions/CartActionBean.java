@@ -37,25 +37,48 @@ import org.mybatis.jpetstore.service.CatalogService;
 @SessionScope
 public class CartActionBean extends AbstractActionBean {
 
+  /** The serial version uid. */
   private static final long serialVersionUID = -4038684592582714235L;
 
+  /** The view cart. */
   private static final String VIEW_CART = "/WEB-INF/jsp/cart/Cart.jsp";
+  /** The check out. */
   private static final String CHECK_OUT = "/WEB-INF/jsp/cart/Checkout.jsp";
 
+  /** The catalog service. */
   @SpringBean
   private transient CatalogService catalogService;
 
+  /** The cart. */
   private Cart cart = new Cart();
+  /** The working item id. */
   private String workingItemId;
 
+  /**
+   * Gets the cart.
+   *
+   * @return the cart
+   */
   public Cart getCart() {
     return cart;
   }
 
+  /**
+   * Sets the cart.
+   *
+   * @param cart
+   *          the cart
+   */
   public void setCart(Cart cart) {
     this.cart = cart;
   }
 
+  /**
+   * Sets the working item id.
+   *
+   * @param workingItemId
+   *          the working item id
+   */
   public void setWorkingItemId(String workingItemId) {
     this.workingItemId = workingItemId;
   }
@@ -134,14 +157,27 @@ public class CartActionBean extends AbstractActionBean {
     return new ForwardResolution(VIEW_CART);
   }
 
+  /**
+   * View cart.
+   *
+   * @return the forward resolution
+   */
   public ForwardResolution viewCart() {
     return new ForwardResolution(VIEW_CART);
   }
 
+  /**
+   * Check out.
+   *
+   * @return the forward resolution
+   */
   public ForwardResolution checkOut() {
     return new ForwardResolution(CHECK_OUT);
   }
 
+  /**
+   * Clear.
+   */
   public void clear() {
     cart = new Cart();
     workingItemId = null;

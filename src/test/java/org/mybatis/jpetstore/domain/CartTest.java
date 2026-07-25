@@ -22,8 +22,14 @@ import java.util.Iterator;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * The Class CartTest.
+ */
 class CartTest {
 
+  /**
+   * Add item when is in stock is true.
+   */
   @Test
   void addItemWhenIsInStockIsTrue() {
     // given
@@ -55,6 +61,9 @@ class CartTest {
     }
   }
 
+  /**
+   * Add item when is in stock is false.
+   */
   @Test
   void addItemWhenIsInStockIsFalse() {
     // given
@@ -73,6 +82,9 @@ class CartTest {
     assertThat(cart.getCartItemList().get(0).getTotal()).isEqualTo(new BigDecimal("2.05"));
   }
 
+  /**
+   * Remove item by id when item not found.
+   */
   @Test
   void removeItemByIdWhenItemNotFound() {
     // given
@@ -89,6 +101,9 @@ class CartTest {
     assertThat(cart.getAllCartItems().hasNext()).isFalse();
   }
 
+  /**
+   * Remove item by id when item found.
+   */
   @Test
   void removeItemByIdWhenItemFound() {
     // given
@@ -106,6 +121,9 @@ class CartTest {
     assertThat(cart.getCartItemList()).isEmpty();
   }
 
+  /**
+   * Increment quantity by item id.
+   */
   @Test
   void incrementQuantityByItemId() {
     // given
@@ -126,6 +144,9 @@ class CartTest {
     assertThat(cart.getCartItemList().get(0).getTotal()).isEqualTo(new BigDecimal("6.15"));
   }
 
+  /**
+   * Set quantity by item id.
+   */
   @Test
   void setQuantityByItemId() {
     // given
@@ -145,6 +166,9 @@ class CartTest {
     assertThat(cart.getCartItemList().get(0).getTotal()).isEqualTo(new BigDecimal("20.50"));
   }
 
+  /**
+   * Gets the sub total when item is empty.
+   */
   @Test
   void getSubTotalWhenItemIsEmpty() {
     // given
@@ -158,6 +182,9 @@ class CartTest {
 
   }
 
+  /**
+   * Gets the sub total when item is exist.
+   */
   @Test
   void getSubTotalWhenItemIsExist() {
     // given

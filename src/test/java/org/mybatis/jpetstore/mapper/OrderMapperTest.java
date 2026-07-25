@@ -32,17 +32,25 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The Class OrderMapperTest.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MapperTestContext.class)
 @Transactional
 class OrderMapperTest {
 
+  /** The mapper. */
   @Autowired
   private OrderMapper mapper;
 
+  /** The jdbc template. */
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
+  /**
+   * Insert order.
+   */
   @Test
   void insertOrder() {
     // given
@@ -97,6 +105,9 @@ class OrderMapperTest {
 
   }
 
+  /**
+   * Insert order status.
+   */
   @Test
   void insertOrderStatus() {
     // given
@@ -117,6 +128,9 @@ class OrderMapperTest {
 
   }
 
+  /**
+   * Gets the orders by username.
+   */
   @Test
   void getOrdersByUsername() {
     // given
@@ -181,6 +195,9 @@ class OrderMapperTest {
     assertThat(orders.get(0).getShipToLastName()).isEqualTo(newOrder.getShipToLastName());
   }
 
+  /**
+   * Gets the order.
+   */
   @Test
   void getOrder() {
     // given

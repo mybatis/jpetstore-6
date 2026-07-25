@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -28,12 +28,21 @@ import net.sourceforge.stripes.action.SimpleMessage;
  */
 public abstract class AbstractActionBean implements ActionBean, Serializable {
 
+  /** The serial version uid. */
   private static final long serialVersionUID = -1767714708233127983L;
 
+  /** The error. */
   protected static final String ERROR = "/WEB-INF/jsp/common/Error.jsp";
 
+  /** The context. */
   protected transient ActionBeanContext context;
 
+  /**
+   * Sets the message.
+   *
+   * @param value
+   *          the value
+   */
   protected void setMessage(String value) {
     context.getMessages().add(new SimpleMessage(value));
   }

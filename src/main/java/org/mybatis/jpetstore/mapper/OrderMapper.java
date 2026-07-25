@@ -26,12 +26,40 @@ import org.mybatis.jpetstore.domain.Order;
  */
 public interface OrderMapper {
 
+  /**
+   * Get orders by username.
+   *
+   * @param username
+   *          the username
+   *
+   * @return the list
+   */
   List<Order> getOrdersByUsername(String username);
 
+  /**
+   * Get order.
+   *
+   * @param orderId
+   *          the order id
+   *
+   * @return the order
+   */
   Order getOrder(int orderId);
 
+  /**
+   * Insert order.
+   *
+   * @param order
+   *          the order
+   */
   void insertOrder(Order order);
 
+  /**
+   * Insert order status.
+   *
+   * @param order
+   *          the order
+   */
   void insertOrderStatus(Order order);
 
 }
