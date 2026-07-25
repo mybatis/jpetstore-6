@@ -30,27 +30,59 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class Cart implements Serializable {
 
+  /** The serial version uid. */
   private static final long serialVersionUID = 8329559983943337176L;
 
+  /** The item map. */
   private final Map<String, CartItem> itemMap = new ConcurrentHashMap<>();
+
+  /** The item list. */
   private final List<CartItem> itemList = new ArrayList<>();
 
+  /**
+   * Gets the cart items.
+   *
+   * @return the cart items
+   */
   public Iterator<CartItem> getCartItems() {
     return itemList.iterator();
   }
 
+  /**
+   * Gets the cart item list.
+   *
+   * @return the cart item list
+   */
   public List<CartItem> getCartItemList() {
     return itemList;
   }
 
+  /**
+   * Gets the number of items.
+   *
+   * @return the number of items
+   */
   public int getNumberOfItems() {
     return itemList.size();
   }
 
+  /**
+   * Gets the all cart items.
+   *
+   * @return the all cart items
+   */
   public Iterator<CartItem> getAllCartItems() {
     return itemList.iterator();
   }
 
+  /**
+   * Contains item id.
+   *
+   * @param itemId
+   *          the item id
+   *
+   * @return true, if successful
+   */
   public boolean containsItemId(String itemId) {
     return itemMap.containsKey(itemId);
   }
@@ -105,6 +137,14 @@ public class Cart implements Serializable {
     cartItem.incrementQuantity();
   }
 
+  /**
+   * Set quantity by item id.
+   *
+   * @param itemId
+   *          the item id
+   * @param quantity
+   *          the quantity
+   */
   public void setQuantityByItemId(String itemId, int quantity) {
     CartItem cartItem = itemMap.get(itemId);
     cartItem.setQuantity(quantity);

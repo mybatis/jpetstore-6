@@ -24,7 +24,21 @@ import org.mybatis.jpetstore.domain.Sequence;
  */
 public interface SequenceMapper {
 
+  /**
+   * Get sequence.
+   *
+   * @param sequence
+   *          the sequence
+   *
+   * @return the sequence
+   */
   Sequence getSequence(Sequence sequence);
 
+  /**
+   * Update sequence.
+   *
+   * @param sequence
+   *          the sequence
+   */
   void updateSequence(Sequence sequence);
 }

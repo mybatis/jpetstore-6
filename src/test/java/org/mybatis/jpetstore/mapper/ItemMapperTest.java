@@ -32,17 +32,25 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The Class ItemMapperTest.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MapperTestContext.class)
 @Transactional
 class ItemMapperTest {
 
+  /** The mapper. */
   @Autowired
   private ItemMapper mapper;
 
+  /** The jdbc template. */
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
+  /**
+   * Gets the item list by product.
+   */
   @Test
   void getItemListByProduct() {
     // given
@@ -86,6 +94,9 @@ class ItemMapperTest {
     assertThat(items.get(1).getProduct().getCategoryId()).isEqualTo("FISH");
   }
 
+  /**
+   * Gets the item.
+   */
   @Test
   void getItem() {
     // given
@@ -112,6 +123,9 @@ class ItemMapperTest {
     assertThat(item.getProduct().getCategoryId()).isEqualTo("FISH");
   }
 
+  /**
+   * Gets the inventory quantity.
+   */
   @Test
   void getInventoryQuantity() {
     // given
@@ -125,6 +139,9 @@ class ItemMapperTest {
 
   }
 
+  /**
+   * Update inventory quantity.
+   */
   @Test
   void updateInventoryQuantity() {
     // given
