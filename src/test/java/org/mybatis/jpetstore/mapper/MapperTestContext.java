@@ -27,10 +27,18 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.transaction.PlatformTransactionManager;
 
+/**
+ * The Class MapperTestContext.
+ */
 @Configuration
 @MapperScan("org.mybatis.jpetstore.mapper")
 public class MapperTestContext {
 
+  /**
+   * Data source.
+   *
+   * @return the data source
+   */
   @Bean
   DataSource dataSource() {
     return new EmbeddedDatabaseBuilder().generateUniqueName(true).setType(EmbeddedDatabaseType.HSQL)
@@ -38,11 +46,21 @@ public class MapperTestContext {
         .addScripts("database/jpetstore-hsqldb-dataload.sql").build();
   }
 
+  /**
+   * Transaction manager.
+   *
+   * @return the platform transaction manager
+   */
   @Bean
   PlatformTransactionManager transactionManager() {
     return new DataSourceTransactionManager(dataSource());
   }
 
+  /**
+   * Sql session factory.
+   *
+   * @return the sql session factory bean
+   */
   @Bean
   SqlSessionFactoryBean sqlSessionFactory() {
     SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
@@ -51,6 +69,11 @@ public class MapperTestContext {
     return factoryBean;
   }
 
+  /**
+   * Jdbc template.
+   *
+   * @return the jdbc template
+   */
   @Bean
   JdbcTemplate jdbcTemplate() {
     return new JdbcTemplate(dataSource());

@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -19,8 +19,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * The Class CatalogActionBeanTest.
+ */
 class CatalogActionBeanTest {
 
+  /**
+   * Gets the item list output null.
+   */
   @Test
   void getItemListOutputNull() {
 
@@ -32,7 +38,9 @@ class CatalogActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the product list output null.
+   */
   @Test
   void getProductListOutputNull() {
 
@@ -44,7 +52,9 @@ class CatalogActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the category list output null.
+   */
   @Test
   void getCategoryListOutputNull() {
 
@@ -56,7 +66,9 @@ class CatalogActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the item output null.
+   */
   @Test
   void getItemOutputNull() {
 
@@ -68,7 +80,9 @@ class CatalogActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the product output null.
+   */
   @Test
   void getProductOutputNull() {
 
@@ -80,7 +94,9 @@ class CatalogActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the category output null.
+   */
   @Test
   void getCategoryOutputNull() {
 
@@ -92,7 +108,9 @@ class CatalogActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the item id output null.
+   */
   @Test
   void getItemIdOutputNull() {
 
@@ -104,7 +122,9 @@ class CatalogActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the product id output null.
+   */
   @Test
   void getProductIdOutputNull() {
 
@@ -116,7 +136,9 @@ class CatalogActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the category id output null.
+   */
   @Test
   void getCategoryIdOutputNull() {
 
@@ -128,7 +150,9 @@ class CatalogActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the keyword output null.
+   */
   @Test
   void getKeywordOutputNull() {
 
@@ -140,7 +164,9 @@ class CatalogActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Constructor output not null.
+   */
   @Test
   void constructorOutputNotNull() {
 

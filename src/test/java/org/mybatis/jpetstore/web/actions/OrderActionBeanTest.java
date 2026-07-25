@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -19,9 +19,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * The Class OrderActionBeanTest.
+ */
 class OrderActionBeanTest {
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the order list output null.
+   */
   @Test
   void getOrderListOutputNull() {
 
@@ -33,7 +38,9 @@ class OrderActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Checks if is shipping address required output false.
+   */
   @Test
   void isShippingAddressRequiredOutputFalse() {
 
@@ -45,7 +52,9 @@ class OrderActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Constructor output not null.
+   */
   @Test
   void constructorOutputNotNull() {
 
@@ -58,7 +67,9 @@ class OrderActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Checks if is confirmed output false.
+   */
   @Test
   void isConfirmedOutputFalse() {
 

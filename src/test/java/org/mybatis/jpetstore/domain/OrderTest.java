@@ -22,8 +22,14 @@ import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * The Class OrderTest.
+ */
 class OrderTest {
 
+  /**
+   * Init order.
+   */
   @Test
   void initOrder() {
     // given

@@ -26,48 +26,97 @@ import java.util.Optional;
  */
 public class CartItem implements Serializable {
 
+  /** The serial version uid. */
   private static final long serialVersionUID = 6620528781626504362L;
 
+  /** The item. */
   private Item item;
+  /** The quantity. */
   private int quantity;
+  /** The in stock. */
   private boolean inStock;
+  /** The total. */
   private BigDecimal total;
 
+  /**
+   * Checks if is in stock.
+   *
+   * @return true, if successful
+   */
   public boolean isInStock() {
     return inStock;
   }
 
+  /**
+   * Sets the in stock.
+   *
+   * @param inStock
+   *          the in stock
+   */
   public void setInStock(boolean inStock) {
     this.inStock = inStock;
   }
 
+  /**
+   * Gets the total.
+   *
+   * @return the total
+   */
   public BigDecimal getTotal() {
     return total;
   }
 
+  /**
+   * Gets the item.
+   *
+   * @return the item
+   */
   public Item getItem() {
     return item;
   }
 
+  /**
+   * Sets the item.
+   *
+   * @param item
+   *          the item
+   */
   public void setItem(Item item) {
     this.item = item;
     calculateTotal();
   }
 
+  /**
+   * Gets the quantity.
+   *
+   * @return the quantity
+   */
   public int getQuantity() {
     return quantity;
   }
 
+  /**
+   * Sets the quantity.
+   *
+   * @param quantity
+   *          the quantity
+   */
   public void setQuantity(int quantity) {
     this.quantity = quantity;
     calculateTotal();
   }
 
+  /**
+   * Increment quantity.
+   */
   public void incrementQuantity() {
     quantity++;
     calculateTotal();
   }
 
+  /**
+   * Calculate total.
+   */
   private void calculateTotal() {
     total = Optional.ofNullable(item).map(Item::getListPrice).map(v -> v.multiply(new BigDecimal(quantity)))
         .orElse(null);

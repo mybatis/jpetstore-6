@@ -26,8 +26,22 @@ import org.mybatis.jpetstore.domain.LineItem;
  */
 public interface LineItemMapper {
 
+  /**
+   * Get line items by order id.
+   *
+   * @param orderId
+   *          the order id
+   *
+   * @return the list
+   */
   List<LineItem> getLineItemsByOrderId(int orderId);
 
+  /**
+   * Insert line item.
+   *
+   * @param lineItem
+   *          the line item
+   */
   void insertLineItem(LineItem lineItem);
 
 }

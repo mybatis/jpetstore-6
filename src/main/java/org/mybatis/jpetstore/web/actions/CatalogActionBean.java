@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -35,111 +35,243 @@ import org.mybatis.jpetstore.service.CatalogService;
 @SessionScope
 public class CatalogActionBean extends AbstractActionBean {
 
+  /** The serial version uid. */
   private static final long serialVersionUID = 5849523372175050635L;
 
+  /** The main. */
   private static final String MAIN = "/WEB-INF/jsp/catalog/Main.jsp";
+  /** The view category. */
   private static final String VIEW_CATEGORY = "/WEB-INF/jsp/catalog/Category.jsp";
+  /** The view product. */
   private static final String VIEW_PRODUCT = "/WEB-INF/jsp/catalog/Product.jsp";
+  /** The view item. */
   private static final String VIEW_ITEM = "/WEB-INF/jsp/catalog/Item.jsp";
+  /** The search products. */
   private static final String SEARCH_PRODUCTS = "/WEB-INF/jsp/catalog/SearchProducts.jsp";
 
+  /** The catalog service. */
   @SpringBean
   private transient CatalogService catalogService;
 
+  /** The keyword. */
   private String keyword;
 
+  /** The category id. */
   private String categoryId;
+  /** The category. */
   private Category category;
+  /** The category list. */
   private List<Category> categoryList;
 
+  /** The product id. */
   private String productId;
+  /** The product. */
   private Product product;
+  /** The product list. */
   private List<Product> productList;
 
+  /** The item id. */
   private String itemId;
+  /** The item. */
   private Item item;
+  /** The item list. */
   private List<Item> itemList;
 
+  /**
+   * Gets the keyword.
+   *
+   * @return the keyword
+   */
   public String getKeyword() {
     return keyword;
   }
 
+  /**
+   * Sets the keyword.
+   *
+   * @param keyword
+   *          the keyword
+   */
   public void setKeyword(String keyword) {
     this.keyword = keyword;
   }
 
+  /**
+   * Gets the category id.
+   *
+   * @return the category id
+   */
   public String getCategoryId() {
     return categoryId;
   }
 
+  /**
+   * Sets the category id.
+   *
+   * @param categoryId
+   *          the category id
+   */
   public void setCategoryId(String categoryId) {
     this.categoryId = categoryId;
   }
 
+  /**
+   * Gets the product id.
+   *
+   * @return the product id
+   */
   public String getProductId() {
     return productId;
   }
 
+  /**
+   * Sets the product id.
+   *
+   * @param productId
+   *          the product id
+   */
   public void setProductId(String productId) {
     this.productId = productId;
   }
 
+  /**
+   * Gets the item id.
+   *
+   * @return the item id
+   */
   public String getItemId() {
     return itemId;
   }
 
+  /**
+   * Sets the item id.
+   *
+   * @param itemId
+   *          the item id
+   */
   public void setItemId(String itemId) {
     this.itemId = itemId;
   }
 
+  /**
+   * Gets the category.
+   *
+   * @return the category
+   */
   public Category getCategory() {
     return category;
   }
 
+  /**
+   * Sets the category.
+   *
+   * @param category
+   *          the category
+   */
   public void setCategory(Category category) {
     this.category = category;
   }
 
+  /**
+   * Gets the product.
+   *
+   * @return the product
+   */
   public Product getProduct() {
     return product;
   }
 
+  /**
+   * Sets the product.
+   *
+   * @param product
+   *          the product
+   */
   public void setProduct(Product product) {
     this.product = product;
   }
 
+  /**
+   * Gets the item.
+   *
+   * @return the item
+   */
   public Item getItem() {
     return item;
   }
 
+  /**
+   * Sets the item.
+   *
+   * @param item
+   *          the item
+   */
   public void setItem(Item item) {
     this.item = item;
   }
 
+  /**
+   * Gets the category list.
+   *
+   * @return the category list
+   */
   public List<Category> getCategoryList() {
     return categoryList;
   }
 
+  /**
+   * Sets the category list.
+   *
+   * @param categoryList
+   *          the category list
+   */
   public void setCategoryList(List<Category> categoryList) {
     this.categoryList = categoryList;
   }
 
+  /**
+   * Gets the product list.
+   *
+   * @return the product list
+   */
   public List<Product> getProductList() {
     return productList;
   }
 
+  /**
+   * Sets the product list.
+   *
+   * @param productList
+   *          the product list
+   */
   public void setProductList(List<Product> productList) {
     this.productList = productList;
   }
 
+  /**
+   * Gets the item list.
+   *
+   * @return the item list
+   */
   public List<Item> getItemList() {
     return itemList;
   }
 
+  /**
+   * Sets the item list.
+   *
+   * @param itemList
+   *          the item list
+   */
   public void setItemList(List<Item> itemList) {
     this.itemList = itemList;
   }
 
+  /**
+   * View main.
+   *
+   * @return the forward resolution
+   */
   @DefaultHandler
   public ForwardResolution viewMain() {
     return new ForwardResolution(MAIN);

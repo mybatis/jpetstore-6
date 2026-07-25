@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -20,9 +20,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.mybatis.jpetstore.domain.Account;
 
+/**
+ * The Class AccountActionBeanTest.
+ */
 class AccountActionBeanTest {
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the my list output null.
+   */
   @Test
   void getMyListOutputNull() {
 
@@ -34,7 +39,9 @@ class AccountActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Constructor output not null.
+   */
   @Test
   void constructorOutputNotNull() {
 
@@ -47,7 +54,9 @@ class AccountActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the password output null.
+   */
   @Test
   void getPasswordOutputNull() {
 
@@ -59,7 +68,9 @@ class AccountActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Checks if is authenticated output false.
+   */
   @Test
   void isAuthenticatedOutputFalse() {
 
@@ -71,7 +82,9 @@ class AccountActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the username output null.
+   */
   @Test
   void getUsernameOutputNull() {
 
@@ -83,7 +96,9 @@ class AccountActionBeanTest {
 
   }
 
-  // Test written by Diffblue Cover.
+  /**
+   * Gets the account output not null.
+   */
   @Test
   void getAccountOutputNotNull() {
 

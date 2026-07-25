@@ -30,16 +30,41 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AccountService {
 
+  /** The account mapper. */
   private final AccountMapper accountMapper;
 
+  /**
+   * Instantiates a new account service.
+   *
+   * @param accountMapper
+   *          the account mapper
+   */
   public AccountService(AccountMapper accountMapper) {
     this.accountMapper = accountMapper;
   }
 
+  /**
+   * Get account.
+   *
+   * @param username
+   *          the username
+   *
+   * @return the account
+   */
   public Account getAccount(String username) {
     return accountMapper.getAccountByUsername(username);
   }
 
+  /**
+   * Get account.
+   *
+   * @param username
+   *          the username
+   * @param password
+   *          the password
+   *
+   * @return the account
+   */
   public Account getAccount(String username, String password) {
     return accountMapper.getAccountByUsernameAndPassword(username, password);
   }

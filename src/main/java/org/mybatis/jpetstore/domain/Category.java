@@ -24,32 +24,69 @@ import java.io.Serializable;
  */
 public class Category implements Serializable {
 
+  /** The serial version uid. */
   private static final long serialVersionUID = 3992469837058393712L;
 
+  /** The category id. */
   private String categoryId;
+  /** The name. */
   private String name;
+  /** The description. */
   private String description;
 
+  /**
+   * Gets the category id.
+   *
+   * @return the category id
+   */
   public String getCategoryId() {
     return categoryId;
   }
 
+  /**
+   * Sets the category id.
+   *
+   * @param categoryId
+   *          the category id
+   */
   public void setCategoryId(String categoryId) {
     this.categoryId = categoryId.trim();
   }
 
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Sets the name.
+   *
+   * @param name
+   *          the name
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * Gets the description.
+   *
+   * @return the description
+   */
   public String getDescription() {
     return description;
   }
 
+  /**
+   * Sets the description.
+   *
+   * @param description
+   *          the description
+   */
   public void setDescription(String description) {
     this.description = description;
   }

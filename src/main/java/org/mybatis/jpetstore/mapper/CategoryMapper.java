@@ -26,8 +26,21 @@ import org.mybatis.jpetstore.domain.Category;
  */
 public interface CategoryMapper {
 
+  /**
+   * Gets the category list.
+   *
+   * @return the category list
+   */
   List<Category> getCategoryList();
 
+  /**
+   * Get category.
+   *
+   * @param categoryId
+   *          the category id
+   *
+   * @return the category
+   */
   Category getCategory(String categoryId);
 
 }

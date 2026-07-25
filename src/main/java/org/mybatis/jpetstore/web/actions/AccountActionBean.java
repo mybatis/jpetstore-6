@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -42,22 +42,33 @@ import org.mybatis.jpetstore.service.CatalogService;
 @SessionScope
 public class AccountActionBean extends AbstractActionBean {
 
+  /** The serial version uid. */
   private static final long serialVersionUID = 5499663666155758178L;
 
+  /** The new account. */
   private static final String NEW_ACCOUNT = "/WEB-INF/jsp/account/NewAccountForm.jsp";
+  /** The edit account. */
   private static final String EDIT_ACCOUNT = "/WEB-INF/jsp/account/EditAccountForm.jsp";
+  /** The signon. */
   private static final String SIGNON = "/WEB-INF/jsp/account/SignonForm.jsp";
 
+  /** The language list. */
   private static final List<String> LANGUAGE_LIST;
+  /** The category list. */
   private static final List<String> CATEGORY_LIST;
 
+  /** The account service. */
   @SpringBean
   private transient AccountService accountService;
+  /** The catalog service. */
   @SpringBean
   private transient CatalogService catalogService;
 
+  /** The account. */
   private Account account = new Account();
+  /** The my list. */
   private List<Product> myList;
+  /** The authenticated. */
   private boolean authenticated;
 
   static {
@@ -65,44 +76,97 @@ public class AccountActionBean extends AbstractActionBean {
     CATEGORY_LIST = Collections.unmodifiableList(Arrays.asList("FISH", "DOGS", "REPTILES", "CATS", "BIRDS"));
   }
 
+  /**
+   * Gets the account.
+   *
+   * @return the account
+   */
   public Account getAccount() {
     return this.account;
   }
 
+  /**
+   * Gets the username.
+   *
+   * @return the username
+   */
   public String getUsername() {
     return account.getUsername();
   }
 
+  /**
+   * Sets the username.
+   *
+   * @param username
+   *          the username
+   */
   @Validate(required = true, on = { "signon", "newAccount", "editAccount" })
   public void setUsername(String username) {
     account.setUsername(username);
   }
 
+  /**
+   * Gets the password.
+   *
+   * @return the password
+   */
   public String getPassword() {
     return account.getPassword();
   }
 
+  /**
+   * Sets the password.
+   *
+   * @param password
+   *          the password
+   */
   @Validate(required = true, on = { "signon", "newAccount", "editAccount" })
   public void setPassword(String password) {
     account.setPassword(password);
   }
 
+  /**
+   * Gets the my list.
+   *
+   * @return the my list
+   */
   public List<Product> getMyList() {
     return myList;
   }
 
+  /**
+   * Sets the my list.
+   *
+   * @param myList
+   *          the my list
+   */
   public void setMyList(List<Product> myList) {
     this.myList = myList;
   }
 
+  /**
+   * Gets the languages.
+   *
+   * @return the languages
+   */
   public List<String> getLanguages() {
     return LANGUAGE_LIST;
   }
 
+  /**
+   * Gets the categories.
+   *
+   * @return the categories
+   */
   public List<String> getCategories() {
     return CATEGORY_LIST;
   }
 
+  /**
+   * New account form.
+   *
+   * @return the resolution
+   */
   public Resolution newAccountForm() {
     return new ForwardResolution(NEW_ACCOUNT);
   }

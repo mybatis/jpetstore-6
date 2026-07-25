@@ -26,17 +26,25 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The Class SequenceMapperTest.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MapperTestContext.class)
 @Transactional
 class SequenceMapperTest {
 
+  /** The mapper. */
   @Autowired
   private SequenceMapper mapper;
 
+  /** The jdbc template. */
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
+  /**
+   * Gets the sequence.
+   */
   @Test
   void getSequence() {
     // given
@@ -49,6 +57,9 @@ class SequenceMapperTest {
     assertThat(sequence.getNextId()).isEqualTo(1000);
   }
 
+  /**
+   * Update sequence.
+   */
   @Test
   void updateSequence() {
     // given

@@ -46,18 +46,26 @@ import org.mybatis.jpetstore.mapper.SequenceMapper;
 @ExtendWith(MockitoExtension.class)
 class OrderServiceTest {
 
+  /** The item mapper. */
   @Mock
   private ItemMapper itemMapper;
+  /** The order mapper. */
   @Mock
   private OrderMapper orderMapper;
+  /** The line item mapper. */
   @Mock
   private LineItemMapper lineItemMapper;
+  /** The sequence mapper. */
   @Mock
   private SequenceMapper sequenceMapper;
 
+  /** The order service. */
   @InjectMocks
   private OrderService orderService;
 
+  /**
+   * Should return order when given order id with out line items.
+   */
   @Test
   void shouldReturnOrderWhenGivenOrderIdWithOutLineItems() {
     // given
@@ -74,6 +82,9 @@ class OrderServiceTest {
     assertThat(orderService.getOrder(orderId).getLineItems()).isEmpty();
   }
 
+  /**
+   * Should return order when given order id existed line items.
+   */
   @Test
   void shouldReturnOrderWhenGivenOrderIdExistedLineItems() {
     // given
@@ -98,6 +109,9 @@ class OrderServiceTest {
     assertThat(expectedOrder.getLineItems().get(0).getItem().getQuantity()).isEqualTo(5);
   }
 
+  /**
+   * Should return order list.
+   */
   @Test
   void shouldReturnOrderList() {
 
@@ -114,6 +128,9 @@ class OrderServiceTest {
 
   }
 
+  /**
+   * Should return next id.
+   */
   @Test
   void shouldReturnNextId() {
 
@@ -131,6 +148,9 @@ class OrderServiceTest {
 
   }
 
+  /**
+   * Should throw exception when sequence not found.
+   */
   @Test
   void shouldThrowExceptionWhenSequenceNotFound() {
 
@@ -150,6 +170,9 @@ class OrderServiceTest {
 
   }
 
+  /**
+   * Should call the mapper to insert.
+   */
   @Test
   void shouldCallTheMapperToInsert() {
     // given

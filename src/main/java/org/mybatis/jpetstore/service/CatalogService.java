@@ -34,28 +34,70 @@ import org.springframework.stereotype.Service;
 @Service
 public class CatalogService {
 
+  /** The category mapper. */
   private final CategoryMapper categoryMapper;
+  /** The item mapper. */
   private final ItemMapper itemMapper;
+  /** The product mapper. */
   private final ProductMapper productMapper;
 
+  /**
+   * Instantiates a new catalog service.
+   *
+   * @param categoryMapper
+   *          the category mapper
+   * @param itemMapper
+   *          the item mapper
+   * @param productMapper
+   *          the product mapper
+   */
   public CatalogService(CategoryMapper categoryMapper, ItemMapper itemMapper, ProductMapper productMapper) {
     this.categoryMapper = categoryMapper;
     this.itemMapper = itemMapper;
     this.productMapper = productMapper;
   }
 
+  /**
+   * Gets the category list.
+   *
+   * @return the category list
+   */
   public List<Category> getCategoryList() {
     return categoryMapper.getCategoryList();
   }
 
+  /**
+   * Get category.
+   *
+   * @param categoryId
+   *          the category id
+   *
+   * @return the category
+   */
   public Category getCategory(String categoryId) {
     return categoryMapper.getCategory(categoryId);
   }
 
+  /**
+   * Get product.
+   *
+   * @param productId
+   *          the product id
+   *
+   * @return the product
+   */
   public Product getProduct(String productId) {
     return productMapper.getProduct(productId);
   }
 
+  /**
+   * Get product list by category.
+   *
+   * @param categoryId
+   *          the category id
+   *
+   * @return the list
+   */
   public List<Product> getProductListByCategory(String categoryId) {
     return productMapper.getProductListByCategory(categoryId);
   }
@@ -76,14 +118,38 @@ public class CatalogService {
     return products;
   }
 
+  /**
+   * Get item list by product.
+   *
+   * @param productId
+   *          the product id
+   *
+   * @return the list
+   */
   public List<Item> getItemListByProduct(String productId) {
     return itemMapper.getItemListByProduct(productId);
   }
 
+  /**
+   * Get item.
+   *
+   * @param itemId
+   *          the item id
+   *
+   * @return the item
+   */
   public Item getItem(String itemId) {
     return itemMapper.getItem(itemId);
   }
 
+  /**
+   * Is item in stock.
+   *
+   * @param itemId
+   *          the item id
+   *
+   * @return true, if successful
+   */
   public boolean isItemInStock(String itemId) {
     return itemMapper.getInventoryQuantity(itemId) > 0;
   }

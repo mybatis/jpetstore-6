@@ -37,11 +37,27 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class OrderService {
 
+  /** The item mapper. */
   private final ItemMapper itemMapper;
+  /** The order mapper. */
   private final OrderMapper orderMapper;
+  /** The sequence mapper. */
   private final SequenceMapper sequenceMapper;
+  /** The line item mapper. */
   private final LineItemMapper lineItemMapper;
 
+  /**
+   * Instantiates a new order service.
+   *
+   * @param itemMapper
+   *          the item mapper
+   * @param orderMapper
+   *          the order mapper
+   * @param sequenceMapper
+   *          the sequence mapper
+   * @param lineItemMapper
+   *          the line item mapper
+   */
   public OrderService(ItemMapper itemMapper, OrderMapper orderMapper, SequenceMapper sequenceMapper,
       LineItemMapper lineItemMapper) {
     this.itemMapper = itemMapper;

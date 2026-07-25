@@ -28,14 +28,21 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The Class CategoryMapperTest.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MapperTestContext.class)
 @Transactional
 class CategoryMapperTest {
 
+  /** The mapper. */
   @Autowired
   private CategoryMapper mapper;
 
+  /**
+   * Gets the category list.
+   */
   @Test
   void getCategoryList() {
     // given
@@ -68,6 +75,9 @@ class CategoryMapperTest {
         .isEqualTo("<image src=\"../images/reptiles_icon.gif\"><font size=\"5\" color=\"blue\"> Reptiles</font>");
   }
 
+  /**
+   * Gets the category.
+   */
   @Test
   void getCategory() {
     // given

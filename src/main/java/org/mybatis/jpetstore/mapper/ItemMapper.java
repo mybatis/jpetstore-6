@@ -27,12 +27,42 @@ import org.mybatis.jpetstore.domain.Item;
  */
 public interface ItemMapper {
 
+  /**
+   * Update inventory quantity.
+   *
+   * @param param
+   *          the param
+   */
   void updateInventoryQuantity(Map<String, Object> param);
 
+  /**
+   * Get inventory quantity.
+   *
+   * @param itemId
+   *          the item id
+   *
+   * @return the int
+   */
   int getInventoryQuantity(String itemId);
 
+  /**
+   * Get item list by product.
+   *
+   * @param productId
+   *          the product id
+   *
+   * @return the list
+   */
   List<Item> getItemListByProduct(String productId);
 
+  /**
+   * Get item.
+   *
+   * @param itemId
+   *          the item id
+   *
+   * @return the item
+   */
   Item getItem(String itemId);
 
 }

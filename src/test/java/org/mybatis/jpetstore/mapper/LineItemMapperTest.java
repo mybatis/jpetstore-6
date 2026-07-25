@@ -30,17 +30,25 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The Class LineItemMapperTest.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MapperTestContext.class)
 @Transactional
 class LineItemMapperTest {
 
+  /** The mapper. */
   @Autowired
   private LineItemMapper mapper;
 
+  /** The jdbc template. */
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
+  /**
+   * Insert line item.
+   */
   @Test
   void insertLineItem() {
     // given
@@ -63,6 +71,9 @@ class LineItemMapperTest {
 
   }
 
+  /**
+   * Gets the line items by order id.
+   */
   @Test
   void getLineItemsByOrderId() {
     // given

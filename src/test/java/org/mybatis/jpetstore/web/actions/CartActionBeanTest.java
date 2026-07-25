@@ -29,11 +29,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mybatis.jpetstore.domain.Cart;
 
+/**
+ * The Class CartActionBeanTest.
+ */
 class CartActionBeanTest {
 
+  /** The cart action bean. */
   private CartActionBean cartActionBean;
+  /** The mock context. */
   private ActionBeanContext mockContext;
 
+  /**
+   * Set up.
+   */
   @BeforeEach
   void setUp() {
     cartActionBean = new CartActionBean();
@@ -45,6 +53,9 @@ class CartActionBeanTest {
     cartActionBean.setContext(mockContext);
   }
 
+  /**
+   * Constructor output not null.
+   */
   @Test
   void constructorOutputNotNull() {
     final CartActionBean actual = new CartActionBean();
@@ -54,6 +65,9 @@ class CartActionBeanTest {
     assertThat(actual.getContext()).isNull();
   }
 
+  /**
+   * Gets the cart output not null.
+   */
   @Test
   void getCartOutputNotNull() {
     final CartActionBean bean = new CartActionBean();
@@ -61,6 +75,9 @@ class CartActionBeanTest {
     assertThat(bean.getCart()).isNotNull();
   }
 
+  /**
+   * Add item to cart with null working item id should return error.
+   */
   @Test
   void addItemToCart_WithNullWorkingItemId_ShouldReturnError() {
     cartActionBean.setWorkingItemId(null);
@@ -71,6 +88,9 @@ class CartActionBeanTest {
     assertThat(resolution.toString()).contains("Error.jsp");
   }
 
+  /**
+   * Add item to cart with empty working item id should return error.
+   */
   @Test
   void addItemToCart_WithEmptyWorkingItemId_ShouldReturnError() {
     cartActionBean.setWorkingItemId("");
@@ -81,6 +101,9 @@ class CartActionBeanTest {
     assertThat(resolution.toString()).contains("Error.jsp");
   }
 
+  /**
+   * Add item to cart with blank working item id should return error.
+   */
   @Test
   void addItemToCart_WithBlankWorkingItemId_ShouldReturnError() {
     cartActionBean.setWorkingItemId("   ");
@@ -91,6 +114,9 @@ class CartActionBeanTest {
     assertThat(resolution.toString()).contains("Error.jsp");
   }
 
+  /**
+   * Remove item from cart with null working item id should return error.
+   */
   @Test
   void removeItemFromCart_WithNullWorkingItemId_ShouldReturnError() {
     cartActionBean.setWorkingItemId(null);
@@ -101,6 +127,9 @@ class CartActionBeanTest {
     assertThat(resolution.toString()).contains("Error.jsp");
   }
 
+  /**
+   * Remove item from cart with empty working item id should return error.
+   */
   @Test
   void removeItemFromCart_WithEmptyWorkingItemId_ShouldReturnError() {
     cartActionBean.setWorkingItemId("");
@@ -111,6 +140,9 @@ class CartActionBeanTest {
     assertThat(resolution.toString()).contains("Error.jsp");
   }
 
+  /**
+   * Remove item from cart with blank working item id should return error.
+   */
   @Test
   void removeItemFromCart_WithBlankWorkingItemId_ShouldReturnError() {
     cartActionBean.setWorkingItemId("   ");
@@ -121,6 +153,9 @@ class CartActionBeanTest {
     assertThat(resolution.toString()).contains("Error.jsp");
   }
 
+  /**
+   * Remove item from cart with non existent item should return error.
+   */
   @Test
   void removeItemFromCart_WithNonExistentItem_ShouldReturnError() {
     cartActionBean.setWorkingItemId("NON_EXISTENT_ITEM");
@@ -131,6 +166,9 @@ class CartActionBeanTest {
     assertThat(resolution.toString()).contains("Error.jsp");
   }
 
+  /**
+   * Clear should reset cart and working item id.
+   */
   @Test
   void clearShouldResetCartAndWorkingItemId() {
     cartActionBean.setWorkingItemId("EST-1");

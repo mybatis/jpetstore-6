@@ -28,14 +28,21 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The Class ProductMapperTest.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MapperTestContext.class)
 @Transactional
 class ProductMapperTest {
 
+  /** The mapper. */
   @Autowired
   private ProductMapper mapper;
 
+  /**
+   * Gets the product list by category.
+   */
   @Test
   void getProductListByCategory() {
     // given
@@ -69,6 +76,9 @@ class ProductMapperTest {
         .isEqualTo("<image src=\"../images/fish4.gif\">Salt Water fish from Australia");
   }
 
+  /**
+   * Gets the product.
+   */
   @Test
   void getProduct() {
     // given
@@ -84,6 +94,9 @@ class ProductMapperTest {
     assertThat(product.getDescription()).isEqualTo("<image src=\"../images/fish3.gif\">Fresh Water fish from Japan");
   }
 
+  /**
+   * Search product list.
+   */
   @Test
   void searchProductList() {
     // given
