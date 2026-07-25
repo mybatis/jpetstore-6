@@ -34,7 +34,8 @@ jobs:
         distribution: ['zulu']
         java: [21]
         os: [macos-latest, ubuntu-latest, windows-latest]
-        token: ["tomcat11", "glassfish8", "jetty12", "liberty26", "payara7", "tomee10", "wildfly40"]
+        # Do not add tomee10 until https://github.com/apache/tomee/pull/2844 fixed and released
+        token: ["tomcat11", "glassfish8", "jetty12", "liberty26", "payara7", "wildfly40"]
       fail-fast: false
       max-parallel: 6
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
