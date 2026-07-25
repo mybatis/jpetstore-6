@@ -427,6 +427,7 @@
         <liberty.version>26.0.0.7</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/io/openliberty/openliberty-jakartaee11/${liberty.version}/openliberty-jakartaee11-${liberty.version}.zip</cargo.maven.containerUrl>
+        <cargo.server.start.timeout>240000</cargo.server.start.timeout>
       </properties>
       <dependencies>
         <!-- Due to osgi issue with mybatis spring, its required here for liberty -->
