@@ -28,7 +28,6 @@ public class Item implements Serializable {
   private static final long serialVersionUID = -2159121673445254631L;
 
   private String itemId;
-  private String productId;
   private BigDecimal listPrice;
   private BigDecimal unitCost;
   private int supplierId;
