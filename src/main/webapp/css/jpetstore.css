@@ -132,8 +132,6 @@ a.Button:hover {
   background-color: #000;
   color: #fff;
   line-height: 9ex;
-  voice-family: "\"}\"";
-  voice-family: inherit;
 }
 
 body>#Logo {
@@ -155,8 +153,6 @@ body>#Logo {
   font-family: helvetica, tahoma, arial, verdana, sans-serif;
   text-align: center;
   line-height: 9ex;
-  voice-family: "\"}\"";
-  voice-family: inherit;
 }
 
 #Menu, #Menu a, #Menu a:link, #Menu a:visited, #Menu a:hover {
@@ -167,9 +163,6 @@ body>#Logo {
 
 body>#Menu {
   height: 9ex;
-}
-
- {
 }
 
 #Search {
@@ -185,8 +178,6 @@ body>#Menu {
   background-color: #000;
   color: #eaac00;
   line-height: 9ex;
-  voice-family: "\"}\"";
-  voice-family: inherit;
 }
 
 body>#Search {
@@ -219,8 +210,6 @@ body>#Search {
   background-color: #000;
   color: #fff;
   line-height: 9ex;
-  voice-family: "\"}\"";
-  voice-family: inherit;
 }
 
 body>#PoweredBy {
@@ -239,8 +228,6 @@ body>#PoweredBy {
   background-color: #000;
   color: #fff;
   line-height: 9ex;
-  voice-family: "\"}\"";
-  voice-family: inherit;
 }
 
 body>#Banner {
