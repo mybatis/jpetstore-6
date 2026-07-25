@@ -402,7 +402,7 @@
         <jetty.major-version>12</jetty.major-version>
         <jetty.version>12.1.11</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
-        <cargo.jetty.deployer.ee.version>ee10</cargo.jetty.deployer.ee.version>
+        <cargo.jetty.deployer.ee.version>ee11</cargo.jetty.deployer.ee.version>
       </properties>
       <build>
         <plugins>
