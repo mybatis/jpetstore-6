@@ -65,12 +65,15 @@
     <cargo-maven3-plugin.version>1.10.28</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <slf4j.version>2.0.18</slf4j.version>
-    <spring.version>7.0.8</spring.version>
     <assertj.version>3.27.7</assertj.version>
     <byte-buddy.version>1.18.11</byte-buddy.version>
-    <mockito.version>5.23.0</mockito.version>
     <hsqldb.version>2.7.4</hsqldb.version>
+    <jstl-api.version>3.0.2</jstl-api.version>
+    <jstl-impl.version>3.0.1</jstl-impl.version>
+    <mockito.version>5.23.0</mockito.version>
+    <slf4j.version>2.0.18</slf4j.version>
+    <spring.version>7.0.8</spring.version>
+
     <module.name>org.mybatis.jpetstore</module.name>
 
     <!-- Reproducible Builds -->
@@ -127,12 +130,12 @@
     <dependency>
       <groupId>jakarta.servlet.jsp.jstl</groupId>
       <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-      <version>3.0.2</version>
+      <version>${jstl-api.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.web</groupId>
       <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-      <version>3.0.1</version>
+      <version>${jstl-impl.version}</version>
     </dependency>
     <dependency>
       <groupId>jakarta.servlet.jsp</groupId>
@@ -364,13 +367,13 @@
         <dependency>
           <groupId>jakarta.servlet.jsp.jstl</groupId>
           <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-          <version>3.0.2</version>
+          <version>${jstl-api.version}</version>
           <scope>provided</scope>
         </dependency>
         <dependency>
           <groupId>org.glassfish.web</groupId>
           <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-          <version>3.0.1</version>
+          <version>${jstl-impl.version}</version>
           <scope>provided</scope>
         </dependency>
       </dependencies>
@@ -469,13 +472,13 @@
         <dependency>
           <groupId>jakarta.servlet.jsp.jstl</groupId>
           <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-          <version>3.0.2</version>
+          <version>${jstl-api.version}</version>
           <scope>provided</scope>
         </dependency>
         <dependency>
           <groupId>org.glassfish.web</groupId>
           <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-          <version>3.0.1</version>
+          <version>${jstl-impl.version}</version>
           <scope>provided</scope>
         </dependency>
       </dependencies>
@@ -507,7 +510,7 @@
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
       <dependencies>
-        <!-- GlassFish bundles its own JSTL; mark as provided to avoid a
+        <!-- TomEE bundles its own JSTL; mark as provided to avoid a
              duplicate TLD URI registration when Jasper scans both the server
              lib and WEB-INF/lib. -->
         <dependency>
