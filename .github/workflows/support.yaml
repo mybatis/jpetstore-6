@@ -32,23 +32,22 @@ jobs:
       matrix:
         cache: [maven]
         distribution: ['zulu']
+        java: [21]
         os: [macos-latest, ubuntu-latest, windows-latest]
-        token: ["tomcat9", "tomee80", "wildfly26", "liberty-ee8", "jetty", "payara5", "resin"]
-        exclude:
-          - os: windows-latest
-            token: liberty-ee8
+        # Do not add tomee10 until https://github.com/apache/tomee/pull/2844 fixed and released
+        token: ["tomcat11", "glassfish8", "jetty12", "liberty26", "payara7", "wildfly40"]
       fail-fast: false
       max-parallel: 6
-    name: Test JDK ${{ matrix.token == 'payara5' && '17' || '21' }}, ${{ matrix.os }}, ${{ matrix.token }}
+    name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - name: Setup Java ${{ matrix.token == 'payara5' && '17' || '21' }} ${{ matrix.distribution }}
+      - name: Setup Java ${{ matrix.java }} ${{ matrix.distribution }}
         uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95 # v5
         with:
           cache: ${{ matrix.cache }}
           distribution: ${{ matrix.distribution }}
-          java-version: ${{ matrix.token == 'payara5' && '17' || '21' }}
+          java-version: ${{ matrix.java }}
       - name: Build, start, test, and stop with ${{ matrix.token }}
         shell: bash
         run: |

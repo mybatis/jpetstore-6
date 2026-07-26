@@ -36,23 +36,22 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
 - Startup the Tomcat server and deploy web application
 
   ```
-  $ ./mvnw cargo:run -P tomcat90
+  $ ./mvnw cargo:run -P tomcat11
   ```
 
   > Note:
   >
   > We provide maven profiles per application server as follow:
   >
-  > | Profile        | Description |
-  > | -------------- | ----------- |
-  > | tomcat9        | Running under the Tomcat 9.0 |
-  > | tomee80        | Running under the TomEE 8.0(Java EE 8) |
-  > | wildfly26      | Running under the WildFly 26(Java EE 8) |
-  > | liberty-ee8    | Running under the WebSphere Liberty(Java EE 8) |
-  > | jetty          | Running under the Jetty 12 (Java EE 8) |
-  > | glassfish5 (disabled)     | Running under the GlassFish 5(Java EE 8) |
-  > | payara5        | Running under the Payara 5 (Java EE 8) |
-  > | resin          | Running under the Resin 4 |
+  > | Profile        | Description                           |
+  > | -------------- | ------------------------------------- |
+  > | tomcat11       | Running under Tomcat 11.0 (preferred) |
+  > | glassfish8     | Running under GlassFish 8             |
+  > | jetty12        | Running under Jetty 12                |
+  > | liberty26      | Running under WebSphere Liberty 26    |
+  > | payara7        | Running under Payara 7                |
+  > | tomee10        | Running under TomEE 10.2              |
+  > | wildfly40      | Running under the WildFly 40          |
 
 - Run application in browser http://localhost:8080/jpetstore/
 - Press Ctrl-C to stop the server.
@@ -72,5 +71,5 @@ docker compose up -d
 Perform integration tests for screen transition.
 
 ```
-$ ./mvnw clean verify -P tomcat90
+$ ./mvnw clean verify -P tomcat11
 ```

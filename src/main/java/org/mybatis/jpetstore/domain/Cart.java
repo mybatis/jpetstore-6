@@ -35,6 +35,7 @@ public class Cart implements Serializable {
 
   /** The item map. */
   private final Map<String, CartItem> itemMap = new ConcurrentHashMap<>();
+
   /** The item list. */
   private final List<CartItem> itemList = new ArrayList<>();
 

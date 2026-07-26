@@ -30,7 +30,7 @@
   <body>
     <section name="サンプルコード">
       <p>
-        JPetStore 6 は MyBatis 3, <a href="http://projects.spring.io/spring-framework/">Spring 4</a> そして <a href="http://www.stripesframework.org/">Stripes</a> を使って構築された Web Application で、<a href="https://github.com/mybatis/jpetstore-6/releases">downloads</a> セクションからダウンロードすることができます。
+        JPetStore 6 は MyBatis 3, <a href="http://projects.spring.io/spring-framework/">Spring 6</a> そして <a href="https://spring.io/projects/spring-framework">Spring Web MVC</a> を使って構築された Web Application で、<a href="https://github.com/mybatis/jpetstore-6/releases">downloads</a> セクションからダウンロードすることができます。
         この章では、このサンプルを見ながら実用的な Web Application の構築方法と実行方法について説明します。
       </p>
       <subsection name="目的">
