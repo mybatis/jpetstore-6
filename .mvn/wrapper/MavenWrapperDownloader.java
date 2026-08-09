@@ -32,6 +32,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * The Class MavenWrapperDownloader.
  */
 public final class MavenWrapperDownloader {
+
     /** The wrapper version. */
     private static final String WRAPPER_VERSION = "3.3.4";
 
