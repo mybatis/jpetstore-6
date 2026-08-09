@@ -173,13 +173,6 @@
       <version>${hsqldb.version}</version>
     </dependency>
 
-    <!-- Due to osgi issue with mybatis spring, its required here for liberty -->
-    <dependency>
-      <groupId>org.springframework.batch</groupId>
-      <artifactId>spring-batch-infrastructure</artifactId>
-      <version>5.2.6</version>
-    </dependency>
-
     <!-- Test dependencies -->
     <dependency>
       <groupId>net.bytebuddy</groupId>
@@ -424,6 +417,14 @@
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
+      <dependencies>
+        <!-- Due to osgi issue with mybatis spring, its required here for liberty -->
+        <dependency>
+          <groupId>org.springframework.batch</groupId>
+          <artifactId>spring-batch-infrastructure</artifactId>
+          <version>5.2.6</version>
+        </dependency>
+      </dependencies>
       <build>
         <plugins>
           <plugin>
