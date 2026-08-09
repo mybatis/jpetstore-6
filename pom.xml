@@ -280,10 +280,6 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-        </plugin>
-        <plugin>
           <groupId>org.codehaus.cargo</groupId>
           <artifactId>cargo-maven3-plugin</artifactId>
           <version>${cargo-maven3-plugin.version}</version>
@@ -336,6 +332,7 @@
   </build>
 
   <profiles>
+
     <!-- Profiles for Application Server (tomcat first as preferred then alpha order) -->
     <profile>
       <id>tomcat9</id>
