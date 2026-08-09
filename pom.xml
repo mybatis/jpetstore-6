@@ -65,12 +65,14 @@
     <cargo-maven3-plugin.version>1.10.28</cargo-maven3-plugin.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <slf4j.version>2.0.18</slf4j.version>
-    <spring.version>6.2.19</spring.version>
     <assertj.version>3.27.7</assertj.version>
     <byte-buddy.version>1.18.11</byte-buddy.version>
-    <mockito.version>5.23.0</mockito.version>
+    <commons-logging.version>1.4.0</commons-logging.version>
     <hsqldb.version>2.7.4</hsqldb.version>
+    <mockito.version>5.23.0</mockito.version>
+    <slf4j.version>2.0.18</slf4j.version>
+    <spring.version>6.2.19</spring.version>
+
     <module.name>org.mybatis.jpetstore</module.name>
 
     <!-- Reproducible Builds -->
@@ -104,10 +106,17 @@
       <artifactId>mybatis-spring</artifactId>
       <version>3.0.6</version>
     </dependency>
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>${spring.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -120,21 +129,19 @@
       <!-- Keep spring-web at 5.3.39 until jakarta upgrade occurs -->
       <version>5.3.39</version>
     </dependency>
+
     <dependency>
       <groupId>net.sourceforge.stripes</groupId>
       <artifactId>stripes</artifactId>
       <version>1.6.0</version>
       <exclusions>
         <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-        <exclusion>
           <groupId>log4j</groupId>
           <artifactId>log4j</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
+
     <dependency>
       <groupId>org.apache.taglibs</groupId>
       <artifactId>taglibs-standard-spec</artifactId>
@@ -145,6 +152,7 @@
       <artifactId>taglibs-standard-impl</artifactId>
       <version>1.2.5</version>
     </dependency>
+
     <dependency>
       <groupId>jakarta.servlet.jsp</groupId>
       <artifactId>jakarta.servlet.jsp-api</artifactId>
@@ -157,6 +165,13 @@
       <version>4.0.4</version>
       <scope>provided</scope>
     </dependency>
+
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>${commons-logging.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -167,6 +182,7 @@
       <artifactId>slf4j-simple</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
+
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
@@ -186,12 +202,14 @@
       <version>${byte-buddy.version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
       <version>6.1.3</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
@@ -204,30 +222,28 @@
       <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <version>${assertj.version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
       <version>7.17.0</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit3-driver</artifactId>
       <version>4.46.0</version>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
@@ -286,6 +302,7 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
     <plugins>
       <!-- Keep disabled until jakarta upgrade occurs due to issues with liberty holding stdin/stdout open with ee8
       <plugin>
@@ -355,6 +372,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <!-- TODO: Remove after we switch to jakarta as end of life -->
       <id>tomee80</id>
@@ -382,6 +400,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>wildfly26</id>
       <!-- TODO: Remove after we switch to jakarta as end of life -->
@@ -410,6 +429,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>liberty-ee8</id>
       <properties>
@@ -446,6 +466,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>jetty</id>
       <properties>
@@ -474,6 +495,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <!-- Use 'payara5' as this is not supported with java 17 due to hk2 'dcs' is null error. -->
       <id>glassfish5</id>
@@ -501,6 +523,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>payara5</id>
       <properties>
@@ -529,6 +552,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>resin</id>
       <properties>
