@@ -376,6 +376,7 @@
       <properties>
         <glassfish.major-version>5</glassfish.major-version>
         <glassfish.version>5.1.0</glassfish.version>
+        <cargo.java.home>D:/jdk/jdk-1.8.0.501</cargo.java.home>
         <cargo.maven.containerId>glassfish${glassfish.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/org/glassfish/main/distributions/glassfish/${glassfish.version}/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -399,7 +400,7 @@
     </profile>
 
     <profile>
-      <id>jetty</id>
+      <id>jetty12-ee8</id>
       <properties>
         <jetty.major-version>12</jetty.major-version>
         <jetty.version>12.1.12</jetty.version>
@@ -428,7 +429,7 @@
     </profile>
 
     <profile>
-      <id>liberty-ee8</id>
+      <id>liberty26-ee8</id>
       <properties>
         <liberty.version>26.0.0.7</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
@@ -495,7 +496,7 @@
 
     <profile>
       <!-- TODO: Remove after we switch to jakarta as end of life and no longer supported. -->
-      <id>resin</id>
+      <id>resin4</id>
       <properties>
         <resin.major-version>4</resin.major-version>
         <resin.version>4.0.67</resin.version>
@@ -530,7 +531,7 @@
     </profile>
 
     <profile>
-      <id>tomee80</id>
+      <id>tomee8</id>
       <properties>
         <tomee.major-version>8</tomee.major-version>
         <tomee.version>8.0.16</tomee.version>
