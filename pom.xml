@@ -338,7 +338,7 @@
   </build>
 
   <profiles>
-    <!-- Profiles for Application Server -->
+    <!-- Profiles for Application Server (tomcat first as preferred then alpha order) -->
     <profile>
       <id>tomcat9</id>
       <activation>
