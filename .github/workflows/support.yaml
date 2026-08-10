@@ -36,7 +36,7 @@ jobs:
         token: ["tomcat9", "glassfish5", "jetty12-ee8", "liberty26-ee8", "payara5", "resin4", "tomee8", "wildfly26"]
         exclude:
           - os: windows-latest
-            token: liberty-ee8
+            token: liberty26-ee8
       fail-fast: false
       max-parallel: 6
     name: Test JDK ${{ matrix.token == 'payara5' && '17' || '21' }}, ${{ matrix.os }}, ${{ matrix.token }}
