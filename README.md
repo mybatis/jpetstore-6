@@ -36,7 +36,7 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
 - Startup the Tomcat server and deploy web application
 
   ```
-  $ ./mvnw cargo:run -P tomcat90
+  $ ./mvnw cargo:run -P tomcat9
   ```
 
   > Note:
@@ -74,5 +74,5 @@ docker compose up -d
 Perform integration tests for screen transition.
 
 ```
-$ ./mvnw clean verify -P tomcat90
+$ ./mvnw clean verify -P tomcat9
 ```
