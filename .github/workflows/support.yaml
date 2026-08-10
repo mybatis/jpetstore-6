@@ -120,7 +120,7 @@ jobs:
         with:
           name: cargo-logs-${{ matrix.token }}-${{ matrix.os }}
           path: |
-            **/build/**/*
-            **/target/cargo/logs/**/*
-            **/target/cargo/configurations/**/logs/**/*.log
-            **/target/*.log
+            build/**/*
+            target/cargo/logs/**/*
+            target/cargo/configurations/**/logs/**/*.log
+            target/*.log
