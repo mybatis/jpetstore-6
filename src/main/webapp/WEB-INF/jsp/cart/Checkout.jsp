@@ -21,48 +21,45 @@
 
 <div id="Catalog">
 
-<table>
-<tr>
-<td>
-<h2>Checkout Summary</h2>
+    <table>
+        <tr>
+            <td>
+                <h2>Checkout Summary</h2>
 
-<table>
+                <table>
 
-<tr>
-<td><b>Item ID</b></td>
-<td><b>Product ID</b></td>
-<td><b>Description</b></td>
-<td><b>In Stock?</b></td>
-<td><b>Quantity</b></td>
-<td><b>List Price</b></td>
-<td><b>Total Cost</b></td>
-</tr>
+                    <tr>
+                        <td><b>Item ID</b></td>
+                        <td><b>Product ID</b></td>
+                        <td><b>Description</b></td>
+                        <td><b>In Stock?</b></td>
+                        <td><b>Quantity</b></td>
+                        <td><b>List Price</b></td>
+                        <td><b>Total Cost</b></td>
+                    </tr>
 
-<c:forEach var="cartItem" items="${cart.cartItemList}">
-<tr>
-<td><a href="${pageContext.request.contextPath}/catalog/viewItem?itemId=${cartItem.item.itemId}">${cartItem.item.itemId}</a></td>
-<td>${cartItem.item.product.productId}</td>
-<td>${cartItem.item.attribute1} ${cartItem.item.attribute2}
-${cartItem.item.attribute3} ${cartItem.item.attribute4}
-${cartItem.item.attribute5} ${cartItem.item.product.name}</td>
-<td>${cartItem.inStock}</td>
-<td>${cartItem.quantity}</td>
-<td><fmt:formatNumber value="${cartItem.item.listPrice}"
-pattern="$#,##0.00" /></td>
-<td><fmt:formatNumber value="${cartItem.total}"
-pattern="$#,##0.00" /></td>
-</tr>
-</c:forEach>
-<tr>
-<td colspan="7">Sub Total: <fmt:formatNumber
-value="${cart.subTotal}" pattern="$#,##0.00" /></td>
-</tr>
-</table>
+                    <c:forEach var="cartItem" items="${cart.cartItemList}">
+                        <tr>
+                            <td><a href="${pageContext.request.contextPath}/catalog/viewItem?itemId=${cartItem.item.itemId}">${cartItem.item.itemId}</a></td>
+                            <td>${cartItem.item.product.productId}</td>
+                            <td>${cartItem.item.attribute1} ${cartItem.item.attribute2} ${cartItem.item.attribute3} ${cartItem.item.attribute4}
+                                ${cartItem.item.attribute5} ${cartItem.item.product.name}</td>
+                            <td>${cartItem.inStock}</td>
+                            <td>${cartItem.quantity}</td>
+                            <td><fmt:formatNumber value="${cartItem.item.listPrice}" pattern="$#,##0.00" /></td>
+                            <td><fmt:formatNumber value="${cartItem.total}" pattern="$#,##0.00" /></td>
+                        </tr>
+                    </c:forEach>
+                    <tr>
+                        <td colspan="7">Sub Total: <fmt:formatNumber value="${cart.subTotal}" pattern="$#,##0.00" /></td>
+                    </tr>
+                </table>
+            </td>
 
-<td>&nbsp;</td>
+            <td>&nbsp;</td>
 
-</tr>
-</table>
+        </tr>
+    </table>
 
 </div>
 

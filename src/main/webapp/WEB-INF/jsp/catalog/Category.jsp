@@ -21,20 +21,20 @@
 
 <div id="Catalog">
 
-<h2>${category.name}</h2>
+    <h2>${category.name}</h2>
 
-<table>
-<tr>
-<th>Product ID</th>
-<th>Name</th>
-</tr>
-<c:forEach var="product" items="${productList}">
-<tr>
-<td><a href="${pageContext.request.contextPath}/catalog/viewProduct?productId=${product.productId}">${product.productId}</a></td>
-<td>${product.name}</td>
-</tr>
-</c:forEach>
-</table>
+    <table>
+        <tr>
+            <th>Product ID</th>
+            <th>Name</th>
+        </tr>
+        <c:forEach var="product" items="${productList}">
+            <tr>
+                <td><a href="${pageContext.request.contextPath}/catalog/viewProduct?productId=${product.productId}">${product.productId}</a></td>
+                <td>${product.name}</td>
+            </tr>
+        </c:forEach>
+    </table>
 
 </div>
 

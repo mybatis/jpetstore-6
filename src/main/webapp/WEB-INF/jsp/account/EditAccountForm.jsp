@@ -44,6 +44,7 @@
 
     </form>
 
-    <a href="${pageContext.request.contextPath}/order/list">My Orders</a></div>
+    <a href="${pageContext.request.contextPath}/order/list">My Orders</a>
+</div>
 
-    <%@ include file="../common/IncludeBottom.jsp"%>
+<%@ include file="../common/IncludeBottom.jsp"%>
