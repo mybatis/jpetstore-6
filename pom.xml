@@ -371,13 +371,13 @@
     </profile>
 
     <profile>
-      <!-- TODO: Remove after we switch to jakarta as end of life -->
-      <id>tomee80</id>
+      <!-- Use 'payara5' as this is not supported with java 17 due to hk2 'dcs' is null error. -->
+      <id>glassfish5</id>
       <properties>
-        <tomee.major-version>8</tomee.major-version>
-        <tomee.version>8.0.16</tomee.version>
-        <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
+        <glassfish.major-version>5</glassfish.major-version>
+        <glassfish.version>5.1.0</glassfish.version>
+        <cargo.maven.containerId>glassfish${glassfish.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/org/glassfish/main/distributions/glassfish/${glassfish.version}/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
       </properties>
       <build>
         <plugins>
@@ -399,14 +399,12 @@
     </profile>
 
     <profile>
-      <id>wildfly26</id>
-      <!-- TODO: Remove after we switch to jakarta as end of life -->
+      <id>jetty</id>
       <properties>
-        <wildfly.major-version>26</wildfly.major-version>
-        <wildfly.version>26.1.3.Final</wildfly.version>
-        <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
-        <cargo.jvmargs>--add-opens=java.base/java.util=ALL-UNNAMED</cargo.jvmargs>
+        <jetty.major-version>12</jetty.major-version>
+        <jetty.version>12.1.12</jetty.version>
+        <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
+        <cargo.jetty.deployer.ee.version>ee8</cargo.jetty.deployer.ee.version>
       </properties>
       <build>
         <plugins>
@@ -415,11 +413,13 @@
             <artifactId>cargo-maven3-plugin</artifactId>
             <configuration>
               <container>
-                <containerId>${cargo.maven.containerId}</containerId>
+                <containerId>jetty12x</containerId>
                 <type>installed</type>
-                <zipUrlInstaller>
-                  <url>${cargo.maven.containerUrl}</url>
-                </zipUrlInstaller>
+                <artifactInstaller>
+                  <groupId>org.eclipse.jetty</groupId>
+                  <artifactId>jetty-home</artifactId>
+                  <version>${jetty.version}</version>
+                </artifactInstaller>
               </container>
             </configuration>
           </plugin>
@@ -465,63 +465,6 @@
     </profile>
 
     <profile>
-      <id>jetty</id>
-      <properties>
-        <jetty.major-version>12</jetty.major-version>
-        <jetty.version>12.1.11</jetty.version>
-        <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
-        <cargo.jetty.deployer.ee.version>ee8</cargo.jetty.deployer.ee.version>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.cargo</groupId>
-            <artifactId>cargo-maven3-plugin</artifactId>
-            <configuration>
-              <container>
-                <containerId>jetty12x</containerId>
-                <type>installed</type>
-                <artifactInstaller>
-                  <groupId>org.eclipse.jetty</groupId>
-                  <artifactId>jetty-home</artifactId>
-                  <version>${jetty.version}</version>
-                </artifactInstaller>
-              </container>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <!-- Use 'payara5' as this is not supported with java 17 due to hk2 'dcs' is null error. -->
-      <id>glassfish5</id>
-      <properties>
-        <glassfish.major-version>5</glassfish.major-version>
-        <glassfish.version>5.1.0</glassfish.version>
-        <cargo.maven.containerId>glassfish${glassfish.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/org/glassfish/main/distributions/glassfish/${glassfish.version}/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.cargo</groupId>
-            <artifactId>cargo-maven3-plugin</artifactId>
-            <configuration>
-              <container>
-                <containerId>${cargo.maven.containerId}</containerId>
-                <type>installed</type>
-                <zipUrlInstaller>
-                  <url>${cargo.maven.containerUrl}</url>
-                </zipUrlInstaller>
-              </container>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
       <id>payara5</id>
       <properties>
         <payara.major-version>5</payara.major-version>
@@ -551,6 +494,7 @@
     </profile>
 
     <profile>
+      <!-- TODO: Remove after we switch to jakarta as end of life and no longer supported. -->
       <id>resin</id>
       <properties>
         <resin.major-version>4</resin.major-version>
@@ -584,6 +528,62 @@
         </plugins>
       </build>
     </profile>
+
+    <profile>
+      <id>tomee80</id>
+      <properties>
+        <tomee.major-version>8</tomee.major-version>
+        <tomee.version>8.0.16</tomee.version>
+        <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>wildfly26</id>
+      <properties>
+        <wildfly.major-version>26</wildfly.major-version>
+        <wildfly.version>26.1.3.Final</wildfly.version>
+        <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
+        <cargo.jvmargs>--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED</cargo.jvmargs>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
   </profiles>
 
 </project>
