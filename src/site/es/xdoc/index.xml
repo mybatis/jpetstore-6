@@ -30,7 +30,7 @@
     <section name="Código de ejemplo">
       <p>
         JPetStore 6 es una aplicación web completa construida sobre MyBatis 3,
-      	<a href="http://projects.spring.io/spring-framework/">Spring 4</a> y <a href="http://www.stripesframework.org/">Stripes</a>.
+      	<a href="http://projects.spring.io/spring-framework/">Spring 6</a> y <a href="https://spring.io/projects/spring-framework">Spring Web MVC</a>.
         Está disponible para su descarga en la sección de
         <a href="https://github.com/mybatis/jpetstore-6/releases">downloads</a> del repositorio Github de MyBatis 3.
         En esta sección haremos un recorrido por este ejemplo para comprender cómo está construido y cómo ejecutarlo.

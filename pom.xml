@@ -134,17 +134,10 @@
       <artifactId>spring-web</artifactId>
       <version>${spring.version}</version>
     </dependency>
-
     <dependency>
-      <groupId>net.sourceforge.stripes</groupId>
-      <artifactId>stripes</artifactId>
-      <version>1.6.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
     </dependency>
 
     <dependency>

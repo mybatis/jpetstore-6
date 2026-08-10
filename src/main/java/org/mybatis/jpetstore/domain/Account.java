@@ -17,8 +17,6 @@ package org.mybatis.jpetstore.domain;
 
 import java.io.Serializable;
 
-import net.sourceforge.stripes.validation.Validate;
-
 /**
  * The Class Account.
  *
@@ -138,7 +136,6 @@ public class Account implements Serializable {
    * @param firstName
    *          the first name
    */
-  @Validate(required = true, on = { "newAccount", "editAccount" })
   public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
@@ -158,7 +155,6 @@ public class Account implements Serializable {
    * @param lastName
    *          the last name
    */
-  @Validate(required = true, on = { "newAccount", "editAccount" })
   public void setLastName(String lastName) {
     this.lastName = lastName;
   }
