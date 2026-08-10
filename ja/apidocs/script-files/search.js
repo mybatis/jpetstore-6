@@ -17,7 +17,7 @@ const messages = {
 const categories = {
     modules: "Modules",
     packages: "Packages",
-    types: "Classes and Interfaces",
+    types: "Types",
     members: "Members",
     searchTags: "Search Tags"
 };
@@ -33,8 +33,8 @@ const itemDesc = [
     ["Static method in {0}"],
     ["Record component of {0}"],
     // Types in upper and lower case
-    ["Annotation Interface", "annotation interface"],
-    ["Enum Class",           "enum class"],
+    ["Annotation Type", "annotation type"],
+    ["Enum",           "enum"],
     ["Interface",      "interface"],
     ["Record Class",    "record class"],
     ["Class",          "class"],
