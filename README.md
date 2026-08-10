@@ -43,16 +43,16 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
   >
   > We provide maven profiles per application server as follow:
   >
-  > | Profile        | Description |
-  > | -------------- | ----------- |
-  > | tomcat9        | Running under the Tomcat 9.0 |
-  > | tomee80        | Running under the TomEE 8.0(Java EE 8) |
-  > | wildfly26      | Running under the WildFly 26(Java EE 8) |
-  > | liberty-ee8    | Running under the WebSphere Liberty(Java EE 8) |
-  > | jetty          | Running under the Jetty 12 (Java EE 8) |
-  > | glassfish5 (disabled)     | Running under the GlassFish 5(Java EE 8) |
-  > | payara5        | Running under the Payara 5 (Java EE 8) |
-  > | resin          | Running under the Resin 4 |
+  > | Profile             | Description                         |
+  > | ------------------- | ----------------------------------- |
+  > | tomcat9 (preferred) | Running under the Tomcat 9.0        |
+  > | glassfish5          | Running under the GlassFish 5       |
+  > | jetty12-ee8         | Running under the Jetty 12          |
+  > | liberty26-ee8       | Running under the WebSphere Liberty |
+  > | payara5             | Running under the Payara 5          |
+  > | resin4              | Running under the Resin 4           |
+  > | tomee8              | Running under the TomEE 8.0         |
+  > | wildfly26           | Running under the WildFly 26        |
 
 - Run application in browser http://localhost:8080/jpetstore/
 - Press Ctrl-C to stop the server.
