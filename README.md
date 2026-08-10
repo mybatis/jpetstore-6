@@ -57,7 +57,8 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
 - Run application in browser http://localhost:8080/jpetstore/
 - Press Ctrl-C to stop the server.
 
-When using 'glassfish5', it must run under java 8 as it does not work with newer versions.  The code is set to 'D:/jdk/jdk-1.8.0.501'.  Your usage likely differs, so simply call with '-Dcargo.java.home=PATH-TO-JDK8'.
+- When using 'glassfish5', it must run under java 8 as it does not work with newer versions.  The code is set to 'D:/jdk/jdk-1.8.0.501'.  Your usage likely differs, so simply call with '-Dcargo.java.home=PATH-TO-JDK8'.
+- When using 'payara', the full maven buil must run under java 17, this is unlike glassfish5 due to how it connects with cargo.  In that case, use '-Denforcer.skip=true' to accomplish.
 
 ## Run on Docker
 ```
