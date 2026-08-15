@@ -17,8 +17,9 @@ package org.mybatis.jpetstore.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class Order implements Serializable {
   /** The username. */
   private String username;
   /** The order date. */
-  private Date orderDate;
+  private LocalDateTime orderDate;
   /** The ship address1. */
   private String shipAddress1;
   /** The ship address2. */
@@ -128,7 +129,7 @@ public class Order implements Serializable {
    *
    * @return the order date
    */
-  public Date getOrderDate() {
+  public LocalDateTime getOrderDate() {
     return orderDate;
   }
 
@@ -138,7 +139,7 @@ public class Order implements Serializable {
    * @param orderDate
    *          the order date
    */
-  public void setOrderDate(Date orderDate) {
+  public void setOrderDate(LocalDateTime orderDate) {
     this.orderDate = orderDate;
   }
 
@@ -609,7 +610,7 @@ public class Order implements Serializable {
   public void initOrder(Account account, Cart cart) {
 
     username = account.getUsername();
-    orderDate = new Date();
+    orderDate = LocalDateTime.now();
 
     shipToFirstName = account.getFirstName();
     shipToLastName = account.getLastName();
@@ -666,5 +667,17 @@ public class Order implements Serializable {
   public void addLineItem(LineItem lineItem) {
     lineItems.add(lineItem);
   }
+
+  /**
+   * Gets the formatted order date.
+   *
+   * @return the formatted order date
+   */
+  public String getFormattedOrderDate() {
+    return orderDate.format(ORDER_DATE_FORMATTER);
+  }
+
+  /** The Constant ORDER_DATE_FORMATTER. */
+  private static final DateTimeFormatter ORDER_DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
 }

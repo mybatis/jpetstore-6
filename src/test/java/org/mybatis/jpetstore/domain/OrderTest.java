@@ -18,7 +18,7 @@ package org.mybatis.jpetstore.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -61,7 +61,7 @@ class OrderTest {
 
     // then
     assertThat(order.getUsername()).isSameAs(account.getUsername());
-    assertThat(order.getOrderDate()).isBeforeOrEqualsTo(new Date());
+    assertThat(order.getOrderDate()).isBeforeOrEqualTo(LocalDateTime.now());
     assertThat(order.getShipAddress1()).isEqualTo(account.getAddress1());
     assertThat(order.getShipAddress2()).isEqualTo(account.getAddress2());
     assertThat(order.getShipCity()).isEqualTo(account.getCity());
