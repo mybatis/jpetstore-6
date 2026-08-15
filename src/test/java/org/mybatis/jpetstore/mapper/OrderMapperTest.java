@@ -56,7 +56,7 @@ class OrderMapperTest {
     // given
     Order order = new Order();
     order.setOrderId(1);
-    order.setOrderDate(java.sql.Timestamp.valueOf(LocalDateTime.of(2018, 12, 31, 23, 59, 59)));
+    order.setOrderDate(LocalDateTime.of(2018, 12, 31, 23, 59, 59));
     order.setUsername("j2ee");
     order.setCardType("Visa");
     order.setCreditCard("1234 5678 9012 3456");
@@ -113,7 +113,7 @@ class OrderMapperTest {
     // given
     Order order = new Order();
     order.setOrderId(1);
-    order.setOrderDate(java.sql.Timestamp.valueOf(LocalDateTime.of(2018, 12, 31, 23, 59, 59)));
+    order.setOrderDate(LocalDateTime.of(2018, 12, 31, 23, 59, 59));
     order.setStatus("OK");
 
     // when
@@ -136,7 +136,7 @@ class OrderMapperTest {
     // given
     Order newOrder = new Order();
     newOrder.setOrderId(1);
-    newOrder.setOrderDate(java.sql.Timestamp.valueOf(LocalDateTime.of(2018, 12, 31, 23, 59, 59)));
+    newOrder.setOrderDate(LocalDateTime.of(2018, 12, 31, 12, 59, 59));
     newOrder.setStatus("OK");
     newOrder.setUsername("j2ee");
     newOrder.setCardType("Visa");
@@ -170,7 +170,7 @@ class OrderMapperTest {
     // then
     assertThat(orders).hasSize(1);
     assertThat(orders.get(0).getOrderId()).isEqualTo(newOrder.getOrderId());
-    assertThat(orders.get(0).getOrderDate()).isEqualTo(java.sql.Date.valueOf(LocalDate.of(2018, 12, 31)));
+    assertThat(orders.get(0).getOrderDate()).isEqualTo(LocalDateTime.of(2018, 12, 31, 0, 0));
     assertThat(orders.get(0).getCardType()).isEqualTo(newOrder.getCardType());
     assertThat(orders.get(0).getCreditCard()).isEqualTo(newOrder.getCreditCard());
     assertThat(orders.get(0).getExpiryDate()).isEqualTo(newOrder.getExpiryDate());
@@ -203,7 +203,7 @@ class OrderMapperTest {
     // given
     Order newOrder = new Order();
     newOrder.setOrderId(1);
-    newOrder.setOrderDate(java.sql.Timestamp.valueOf(LocalDateTime.of(2018, 12, 31, 23, 59, 59)));
+    newOrder.setOrderDate(LocalDateTime.of(2018, 12, 31, 12, 59, 59));
     newOrder.setStatus("OK");
     newOrder.setUsername("j2ee");
     newOrder.setCardType("Visa");
@@ -236,7 +236,7 @@ class OrderMapperTest {
 
     // then
     assertThat(order.getOrderId()).isEqualTo(newOrder.getOrderId());
-    assertThat(order.getOrderDate()).isEqualTo(java.sql.Date.valueOf(LocalDate.of(2018, 12, 31)));
+    assertThat(order.getOrderDate()).isEqualTo(LocalDateTime.of(2018, 12, 31, 0, 0));
     assertThat(order.getCardType()).isEqualTo(newOrder.getCardType());
     assertThat(order.getCreditCard()).isEqualTo(newOrder.getCreditCard());
     assertThat(order.getExpiryDate()).isEqualTo(newOrder.getExpiryDate());

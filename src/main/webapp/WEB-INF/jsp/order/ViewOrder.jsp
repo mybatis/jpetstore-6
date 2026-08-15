@@ -23,9 +23,7 @@
 
     <table>
         <tr>
-            <th align="center" colspan="2">Order #${order.orderId}
-                <fmt:formatDate value="${order.orderDate}" pattern="yyyy/MM/dd hh:mm:ss" />
-            </th>
+            <th align="center" colspan="2">Order #${order.orderId} ${order.formattedOrderDate}</th>
         </tr>
         <tr>
             <th colspan="2">Payment Details</th>
