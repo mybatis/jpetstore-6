@@ -19,6 +19,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+/**
+ * The Class StaxFactoryInitializationListener.
+ */
 @WebListener
 public class StaxFactoryInitializationListener implements ServletContextListener {
 

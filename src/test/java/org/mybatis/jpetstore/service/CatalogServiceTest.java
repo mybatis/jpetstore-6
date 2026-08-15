@@ -34,6 +34,7 @@ import org.mybatis.jpetstore.mapper.ItemMapper;
 import org.mybatis.jpetstore.mapper.ProductMapper;
 
 /**
+ * The Class CatalogServiceTest.
  */
 @ExtendWith(MockitoExtension.class)
 class CatalogServiceTest {

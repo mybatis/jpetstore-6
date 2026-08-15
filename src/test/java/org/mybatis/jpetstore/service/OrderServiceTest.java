@@ -43,6 +43,7 @@ import org.mybatis.jpetstore.mapper.OrderMapper;
 import org.mybatis.jpetstore.mapper.SequenceMapper;
 
 /**
+ * The Class OrderServiceTest.
  */
 @ExtendWith(MockitoExtension.class)
 class OrderServiceTest {

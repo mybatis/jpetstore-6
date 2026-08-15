@@ -18,9 +18,17 @@ package org.mybatis.jpetstore.web.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * The Class RootController.
+ */
 @Controller
 public class RootController {
 
+  /**
+   * Redirect to home.
+   *
+   * @return the string
+   */
   @GetMapping("/")
   public String redirectToHome() {
     // Forward or redirect to whatever your application's actual starting page/mapping is

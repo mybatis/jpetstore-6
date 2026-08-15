@@ -31,15 +31,23 @@ import org.mybatis.jpetstore.service.CatalogService;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
+/**
+ * The Class CartControllerTest.
+ */
 @ExtendWith(MockitoExtension.class)
 class CartControllerTest {
 
+  /** The catalog service. */
   @Mock
   private CatalogService catalogService;
 
+  /** The cart controller. */
   @InjectMocks
   private CartController cartController;
 
+  /**
+   * View cart returns cart view.
+   */
   @Test
   void viewCartReturnsCartView() {
     HttpSession session = mock(HttpSession.class);
@@ -53,6 +61,9 @@ class CartControllerTest {
     assertThat(model.asMap()).containsKey("cart");
   }
 
+  /**
+   * Add item with null id returns error.
+   */
   @Test
   void addItemWithNullIdReturnsError() {
     HttpSession session = mock(HttpSession.class);
@@ -64,6 +75,9 @@ class CartControllerTest {
     assertThat(model.asMap()).containsKey("message");
   }
 
+  /**
+   * Remove item with null id returns error.
+   */
   @Test
   void removeItemWithNullIdReturnsError() {
     HttpSession session = mock(HttpSession.class);

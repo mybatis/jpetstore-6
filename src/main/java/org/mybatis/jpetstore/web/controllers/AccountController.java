@@ -34,28 +34,57 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * The Class AccountController.
+ */
 @Controller
 @RequestMapping("/account")
 public class AccountController {
 
+  /** The signon view. */
   private static final String SIGNON_VIEW = "account/SignonForm";
+  /** The new account view. */
   private static final String NEW_ACCOUNT_VIEW = "account/NewAccountForm";
+  /** The edit account view. */
   private static final String EDIT_ACCOUNT_VIEW = "account/EditAccountForm";
 
+  /** The language list. */
   private static final List<String> LANGUAGE_LIST = Collections.unmodifiableList(Arrays.asList("english", "japanese"));
+  /** The category list. */
   private static final List<String> CATEGORY_LIST = Collections
       .unmodifiableList(Arrays.asList("FISH", "DOGS", "REPTILES", "CATS", "BIRDS"));
 
+  /** The account service. */
   @Autowired
   private AccountService accountService;
+  /** The catalog service. */
   @Autowired
   private CatalogService catalogService;
 
+  /**
+   * Signon form.
+   *
+   * @return the string
+   */
   @GetMapping({ "", "/" })
   public String signonForm() {
     return SIGNON_VIEW;
   }
 
+  /**
+   * Signon.
+   *
+   * @param username
+   *          the username
+   * @param password
+   *          the password
+   * @param session
+   *          the session
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @PostMapping("/signon")
   public String signon(@RequestParam("username") String username, @RequestParam("password") String password,
       HttpSession session, Model model) {
@@ -70,12 +99,28 @@ public class AccountController {
     return "redirect:/catalog";
   }
 
+  /**
+   * Signoff.
+   *
+   * @param session
+   *          the session
+   *
+   * @return the string
+   */
   @GetMapping("/signoff")
   public String signoff(HttpSession session) {
     session.invalidate();
     return "redirect:/catalog";
   }
 
+  /**
+   * New account form.
+   *
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping("/new")
   public String newAccountForm(Model model) {
     model.addAttribute("languages", LANGUAGE_LIST);
@@ -84,12 +129,30 @@ public class AccountController {
     return NEW_ACCOUNT_VIEW;
   }
 
+  /**
+   * New account.
+   *
+   * @param account
+   *          the account
+   *
+   * @return the string
+   */
   @PostMapping("/new")
   public String newAccount(@ModelAttribute Account account) {
     accountService.insertAccount(account);
     return "redirect:/catalog";
   }
 
+  /**
+   * Edit account form.
+   *
+   * @param session
+   *          the session
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping("/edit")
   public String editAccountForm(HttpSession session, Model model) {
     AccountSession accountSession = (AccountSession) session.getAttribute("accountBean");
@@ -101,6 +164,16 @@ public class AccountController {
     return EDIT_ACCOUNT_VIEW;
   }
 
+  /**
+   * Edit account.
+   *
+   * @param account
+   *          the account
+   * @param session
+   *          the session
+   *
+   * @return the string
+   */
   @PostMapping("/edit")
   public String editAccount(@ModelAttribute Account account, HttpSession session) {
     accountService.updateAccount(account);
@@ -114,25 +187,54 @@ public class AccountController {
    * Inner class to hold account session data, compatible with JSP ${sessionScope.accountBean.*} references.
    */
   public static class AccountSession implements java.io.Serializable {
+    /** The serial version uid. */
     private static final long serialVersionUID = 1L;
+    /** The account. */
     private final Account account;
+    /** The my list. */
     private final List<Product> myList;
+    /** The authenticated. */
     private final boolean authenticated;
 
+    /**
+     * Instantiates a new account session.
+     *
+     * @param account
+     *          the account
+     * @param myList
+     *          the my list
+     * @param authenticated
+     *          the authenticated
+     */
     public AccountSession(Account account, List<Product> myList, boolean authenticated) {
       this.account = account;
       this.myList = myList;
       this.authenticated = authenticated;
     }
 
+    /**
+     * Gets the account.
+     *
+     * @return the account
+     */
     public Account getAccount() {
       return account;
     }
 
+    /**
+     * Gets the my list.
+     *
+     * @return the my list
+     */
     public List<Product> getMyList() {
       return myList;
     }
 
+    /**
+     * Checks if is authenticated.
+     *
+     * @return true, if successful
+     */
     public boolean isAuthenticated() {
       return authenticated && account != null && account.getUsername() != null;
     }

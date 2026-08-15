@@ -28,20 +28,40 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * The Class CatalogController.
+ */
 @Controller
 @RequestMapping("/catalog")
 public class CatalogController {
 
+  /** The error view. */
   private static final String ERROR_VIEW = "common/Error";
 
+  /** The catalog service. */
   @Autowired
   private CatalogService catalogService;
 
+  /**
+   * View main.
+   *
+   * @return the string
+   */
   @GetMapping({ "", "/" })
   public String viewMain() {
     return "catalog/Main";
   }
 
+  /**
+   * View category.
+   *
+   * @param categoryId
+   *          the category id
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping("/viewCategory")
   public String viewCategory(@RequestParam(value = "categoryId", required = false) String categoryId, Model model) {
     if (categoryId != null) {
@@ -53,6 +73,16 @@ public class CatalogController {
     return "catalog/Category";
   }
 
+  /**
+   * View product.
+   *
+   * @param productId
+   *          the product id
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping("/viewProduct")
   public String viewProduct(@RequestParam(value = "productId", required = false) String productId, Model model) {
     if (productId != null) {
@@ -64,6 +94,16 @@ public class CatalogController {
     return "catalog/Product";
   }
 
+  /**
+   * View item.
+   *
+   * @param itemId
+   *          the item id
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping("/viewItem")
   public String viewItem(@RequestParam("itemId") String itemId, Model model) {
     Item item = catalogService.getItem(itemId);
@@ -73,6 +113,16 @@ public class CatalogController {
     return "catalog/Item";
   }
 
+  /**
+   * Search products.
+   *
+   * @param keyword
+   *          the keyword
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping("/searchProducts")
   public String searchProducts(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
     if (keyword == null || keyword.isEmpty()) {

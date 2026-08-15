@@ -29,6 +29,7 @@ import org.mybatis.jpetstore.domain.Account;
 import org.mybatis.jpetstore.mapper.AccountMapper;
 
 /**
+ * The Class AccountServiceTest.
  */
 @ExtendWith(MockitoExtension.class)
 class AccountServiceTest {

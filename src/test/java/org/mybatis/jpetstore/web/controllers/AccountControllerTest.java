@@ -34,22 +34,34 @@ import org.mybatis.jpetstore.service.CatalogService;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
+/**
+ * The Class AccountControllerTest.
+ */
 @ExtendWith(MockitoExtension.class)
 class AccountControllerTest {
 
+  /** The account service. */
   @Mock
   private AccountService accountService;
+  /** The catalog service. */
   @Mock
   private CatalogService catalogService;
 
+  /** The account controller. */
   @InjectMocks
   private AccountController accountController;
 
+  /**
+   * Signon form returns signon view.
+   */
   @Test
   void signonFormReturnsSignonView() {
     assertThat(accountController.signonForm()).isEqualTo("account/SignonForm");
   }
 
+  /**
+   * Signon with invalid credentials returns signon view.
+   */
   @Test
   void signonWithInvalidCredentialsReturnsSignonView() {
     HttpSession session = mock(HttpSession.class);
@@ -62,6 +74,9 @@ class AccountControllerTest {
     assertThat(model.asMap()).containsKey("message");
   }
 
+  /**
+   * Signon with valid credentials redirects.
+   */
   @Test
   void signonWithValidCredentialsRedirects() {
     HttpSession session = mock(HttpSession.class);
@@ -77,6 +92,9 @@ class AccountControllerTest {
     assertThat(view).isEqualTo("redirect:/catalog");
   }
 
+  /**
+   * New account form returns new account view.
+   */
   @Test
   void newAccountFormReturnsNewAccountView() {
     Model model = new ExtendedModelMap();
@@ -86,6 +104,9 @@ class AccountControllerTest {
     assertThat(model.asMap()).containsKey("categories");
   }
 
+  /**
+   * Account session is authenticated with valid account.
+   */
   @Test
   void accountSessionIsAuthenticatedWithValidAccount() {
     Account account = new Account();
@@ -94,12 +115,18 @@ class AccountControllerTest {
     assertThat(session.isAuthenticated()).isTrue();
   }
 
+  /**
+   * Account session is not authenticated with null account.
+   */
   @Test
   void accountSessionIsNotAuthenticatedWithNullAccount() {
     AccountController.AccountSession session = new AccountController.AccountSession(null, List.of(), true);
     assertThat(session.isAuthenticated()).isFalse();
   }
 
+  /**
+   * New account redirects to catalog without logging in.
+   */
   @Test
   void newAccountRedirectsToCatalogWithoutLoggingIn() {
     // Registration should insert the account and redirect to catalog WITHOUT
@@ -112,6 +139,9 @@ class AccountControllerTest {
     assertThat(view).isEqualTo("redirect:/catalog");
   }
 
+  /**
+   * Edit account redirects to edit page not catalog.
+   */
   @Test
   void editAccountRedirectsToEditPageNotCatalog() {
     // After saving account, should redirect to /account/edit so the user stays
