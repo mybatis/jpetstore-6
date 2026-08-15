@@ -82,7 +82,7 @@ public class AccountController {
   }
 
   @PostMapping("/new")
-  public String newAccount(@ModelAttribute Account account, HttpSession session) {
+  public String newAccount(@ModelAttribute Account account) {
     accountService.insertAccount(account);
     return "redirect:/catalog";
   }

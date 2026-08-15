@@ -24,71 +24,68 @@
 <html lang="en">
 
 <head>
-<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/jpetstore.css" type="text/css"
-media="screen" />
-<meta name="generator"
-content="HTML Tidy for Linux/x86 (vers 1st November 2002), see www.w3.org" />
-<title>JPetStore Demo</title>
-<meta content="text/html; charset=windows-1252"
-http-equiv="Content-Type" />
-<meta http-equiv="Cache-Control" content="max-age=0" />
-<meta http-equiv="Cache-Control" content="no-cache" />
-<meta http-equiv="expires" content="0" />
-<meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-<meta http-equiv="Pragma" content="no-cache" />
+    <link rel="StyleSheet" href="${pageContext.request.contextPath}/css/jpetstore.css" type="text/css" media="screen" />
+    <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st November 2002), see www.w3.org" />
+    <title>JPetStore Demo</title>
+    <meta content="text/html; charset=windows-1252" http-equiv="Content-Type" />
+    <meta http-equiv="Cache-Control" content="max-age=0" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="Pragma" content="no-cache" />
 </head>
 
 <body>
 
-<div id="Header">
+    <div id="Header">
 
-<div id="Logo">
-<div id="LogoContent"><a href="${pageContext.request.contextPath}/catalog"><img src="${pageContext.request.contextPath}/images/logo-topbar.gif" /></a></div>
-</div>
+        <div id="Logo">
+            <div id="LogoContent"><a href="${pageContext.request.contextPath}/catalog"><img src="${pageContext.request.contextPath}/images/logo-topbar.gif" /></a></div>
+        </div>
 
-<div id="Menu">
-<div id="MenuContent">
-<a href="${pageContext.request.contextPath}/cart"><img align="middle" name="img_cart" src="${pageContext.request.contextPath}/images/cart.gif" /></a>
-<img align="middle" src="${pageContext.request.contextPath}/images/separator.gif" />
-<c:choose>
-  <c:when test="${sessionScope.accountBean == null || !sessionScope.accountBean.authenticated}">
-    <a href="${pageContext.request.contextPath}/account">Sign In</a>
-  </c:when>
-  <c:otherwise>
-    <a href="${pageContext.request.contextPath}/account/signoff">Sign Out</a>
-    <img align="middle" src="${pageContext.request.contextPath}/images/separator.gif" />
-    <a href="${pageContext.request.contextPath}/account/edit">My Account</a>
-  </c:otherwise>
-</c:choose>
-<img align="middle" src="${pageContext.request.contextPath}/images/separator.gif" />
-<a href="${pageContext.request.contextPath}/help.html">?</a>
-</div>
-</div>
+        <div id="Menu">
+            <div id="MenuContent">
+                <a href="${pageContext.request.contextPath}/cart"><img align="middle" name="img_cart" src="${pageContext.request.contextPath}/images/cart.gif" /></a>
+                <img align="middle" src="${pageContext.request.contextPath}/images/separator.gif" />
+                <c:choose>
+                    <c:when test="${sessionScope.accountBean == null || !sessionScope.accountBean.authenticated}">
+                        <a href="${pageContext.request.contextPath}/account">Sign In</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${pageContext.request.contextPath}/account/signoff">Sign Out</a>
+                        <img align="middle" src="${pageContext.request.contextPath}/images/separator.gif" />
+                        <a href="${pageContext.request.contextPath}/account/edit">My Account</a>
+                    </c:otherwise>
+                </c:choose>
+                <img align="middle" src="${pageContext.request.contextPath}/images/separator.gif" />
+                <a href="${pageContext.request.contextPath}/help.html">?</a>
+            </div>
+        </div>
 
-<div id="Search">
-<div id="SearchContent">
-<form method="get" action="${pageContext.request.contextPath}/catalog/searchProducts">
-    <input type="text" name="keyword" size="14" />
-    <input type="submit" name="searchProducts" value="Search" />
-</form>
-</div>
-</div>
+        <div id="Search">
+            <div id="SearchContent">
+                <form method="get" action="${pageContext.request.contextPath}/catalog/searchProducts">
+                    <input type="text" name="keyword" size="14" />
+                    <input type="submit" name="searchProducts" value="Search" />
+                </form>
+            </div>
+        </div>
 
-<div id="QuickLinks">
-<a href="${pageContext.request.contextPath}/catalog/viewCategory?categoryId=FISH"><img src="${pageContext.request.contextPath}/images/sm_fish.gif" /></a>
-<img src="${pageContext.request.contextPath}/images/separator.gif" />
-<a href="${pageContext.request.contextPath}/catalog/viewCategory?categoryId=DOGS"><img src="${pageContext.request.contextPath}/images/sm_dogs.gif" /></a>
-<img src="${pageContext.request.contextPath}/images/separator.gif" />
-<a href="${pageContext.request.contextPath}/catalog/viewCategory?categoryId=REPTILES"><img src="${pageContext.request.contextPath}/images/sm_reptiles.gif" /></a>
-<img src="${pageContext.request.contextPath}/images/separator.gif" />
-<a href="${pageContext.request.contextPath}/catalog/viewCategory?categoryId=CATS"><img src="${pageContext.request.contextPath}/images/sm_cats.gif" /></a>
-<img src="${pageContext.request.contextPath}/images/separator.gif" />
-<a href="${pageContext.request.contextPath}/catalog/viewCategory?categoryId=BIRDS"><img src="${pageContext.request.contextPath}/images/sm_birds.gif" /></a>
-</div>
+        <div id="QuickLinks">
+            <a href="${pageContext.request.contextPath}/catalog/viewCategory?categoryId=FISH"><img src="${pageContext.request.contextPath}/images/sm_fish.gif" /></a>
+            <img src="${pageContext.request.contextPath}/images/separator.gif" />
+            <a href="${pageContext.request.contextPath}/catalog/viewCategory?categoryId=DOGS"><img src="${pageContext.request.contextPath}/images/sm_dogs.gif" /></a>
+            <img src="${pageContext.request.contextPath}/images/separator.gif" />
+            <a href="${pageContext.request.contextPath}/catalog/viewCategory?categoryId=REPTILES"><img src="${pageContext.request.contextPath}/images/sm_reptiles.gif" /></a>
+            <img src="${pageContext.request.contextPath}/images/separator.gif" />
+            <a href="${pageContext.request.contextPath}/catalog/viewCategory?categoryId=CATS"><img src="${pageContext.request.contextPath}/images/sm_cats.gif" /></a>
+            <img src="${pageContext.request.contextPath}/images/separator.gif" />
+            <a href="${pageContext.request.contextPath}/catalog/viewCategory?categoryId=BIRDS"><img src="${pageContext.request.contextPath}/images/sm_birds.gif" /></a>
+        </div>
 
-</div>
+    </div>
 
-<div id="Content">
-<c:if test="${not empty message}">
-<ul class="messages"><li>${message}</li></ul>
-</c:if>
+    <div id="Content">
+        <c:if test="${not empty message}">
+            <ul class="messages"><li>${message}</li></ul>
+        </c:if>

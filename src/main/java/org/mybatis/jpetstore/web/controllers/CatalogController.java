@@ -27,7 +27,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/catalog")
@@ -75,9 +74,8 @@ public class CatalogController {
   }
 
   @GetMapping("/searchProducts")
-  public String searchProducts(@RequestParam(value = "keyword", required = false) String keyword, Model model,
-      RedirectAttributes redirectAttributes) {
-    if (keyword == null || keyword.length() < 1) {
+  public String searchProducts(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+    if (keyword == null || keyword.isEmpty()) {
       model.addAttribute("message", "Please enter a keyword to search for, then press the search button.");
       return ERROR_VIEW;
     }

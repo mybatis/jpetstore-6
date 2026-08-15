@@ -18,29 +18,33 @@
 <%@ include file="../common/IncludeTop.jsp"%>
 
 <div id="Catalog">
-<form method="post" action="${pageContext.request.contextPath}/account/edit">
-<input type="hidden" name="username" value="${account.username}" />
+    <form method="post" action="${pageContext.request.contextPath}/account/edit">
+        <input type="hidden" name="username" value="${account.username}" />
 
-<h3>User Information</h3>
+        <h3>User Information</h3>
 
-<table>
-<tr>
-<td>User ID:</td>
-<td>${account.username}</td>
-</tr>
-<tr>
-<td>New password:</td>
-<td><input type="password" name="password" /></td>
-</tr>
-<tr>
-<td>Repeat password:</td>
-<td><input type="password" name="repeatedPassword" /></td>
-</tr>
-</table>
-<%@ include file="IncludeAccountFields.jsp"%>
+        <table>
+            <tr>
+                <td>User ID:</td>
+                <td>${account.username}</td>
+            </tr>
+            <tr>
+                <td>New password:</td>
+                <td><input type="password" name="password" /></td>
+            </tr>
+            <tr>
+                <td>Repeat password:</td>
+                <td><input type="password" name="repeatedPassword" /></td>
+            </tr>
+        </table>
 
-<input type="submit" name="editAccount" value="Save Account Information" />
+        <%@ include file="IncludeAccountFields.jsp"%>
 
-</form> <a href="${pageContext.request.contextPath}/order/list">My Orders</a></div>
+        <input type="submit" name="editAccount" value="Save Account Information" />
+
+    </form>
+
+    <a href="${pageContext.request.contextPath}/order/list">My Orders</a>
+</div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>

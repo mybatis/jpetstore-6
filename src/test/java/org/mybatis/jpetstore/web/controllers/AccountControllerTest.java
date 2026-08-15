@@ -17,8 +17,6 @@ package org.mybatis.jpetstore.web.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import jakarta.servlet.http.HttpSession;
@@ -106,16 +104,12 @@ class AccountControllerTest {
   void newAccountRedirectsToCatalogWithoutLoggingIn() {
     // Registration should insert the account and redirect to catalog WITHOUT
     // auto-logging the user in - the IT test expects the user to manually sign in.
-    HttpSession session = mock(HttpSession.class);
     Account account = new Account();
     account.setUsername("newuser");
 
-    String view = accountController.newAccount(account, session);
+    String view = accountController.newAccount(account);
 
     assertThat(view).isEqualTo("redirect:/catalog");
-    // Must NOT set accountBean session (no auto-login)
-    verify(session, times(0)).setAttribute(org.mockito.ArgumentMatchers.eq("accountBean"),
-        org.mockito.ArgumentMatchers.any());
   }
 
   @Test

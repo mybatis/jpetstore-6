@@ -68,7 +68,7 @@ jobs:
             sleep 5
 
             # Target 127.0.0.1 to avoid IPv6 loopback resolution mismatches to jpetstore context path
-            if curl -s --max-time 2 http://127.0.0.1:8080/jpetstore/ > /dev/null; then
+            if curl -fsS --max-time 2 http://127.0.0.1:8080/jpetstore/ > /dev/null; then
               echo "Server ready after $((i * 5))s"
               SERVER_READY=true
               break
@@ -102,7 +102,7 @@ jobs:
         with:
           name: cargo-logs-${{ matrix.token }}-${{ matrix.os }}
           path: |
-            **/build/**/*
-            **/target/cargo/logs/**/*
-            **/target/cargo/configurations/**/logs/**/*.log
-            **/target/*.log
+            build/**/*
+            target/cargo/logs/**/*
+            target/cargo/configurations/**/logs/**/*.log
+            target/*.log
