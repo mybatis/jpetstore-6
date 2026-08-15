@@ -29,7 +29,7 @@
 
   <groupId>org.mybatis</groupId>
   <artifactId>jpetstore</artifactId>
-  <version>6.3.1-SNAPSHOT</version>
+  <version>8.0.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>JPetStore Demo 6</name>
@@ -63,7 +63,7 @@
     <java.release.version>21</java.release.version>
 
     <!-- Configuration -->
-    <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
+    <clirr.comparisonVersion>7.0.0</clirr.comparisonVersion>
     <osgi.export />
 
     <!-- Library Versions -->
@@ -355,7 +355,7 @@
     <profile>
       <id>glassfish8</id>
       <properties>
-        <glassfish.version>8.0.3</glassfish.version>
+        <glassfish.version>8.0.4</glassfish.version>
         <cargo.maven.containerId>glassfish8x</cargo.maven.containerId>
         <cargo.server.start.timeout>240000</cargo.server.start.timeout>
       </properties>
@@ -430,7 +430,7 @@
     <profile>
       <id>liberty26-ee11</id>
       <properties>
-        <liberty.version>26.0.0.7</liberty.version>
+        <liberty.version>26.0.0.8</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/io/openliberty/openliberty-jakartaee11/${liberty.version}/openliberty-jakartaee11-${liberty.version}.zip</cargo.maven.containerUrl>
         <cargo.server.start.timeout>240000</cargo.server.start.timeout>
@@ -468,7 +468,7 @@
     <profile>
       <id>payara7</id>
       <properties>
-        <payara.version>7.2026.6</payara.version>
+        <payara.version>7.2026.7</payara.version>
         <cargo.maven.containerId>payara</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
         <cargo.server.start.timeout>240000</cargo.server.start.timeout>
@@ -554,10 +554,10 @@
     </profile>
 
     <profile>
-      <id>wildfly40</id>
+      <id>wildfly41</id>
       <properties>
-        <wildfly.version>40.0.1.Final</wildfly.version>
-        <cargo.maven.containerId>wildfly40x</cargo.maven.containerId>
+        <wildfly.version>41.0.0.Final</wildfly.version>
+        <cargo.maven.containerId>wildfly41x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
       <build>
