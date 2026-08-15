@@ -63,7 +63,7 @@ class CatalogControllerTest {
   @Test
   void searchProductsWithNullKeyword() {
     Model model = new ExtendedModelMap();
-    String view = catalogController.searchProducts(null, model, null);
+    String view = catalogController.searchProducts(null, model);
     assertThat(view).isEqualTo("common/Error");
     assertThat(model.asMap()).containsKey("message");
   }
@@ -74,7 +74,7 @@ class CatalogControllerTest {
     List<Product> products = List.of();
     when(catalogService.searchProductList("dog")).thenReturn(products);
 
-    String view = catalogController.searchProducts("dog", model, null);
+    String view = catalogController.searchProducts("dog", model);
 
     assertThat(view).isEqualTo("catalog/SearchProducts");
     assertThat(model.asMap()).containsKey("productList");
