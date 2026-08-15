@@ -19,8 +19,6 @@ import org.mybatis.jpetstore.domain.Account;
 
 /**
  * The Interface AccountMapper.
- *
- * @author Eduardo Macarron
  */
 public interface AccountMapper {
 

@@ -20,8 +20,6 @@ import java.math.BigDecimal;
 
 /**
  * The Class Item.
- *
- * @author Eduardo Macarron
  */
 public class Item implements Serializable {
 
