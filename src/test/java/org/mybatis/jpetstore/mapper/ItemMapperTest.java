@@ -75,7 +75,7 @@ class ItemMapperTest {
     assertThat(items.get(0).getProduct().getProductId()).isEqualTo("FI-SW-01");
     assertThat(items.get(0).getProduct().getName()).isEqualTo("Angelfish");
     assertThat(items.get(0).getProduct().getDescription())
-        .isEqualTo("<image src=\"../images/fish1.gif\">Salt Water fish from Australia");
+        .isEqualTo("<image src=\"/jpetstore/images/fish1.gif\">Salt Water fish from Australia");
     assertThat(items.get(0).getProduct().getCategoryId()).isEqualTo("FISH");
     assertThat(items.get(1).getItemId()).isEqualTo("EST-2");
     assertThat(items.get(1).getListPrice()).isEqualTo(new BigDecimal("16.50"));
@@ -90,7 +90,7 @@ class ItemMapperTest {
     assertThat(items.get(1).getProduct().getProductId()).isEqualTo("FI-SW-01");
     assertThat(items.get(1).getProduct().getName()).isEqualTo("Angelfish");
     assertThat(items.get(1).getProduct().getDescription())
-        .isEqualTo("<image src=\"../images/fish1.gif\">Salt Water fish from Australia");
+        .isEqualTo("<image src=\"/jpetstore/images/fish1.gif\">Salt Water fish from Australia");
     assertThat(items.get(1).getProduct().getCategoryId()).isEqualTo("FISH");
   }
 
@@ -119,7 +119,7 @@ class ItemMapperTest {
     assertThat(item.getProduct().getProductId()).isEqualTo("FI-SW-01");
     assertThat(item.getProduct().getName()).isEqualTo("Angelfish");
     assertThat(item.getProduct().getDescription())
-        .isEqualTo("<image src=\"../images/fish1.gif\">Salt Water fish from Australia");
+        .isEqualTo("<image src=\"/jpetstore/images/fish1.gif\">Salt Water fish from Australia");
     assertThat(item.getProduct().getCategoryId()).isEqualTo("FISH");
   }
 
