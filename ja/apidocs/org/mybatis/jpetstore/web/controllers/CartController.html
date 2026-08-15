@@ -87,6 +87,7 @@ loadScripts(document, 'script');</script>
 @RequestMapping("/cart")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">CartController</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">The Class CartController.</div>
 </div>
 </section>
 <section class="summary">
@@ -119,25 +120,35 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addItemToCart(java.lang.String,javax.servlet.http.HttpSession,org.springframework.ui.Model)" class="member-name-link">addItemToCart</a><wbr>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;workingItemId,
  javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Add item to cart.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkOut(javax.servlet.http.HttpSession,org.springframework.ui.Model)" class="member-name-link">checkOut</a><wbr>(javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Check out.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeItemFromCart(java.lang.String,javax.servlet.http.HttpSession,org.springframework.ui.Model)" class="member-name-link">removeItemFromCart</a><wbr>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;workingItemId,
  javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Remove item from cart.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateCartQuantities(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpSession,org.springframework.ui.Model)" class="member-name-link">updateCartQuantities</a><wbr>(javax.servlet.http.HttpServletRequest&nbsp;request,
  javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Update cart quantities.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#viewCart(javax.servlet.http.HttpSession,org.springframework.ui.Model)" class="member-name-link">viewCart</a><wbr>(javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">View cart.</div>
+</div>
 </div>
 </div>
 </div>
@@ -178,6 +189,14 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@GetMapping({"","/"})
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">viewCart</span><wbr><span class="parameters">(javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</span></div>
+<div class="block">View cart.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>session</code> - the session</dd>
+<dd><code>model</code> - the model</dd>
+<dt>Returns:</dt>
+<dd>the string</dd>
+</dl>
 </div>
 </section>
 </li>
@@ -190,6 +209,15 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;workingItemId,
  javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</span></div>
+<div class="block">Add item to cart.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>workingItemId</code> - the working item id</dd>
+<dd><code>session</code> - the session</dd>
+<dd><code>model</code> - the model</dd>
+<dt>Returns:</dt>
+<dd>the string</dd>
+</dl>
 </div>
 </section>
 </li>
@@ -202,6 +230,15 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;workingItemId,
  javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</span></div>
+<div class="block">Remove item from cart.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>workingItemId</code> - the working item id</dd>
+<dd><code>session</code> - the session</dd>
+<dd><code>model</code> - the model</dd>
+<dt>Returns:</dt>
+<dd>the string</dd>
+</dl>
 </div>
 </section>
 </li>
@@ -213,6 +250,15 @@ loadScripts(document, 'script');</script>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">updateCartQuantities</span><wbr><span class="parameters">(javax.servlet.http.HttpServletRequest&nbsp;request,
  javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</span></div>
+<div class="block">Update cart quantities.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>request</code> - the request</dd>
+<dd><code>session</code> - the session</dd>
+<dd><code>model</code> - the model</dd>
+<dt>Returns:</dt>
+<dd>the string</dd>
+</dl>
 </div>
 </section>
 </li>
@@ -223,6 +269,14 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@GetMapping("/checkout")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">checkOut</span><wbr><span class="parameters">(javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</span></div>
+<div class="block">Check out.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>session</code> - the session</dd>
+<dd><code>model</code> - the model</dd>
+<dt>Returns:</dt>
+<dd>the string</dd>
+</dl>
 </div>
 </section>
 </li>

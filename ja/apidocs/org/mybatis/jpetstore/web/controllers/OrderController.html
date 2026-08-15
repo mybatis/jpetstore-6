@@ -86,6 +86,7 @@ loadScripts(document, 'script');</script>
 @RequestMapping("/order")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">OrderController</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">The Class OrderController.</div>
 </div>
 </section>
 <section class="summary">
@@ -117,23 +118,31 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#listOrders(javax.servlet.http.HttpSession,org.springframework.ui.Model)" class="member-name-link">listOrders</a><wbr>(javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">List orders.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#newOrder(org.mybatis.jpetstore.domain.Order,boolean,boolean,javax.servlet.http.HttpSession,org.springframework.ui.Model)" class="member-name-link">newOrder</a><wbr>(<a href="../../domain/Order.html" title="class in org.mybatis.jpetstore.domain">Order</a>&nbsp;order,
  boolean&nbsp;shippingAddressRequired,
  boolean&nbsp;confirmed,
  javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">New order.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#newOrderForm(javax.servlet.http.HttpSession,org.springframework.ui.Model)" class="member-name-link">newOrderForm</a><wbr>(javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">New order form.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#viewOrder(int,javax.servlet.http.HttpSession,org.springframework.ui.Model)" class="member-name-link">viewOrder</a><wbr>(int&nbsp;orderId,
  javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">View order.</div>
+</div>
 </div>
 </div>
 </div>
@@ -174,6 +183,14 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@GetMapping("/list")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">listOrders</span><wbr><span class="parameters">(javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</span></div>
+<div class="block">List orders.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>session</code> - the session</dd>
+<dd><code>model</code> - the model</dd>
+<dt>Returns:</dt>
+<dd>the string</dd>
+</dl>
 </div>
 </section>
 </li>
@@ -184,6 +201,14 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@GetMapping("/new")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">newOrderForm</span><wbr><span class="parameters">(javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</span></div>
+<div class="block">New order form.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>session</code> - the session</dd>
+<dd><code>model</code> - the model</dd>
+<dt>Returns:</dt>
+<dd>the string</dd>
+</dl>
 </div>
 </section>
 </li>
@@ -200,6 +225,17 @@ loadScripts(document, 'script');</script>
  boolean&nbsp;confirmed,
  javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</span></div>
+<div class="block">New order.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>order</code> - the order</dd>
+<dd><code>shippingAddressRequired</code> - the shipping address required</dd>
+<dd><code>confirmed</code> - the confirmed</dd>
+<dd><code>session</code> - the session</dd>
+<dd><code>model</code> - the model</dd>
+<dt>Returns:</dt>
+<dd>the string</dd>
+</dl>
 </div>
 </section>
 </li>
@@ -212,6 +248,15 @@ loadScripts(document, 'script');</script>
  int&nbsp;orderId,
  javax.servlet.http.HttpSession&nbsp;session,
  org.springframework.ui.Model&nbsp;model)</span></div>
+<div class="block">View order.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>orderId</code> - the order id</dd>
+<dd><code>session</code> - the session</dd>
+<dd><code>model</code> - the model</dd>
+<dt>Returns:</dt>
+<dd>the string</dd>
+</dl>
 </div>
 </section>
 </li>

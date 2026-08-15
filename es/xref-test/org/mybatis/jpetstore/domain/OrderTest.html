@@ -26,7 +26,7 @@
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.assertj.core.api.Assertions.assertThat;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> java.math.BigDecimal;
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.util.Date;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.time.LocalDateTime;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Test;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
@@ -69,7 +69,7 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>      <em class="jxr_comment">// then</em>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      assertThat(order.getUsername()).isSameAs(account.getUsername());
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>      assertThat(order.getOrderDate()).isBeforeOrEqualsTo(<strong class="jxr_keyword">new</strong> Date());
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>      assertThat(order.getOrderDate()).isBeforeOrEqualTo(LocalDateTime.now());
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>      assertThat(order.getShipAddress1()).isEqualTo(account.getAddress1());
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>      assertThat(order.getShipAddress2()).isEqualTo(account.getAddress2());
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      assertThat(order.getShipCity()).isEqualTo(account.getCity());
@@ -98,7 +98,23 @@
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>      assertThat(order.getLineItems().get(0).getTotal()).isEqualTo(<strong class="jxr_keyword">new</strong> BigDecimal(<span class="jxr_string">"4.10"</span>));
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>    }
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  }
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">   * Gets the formatted order date.</em>
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>    @Test
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>    <strong class="jxr_keyword">void</strong> getFormattedOrderDate() {
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>      <em class="jxr_comment">// given</em>
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>      Order order = <strong class="jxr_keyword">new</strong> Order();
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>     order.setOrderDate(LocalDateTime.of(2026, 8, 15, 13, 45, 30));
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> 
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>     <em class="jxr_comment">// when</em>
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>     String formattedOrderDate = order.getFormattedOrderDate();
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> 
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>     <em class="jxr_comment">// then</em>
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>     assertThat(formattedOrderDate).isEqualTo(<span class="jxr_string">"2026/08/15 13:45:30"</span>);
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>   }
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> }
 </pre>
 <hr/>
 <div id="footer">© 2010–2026 <a href="https://www.mybatis.org/">MyBatis.org</a></div>
