@@ -25,8 +25,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The Class Cart.
- *
- * @author Eduardo Macarron
  */
 public class Cart implements Serializable {
 

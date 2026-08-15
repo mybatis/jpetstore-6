@@ -31,8 +31,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * The Class OrderService.
- *
- * @author Eduardo Macarron
  */
 @Service
 public class OrderService {

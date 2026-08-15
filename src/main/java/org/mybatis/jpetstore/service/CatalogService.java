@@ -28,8 +28,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * The Class CatalogService.
- *
- * @author Eduardo Macarron
  */
 @Service
 public class CatalogService {

@@ -22,8 +22,6 @@ import org.mybatis.jpetstore.domain.Item;
 
 /**
  * The Interface ItemMapper.
- *
- * @author Eduardo Macarron
  */
 public interface ItemMapper {
 

@@ -31,20 +31,31 @@ import org.mybatis.jpetstore.service.CatalogService;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
+/**
+ * The Class CatalogControllerTest.
+ */
 @ExtendWith(MockitoExtension.class)
 class CatalogControllerTest {
 
+  /** The catalog service. */
   @Mock
   private CatalogService catalogService;
 
+  /** The catalog controller. */
   @InjectMocks
   private CatalogController catalogController;
 
+  /**
+   * View main returns correct view.
+   */
   @Test
   void viewMainReturnsCorrectView() {
     assertThat(catalogController.viewMain()).isEqualTo("catalog/Main");
   }
 
+  /**
+   * View category with valid id.
+   */
   @Test
   void viewCategoryWithValidId() {
     Model model = new ExtendedModelMap();
@@ -60,6 +71,9 @@ class CatalogControllerTest {
     assertThat(model.asMap()).containsKey("productList");
   }
 
+  /**
+   * Search products with null keyword.
+   */
   @Test
   void searchProductsWithNullKeyword() {
     Model model = new ExtendedModelMap();
@@ -68,6 +82,9 @@ class CatalogControllerTest {
     assertThat(model.asMap()).containsKey("message");
   }
 
+  /**
+   * Search products with valid keyword.
+   */
   @Test
   void searchProductsWithValidKeyword() {
     Model model = new ExtendedModelMap();

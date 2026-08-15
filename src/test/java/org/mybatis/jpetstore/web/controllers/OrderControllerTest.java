@@ -36,15 +36,23 @@ import org.mybatis.jpetstore.service.OrderService;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
+/**
+ * The Class OrderControllerTest.
+ */
 @ExtendWith(MockitoExtension.class)
 class OrderControllerTest {
 
+  /** The order service. */
   @Mock
   private OrderService orderService;
 
+  /** The order controller. */
   @InjectMocks
   private OrderController orderController;
 
+  /**
+   * List orders without auth returns error.
+   */
   @Test
   void listOrdersWithoutAuthReturnsError() {
     HttpSession session = mock(HttpSession.class);
@@ -57,6 +65,9 @@ class OrderControllerTest {
     assertThat(model.asMap()).containsKey("message");
   }
 
+  /**
+   * New order form without auth redirects.
+   */
   @Test
   void newOrderFormWithoutAuthRedirects() {
     HttpSession session = mock(HttpSession.class);
@@ -69,6 +80,9 @@ class OrderControllerTest {
     assertThat(view).isEqualTo("redirect:/account");
   }
 
+  /**
+   * List orders with auth returns order list.
+   */
   @Test
   void listOrdersWithAuthReturnsOrderList() {
     HttpSession session = mock(HttpSession.class);
@@ -85,6 +99,9 @@ class OrderControllerTest {
     assertThat(model.asMap()).containsKey("orderList");
   }
 
+  /**
+   * Confirm order uses billing address from session.
+   */
   @Test
   void confirmOrderUsesBillingAddressFromSession() {
     // When the ConfirmOrder form is submitted it only posts confirmed=true.
@@ -123,6 +140,9 @@ class OrderControllerTest {
     assertThat(sessionOrder.getBillCity()).isEqualTo("Palo Alto");
   }
 
+  /**
+   * Shipping form submission does not overwrite billing fields.
+   */
   @Test
   void shippingFormSubmissionDoesNotOverwriteBillingFields() {
     // ShippingForm only posts shipping fields (shipToFirstName etc.) + confirmed=false.

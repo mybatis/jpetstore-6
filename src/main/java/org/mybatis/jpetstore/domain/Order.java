@@ -24,8 +24,6 @@ import java.util.List;
 
 /**
  * The Class Order.
- *
- * @author Eduardo Macarron
  */
 public class Order implements Serializable {
 

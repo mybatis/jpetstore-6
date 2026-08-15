@@ -33,23 +33,44 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * The Class OrderController.
+ */
 @Controller
 @RequestMapping("/order")
 public class OrderController {
 
+  /** The new order view. */
   private static final String NEW_ORDER_VIEW = "order/NewOrderForm";
+  /** The shipping view. */
   private static final String SHIPPING_VIEW = "order/ShippingForm";
+  /** The confirm view. */
   private static final String CONFIRM_VIEW = "order/ConfirmOrder";
+  /** The view order view. */
   private static final String VIEW_ORDER_VIEW = "order/ViewOrder";
+  /** The list orders view. */
   private static final String LIST_ORDERS_VIEW = "order/ListOrders";
+  /** The error view. */
   private static final String ERROR_VIEW = "common/Error";
 
+  /** The card type list. */
   private static final List<String> CARD_TYPE_LIST = Collections
       .unmodifiableList(Arrays.asList("Visa", "MasterCard", "American Express"));
 
+  /** The order service. */
   @Autowired
   private OrderService orderService;
 
+  /**
+   * List orders.
+   *
+   * @param session
+   *          the session
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping("/list")
   public String listOrders(HttpSession session, Model model) {
     AccountController.AccountSession accountSession = (AccountController.AccountSession) session
@@ -64,6 +85,16 @@ public class OrderController {
     return LIST_ORDERS_VIEW;
   }
 
+  /**
+   * New order form.
+   *
+   * @param session
+   *          the session
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping("/new")
   public String newOrderForm(HttpSession session, Model model) {
     AccountController.AccountSession accountSession = (AccountController.AccountSession) session
@@ -87,6 +118,22 @@ public class OrderController {
     return ERROR_VIEW;
   }
 
+  /**
+   * New order.
+   *
+   * @param order
+   *          the order
+   * @param shippingAddressRequired
+   *          the shipping address required
+   * @param confirmed
+   *          the confirmed
+   * @param session
+   *          the session
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @PostMapping("/new")
   public String newOrder(@ModelAttribute Order order,
       @RequestParam(value = "shippingAddressRequired", defaultValue = "false") boolean shippingAddressRequired,
@@ -159,6 +206,18 @@ public class OrderController {
     }
   }
 
+  /**
+   * View order.
+   *
+   * @param orderId
+   *          the order id
+   * @param session
+   *          the session
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping("/view")
   public String viewOrder(@RequestParam("orderId") int orderId, HttpSession session, Model model) {
     AccountController.AccountSession accountSession = (AccountController.AccountSession) session

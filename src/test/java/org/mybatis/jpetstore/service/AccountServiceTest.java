@@ -29,7 +29,7 @@ import org.mybatis.jpetstore.domain.Account;
 import org.mybatis.jpetstore.mapper.AccountMapper;
 
 /**
- * @author Eduardo Macarron
+ * The Class AccountServiceTest.
  */
 @ExtendWith(MockitoExtension.class)
 class AccountServiceTest {

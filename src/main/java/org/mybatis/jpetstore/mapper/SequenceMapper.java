@@ -19,8 +19,6 @@ import org.mybatis.jpetstore.domain.Sequence;
 
 /**
  * The Interface SequenceMapper.
- *
- * @author Eduardo Macarron
  */
 public interface SequenceMapper {
 

@@ -19,8 +19,6 @@ import java.io.Serializable;
 
 /**
  * The Class Product.
- *
- * @author Eduardo Macarron
  */
 public class Product implements Serializable {
 
