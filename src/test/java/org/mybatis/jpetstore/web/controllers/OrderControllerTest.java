@@ -81,6 +81,41 @@ class OrderControllerTest {
   }
 
   /**
+   * New order form with auth and cart returns new order view.
+   */
+  @Test
+  void newOrderFormWithAuthAndCartReturnsNewOrderView() {
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+
+    org.mybatis.jpetstore.domain.Account account = new org.mybatis.jpetstore.domain.Account();
+    account.setUsername("j2ee");
+    account.setFirstName("ABC");
+    account.setLastName("Banner");
+    account.setAddress1("901 San Antonio Road");
+    account.setAddress2("MS UCUP02-207");
+    account.setCity("Palo Alto");
+    account.setState("CA");
+    account.setZip("94303");
+    account.setCountry("USA");
+    AccountController.AccountSession accountSession = new AccountController.AccountSession(account, List.of(), true);
+    when(session.getAttribute("accountBean")).thenReturn(accountSession);
+
+    Cart cart = new Cart();
+    when(session.getAttribute("cart")).thenReturn(cart);
+
+    String view = orderController.newOrderForm(session, model);
+
+    assertThat(view).isEqualTo("order/NewOrderForm");
+    assertThat(model.asMap().get("order")).isInstanceOf(org.mybatis.jpetstore.domain.Order.class);
+    org.mybatis.jpetstore.domain.Order order = (org.mybatis.jpetstore.domain.Order) model.asMap().get("order");
+    assertThat(order.getUsername()).isEqualTo("j2ee");
+    assertThat(order.getShipAddress1()).isEqualTo("901 San Antonio Road");
+    assertThat(model.asMap()).containsKey("creditCardTypes");
+    verify(session, times(1)).setAttribute("order", order);
+  }
+
+  /**
    * List orders with auth returns order list.
    */
   @Test
@@ -191,5 +226,63 @@ class OrderControllerTest {
 
     // Shipping fields must have been updated from the form
     assertThat(sessionOrder.getShipAddress2()).isEqualTo("MS UCUP02-207");
+  }
+
+  /**
+   * View order without auth redirects.
+   */
+  @Test
+  void viewOrderWithoutAuthRedirects() {
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+    when(session.getAttribute("accountBean")).thenReturn(null);
+
+    String view = orderController.viewOrder(1, session, model);
+
+    assertThat(view).isEqualTo("redirect:/account");
+  }
+
+  /**
+   * View order with auth and matching username returns view order.
+   */
+  @Test
+  void viewOrderWithAuthAndMatchingUsernameReturnsViewOrder() {
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+    org.mybatis.jpetstore.domain.Account account = new org.mybatis.jpetstore.domain.Account();
+    account.setUsername("j2ee");
+    AccountController.AccountSession accountSession = new AccountController.AccountSession(account, List.of(), true);
+    when(session.getAttribute("accountBean")).thenReturn(accountSession);
+
+    org.mybatis.jpetstore.domain.Order order = new org.mybatis.jpetstore.domain.Order();
+    order.setUsername("j2ee");
+    when(orderService.getOrder(1)).thenReturn(order);
+
+    String view = orderController.viewOrder(1, session, model);
+
+    assertThat(view).isEqualTo("order/ViewOrder");
+    assertThat(model.asMap().get("order")).isEqualTo(order);
+  }
+
+  /**
+   * View order with auth but different username returns error.
+   */
+  @Test
+  void viewOrderWithAuthButDifferentUsernameReturnsError() {
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+    org.mybatis.jpetstore.domain.Account account = new org.mybatis.jpetstore.domain.Account();
+    account.setUsername("j2ee");
+    AccountController.AccountSession accountSession = new AccountController.AccountSession(account, List.of(), true);
+    when(session.getAttribute("accountBean")).thenReturn(accountSession);
+
+    org.mybatis.jpetstore.domain.Order order = new org.mybatis.jpetstore.domain.Order();
+    order.setUsername("someoneelse");
+    when(orderService.getOrder(1)).thenReturn(order);
+
+    String view = orderController.viewOrder(1, session, model);
+
+    assertThat(view).isEqualTo("common/Error");
+    assertThat(model.asMap().get("message")).isEqualTo("You may only view your own orders.");
   }
 }

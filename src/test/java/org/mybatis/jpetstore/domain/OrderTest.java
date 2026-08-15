@@ -90,4 +90,20 @@ class OrderTest {
     assertThat(order.getLineItems().get(0).getTotal()).isEqualTo(new BigDecimal("4.10"));
   }
 
+  /**
+   * Gets the formatted order date.
+   */
+  @Test
+  void getFormattedOrderDate() {
+    // given
+    Order order = new Order();
+    order.setOrderDate(LocalDateTime.of(2026, 8, 15, 13, 45, 30));
+
+    // when
+    String formattedOrderDate = order.getFormattedOrderDate();
+
+    // then
+    assertThat(formattedOrderDate).isEqualTo("2026/08/15 13:45:30");
+  }
+
 }
