@@ -141,14 +141,14 @@
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>     $(By.name(<span class="jxr_string">"shippingAddressRequired"</span>)).click();
 <a class="jxr_linenumber" name="L134" href="#L134">134</a>     $(By.name(<span class="jxr_string">"newOrder"</span>)).click();
 <a class="jxr_linenumber" name="L135" href="#L135">135</a>     $(By.cssSelector(<span class="jxr_string">"#Catalog tr th"</span>)).shouldBe(text(<span class="jxr_string">"Shipping Address"</span>));
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>     $(By.name(<span class="jxr_string">"order.shipAddress2"</span>)).setValue(<span class="jxr_string">"MS UCUP02-207"</span>);
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>     $(By.name(<span class="jxr_string">"shipAddress2"</span>)).setValue(<span class="jxr_string">"MS UCUP02-207"</span>);
 <a class="jxr_linenumber" name="L137" href="#L137">137</a> 
 <a class="jxr_linenumber" name="L138" href="#L138">138</a>     <em class="jxr_comment">// Confirm order information</em>
 <a class="jxr_linenumber" name="L139" href="#L139">139</a>     $(By.name(<span class="jxr_string">"newOrder"</span>)).click();
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>     $(By.cssSelector(<span class="jxr_string">"#Catalog"</span>)).shouldBe(text(<span class="jxr_string">"Please confirm the information below and then press continue..."</span>));
 <a class="jxr_linenumber" name="L141" href="#L141">141</a> 
 <a class="jxr_linenumber" name="L142" href="#L142">142</a>     <em class="jxr_comment">// Submit order</em>
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>     $(By.linkText(<span class="jxr_string">"Confirm"</span>)).click();
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>     $(By.cssSelector(<span class="jxr_string">"input.Button[value='Confirm']"</span>)).click();
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>     $(By.cssSelector(<span class="jxr_string">".messages li"</span>)).shouldBe(text(<span class="jxr_string">"Thank you, your order has been submitted."</span>));
 <a class="jxr_linenumber" name="L145" href="#L145">145</a>     String orderId = extractOrderId($(By.cssSelector(<span class="jxr_string">"#Catalog table tr"</span>)).text());
 <a class="jxr_linenumber" name="L146" href="#L146">146</a> 
@@ -196,11 +196,11 @@
 <a class="jxr_linenumber" name="L188" href="#L188">188</a>     $$(By.cssSelector(<span class="jxr_string">"#Catalog table td"</span>)).get(1).shouldBe(text(<span class="jxr_string">"j2ee"</span>));
 <a class="jxr_linenumber" name="L189" href="#L189">189</a> 
 <a class="jxr_linenumber" name="L190" href="#L190">190</a>     <em class="jxr_comment">// Edit account</em>
-<a class="jxr_linenumber" name="L191" href="#L191">191</a>     $(By.name(<span class="jxr_string">"account.phone"</span>)).setValue(<span class="jxr_string">"555-555-5556"</span>);
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>     $(By.name(<span class="jxr_string">"phone"</span>)).setValue(<span class="jxr_string">"555-555-5556"</span>);
 <a class="jxr_linenumber" name="L192" href="#L192">192</a>     $(By.name(<span class="jxr_string">"editAccount"</span>)).click();
 <a class="jxr_linenumber" name="L193" href="#L193">193</a>     $(By.cssSelector(<span class="jxr_string">"#Catalog h3"</span>)).shouldBe(text(<span class="jxr_string">"User Information"</span>));
 <a class="jxr_linenumber" name="L194" href="#L194">194</a>     $$(By.cssSelector(<span class="jxr_string">"#Catalog table td"</span>)).get(1).shouldBe(text(<span class="jxr_string">"j2ee"</span>));
-<a class="jxr_linenumber" name="L195" href="#L195">195</a>     $(By.name(<span class="jxr_string">"account.phone"</span>)).shouldBe(value(<span class="jxr_string">"555-555-5556"</span>));
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>     $(By.name(<span class="jxr_string">"phone"</span>)).shouldBe(value(<span class="jxr_string">"555-555-5556"</span>));
 <a class="jxr_linenumber" name="L196" href="#L196">196</a>   }
 <a class="jxr_linenumber" name="L197" href="#L197">197</a> 
 <a class="jxr_linenumber" name="L198" href="#L198">198</a>   <em class="jxr_javadoccomment">/**</em>
@@ -229,20 +229,20 @@
 <a class="jxr_linenumber" name="L221" href="#L221">221</a>     $(By.name(<span class="jxr_string">"username"</span>)).setValue(userId);
 <a class="jxr_linenumber" name="L222" href="#L222">222</a>     $(By.name(<span class="jxr_string">"password"</span>)).setValue(<span class="jxr_string">"password"</span>);
 <a class="jxr_linenumber" name="L223" href="#L223">223</a>     $(By.name(<span class="jxr_string">"repeatedPassword"</span>)).setValue(<span class="jxr_string">"password"</span>);
-<a class="jxr_linenumber" name="L224" href="#L224">224</a>     $(By.name(<span class="jxr_string">"account.firstName"</span>)).setValue(<span class="jxr_string">"Jon"</span>);
-<a class="jxr_linenumber" name="L225" href="#L225">225</a>     $(By.name(<span class="jxr_string">"account.lastName"</span>)).setValue(<span class="jxr_string">"MyBatis"</span>);
-<a class="jxr_linenumber" name="L226" href="#L226">226</a>     $(By.name(<span class="jxr_string">"account.email"</span>)).setValue(<span class="jxr_string">"jon.mybatis@test.com"</span>);
-<a class="jxr_linenumber" name="L227" href="#L227">227</a>     $(By.name(<span class="jxr_string">"account.phone"</span>)).setValue(<span class="jxr_string">"09012345678"</span>);
-<a class="jxr_linenumber" name="L228" href="#L228">228</a>     $(By.name(<span class="jxr_string">"account.address1"</span>)).setValue(<span class="jxr_string">"Address1"</span>);
-<a class="jxr_linenumber" name="L229" href="#L229">229</a>     $(By.name(<span class="jxr_string">"account.address2"</span>)).setValue(<span class="jxr_string">"Address2"</span>);
-<a class="jxr_linenumber" name="L230" href="#L230">230</a>     $(By.name(<span class="jxr_string">"account.city"</span>)).setValue(<span class="jxr_string">"Minato-Ku"</span>);
-<a class="jxr_linenumber" name="L231" href="#L231">231</a>     $(By.name(<span class="jxr_string">"account.state"</span>)).setValue(<span class="jxr_string">"Tokyo"</span>);
-<a class="jxr_linenumber" name="L232" href="#L232">232</a>     $(By.name(<span class="jxr_string">"account.zip"</span>)).setValue(<span class="jxr_string">"0001234"</span>);
-<a class="jxr_linenumber" name="L233" href="#L233">233</a>     $(By.name(<span class="jxr_string">"account.country"</span>)).setValue(<span class="jxr_string">"Japan"</span>);
-<a class="jxr_linenumber" name="L234" href="#L234">234</a>     $(By.name(<span class="jxr_string">"account.languagePreference"</span>)).selectOption(<span class="jxr_string">"japanese"</span>);
-<a class="jxr_linenumber" name="L235" href="#L235">235</a>     $(By.name(<span class="jxr_string">"account.favouriteCategoryId"</span>)).selectOption(<span class="jxr_string">"CATS"</span>);
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>     $(By.name(<span class="jxr_string">"account.listOption"</span>)).setSelected(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L237" href="#L237">237</a>     $(By.name(<span class="jxr_string">"account.bannerOption"</span>)).setSelected(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L224" href="#L224">224</a>     $(By.name(<span class="jxr_string">"firstName"</span>)).setValue(<span class="jxr_string">"Jon"</span>);
+<a class="jxr_linenumber" name="L225" href="#L225">225</a>     $(By.name(<span class="jxr_string">"lastName"</span>)).setValue(<span class="jxr_string">"MyBatis"</span>);
+<a class="jxr_linenumber" name="L226" href="#L226">226</a>     $(By.name(<span class="jxr_string">"email"</span>)).setValue(<span class="jxr_string">"jon.mybatis@test.com"</span>);
+<a class="jxr_linenumber" name="L227" href="#L227">227</a>     $(By.name(<span class="jxr_string">"phone"</span>)).setValue(<span class="jxr_string">"09012345678"</span>);
+<a class="jxr_linenumber" name="L228" href="#L228">228</a>     $(By.name(<span class="jxr_string">"address1"</span>)).setValue(<span class="jxr_string">"Address1"</span>);
+<a class="jxr_linenumber" name="L229" href="#L229">229</a>     $(By.name(<span class="jxr_string">"address2"</span>)).setValue(<span class="jxr_string">"Address2"</span>);
+<a class="jxr_linenumber" name="L230" href="#L230">230</a>     $(By.name(<span class="jxr_string">"city"</span>)).setValue(<span class="jxr_string">"Minato-Ku"</span>);
+<a class="jxr_linenumber" name="L231" href="#L231">231</a>     $(By.name(<span class="jxr_string">"state"</span>)).setValue(<span class="jxr_string">"Tokyo"</span>);
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>     $(By.name(<span class="jxr_string">"zip"</span>)).setValue(<span class="jxr_string">"0001234"</span>);
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>     $(By.name(<span class="jxr_string">"country"</span>)).setValue(<span class="jxr_string">"Japan"</span>);
+<a class="jxr_linenumber" name="L234" href="#L234">234</a>     $(By.name(<span class="jxr_string">"languagePreference"</span>)).selectOption(<span class="jxr_string">"japanese"</span>);
+<a class="jxr_linenumber" name="L235" href="#L235">235</a>     $(By.name(<span class="jxr_string">"favouriteCategoryId"</span>)).selectOption(<span class="jxr_string">"CATS"</span>);
+<a class="jxr_linenumber" name="L236" href="#L236">236</a>     $(By.name(<span class="jxr_string">"listOption"</span>)).setSelected(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L237" href="#L237">237</a>     $(By.name(<span class="jxr_string">"bannerOption"</span>)).setSelected(<strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="L238" href="#L238">238</a>     $(By.name(<span class="jxr_string">"newAccount"</span>)).click();
 <a class="jxr_linenumber" name="L239" href="#L239">239</a>     $(By.id(<span class="jxr_string">"WelcomeContent"</span>)).shouldBe(empty);
 <a class="jxr_linenumber" name="L240" href="#L240">240</a> 

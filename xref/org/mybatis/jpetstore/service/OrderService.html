@@ -145,7 +145,7 @@
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getNextId(String name) {
 <a class="jxr_linenumber" name="L138" href="#L138">138</a>     <a name="Sequence" href="../../../../org/mybatis/jpetstore/domain/Sequence.html#Sequence">Sequence</a> sequence = sequenceMapper.getSequence(<strong class="jxr_keyword">new</strong> <a name="Sequence" href="../../../../org/mybatis/jpetstore/domain/Sequence.html#Sequence">Sequence</a>(name, -1));
 <a class="jxr_linenumber" name="L139" href="#L139">139</a>     <strong class="jxr_keyword">if</strong> (sequence == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L140" href="#L140">140</a>       <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> RuntimeException(
+<a class="jxr_linenumber" name="L140" href="#L140">140</a>       <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>           <span class="jxr_string">"Error: A null sequence was returned from the database (could not get next "</span> + name + <span class="jxr_string">" sequence)."</span>);
 <a class="jxr_linenumber" name="L142" href="#L142">142</a>     }
 <a class="jxr_linenumber" name="L143" href="#L143">143</a>     <a name="Sequence" href="../../../../org/mybatis/jpetstore/domain/Sequence.html#Sequence">Sequence</a> parameterObject = <strong class="jxr_keyword">new</strong> <a name="Sequence" href="../../../../org/mybatis/jpetstore/domain/Sequence.html#Sequence">Sequence</a>(name, sequence.getNextId() + 1);
