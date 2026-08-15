@@ -72,7 +72,7 @@ class AccountMapperTest {
     assertThat(account.getFavouriteCategoryId()).isEqualTo("DOGS");
     assertThat(account.isListOption()).isTrue();
     assertThat(account.isBannerOption()).isTrue();
-    assertThat(account.getBannerName()).isEqualTo("<image src=\"../images/banner_dogs.gif\">");
+    assertThat(account.getBannerName()).isEqualTo("<image src=\"/jpetstore/images/banner_dogs.gif\">");
 
   }
 
@@ -105,7 +105,7 @@ class AccountMapperTest {
     assertThat(account.getFavouriteCategoryId()).isEqualTo("CATS");
     assertThat(account.isListOption()).isTrue();
     assertThat(account.isBannerOption()).isTrue();
-    assertThat(account.getBannerName()).isEqualTo("<image src=\"../images/banner_cats.gif\">");
+    assertThat(account.getBannerName()).isEqualTo("<image src=\"/jpetstore/images/banner_cats.gif\">");
 
   }
 

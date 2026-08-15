@@ -137,7 +137,7 @@ public class OrderService {
   public int getNextId(String name) {
     Sequence sequence = sequenceMapper.getSequence(new Sequence(name, -1));
     if (sequence == null) {
-      throw new RuntimeException(
+      throw new IllegalArgumentException(
           "Error: A null sequence was returned from the database (could not get next " + name + " sequence).");
     }
     Sequence parameterObject = new Sequence(name, sequence.getNextId() + 1);
