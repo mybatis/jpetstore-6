@@ -17,6 +17,8 @@ package org.mybatis.jpetstore.web.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -105,6 +107,19 @@ class AccountControllerTest {
   }
 
   /**
+   * Signoff invalidates session and redirects to catalog.
+   */
+  @Test
+  void signoffInvalidatesSessionAndRedirectsToCatalog() {
+    HttpSession session = mock(HttpSession.class);
+
+    String view = accountController.signoff(session);
+
+    assertThat(view).isEqualTo("redirect:/catalog");
+    verify(session, times(1)).invalidate();
+  }
+
+  /**
    * Account session is authenticated with valid account.
    */
   @Test
@@ -156,5 +171,42 @@ class AccountControllerTest {
     String view = accountController.editAccount(account, session);
 
     assertThat(view).isEqualTo("redirect:/account/edit");
+  }
+
+  /**
+   * Edit account form with session returns edit account view with account.
+   */
+  @Test
+  void editAccountFormWithSessionReturnsEditAccountViewWithAccount() {
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+    Account account = new Account();
+    account.setUsername("j2ee");
+    AccountController.AccountSession accountSession = new AccountController.AccountSession(account, List.of(), true);
+    when(session.getAttribute("accountBean")).thenReturn(accountSession);
+
+    String view = accountController.editAccountForm(session, model);
+
+    assertThat(view).isEqualTo("account/EditAccountForm");
+    assertThat(model.asMap().get("account")).isSameAs(account);
+    assertThat(model.asMap()).containsKey("languages");
+    assertThat(model.asMap()).containsKey("categories");
+  }
+
+  /**
+   * Edit account form without session returns edit account view without account.
+   */
+  @Test
+  void editAccountFormWithoutSessionReturnsEditAccountViewWithoutAccount() {
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+    when(session.getAttribute("accountBean")).thenReturn(null);
+
+    String view = accountController.editAccountForm(session, model);
+
+    assertThat(view).isEqualTo("account/EditAccountForm");
+    assertThat(model.asMap()).doesNotContainKey("account");
+    assertThat(model.asMap()).containsKey("languages");
+    assertThat(model.asMap()).containsKey("categories");
   }
 }

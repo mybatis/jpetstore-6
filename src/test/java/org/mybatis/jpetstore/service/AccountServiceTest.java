@@ -17,6 +17,7 @@ package org.mybatis.jpetstore.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -75,6 +76,42 @@ class AccountServiceTest {
     verify(accountMapper).updateAccount(eq(account));
     verify(accountMapper).updateProfile(eq(account));
     verify(accountMapper).updateSignon(eq(account));
+  }
+
+  /**
+   * Should not call the mapper to update signon when password is null.
+   */
+  @Test
+  void shouldNotCallTheMapperToUpdateSignonWhenPasswordIsNull() {
+    // given
+    Account account = new Account();
+    account.setPassword(null);
+
+    // when
+    accountService.updateAccount(account);
+
+    // then
+    verify(accountMapper).updateAccount(eq(account));
+    verify(accountMapper).updateProfile(eq(account));
+    verify(accountMapper, never()).updateSignon(eq(account));
+  }
+
+  /**
+   * Should not call the mapper to update signon when password is empty.
+   */
+  @Test
+  void shouldNotCallTheMapperToUpdateSignonWhenPasswordIsEmpty() {
+    // given
+    Account account = new Account();
+    account.setPassword("");
+
+    // when
+    accountService.updateAccount(account);
+
+    // then
+    verify(accountMapper).updateAccount(eq(account));
+    verify(accountMapper).updateProfile(eq(account));
+    verify(accountMapper, never()).updateSignon(eq(account));
   }
 
   /**
