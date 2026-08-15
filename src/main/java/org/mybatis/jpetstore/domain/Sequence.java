@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -24,31 +24,67 @@ import java.io.Serializable;
  */
 public class Sequence implements Serializable {
 
+  /** The serial version uid. */
   private static final long serialVersionUID = 8278780133180137281L;
 
+  /** The name. */
   private String name;
+  /** The next id. */
   private int nextId;
 
+  /**
+   * Instantiates a new sequence.
+   */
   public Sequence() {
   }
 
+  /**
+   * Instantiates a new sequence.
+   *
+   * @param name
+   *          the name
+   * @param nextId
+   *          the next id
+   */
   public Sequence(String name, int nextId) {
     this.name = name;
     this.nextId = nextId;
   }
 
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Sets the name.
+   *
+   * @param name
+   *          the name
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * Gets the next id.
+   *
+   * @return the next id
+   */
   public int getNextId() {
     return nextId;
   }
 
+  /**
+   * Sets the next id.
+   *
+   * @param nextId
+   *          the next id
+   */
   public void setNextId(int nextId) {
     this.nextId = nextId;
   }

@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -28,14 +28,21 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The Class ProductMapperTest.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MapperTestContext.class)
 @Transactional
 class ProductMapperTest {
 
+  /** The mapper. */
   @Autowired
   private ProductMapper mapper;
 
+  /**
+   * Gets the product list by category.
+   */
   @Test
   void getProductListByCategory() {
     // given
@@ -51,24 +58,27 @@ class ProductMapperTest {
     assertThat(products.get(0).getName()).isEqualTo("Koi");
     assertThat(products.get(0).getCategoryId()).isEqualTo("FISH");
     assertThat(products.get(0).getDescription())
-        .isEqualTo("<image src=\"../images/fish3.gif\">Fresh Water fish from Japan");
+        .isEqualTo("<image src=\"/jpetstore/images/fish3.gif\">Fresh Water fish from Japan");
     assertThat(products.get(1).getProductId()).isEqualTo("FI-FW-02");
     assertThat(products.get(1).getName()).isEqualTo("Goldfish");
     assertThat(products.get(1).getCategoryId()).isEqualTo("FISH");
     assertThat(products.get(1).getDescription())
-        .isEqualTo("<image src=\"../images/fish2.gif\">Fresh Water fish from China");
+        .isEqualTo("<image src=\"/jpetstore/images/fish2.gif\">Fresh Water fish from China");
     assertThat(products.get(2).getProductId()).isEqualTo("FI-SW-01");
     assertThat(products.get(2).getName()).isEqualTo("Angelfish");
     assertThat(products.get(2).getCategoryId()).isEqualTo("FISH");
     assertThat(products.get(2).getDescription())
-        .isEqualTo("<image src=\"../images/fish1.gif\">Salt Water fish from Australia");
+        .isEqualTo("<image src=\"/jpetstore/images/fish1.gif\">Salt Water fish from Australia");
     assertThat(products.get(3).getProductId()).isEqualTo("FI-SW-02");
     assertThat(products.get(3).getName()).isEqualTo("Tiger Shark");
     assertThat(products.get(3).getCategoryId()).isEqualTo("FISH");
     assertThat(products.get(3).getDescription())
-        .isEqualTo("<image src=\"../images/fish4.gif\">Salt Water fish from Australia");
+        .isEqualTo("<image src=\"/jpetstore/images/fish4.gif\">Salt Water fish from Australia");
   }
 
+  /**
+   * Gets the product.
+   */
   @Test
   void getProduct() {
     // given
@@ -81,9 +91,13 @@ class ProductMapperTest {
     assertThat(product.getProductId()).isEqualTo("FI-FW-01");
     assertThat(product.getName()).isEqualTo("Koi");
     assertThat(product.getCategoryId()).isEqualTo("FISH");
-    assertThat(product.getDescription()).isEqualTo("<image src=\"../images/fish3.gif\">Fresh Water fish from Japan");
+    assertThat(product.getDescription())
+        .isEqualTo("<image src=\"/jpetstore/images/fish3.gif\">Fresh Water fish from Japan");
   }
 
+  /**
+   * Search product list.
+   */
   @Test
   void searchProductList() {
     // given
@@ -100,7 +114,7 @@ class ProductMapperTest {
     assertThat(products.get(0).getName()).isEqualTo("Amazon Parrot");
     assertThat(products.get(0).getCategoryId()).isEqualTo("BIRDS");
     assertThat(products.get(0).getDescription())
-        .isEqualTo("<image src=\"../images/bird2.gif\">Great companion for up to 75 years");
+        .isEqualTo("<image src=\"/jpetstore/images/bird2.gif\">Great companion for up to 75 years");
     assertThat(products.get(1).getName()).isEqualTo("Koi");
     assertThat(products.get(2).getName()).isEqualTo("Goldfish");
     assertThat(products.get(3).getName()).isEqualTo("Bulldog");

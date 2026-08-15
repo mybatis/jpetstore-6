@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -28,17 +28,25 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The Class AccountMapperTest.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MapperTestContext.class)
 @Transactional
 class AccountMapperTest {
 
+  /** The mapper. */
   @Autowired
   private AccountMapper mapper;
 
+  /** The jdbc template. */
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
+  /**
+   * Gets the account by username.
+   */
   @Test
   void getAccountByUsername() {
     // given
@@ -64,10 +72,13 @@ class AccountMapperTest {
     assertThat(account.getFavouriteCategoryId()).isEqualTo("DOGS");
     assertThat(account.isListOption()).isTrue();
     assertThat(account.isBannerOption()).isTrue();
-    assertThat(account.getBannerName()).isEqualTo("<image src=\"../images/banner_dogs.gif\">");
+    assertThat(account.getBannerName()).isEqualTo("<image src=\"/jpetstore/images/banner_dogs.gif\">");
 
   }
 
+  /**
+   * Gets the account by username and password.
+   */
   @Test
   void getAccountByUsernameAndPassword() {
     // given
@@ -94,10 +105,13 @@ class AccountMapperTest {
     assertThat(account.getFavouriteCategoryId()).isEqualTo("CATS");
     assertThat(account.isListOption()).isTrue();
     assertThat(account.isBannerOption()).isTrue();
-    assertThat(account.getBannerName()).isEqualTo("<image src=\"../images/banner_cats.gif\">");
+    assertThat(account.getBannerName()).isEqualTo("<image src=\"/jpetstore/images/banner_cats.gif\">");
 
   }
 
+  /**
+   * Insert account.
+   */
   @Test
   void insertAccount() {
 
@@ -130,6 +144,9 @@ class AccountMapperTest {
         .containsEntry("PHONE", account.getPhone());
   }
 
+  /**
+   * Insert profile.
+   */
   @Test
   void insertProfile() {
 
@@ -153,6 +170,9 @@ class AccountMapperTest {
         .containsEntry("BANNEROPT", 0);
   }
 
+  /**
+   * Insert signon.
+   */
   @Test
   void insertSignon() {
 
@@ -171,6 +191,9 @@ class AccountMapperTest {
         account.getPassword());
   }
 
+  /**
+   * Update account.
+   */
   @Test
   void updateAccount() {
 
@@ -204,6 +227,9 @@ class AccountMapperTest {
         .containsEntry("PHONE", account.getPhone());
   }
 
+  /**
+   * Update profile.
+   */
   @Test
   void updateProfile() {
 
@@ -227,6 +253,9 @@ class AccountMapperTest {
         .containsEntry("BANNEROPT", 0);
   }
 
+  /**
+   * Update signon.
+   */
   @Test
   void updateSignon() {
 

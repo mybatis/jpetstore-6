@@ -33,39 +33,60 @@ jobs:
         cache: [maven]
         distribution: ['zulu']
         os: [macos-latest, ubuntu-latest, windows-latest]
-        token: ["tomcat9", "tomee80", "wildfly26", "liberty-ee8", "jetty", "payara5", "resin"]
+        token: ["tomcat9", "glassfish5", "jetty12-ee8", "liberty26-ee8", "payara5", "resin4", "tomee8", "wildfly26"]
         exclude:
           - os: windows-latest
-            token: liberty-ee8
+            token: liberty26-ee8
       fail-fast: false
       max-parallel: 6
     name: Test JDK ${{ matrix.token == 'payara5' && '17' || '21' }}, ${{ matrix.os }}, ${{ matrix.token }}
 
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Setup Java ${{ matrix.token == 'payara5' && '17' || '21' }} ${{ matrix.distribution }}
-        uses: actions/setup-java@0f481fcb613427c0f801b606911222b5b6f3083a # v5
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           cache: ${{ matrix.cache }}
           distribution: ${{ matrix.distribution }}
           java-version: ${{ matrix.token == 'payara5' && '17' || '21' }}
+
+      # Provision Java 8 specifically for GlassFish 5 side-by-side without changing default JAVA_HOME
+      - name: Setup Secondary Java 8 for GlassFish
+        if: matrix.token == 'glassfish5'
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+        id: glassfish-jdk
+        with:
+          distribution: ${{ matrix.distribution }}
+          java-version: '8'
+          set-default: false
+
       - name: Build, start, test, and stop with ${{ matrix.token }}
         shell: bash
         run: |
+          # Dynamically set cargo.java.home only for glassfish5 using the secondary JDK path
+          CARGO_JAVA_OPT=""
+          if [ "${{ matrix.token }}" = "glassfish5" ]; then
+            CARGO_JAVA_OPT="-Dcargo.java.home=${{ steps.glassfish-jdk.outputs.path }}"
+          fi
+
           echo "Running package..."
           ./mvnw package --batch-mode --no-transfer-progress --show-version -D"enforcer.skip=true" -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
 
           echo "Starting container forcing output flushing..."
-          nohup ./mvnw cargo:run -P ${{ matrix.token }} -Dorg.slf4j.simpleLogger.defaultLogLevel=info > cargo.log 2>&1 &
+          nohup ./mvnw cargo:run -P ${{ matrix.token }} $CARGO_JAVA_OPT -Dorg.slf4j.simpleLogger.defaultLogLevel=info > cargo.log 2>&1 &
 
-          echo "Waiting for server port 8080 to open (up to 120s)..."
+          # Stream cargo.log to the background job output so you can see boot progress live
+          tail -f cargo.log &
+          TAIL_PID=$!
+
+          echo "Waiting for server port 8080 to open (up to 240s)..."
           SERVER_READY=false
 
-          for i in $(seq 1 24); do
+          for i in $(seq 1 48); do
             sleep 5
 
             # Target 127.0.0.1 to avoid IPv6 loopback resolution mismatches to jpetstore context path
-            if curl -s --max-time 2 http://127.0.0.1:8080/jpetstore/ > /dev/null; then
+            if curl -fsS --max-time 2 http://127.0.0.1:8080/jpetstore/ > /dev/null; then
               echo "Server ready after $((i * 5))s"
               SERVER_READY=true
               break
@@ -74,18 +95,32 @@ jobs:
             echo "Server not ready yet ($((i * 5))s elapsed)..."
           done
 
+          # Kill the background tail process
+          kill $TAIL_PID 2>/dev/null || true
+
           if [ "${SERVER_READY}" != "true" ]; then
-            echo "WARNING: server did not respond within 120s; cargo.log follows:"
+            echo "WARNING: server did not respond within time limit; full cargo.log follows:"
             cat cargo.log
             echo "----------------------------"
             exit 1
           fi
 
           echo "Running integration tests..."
-          ./mvnw failsafe:integration-test -P ${{ matrix.token }}
+          ./mvnw failsafe:integration-test -P ${{ matrix.token }} $CARGO_JAVA_OPT
 
           echo "Verify integration tests..."
           ./mvnw failsafe:verify -P ${{ matrix.token }}
 
           echo "Stopping container..."
-          ./mvnw cargo:stop -P ${{ matrix.token }}
+          ./mvnw cargo:stop -P ${{ matrix.token }} $CARGO_JAVA_OPT
+
+      - name: Upload Container Logs on Failure
+        if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: cargo-logs-${{ matrix.token }}-${{ matrix.os }}
+          path: |
+            build/**/*
+            target/cargo/logs/**/*
+            target/cargo/configurations/**/logs/**/*.log
+            target/*.log

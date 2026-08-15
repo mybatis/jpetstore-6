@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -32,17 +32,25 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The Class ItemMapperTest.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MapperTestContext.class)
 @Transactional
 class ItemMapperTest {
 
+  /** The mapper. */
   @Autowired
   private ItemMapper mapper;
 
+  /** The jdbc template. */
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
+  /**
+   * Gets the item list by product.
+   */
   @Test
   void getItemListByProduct() {
     // given
@@ -67,7 +75,7 @@ class ItemMapperTest {
     assertThat(items.get(0).getProduct().getProductId()).isEqualTo("FI-SW-01");
     assertThat(items.get(0).getProduct().getName()).isEqualTo("Angelfish");
     assertThat(items.get(0).getProduct().getDescription())
-        .isEqualTo("<image src=\"../images/fish1.gif\">Salt Water fish from Australia");
+        .isEqualTo("<image src=\"/jpetstore/images/fish1.gif\">Salt Water fish from Australia");
     assertThat(items.get(0).getProduct().getCategoryId()).isEqualTo("FISH");
     assertThat(items.get(1).getItemId()).isEqualTo("EST-2");
     assertThat(items.get(1).getListPrice()).isEqualTo(new BigDecimal("16.50"));
@@ -82,10 +90,13 @@ class ItemMapperTest {
     assertThat(items.get(1).getProduct().getProductId()).isEqualTo("FI-SW-01");
     assertThat(items.get(1).getProduct().getName()).isEqualTo("Angelfish");
     assertThat(items.get(1).getProduct().getDescription())
-        .isEqualTo("<image src=\"../images/fish1.gif\">Salt Water fish from Australia");
+        .isEqualTo("<image src=\"/jpetstore/images/fish1.gif\">Salt Water fish from Australia");
     assertThat(items.get(1).getProduct().getCategoryId()).isEqualTo("FISH");
   }
 
+  /**
+   * Gets the item.
+   */
   @Test
   void getItem() {
     // given
@@ -108,10 +119,13 @@ class ItemMapperTest {
     assertThat(item.getProduct().getProductId()).isEqualTo("FI-SW-01");
     assertThat(item.getProduct().getName()).isEqualTo("Angelfish");
     assertThat(item.getProduct().getDescription())
-        .isEqualTo("<image src=\"../images/fish1.gif\">Salt Water fish from Australia");
+        .isEqualTo("<image src=\"/jpetstore/images/fish1.gif\">Salt Water fish from Australia");
     assertThat(item.getProduct().getCategoryId()).isEqualTo("FISH");
   }
 
+  /**
+   * Gets the inventory quantity.
+   */
   @Test
   void getInventoryQuantity() {
     // given
@@ -125,6 +139,9 @@ class ItemMapperTest {
 
   }
 
+  /**
+   * Update inventory quantity.
+   */
   @Test
   void updateInventoryQuantity() {
     // given

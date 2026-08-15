@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -26,8 +26,22 @@ import org.mybatis.jpetstore.domain.LineItem;
  */
 public interface LineItemMapper {
 
+  /**
+   * Get line items by order id.
+   *
+   * @param orderId
+   *          the order id
+   *
+   * @return the list
+   */
   List<LineItem> getLineItemsByOrderId(int orderId);
 
+  /**
+   * Insert line item.
+   *
+   * @param lineItem
+   *          the line item
+   */
   void insertLineItem(LineItem lineItem);
 
 }

@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -26,10 +26,34 @@ import org.mybatis.jpetstore.domain.Product;
  */
 public interface ProductMapper {
 
+  /**
+   * Get product list by category.
+   *
+   * @param categoryId
+   *          the category id
+   *
+   * @return the list
+   */
   List<Product> getProductListByCategory(String categoryId);
 
+  /**
+   * Get product.
+   *
+   * @param productId
+   *          the product id
+   *
+   * @return the product
+   */
   Product getProduct(String productId);
 
+  /**
+   * Search product list.
+   *
+   * @param keywords
+   *          the keywords
+   *
+   * @return the list
+   */
   List<Product> searchProductList(String keywords);
 
 }

@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -30,16 +30,41 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AccountService {
 
+  /** The account mapper. */
   private final AccountMapper accountMapper;
 
+  /**
+   * Instantiates a new account service.
+   *
+   * @param accountMapper
+   *          the account mapper
+   */
   public AccountService(AccountMapper accountMapper) {
     this.accountMapper = accountMapper;
   }
 
+  /**
+   * Get account.
+   *
+   * @param username
+   *          the username
+   *
+   * @return the account
+   */
   public Account getAccount(String username) {
     return accountMapper.getAccountByUsername(username);
   }
 
+  /**
+   * Get account.
+   *
+   * @param username
+   *          the username
+   * @param password
+   *          the password
+   *
+   * @return the account
+   */
   public Account getAccount(String username, String password) {
     return accountMapper.getAccountByUsernameAndPassword(username, password);
   }
@@ -68,7 +93,7 @@ public class AccountService {
     accountMapper.updateAccount(account);
     accountMapper.updateProfile(account);
 
-    Optional.ofNullable(account.getPassword()).filter(password -> password.length() > 0)
+    Optional.ofNullable(account.getPassword()).filter(password -> !password.isEmpty())
         .ifPresent(password -> accountMapper.updateSignon(account));
   }
 

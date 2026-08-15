@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -28,14 +28,21 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The Class CategoryMapperTest.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MapperTestContext.class)
 @Transactional
 class CategoryMapperTest {
 
+  /** The mapper. */
   @Autowired
   private CategoryMapper mapper;
 
+  /**
+   * Gets the category list.
+   */
   @Test
   void getCategoryList() {
     // given
@@ -49,25 +56,28 @@ class CategoryMapperTest {
     assertThat(categories.get(0).getCategoryId()).isEqualTo("BIRDS");
     assertThat(categories.get(0).getName()).isEqualTo("Birds");
     assertThat(categories.get(0).getDescription())
-        .isEqualTo("<image src=\"../images/birds_icon.gif\"><font size=\"5\" color=\"blue\"> Birds</font>");
+        .isEqualTo("<image src=\"/jpetstore/images/birds_icon.gif\"><font size=\"5\" color=\"blue\"> Birds</font>");
     assertThat(categories.get(1).getCategoryId()).isEqualTo("CATS");
     assertThat(categories.get(1).getName()).isEqualTo("Cats");
     assertThat(categories.get(1).getDescription())
-        .isEqualTo("<image src=\"../images/cats_icon.gif\"><font size=\"5\" color=\"blue\"> Cats</font>");
+        .isEqualTo("<image src=\"/jpetstore/images/cats_icon.gif\"><font size=\"5\" color=\"blue\"> Cats</font>");
     assertThat(categories.get(2).getCategoryId()).isEqualTo("DOGS");
     assertThat(categories.get(2).getName()).isEqualTo("Dogs");
     assertThat(categories.get(2).getDescription())
-        .isEqualTo("<image src=\"../images/dogs_icon.gif\"><font size=\"5\" color=\"blue\"> Dogs</font>");
+        .isEqualTo("<image src=\"/jpetstore/images/dogs_icon.gif\"><font size=\"5\" color=\"blue\"> Dogs</font>");
     assertThat(categories.get(3).getCategoryId()).isEqualTo("FISH");
     assertThat(categories.get(3).getName()).isEqualTo("Fish");
     assertThat(categories.get(3).getDescription())
-        .isEqualTo("<image src=\"../images/fish_icon.gif\"><font size=\"5\" color=\"blue\"> Fish</font>");
+        .isEqualTo("<image src=\"/jpetstore/images/fish_icon.gif\"><font size=\"5\" color=\"blue\"> Fish</font>");
     assertThat(categories.get(4).getCategoryId()).isEqualTo("REPTILES");
     assertThat(categories.get(4).getName()).isEqualTo("Reptiles");
-    assertThat(categories.get(4).getDescription())
-        .isEqualTo("<image src=\"../images/reptiles_icon.gif\"><font size=\"5\" color=\"blue\"> Reptiles</font>");
+    assertThat(categories.get(4).getDescription()).isEqualTo(
+        "<image src=\"/jpetstore/images/reptiles_icon.gif\"><font size=\"5\" color=\"blue\"> Reptiles</font>");
   }
 
+  /**
+   * Gets the category.
+   */
   @Test
   void getCategory() {
     // given
@@ -80,7 +90,7 @@ class CategoryMapperTest {
     assertThat(category.getCategoryId()).isEqualTo("BIRDS");
     assertThat(category.getName()).isEqualTo("Birds");
     assertThat(category.getDescription())
-        .isEqualTo("<image src=\"../images/birds_icon.gif\"><font size=\"5\" color=\"blue\"> Birds</font>");
+        .isEqualTo("<image src=\"/jpetstore/images/birds_icon.gif\"><font size=\"5\" color=\"blue\"> Birds</font>");
   }
 
 }

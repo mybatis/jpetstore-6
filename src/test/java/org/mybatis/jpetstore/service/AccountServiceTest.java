@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -34,12 +34,17 @@ import org.mybatis.jpetstore.mapper.AccountMapper;
 @ExtendWith(MockitoExtension.class)
 class AccountServiceTest {
 
+  /** The account mapper. */
   @Mock
   private AccountMapper accountMapper;
 
+  /** The account service. */
   @InjectMocks
   private AccountService accountService;
 
+  /**
+   * Should call the mapper to insert an account.
+   */
   @Test
   void shouldCallTheMapperToInsertAnAccount() {
     // given
@@ -54,6 +59,9 @@ class AccountServiceTest {
     verify(accountMapper).insertSignon(eq(account));
   }
 
+  /**
+   * Should call the mapper to update an account.
+   */
   @Test
   void shouldCallTheMapperToUpdateAnAccount() {
     // given
@@ -69,6 +77,9 @@ class AccountServiceTest {
     verify(accountMapper).updateSignon(eq(account));
   }
 
+  /**
+   * Should call the mapper to get account an username.
+   */
   @Test
   void shouldCallTheMapperToGetAccountAnUsername() {
     // given
@@ -83,6 +94,9 @@ class AccountServiceTest {
     assertThat(account).isSameAs(expectedAccount);
   }
 
+  /**
+   * Should call the mapper to get account an username and password.
+   */
   @Test
   void shouldCallTheMapperToGetAccountAnUsernameAndPassword() {
     // given

@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010-2022 the original author or authors.
+ *    Copyright 2010-2026 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -39,16 +39,23 @@ import org.mybatis.jpetstore.mapper.ProductMapper;
 @ExtendWith(MockitoExtension.class)
 class CatalogServiceTest {
 
+  /** The product mapper. */
   @Mock(lenient = true)
   private ProductMapper productMapper;
+  /** The category mapper. */
   @Mock
   private CategoryMapper categoryMapper;
+  /** The item mapper. */
   @Mock
   private ItemMapper itemMapper;
 
+  /** The catalog service. */
   @InjectMocks
   private CatalogService catalogService;
 
+  /**
+   * Should call the search mapper twice.
+   */
   @Test
   void shouldCallTheSearchMapperTwice() {
     // given
@@ -69,6 +76,9 @@ class CatalogServiceTest {
     assertThat(r.get(1)).isSameAs(l2.get(0));
   }
 
+  /**
+   * Should return category list.
+   */
   @Test
   void shouldReturnCategoryList() {
     // given
@@ -82,6 +92,9 @@ class CatalogServiceTest {
     assertThat(categories).isSameAs(expectedCategories);
   }
 
+  /**
+   * Should return category.
+   */
   @Test
   void shouldReturnCategory() {
 
@@ -98,6 +111,9 @@ class CatalogServiceTest {
 
   }
 
+  /**
+   * Should return product.
+   */
   @Test
   void shouldReturnProduct() {
 
@@ -114,6 +130,9 @@ class CatalogServiceTest {
 
   }
 
+  /**
+   * Should return product list.
+   */
   @Test
   void shouldReturnProductList() {
     // given
@@ -129,6 +148,9 @@ class CatalogServiceTest {
 
   }
 
+  /**
+   * Should return item list.
+   */
   @Test
   void shouldReturnItemList() {
     // given
@@ -144,6 +166,9 @@ class CatalogServiceTest {
 
   }
 
+  /**
+   * Should return item.
+   */
   @Test
   void shouldReturnItem() {
 
@@ -160,6 +185,9 @@ class CatalogServiceTest {
 
   }
 
+  /**
+   * Should return true when exist stock.
+   */
   @Test
   void shouldReturnTrueWhenExistStock() {
 
@@ -175,6 +203,9 @@ class CatalogServiceTest {
 
   }
 
+  /**
+   * Should return false when not exist stock.
+   */
   @Test
   void shouldReturnFalseWhenNotExistStock() {
 

@@ -29,7 +29,7 @@
 
   <groupId>org.mybatis</groupId>
   <artifactId>jpetstore</artifactId>
-  <version>6.2.1-SNAPSHOT</version>
+  <version>6.3.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>JPetStore Demo 6</name>
@@ -59,22 +59,30 @@
 
   <properties>
     <!-- Java Usage -->
-    <java.version>17</java.version>
-    <java.release.version>17</java.release.version>
+    <java.version>8</java.version>
+    <java.release.version>8</java.release.version>
 
-    <cargo-maven3-plugin.version>1.10.28</cargo-maven3-plugin.version>
+    <!-- Configuration -->
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
+    <osgi.export />
 
-    <slf4j.version>2.0.18</slf4j.version>
-    <spring.version>6.2.19</spring.version>
+    <!-- Library Versions -->
     <assertj.version>3.27.7</assertj.version>
     <byte-buddy.version>1.18.11</byte-buddy.version>
-    <mockito.version>5.23.0</mockito.version>
+    <commons-logging.version>1.4.0</commons-logging.version>
     <hsqldb.version>2.7.4</hsqldb.version>
+    <mockito.version>5.23.0</mockito.version>
+    <slf4j.version>2.0.18</slf4j.version>
+    <spring.version>5.3.39</spring.version>
+
+    <!-- Plugin Versions -->
+    <cargo-maven3-plugin.version>1.10.28</cargo-maven3-plugin.version>
+
+    <!-- Automatic Module Name -->
     <module.name>org.mybatis.jpetstore</module.name>
 
     <!-- Reproducible Builds -->
-    <project.build.outputTimestamp>1767296648</project.build.outputTimestamp>
+    <project.build.outputTimestamp>1783633266</project.build.outputTimestamp>
 
     <!-- Surefire Setup -->
     <argLine>-javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar</argLine>
@@ -85,9 +93,9 @@
       <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-bom</artifactId>
-        <version>4.45.0</version>
-        <scope>import</scope>
+        <version>4.47.0</version>
         <type>pom</type>
+        <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -102,12 +110,19 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis-spring</artifactId>
-      <version>3.0.5</version>
+      <version>2.1.2</version>
     </dependency>
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>${spring.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -117,24 +132,14 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <!-- Keep spring-web at 5.3.39 until jakarta upgrade occurs -->
-      <version>5.3.39</version>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
-      <groupId>net.sourceforge.stripes</groupId>
-      <artifactId>stripes</artifactId>
-      <version>1.6.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
     </dependency>
+
     <dependency>
       <groupId>org.apache.taglibs</groupId>
       <artifactId>taglibs-standard-spec</artifactId>
@@ -145,6 +150,7 @@
       <artifactId>taglibs-standard-impl</artifactId>
       <version>1.2.5</version>
     </dependency>
+
     <dependency>
       <groupId>jakarta.servlet.jsp</groupId>
       <artifactId>jakarta.servlet.jsp-api</artifactId>
@@ -157,6 +163,13 @@
       <version>4.0.4</version>
       <scope>provided</scope>
     </dependency>
+
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>${commons-logging.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -167,17 +180,12 @@
       <artifactId>slf4j-simple</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
+
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
       <version>${hsqldb.version}</version>
-    </dependency>
-
-    <!-- Due to osgi issue with mybatis spring, its required here for liberty -->
-    <dependency>
-      <groupId>org.springframework.batch</groupId>
-      <artifactId>spring-batch-infrastructure</artifactId>
-      <version>5.2.6</version>
+      <classifier>jdk8</classifier>
     </dependency>
 
     <!-- Test dependencies -->
@@ -193,12 +201,14 @@
       <version>${byte-buddy.version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>6.1.1</version>
+      <version>6.1.3</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
@@ -211,30 +221,28 @@
       <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <version>${assertj.version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>7.16.2</version>
+      <version>7.17.0</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit3-driver</artifactId>
-      <version>4.45.0</version>
+      <version>4.47.0</version>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
@@ -251,13 +259,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
           <version>3.5.1</version>
-          <configuration>
-            <archive>
-              <manifestEntries>
-                <Dependencies>jdk.unsupported</Dependencies>
-              </manifestEntries>
-            </archive>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -269,13 +270,6 @@
           <artifactId>maven-site-plugin</artifactId>
           <configuration>
             <locales>default,es,ja,ko</locales>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <configuration>
-            <changeDetection>always</changeDetection>
           </configuration>
         </plugin>
         <plugin>
@@ -293,8 +287,8 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
     <plugins>
-      <!-- Keep disabled until jakarta upgrade occurs due to issues with liberty holding stdin/stdout open with ee8
       <plugin>
         <groupId>org.codehaus.cargo</groupId>
         <artifactId>cargo-maven3-plugin</artifactId>
@@ -327,12 +321,12 @@
           </execution>
         </executions>
       </plugin>
-      -->
     </plugins>
   </build>
 
   <profiles>
-    <!-- Profiles for Application Server -->
+
+    <!-- Profiles for Application Server (tomcat first as preferred then alpha order) -->
     <profile>
       <id>tomcat9</id>
       <activation>
@@ -343,6 +337,7 @@
         <tomcat.version>9.0.120</tomcat.version>
         <cargo.maven.containerId>tomcat${tomcat.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/${tomcat.version}/tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
+        <cargo.jvmargs>--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED</cargo.jvmargs>
       </properties>
       <build>
         <plugins>
@@ -362,14 +357,16 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
-      <!-- TODO: Remove after we switch to jakarta as end of life -->
-      <id>tomee80</id>
+      <!-- Use 'payara5' as this is not supported with java 17 due to hk2 'dcs' is null error. -->
+      <id>glassfish5</id>
       <properties>
-        <tomee.major-version>8</tomee.major-version>
-        <tomee.version>8.0.16</tomee.version>
-        <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
+        <glassfish.major-version>5</glassfish.major-version>
+        <glassfish.version>5.1.0</glassfish.version>
+        <cargo.java.home>D:/jdk/jdk-1.8.0.501</cargo.java.home>
+        <cargo.maven.containerId>glassfish${glassfish.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/org/glassfish/main/distributions/glassfish/${glassfish.version}/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
       </properties>
       <build>
         <plugins>
@@ -389,67 +386,12 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
-      <id>wildfly26</id>
-      <!-- TODO: Remove after we switch to jakarta as end of life -->
-      <properties>
-        <wildfly.major-version>26</wildfly.major-version>
-        <wildfly.version>26.1.3.Final</wildfly.version>
-        <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
-        <cargo.jvmargs>--add-opens=java.base/java.util=ALL-UNNAMED</cargo.jvmargs>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.cargo</groupId>
-            <artifactId>cargo-maven3-plugin</artifactId>
-            <configuration>
-              <container>
-                <containerId>${cargo.maven.containerId}</containerId>
-                <type>installed</type>
-                <zipUrlInstaller>
-                  <url>${cargo.maven.containerUrl}</url>
-                </zipUrlInstaller>
-              </container>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>liberty-ee8</id>
-      <properties>
-        <liberty.version>26.0.0.6</liberty.version>
-        <cargo.maven.containerId>liberty</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.cargo</groupId>
-            <artifactId>cargo-maven3-plugin</artifactId>
-            <configuration>
-              <container>
-                <containerId>${cargo.maven.containerId}</containerId>
-                <type>installed</type>
-                <zipUrlInstaller>
-                  <url>${cargo.maven.containerUrl}</url>
-                </zipUrlInstaller>
-                <systemProperties>
-                  <ws.jar.cache.disable>true</ws.jar.cache.disable>
-                </systemProperties>
-              </container>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>jetty</id>
+      <id>jetty12-ee8</id>
       <properties>
         <jetty.major-version>12</jetty.major-version>
-        <jetty.version>12.1.11</jetty.version>
+        <jetty.version>12.1.12</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.jetty.deployer.ee.version>ee8</cargo.jetty.deployer.ee.version>
       </properties>
@@ -473,15 +415,22 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
-      <!-- Use 'payara5' as this is not supported with java 17 due to hk2 'dcs' is null error. -->
-      <id>glassfish5</id>
+      <id>liberty26-ee8</id>
       <properties>
-        <glassfish.major-version>5</glassfish.major-version>
-        <glassfish.version>5.1.0</glassfish.version>
-        <cargo.maven.containerId>glassfish${glassfish.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>https://repo.maven.apache.org/maven2/org/glassfish/main/distributions/glassfish/${glassfish.version}/glassfish-${glassfish.version}.zip</cargo.maven.containerUrl>
+        <liberty.version>26.0.0.7</liberty.version>
+        <cargo.maven.containerId>liberty</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
+      <dependencies>
+        <!-- Due to osgi issue with mybatis spring, its required here for liberty -->
+        <dependency>
+          <groupId>org.springframework.batch</groupId>
+          <artifactId>spring-batch-infrastructure</artifactId>
+          <version>4.3.10</version>
+        </dependency>
+      </dependencies>
       <build>
         <plugins>
           <plugin>
@@ -494,12 +443,16 @@
                 <zipUrlInstaller>
                   <url>${cargo.maven.containerUrl}</url>
                 </zipUrlInstaller>
+                <systemProperties>
+                  <ws.jar.cache.disable>true</ws.jar.cache.disable>
+                </systemProperties>
               </container>
             </configuration>
           </plugin>
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>payara5</id>
       <properties>
@@ -528,8 +481,10 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
-      <id>resin</id>
+      <!-- TODO: Remove after we switch to jakarta as end of life and no longer supported. -->
+      <id>resin4</id>
       <properties>
         <resin.major-version>4</resin.major-version>
         <resin.version>4.0.67</resin.version>
@@ -562,6 +517,63 @@
         </plugins>
       </build>
     </profile>
+
+    <profile>
+      <id>tomee8</id>
+      <properties>
+        <tomee.major-version>8</tomee.major-version>
+        <tomee.version>8.0.16</tomee.version>
+        <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
+        <cargo.jvmargs>--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED</cargo.jvmargs>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>wildfly26</id>
+      <properties>
+        <wildfly.major-version>26</wildfly.major-version>
+        <wildfly.version>26.1.3.Final</wildfly.version>
+        <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
+        <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
+        <cargo.jvmargs>--add-opens=java.base/java.util=ALL-UNNAMED</cargo.jvmargs>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <configuration>
+              <container>
+                <containerId>${cargo.maven.containerId}</containerId>
+                <type>installed</type>
+                <zipUrlInstaller>
+                  <url>${cargo.maven.containerUrl}</url>
+                </zipUrlInstaller>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
   </profiles>
 
 </project>
