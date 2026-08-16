@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Order.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JPetStore Demo 6</a> &gt; <a href="index.source.html" class="el_package">org.mybatis.jpetstore.domain</a> &gt; <span class="el_source">Order.java</span></div><h1>Order.java</h1><pre class="source lang-java linenums">/*
+ *    Copyright 2010-2026 the original author or authors.
+ *
+ *    Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *       https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+package org.mybatis.jpetstore.domain;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+/**
+ * The Class Order.
+ */
+<span class="fc" id="L30">public class Order implements Serializable {</span>
+
+  /** The serial version uid. */
+  private static final long serialVersionUID = 6321792448424424931L;
+
+  /** The order id. */
+  private int orderId;
+  /** The username. */
+  private String username;
+  /** The order date. */
+  private LocalDateTime orderDate;
+  /** The ship address1. */
+  private String shipAddress1;
+  /** The ship address2. */
+  private String shipAddress2;
+  /** The ship city. */
+  private String shipCity;
+  /** The ship state. */
+  private String shipState;
+  /** The ship zip. */
+  private String shipZip;
+  /** The ship country. */
+  private String shipCountry;
+  /** The bill address1. */
+  private String billAddress1;
+  /** The bill address2. */
+  private String billAddress2;
+  /** The bill city. */
+  private String billCity;
+  /** The bill state. */
+  private String billState;
+  /** The bill zip. */
+  private String billZip;
+  /** The bill country. */
+  private String billCountry;
+  /** The courier. */
+  private String courier;
+  /** The total price. */
+  private BigDecimal totalPrice;
+  /** The bill to first name. */
+  private String billToFirstName;
+  /** The bill to last name. */
+  private String billToLastName;
+  /** The ship to first name. */
+  private String shipToFirstName;
+  /** The ship to last name. */
+  private String shipToLastName;
+  /** The credit card. */
+  private String creditCard;
+  /** The expiry date. */
+  private String expiryDate;
+  /** The card type. */
+  private String cardType;
+  /** The locale. */
+  private String locale;
+  /** The status. */
+  private String status;
+  /** The line items. */
+<span class="fc" id="L88">  private List&lt;LineItem&gt; lineItems = new ArrayList&lt;&gt;();</span>
+
+  /**
+   * Gets the order id.
+   *
+   * @return the order id
+   */
+  public int getOrderId() {
+<span class="fc" id="L96">    return orderId;</span>
+  }
+
+  /**
+   * Sets the order id.
+   *
+   * @param orderId
+   *          the order id
+   */
+  public void setOrderId(int orderId) {
+<span class="fc" id="L106">    this.orderId = orderId;</span>
+<span class="fc" id="L107">  }</span>
+
+  /**
+   * Gets the username.
+   *
+   * @return the username
+   */
+  public String getUsername() {
+<span class="fc" id="L115">    return username;</span>
+  }
+
+  /**
+   * Sets the username.
+   *
+   * @param username
+   *          the username
+   */
+  public void setUsername(String username) {
+<span class="fc" id="L125">    this.username = username;</span>
+<span class="fc" id="L126">  }</span>
+
+  /**
+   * Gets the order date.
+   *
+   * @return the order date
+   */
+  public LocalDateTime getOrderDate() {
+<span class="fc" id="L134">    return orderDate;</span>
+  }
+
+  /**
+   * Sets the order date.
+   *
+   * @param orderDate
+   *          the order date
+   */
+  public void setOrderDate(LocalDateTime orderDate) {
+<span class="fc" id="L144">    this.orderDate = orderDate;</span>
+<span class="fc" id="L145">  }</span>
+
+  /**
+   * Gets the ship address1.
+   *
+   * @return the ship address1
+   */
+  public String getShipAddress1() {
+<span class="fc" id="L153">    return shipAddress1;</span>
+  }
+
+  /**
+   * Sets the ship address1.
+   *
+   * @param shipAddress1
+   *          the ship address1
+   */
+  public void setShipAddress1(String shipAddress1) {
+<span class="fc" id="L163">    this.shipAddress1 = shipAddress1;</span>
+<span class="fc" id="L164">  }</span>
+
+  /**
+   * Gets the ship address2.
+   *
+   * @return the ship address2
+   */
+  public String getShipAddress2() {
+<span class="fc" id="L172">    return shipAddress2;</span>
+  }
+
+  /**
+   * Sets the ship address2.
+   *
+   * @param shipAddress2
+   *          the ship address2
+   */
+  public void setShipAddress2(String shipAddress2) {
+<span class="fc" id="L182">    this.shipAddress2 = shipAddress2;</span>
+<span class="fc" id="L183">  }</span>
+
+  /**
+   * Gets the ship city.
+   *
+   * @return the ship city
+   */
+  public String getShipCity() {
+<span class="fc" id="L191">    return shipCity;</span>
+  }
+
+  /**
+   * Sets the ship city.
+   *
+   * @param shipCity
+   *          the ship city
+   */
+  public void setShipCity(String shipCity) {
+<span class="fc" id="L201">    this.shipCity = shipCity;</span>
+<span class="fc" id="L202">  }</span>
+
+  /**
+   * Gets the ship state.
+   *
+   * @return the ship state
+   */
+  public String getShipState() {
+<span class="fc" id="L210">    return shipState;</span>
+  }
+
+  /**
+   * Sets the ship state.
+   *
+   * @param shipState
+   *          the ship state
+   */
+  public void setShipState(String shipState) {
+<span class="fc" id="L220">    this.shipState = shipState;</span>
+<span class="fc" id="L221">  }</span>
+
+  /**
+   * Gets the ship zip.
+   *
+   * @return the ship zip
+   */
+  public String getShipZip() {
+<span class="fc" id="L229">    return shipZip;</span>
+  }
+
+  /**
+   * Sets the ship zip.
+   *
+   * @param shipZip
+   *          the ship zip
+   */
+  public void setShipZip(String shipZip) {
+<span class="fc" id="L239">    this.shipZip = shipZip;</span>
+<span class="fc" id="L240">  }</span>
+
+  /**
+   * Gets the ship country.
+   *
+   * @return the ship country
+   */
+  public String getShipCountry() {
+<span class="fc" id="L248">    return shipCountry;</span>
+  }
+
+  /**
+   * Sets the ship country.
+   *
+   * @param shipCountry
+   *          the ship country
+   */
+  public void setShipCountry(String shipCountry) {
+<span class="fc" id="L258">    this.shipCountry = shipCountry;</span>
+<span class="fc" id="L259">  }</span>
+
+  /**
+   * Gets the bill address1.
+   *
+   * @return the bill address1
+   */
+  public String getBillAddress1() {
+<span class="fc" id="L267">    return billAddress1;</span>
+  }
+
+  /**
+   * Sets the bill address1.
+   *
+   * @param billAddress1
+   *          the bill address1
+   */
+  public void setBillAddress1(String billAddress1) {
+<span class="fc" id="L277">    this.billAddress1 = billAddress1;</span>
+<span class="fc" id="L278">  }</span>
+
+  /**
+   * Gets the bill address2.
+   *
+   * @return the bill address2
+   */
+  public String getBillAddress2() {
+<span class="fc" id="L286">    return billAddress2;</span>
+  }
+
+  /**
+   * Sets the bill address2.
+   *
+   * @param billAddress2
+   *          the bill address2
+   */
+  public void setBillAddress2(String billAddress2) {
+<span class="fc" id="L296">    this.billAddress2 = billAddress2;</span>
+<span class="fc" id="L297">  }</span>
+
+  /**
+   * Gets the bill city.
+   *
+   * @return the bill city
+   */
+  public String getBillCity() {
+<span class="fc" id="L305">    return billCity;</span>
+  }
+
+  /**
+   * Sets the bill city.
+   *
+   * @param billCity
+   *          the bill city
+   */
+  public void setBillCity(String billCity) {
+<span class="fc" id="L315">    this.billCity = billCity;</span>
+<span class="fc" id="L316">  }</span>
+
+  /**
+   * Gets the bill state.
+   *
+   * @return the bill state
+   */
+  public String getBillState() {
+<span class="fc" id="L324">    return billState;</span>
+  }
+
+  /**
+   * Sets the bill state.
+   *
+   * @param billState
+   *          the bill state
+   */
+  public void setBillState(String billState) {
+<span class="fc" id="L334">    this.billState = billState;</span>
+<span class="fc" id="L335">  }</span>
+
+  /**
+   * Gets the bill zip.
+   *
+   * @return the bill zip
+   */
+  public String getBillZip() {
+<span class="fc" id="L343">    return billZip;</span>
+  }
+
+  /**
+   * Sets the bill zip.
+   *
+   * @param billZip
+   *          the bill zip
+   */
+  public void setBillZip(String billZip) {
+<span class="fc" id="L353">    this.billZip = billZip;</span>
+<span class="fc" id="L354">  }</span>
+
+  /**
+   * Gets the bill country.
+   *
+   * @return the bill country
+   */
+  public String getBillCountry() {
+<span class="fc" id="L362">    return billCountry;</span>
+  }
+
+  /**
+   * Sets the bill country.
+   *
+   * @param billCountry
+   *          the bill country
+   */
+  public void setBillCountry(String billCountry) {
+<span class="fc" id="L372">    this.billCountry = billCountry;</span>
+<span class="fc" id="L373">  }</span>
+
+  /**
+   * Gets the courier.
+   *
+   * @return the courier
+   */
+  public String getCourier() {
+<span class="fc" id="L381">    return courier;</span>
+  }
+
+  /**
+   * Sets the courier.
+   *
+   * @param courier
+   *          the courier
+   */
+  public void setCourier(String courier) {
+<span class="fc" id="L391">    this.courier = courier;</span>
+<span class="fc" id="L392">  }</span>
+
+  /**
+   * Gets the total price.
+   *
+   * @return the total price
+   */
+  public BigDecimal getTotalPrice() {
+<span class="fc" id="L400">    return totalPrice;</span>
+  }
+
+  /**
+   * Sets the total price.
+   *
+   * @param totalPrice
+   *          the total price
+   */
+  public void setTotalPrice(BigDecimal totalPrice) {
+<span class="fc" id="L410">    this.totalPrice = totalPrice;</span>
+<span class="fc" id="L411">  }</span>
+
+  /**
+   * Gets the bill to first name.
+   *
+   * @return the bill to first name
+   */
+  public String getBillToFirstName() {
+<span class="fc" id="L419">    return billToFirstName;</span>
+  }
+
+  /**
+   * Sets the bill to first name.
+   *
+   * @param billToFirstName
+   *          the bill to first name
+   */
+  public void setBillToFirstName(String billToFirstName) {
+<span class="fc" id="L429">    this.billToFirstName = billToFirstName;</span>
+<span class="fc" id="L430">  }</span>
+
+  /**
+   * Gets the bill to last name.
+   *
+   * @return the bill to last name
+   */
+  public String getBillToLastName() {
+<span class="fc" id="L438">    return billToLastName;</span>
+  }
+
+  /**
+   * Sets the bill to last name.
+   *
+   * @param billToLastName
+   *          the bill to last name
+   */
+  public void setBillToLastName(String billToLastName) {
+<span class="fc" id="L448">    this.billToLastName = billToLastName;</span>
+<span class="fc" id="L449">  }</span>
+
+  /**
+   * Gets the ship to first name.
+   *
+   * @return the ship to first name
+   */
+  public String getShipToFirstName() {
+<span class="fc" id="L457">    return shipToFirstName;</span>
+  }
+
+  /**
+   * Sets the ship to first name.
+   *
+   * @param shipFoFirstName
+   *          the ship fo first name
+   */
+  public void setShipToFirstName(String shipFoFirstName) {
+<span class="fc" id="L467">    this.shipToFirstName = shipFoFirstName;</span>
+<span class="fc" id="L468">  }</span>
+
+  /**
+   * Gets the ship to last name.
+   *
+   * @return the ship to last name
+   */
+  public String getShipToLastName() {
+<span class="fc" id="L476">    return shipToLastName;</span>
+  }
+
+  /**
+   * Sets the ship to last name.
+   *
+   * @param shipToLastName
+   *          the ship to last name
+   */
+  public void setShipToLastName(String shipToLastName) {
+<span class="fc" id="L486">    this.shipToLastName = shipToLastName;</span>
+<span class="fc" id="L487">  }</span>
+
+  /**
+   * Gets the credit card.
+   *
+   * @return the credit card
+   */
+  public String getCreditCard() {
+<span class="fc" id="L495">    return creditCard;</span>
+  }
+
+  /**
+   * Sets the credit card.
+   *
+   * @param creditCard
+   *          the credit card
+   */
+  public void setCreditCard(String creditCard) {
+<span class="fc" id="L505">    this.creditCard = creditCard;</span>
+<span class="fc" id="L506">  }</span>
+
+  /**
+   * Gets the expiry date.
+   *
+   * @return the expiry date
+   */
+  public String getExpiryDate() {
+<span class="fc" id="L514">    return expiryDate;</span>
+  }
+
+  /**
+   * Sets the expiry date.
+   *
+   * @param expiryDate
+   *          the expiry date
+   */
+  public void setExpiryDate(String expiryDate) {
+<span class="fc" id="L524">    this.expiryDate = expiryDate;</span>
+<span class="fc" id="L525">  }</span>
+
+  /**
+   * Gets the card type.
+   *
+   * @return the card type
+   */
+  public String getCardType() {
+<span class="fc" id="L533">    return cardType;</span>
+  }
+
+  /**
+   * Sets the card type.
+   *
+   * @param cardType
+   *          the card type
+   */
+  public void setCardType(String cardType) {
+<span class="fc" id="L543">    this.cardType = cardType;</span>
+<span class="fc" id="L544">  }</span>
+
+  /**
+   * Gets the locale.
+   *
+   * @return the locale
+   */
+  public String getLocale() {
+<span class="fc" id="L552">    return locale;</span>
+  }
+
+  /**
+   * Sets the locale.
+   *
+   * @param locale
+   *          the locale
+   */
+  public void setLocale(String locale) {
+<span class="fc" id="L562">    this.locale = locale;</span>
+<span class="fc" id="L563">  }</span>
+
+  /**
+   * Gets the status.
+   *
+   * @return the status
+   */
+  public String getStatus() {
+<span class="fc" id="L571">    return status;</span>
+  }
+
+  /**
+   * Sets the status.
+   *
+   * @param status
+   *          the status
+   */
+  public void setStatus(String status) {
+<span class="fc" id="L581">    this.status = status;</span>
+<span class="fc" id="L582">  }</span>
+
+  /**
+   * Sets the line items.
+   *
+   * @param lineItems
+   *          the line items
+   */
+  public void setLineItems(List&lt;LineItem&gt; lineItems) {
+<span class="fc" id="L591">    this.lineItems = lineItems;</span>
+<span class="fc" id="L592">  }</span>
+
+  /**
+   * Gets the line items.
+   *
+   * @return the line items
+   */
+  public List&lt;LineItem&gt; getLineItems() {
+<span class="fc" id="L600">    return lineItems;</span>
+  }
+
+  /**
+   * Inits the order.
+   *
+   * @param account
+   *          the account
+   * @param cart
+   *          the cart
+   */
+  public void initOrder(Account account, Cart cart) {
+
+<span class="fc" id="L613">    username = account.getUsername();</span>
+<span class="fc" id="L614">    orderDate = LocalDateTime.now(ZoneId.systemDefault());</span>
+
+<span class="fc" id="L616">    shipToFirstName = account.getFirstName();</span>
+<span class="fc" id="L617">    shipToLastName = account.getLastName();</span>
+<span class="fc" id="L618">    shipAddress1 = account.getAddress1();</span>
+<span class="fc" id="L619">    shipAddress2 = account.getAddress2();</span>
+<span class="fc" id="L620">    shipCity = account.getCity();</span>
+<span class="fc" id="L621">    shipState = account.getState();</span>
+<span class="fc" id="L622">    shipZip = account.getZip();</span>
+<span class="fc" id="L623">    shipCountry = account.getCountry();</span>
+
+<span class="fc" id="L625">    billToFirstName = account.getFirstName();</span>
+<span class="fc" id="L626">    billToLastName = account.getLastName();</span>
+<span class="fc" id="L627">    billAddress1 = account.getAddress1();</span>
+<span class="fc" id="L628">    billAddress2 = account.getAddress2();</span>
+<span class="fc" id="L629">    billCity = account.getCity();</span>
+<span class="fc" id="L630">    billState = account.getState();</span>
+<span class="fc" id="L631">    billZip = account.getZip();</span>
+<span class="fc" id="L632">    billCountry = account.getCountry();</span>
+
+<span class="fc" id="L634">    totalPrice = cart.getSubTotal();</span>
+
+<span class="fc" id="L636">    creditCard = &quot;999 9999 9999 9999&quot;;</span>
+<span class="fc" id="L637">    expiryDate = &quot;12/03&quot;;</span>
+<span class="fc" id="L638">    cardType = &quot;Visa&quot;;</span>
+<span class="fc" id="L639">    courier = &quot;UPS&quot;;</span>
+<span class="fc" id="L640">    locale = &quot;CA&quot;;</span>
+<span class="fc" id="L641">    status = &quot;P&quot;;</span>
+
+<span class="fc" id="L643">    Iterator&lt;CartItem&gt; i = cart.getAllCartItems();</span>
+<span class="fc bfc" id="L644" title="All 2 branches covered.">    while (i.hasNext()) {</span>
+<span class="fc" id="L645">      CartItem cartItem = i.next();</span>
+<span class="fc" id="L646">      addLineItem(cartItem);</span>
+<span class="fc" id="L647">    }</span>
+
+<span class="fc" id="L649">  }</span>
+
+  /**
+   * Add line item.
+   *
+   * @param cartItem
+   *          the cart item
+   */
+  public void addLineItem(CartItem cartItem) {
+<span class="fc" id="L658">    LineItem lineItem = new LineItem(lineItems.size() + 1, cartItem);</span>
+<span class="fc" id="L659">    addLineItem(lineItem);</span>
+<span class="fc" id="L660">  }</span>
+
+  /**
+   * Add line item.
+   *
+   * @param lineItem
+   *          the line item
+   */
+  public void addLineItem(LineItem lineItem) {
+<span class="fc" id="L669">    lineItems.add(lineItem);</span>
+<span class="fc" id="L670">  }</span>
+
+  /**
+   * Gets the formatted order date.
+   *
+   * @return the formatted order date
+   */
+  public String getFormattedOrderDate() {
+<span class="fc" id="L678">    return orderDate.format(ORDER_DATE_FORMATTER);</span>
+  }
+
+  /** The Constant ORDER_DATE_FORMATTER. */
+<span class="fc" id="L682">  private static final DateTimeFormatter ORDER_DATE_FORMATTER = DateTimeFormatter.ofPattern(&quot;yyyy/MM/dd HH:mm:ss&quot;);</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

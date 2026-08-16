@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Item.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JPetStore Demo 6</a> &gt; <a href="index.source.html" class="el_package">org.mybatis.jpetstore.domain</a> &gt; <span class="el_source">Item.java</span></div><h1>Item.java</h1><pre class="source lang-java linenums">/*
+ *    Copyright 2010-2026 the original author or authors.
+ *
+ *    Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *       https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+package org.mybatis.jpetstore.domain;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+/**
+ * The Class Item.
+ */
+<span class="fc" id="L24">public class Item implements Serializable {</span>
+
+  /** The serial version uid. */
+  private static final long serialVersionUID = -2159121673445254631L;
+
+  /** The item id. */
+  private String itemId;
+  /** The list price. */
+  private BigDecimal listPrice;
+  /** The unit cost. */
+  private BigDecimal unitCost;
+  /** The supplier id. */
+  private int supplierId;
+  /** The status. */
+  private String status;
+  /** The attribute1. */
+  private String attribute1;
+  /** The attribute2. */
+  private String attribute2;
+  /** The attribute3. */
+  private String attribute3;
+  /** The attribute4. */
+  private String attribute4;
+  /** The attribute5. */
+  private String attribute5;
+  /** The product. */
+  private Product product;
+  /** The quantity. */
+  private int quantity;
+
+  /**
+   * Gets the item id.
+   *
+   * @return the item id
+   */
+  public String getItemId() {
+<span class="fc" id="L60">    return itemId;</span>
+  }
+
+  /**
+   * Sets the item id.
+   *
+   * @param itemId
+   *          the item id
+   */
+  public void setItemId(String itemId) {
+<span class="fc" id="L70">    this.itemId = itemId.trim();</span>
+<span class="fc" id="L71">  }</span>
+
+  /**
+   * Gets the quantity.
+   *
+   * @return the quantity
+   */
+  public int getQuantity() {
+<span class="fc" id="L79">    return quantity;</span>
+  }
+
+  /**
+   * Sets the quantity.
+   *
+   * @param quantity
+   *          the quantity
+   */
+  public void setQuantity(int quantity) {
+<span class="fc" id="L89">    this.quantity = quantity;</span>
+<span class="fc" id="L90">  }</span>
+
+  /**
+   * Gets the product.
+   *
+   * @return the product
+   */
+  public Product getProduct() {
+<span class="fc" id="L98">    return product;</span>
+  }
+
+  /**
+   * Sets the product.
+   *
+   * @param product
+   *          the product
+   */
+  public void setProduct(Product product) {
+<span class="fc" id="L108">    this.product = product;</span>
+<span class="fc" id="L109">  }</span>
+
+  /**
+   * Gets the supplier id.
+   *
+   * @return the supplier id
+   */
+  public int getSupplierId() {
+<span class="fc" id="L117">    return supplierId;</span>
+  }
+
+  /**
+   * Sets the supplier id.
+   *
+   * @param supplierId
+   *          the supplier id
+   */
+  public void setSupplierId(int supplierId) {
+<span class="fc" id="L127">    this.supplierId = supplierId;</span>
+<span class="fc" id="L128">  }</span>
+
+  /**
+   * Gets the list price.
+   *
+   * @return the list price
+   */
+  public BigDecimal getListPrice() {
+<span class="fc" id="L136">    return listPrice;</span>
+  }
+
+  /**
+   * Sets the list price.
+   *
+   * @param listPrice
+   *          the list price
+   */
+  public void setListPrice(BigDecimal listPrice) {
+<span class="fc" id="L146">    this.listPrice = listPrice;</span>
+<span class="fc" id="L147">  }</span>
+
+  /**
+   * Gets the unit cost.
+   *
+   * @return the unit cost
+   */
+  public BigDecimal getUnitCost() {
+<span class="fc" id="L155">    return unitCost;</span>
+  }
+
+  /**
+   * Sets the unit cost.
+   *
+   * @param unitCost
+   *          the unit cost
+   */
+  public void setUnitCost(BigDecimal unitCost) {
+<span class="fc" id="L165">    this.unitCost = unitCost;</span>
+<span class="fc" id="L166">  }</span>
+
+  /**
+   * Gets the status.
+   *
+   * @return the status
+   */
+  public String getStatus() {
+<span class="fc" id="L174">    return status;</span>
+  }
+
+  /**
+   * Sets the status.
+   *
+   * @param status
+   *          the status
+   */
+  public void setStatus(String status) {
+<span class="fc" id="L184">    this.status = status;</span>
+<span class="fc" id="L185">  }</span>
+
+  /**
+   * Gets the attribute1.
+   *
+   * @return the attribute1
+   */
+  public String getAttribute1() {
+<span class="fc" id="L193">    return attribute1;</span>
+  }
+
+  /**
+   * Sets the attribute1.
+   *
+   * @param attribute1
+   *          the attribute1
+   */
+  public void setAttribute1(String attribute1) {
+<span class="fc" id="L203">    this.attribute1 = attribute1;</span>
+<span class="fc" id="L204">  }</span>
+
+  /**
+   * Gets the attribute2.
+   *
+   * @return the attribute2
+   */
+  public String getAttribute2() {
+<span class="fc" id="L212">    return attribute2;</span>
+  }
+
+  /**
+   * Sets the attribute2.
+   *
+   * @param attribute2
+   *          the attribute2
+   */
+  public void setAttribute2(String attribute2) {
+<span class="nc" id="L222">    this.attribute2 = attribute2;</span>
+<span class="nc" id="L223">  }</span>
+
+  /**
+   * Gets the attribute3.
+   *
+   * @return the attribute3
+   */
+  public String getAttribute3() {
+<span class="fc" id="L231">    return attribute3;</span>
+  }
+
+  /**
+   * Sets the attribute3.
+   *
+   * @param attribute3
+   *          the attribute3
+   */
+  public void setAttribute3(String attribute3) {
+<span class="nc" id="L241">    this.attribute3 = attribute3;</span>
+<span class="nc" id="L242">  }</span>
+
+  /**
+   * Gets the attribute4.
+   *
+   * @return the attribute4
+   */
+  public String getAttribute4() {
+<span class="fc" id="L250">    return attribute4;</span>
+  }
+
+  /**
+   * Sets the attribute4.
+   *
+   * @param attribute4
+   *          the attribute4
+   */
+  public void setAttribute4(String attribute4) {
+<span class="nc" id="L260">    this.attribute4 = attribute4;</span>
+<span class="nc" id="L261">  }</span>
+
+  /**
+   * Gets the attribute5.
+   *
+   * @return the attribute5
+   */
+  public String getAttribute5() {
+<span class="fc" id="L269">    return attribute5;</span>
+  }
+
+  /**
+   * Sets the attribute5.
+   *
+   * @param attribute5
+   *          the attribute5
+   */
+  public void setAttribute5(String attribute5) {
+<span class="nc" id="L279">    this.attribute5 = attribute5;</span>
+<span class="nc" id="L280">  }</span>
+
+  @Override
+  public String toString() {
+<span class="nc" id="L284">    return &quot;(&quot; + getItemId() + &quot;-&quot; + getProduct().getProductId() + &quot;)&quot;;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

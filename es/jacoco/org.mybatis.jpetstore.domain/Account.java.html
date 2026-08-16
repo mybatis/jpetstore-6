@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Account.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JPetStore Demo 6</a> &gt; <a href="index.source.html" class="el_package">org.mybatis.jpetstore.domain</a> &gt; <span class="el_source">Account.java</span></div><h1>Account.java</h1><pre class="source lang-java linenums">/*
+ *    Copyright 2010-2026 the original author or authors.
+ *
+ *    Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *       https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+package org.mybatis.jpetstore.domain;
+
+import java.io.Serializable;
+
+/**
+ * The Class Account.
+ */
+<span class="fc" id="L23">public class Account implements Serializable {</span>
+
+  /** The serial version uid. */
+  private static final long serialVersionUID = 8751282105532159742L;
+
+  /** The username. */
+  private String username;
+  /** The password. */
+  private String password;
+  /** The email. */
+  private String email;
+  /** The first name. */
+  private String firstName;
+  /** The last name. */
+  private String lastName;
+  /** The status. */
+  private String status;
+  /** The address1. */
+  private String address1;
+  /** The address2. */
+  private String address2;
+  /** The city. */
+  private String city;
+  /** The state. */
+  private String state;
+  /** The zip. */
+  private String zip;
+  /** The country. */
+  private String country;
+  /** The phone. */
+  private String phone;
+  /** The favourite category id. */
+  private String favouriteCategoryId;
+  /** The language preference. */
+  private String languagePreference;
+  /** The list option. */
+  private boolean listOption;
+  /** The banner option. */
+  private boolean bannerOption;
+  /** The banner name. */
+  private String bannerName;
+
+  /**
+   * Gets the username.
+   *
+   * @return the username
+   */
+  public String getUsername() {
+<span class="fc" id="L71">    return username;</span>
+  }
+
+  /**
+   * Sets the username.
+   *
+   * @param username
+   *          the username
+   */
+  public void setUsername(String username) {
+<span class="fc" id="L81">    this.username = username;</span>
+<span class="fc" id="L82">  }</span>
+
+  /**
+   * Gets the password.
+   *
+   * @return the password
+   */
+  public String getPassword() {
+<span class="fc" id="L90">    return password;</span>
+  }
+
+  /**
+   * Sets the password.
+   *
+   * @param password
+   *          the password
+   */
+  public void setPassword(String password) {
+<span class="fc" id="L100">    this.password = password;</span>
+<span class="fc" id="L101">  }</span>
+
+  /**
+   * Gets the email.
+   *
+   * @return the email
+   */
+  public String getEmail() {
+<span class="fc" id="L109">    return email;</span>
+  }
+
+  /**
+   * Sets the email.
+   *
+   * @param email
+   *          the email
+   */
+  public void setEmail(String email) {
+<span class="fc" id="L119">    this.email = email;</span>
+<span class="fc" id="L120">  }</span>
+
+  /**
+   * Gets the first name.
+   *
+   * @return the first name
+   */
+  public String getFirstName() {
+<span class="fc" id="L128">    return firstName;</span>
+  }
+
+  /**
+   * Sets the first name.
+   *
+   * @param firstName
+   *          the first name
+   */
+  public void setFirstName(String firstName) {
+<span class="fc" id="L138">    this.firstName = firstName;</span>
+<span class="fc" id="L139">  }</span>
+
+  /**
+   * Gets the last name.
+   *
+   * @return the last name
+   */
+  public String getLastName() {
+<span class="fc" id="L147">    return lastName;</span>
+  }
+
+  /**
+   * Sets the last name.
+   *
+   * @param lastName
+   *          the last name
+   */
+  public void setLastName(String lastName) {
+<span class="fc" id="L157">    this.lastName = lastName;</span>
+<span class="fc" id="L158">  }</span>
+
+  /**
+   * Gets the status.
+   *
+   * @return the status
+   */
+  public String getStatus() {
+<span class="fc" id="L166">    return status;</span>
+  }
+
+  /**
+   * Sets the status.
+   *
+   * @param status
+   *          the status
+   */
+  public void setStatus(String status) {
+<span class="fc" id="L176">    this.status = status;</span>
+<span class="fc" id="L177">  }</span>
+
+  /**
+   * Gets the address1.
+   *
+   * @return the address1
+   */
+  public String getAddress1() {
+<span class="fc" id="L185">    return address1;</span>
+  }
+
+  /**
+   * Sets the address1.
+   *
+   * @param address1
+   *          the address1
+   */
+  public void setAddress1(String address1) {
+<span class="fc" id="L195">    this.address1 = address1;</span>
+<span class="fc" id="L196">  }</span>
+
+  /**
+   * Gets the address2.
+   *
+   * @return the address2
+   */
+  public String getAddress2() {
+<span class="fc" id="L204">    return address2;</span>
+  }
+
+  /**
+   * Sets the address2.
+   *
+   * @param address2
+   *          the address2
+   */
+  public void setAddress2(String address2) {
+<span class="fc" id="L214">    this.address2 = address2;</span>
+<span class="fc" id="L215">  }</span>
+
+  /**
+   * Gets the city.
+   *
+   * @return the city
+   */
+  public String getCity() {
+<span class="fc" id="L223">    return city;</span>
+  }
+
+  /**
+   * Sets the city.
+   *
+   * @param city
+   *          the city
+   */
+  public void setCity(String city) {
+<span class="fc" id="L233">    this.city = city;</span>
+<span class="fc" id="L234">  }</span>
+
+  /**
+   * Gets the state.
+   *
+   * @return the state
+   */
+  public String getState() {
+<span class="fc" id="L242">    return state;</span>
+  }
+
+  /**
+   * Sets the state.
+   *
+   * @param state
+   *          the state
+   */
+  public void setState(String state) {
+<span class="fc" id="L252">    this.state = state;</span>
+<span class="fc" id="L253">  }</span>
+
+  /**
+   * Gets the zip.
+   *
+   * @return the zip
+   */
+  public String getZip() {
+<span class="fc" id="L261">    return zip;</span>
+  }
+
+  /**
+   * Sets the zip.
+   *
+   * @param zip
+   *          the zip
+   */
+  public void setZip(String zip) {
+<span class="fc" id="L271">    this.zip = zip;</span>
+<span class="fc" id="L272">  }</span>
+
+  /**
+   * Gets the country.
+   *
+   * @return the country
+   */
+  public String getCountry() {
+<span class="fc" id="L280">    return country;</span>
+  }
+
+  /**
+   * Sets the country.
+   *
+   * @param country
+   *          the country
+   */
+  public void setCountry(String country) {
+<span class="fc" id="L290">    this.country = country;</span>
+<span class="fc" id="L291">  }</span>
+
+  /**
+   * Gets the phone.
+   *
+   * @return the phone
+   */
+  public String getPhone() {
+<span class="fc" id="L299">    return phone;</span>
+  }
+
+  /**
+   * Sets the phone.
+   *
+   * @param phone
+   *          the phone
+   */
+  public void setPhone(String phone) {
+<span class="fc" id="L309">    this.phone = phone;</span>
+<span class="fc" id="L310">  }</span>
+
+  /**
+   * Gets the favourite category id.
+   *
+   * @return the favourite category id
+   */
+  public String getFavouriteCategoryId() {
+<span class="fc" id="L318">    return favouriteCategoryId;</span>
+  }
+
+  /**
+   * Sets the favourite category id.
+   *
+   * @param favouriteCategoryId
+   *          the favourite category id
+   */
+  public void setFavouriteCategoryId(String favouriteCategoryId) {
+<span class="fc" id="L328">    this.favouriteCategoryId = favouriteCategoryId;</span>
+<span class="fc" id="L329">  }</span>
+
+  /**
+   * Gets the language preference.
+   *
+   * @return the language preference
+   */
+  public String getLanguagePreference() {
+<span class="fc" id="L337">    return languagePreference;</span>
+  }
+
+  /**
+   * Sets the language preference.
+   *
+   * @param languagePreference
+   *          the language preference
+   */
+  public void setLanguagePreference(String languagePreference) {
+<span class="fc" id="L347">    this.languagePreference = languagePreference;</span>
+<span class="fc" id="L348">  }</span>
+
+  /**
+   * Checks if is list option.
+   *
+   * @return true, if successful
+   */
+  public boolean isListOption() {
+<span class="fc" id="L356">    return listOption;</span>
+  }
+
+  /**
+   * Sets the list option.
+   *
+   * @param listOption
+   *          the list option
+   */
+  public void setListOption(boolean listOption) {
+<span class="fc" id="L366">    this.listOption = listOption;</span>
+<span class="fc" id="L367">  }</span>
+
+  /**
+   * Checks if is banner option.
+   *
+   * @return true, if successful
+   */
+  public boolean isBannerOption() {
+<span class="fc" id="L375">    return bannerOption;</span>
+  }
+
+  /**
+   * Sets the banner option.
+   *
+   * @param bannerOption
+   *          the banner option
+   */
+  public void setBannerOption(boolean bannerOption) {
+<span class="fc" id="L385">    this.bannerOption = bannerOption;</span>
+<span class="fc" id="L386">  }</span>
+
+  /**
+   * Gets the banner name.
+   *
+   * @return the banner name
+   */
+  public String getBannerName() {
+<span class="fc" id="L394">    return bannerName;</span>
+  }
+
+  /**
+   * Sets the banner name.
+   *
+   * @param bannerName
+   *          the banner name
+   */
+  public void setBannerName(String bannerName) {
+<span class="fc" id="L404">    this.bannerName = bannerName;</span>
+<span class="fc" id="L405">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

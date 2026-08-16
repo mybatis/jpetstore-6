@@ -71,9 +71,9 @@
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      mapper.insertLineItem(lineItem);
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>      <em class="jxr_comment">// then</em>
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>      Map&lt;String, Object&gt; record = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM lineitem WHERE orderid = ? AND linenum = ?"</span>, 1,
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>          1);
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>      assertThat(record).hasSize(5).containsEntry(<span class="jxr_string">"ORDERID"</span>, lineItem.getOrderId())
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>      Map&lt;String, Object&gt; recordMap = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM lineitem WHERE orderid = ? AND linenum = ?"</span>,
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>          1, 1);
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>      assertThat(recordMap).hasSize(5).containsEntry(<span class="jxr_string">"ORDERID"</span>, lineItem.getOrderId())
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>          .containsEntry(<span class="jxr_string">"LINENUM"</span>, lineItem.getLineNumber()).containsEntry(<span class="jxr_string">"ITEMID"</span>, lineItem.getItemId())
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>          .containsEntry(<span class="jxr_string">"QUANTITY"</span>, lineItem.getQuantity()).containsEntry(<span class="jxr_string">"UNITPRICE"</span>, <strong class="jxr_keyword">new</strong> BigDecimal(<span class="jxr_string">"100.00"</span>));
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  

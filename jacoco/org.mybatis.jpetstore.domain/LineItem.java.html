@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LineItem.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JPetStore Demo 6</a> &gt; <a href="index.source.html" class="el_package">org.mybatis.jpetstore.domain</a> &gt; <span class="el_source">LineItem.java</span></div><h1>LineItem.java</h1><pre class="source lang-java linenums">/*
+ *    Copyright 2010-2026 the original author or authors.
+ *
+ *    Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *       https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+package org.mybatis.jpetstore.domain;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Optional;
+
+/**
+ * The Class LineItem.
+ */
+public class LineItem implements Serializable {
+
+  /** The serial version uid. */
+  private static final long serialVersionUID = 6804536240033522156L;
+
+  /** The order id. */
+  private int orderId;
+  /** The line number. */
+  private int lineNumber;
+  /** The quantity. */
+  private int quantity;
+  /** The item id. */
+  private String itemId;
+  /** The unit price. */
+  private BigDecimal unitPrice;
+  /** The item. */
+  private Item item;
+  /** The total. */
+  private BigDecimal total;
+
+  /**
+   * Instantiates a new line item.
+   */
+<span class="fc" id="L48">  public LineItem() {</span>
+<span class="fc" id="L49">  }</span>
+
+  /**
+   * Instantiates a new line item.
+   *
+   * @param lineNumber
+   *          the line number
+   * @param cartItem
+   *          the cart item
+   */
+<span class="fc" id="L59">  public LineItem(int lineNumber, CartItem cartItem) {</span>
+<span class="fc" id="L60">    this.lineNumber = lineNumber;</span>
+<span class="fc" id="L61">    this.quantity = cartItem.getQuantity();</span>
+<span class="fc" id="L62">    this.itemId = cartItem.getItem().getItemId();</span>
+<span class="fc" id="L63">    this.unitPrice = cartItem.getItem().getListPrice();</span>
+<span class="fc" id="L64">    this.item = cartItem.getItem();</span>
+<span class="fc" id="L65">    calculateTotal();</span>
+<span class="fc" id="L66">  }</span>
+
+  /**
+   * Gets the order id.
+   *
+   * @return the order id
+   */
+  public int getOrderId() {
+<span class="fc" id="L74">    return orderId;</span>
+  }
+
+  /**
+   * Sets the order id.
+   *
+   * @param orderId
+   *          the order id
+   */
+  public void setOrderId(int orderId) {
+<span class="fc" id="L84">    this.orderId = orderId;</span>
+<span class="fc" id="L85">  }</span>
+
+  /**
+   * Gets the line number.
+   *
+   * @return the line number
+   */
+  public int getLineNumber() {
+<span class="fc" id="L93">    return lineNumber;</span>
+  }
+
+  /**
+   * Sets the line number.
+   *
+   * @param lineNumber
+   *          the line number
+   */
+  public void setLineNumber(int lineNumber) {
+<span class="fc" id="L103">    this.lineNumber = lineNumber;</span>
+<span class="fc" id="L104">  }</span>
+
+  /**
+   * Gets the item id.
+   *
+   * @return the item id
+   */
+  public String getItemId() {
+<span class="fc" id="L112">    return itemId;</span>
+  }
+
+  /**
+   * Sets the item id.
+   *
+   * @param itemId
+   *          the item id
+   */
+  public void setItemId(String itemId) {
+<span class="fc" id="L122">    this.itemId = itemId;</span>
+<span class="fc" id="L123">  }</span>
+
+  /**
+   * Gets the unit price.
+   *
+   * @return the unit price
+   */
+  public BigDecimal getUnitPrice() {
+<span class="fc" id="L131">    return unitPrice;</span>
+  }
+
+  /**
+   * Sets the unit price.
+   *
+   * @param unitprice
+   *          the unitprice
+   */
+  public void setUnitPrice(BigDecimal unitprice) {
+<span class="fc" id="L141">    this.unitPrice = unitprice;</span>
+<span class="fc" id="L142">  }</span>
+
+  /**
+   * Gets the total.
+   *
+   * @return the total
+   */
+  public BigDecimal getTotal() {
+<span class="fc" id="L150">    return total;</span>
+  }
+
+  /**
+   * Gets the item.
+   *
+   * @return the item
+   */
+  public Item getItem() {
+<span class="fc" id="L159">    return item;</span>
+  }
+
+  /**
+   * Sets the item.
+   *
+   * @param item
+   *          the item
+   */
+  public void setItem(Item item) {
+<span class="fc" id="L169">    this.item = item;</span>
+<span class="fc" id="L170">    calculateTotal();</span>
+<span class="fc" id="L171">  }</span>
+
+  /**
+   * Gets the quantity.
+   *
+   * @return the quantity
+   */
+  public int getQuantity() {
+<span class="fc" id="L179">    return quantity;</span>
+  }
+
+  /**
+   * Sets the quantity.
+   *
+   * @param quantity
+   *          the quantity
+   */
+  public void setQuantity(int quantity) {
+<span class="fc" id="L189">    this.quantity = quantity;</span>
+<span class="fc" id="L190">    calculateTotal();</span>
+<span class="fc" id="L191">  }</span>
+
+  /**
+   * Calculate total.
+   */
+  private void calculateTotal() {
+<span class="fc" id="L197">    total = Optional.ofNullable(item).map(Item::getListPrice).map(v -&gt; v.multiply(new BigDecimal(quantity)))</span>
+<span class="fc" id="L198">        .orElse(null);</span>
+<span class="fc" id="L199">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

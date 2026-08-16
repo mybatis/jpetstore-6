@@ -142,8 +142,8 @@
 <a class="jxr_linenumber" name="L134" href="#L134">134</a>     mapper.insertAccount(account);
 <a class="jxr_linenumber" name="L135" href="#L135">135</a> 
 <a class="jxr_linenumber" name="L136" href="#L136">136</a>     <em class="jxr_comment">// then</em>
-<a class="jxr_linenumber" name="L137" href="#L137">137</a>     Map&lt;String, Object&gt; record = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM account WHERE userid = ?"</span>, <span class="jxr_string">"mybatis"</span>);
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>     assertThat(record).hasSize(12).containsEntry(<span class="jxr_string">"USERID"</span>, account.getUsername())
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>     Map&lt;String, Object&gt; recordMap = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM account WHERE userid = ?"</span>, <span class="jxr_string">"mybatis"</span>);
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>     assertThat(recordMap).hasSize(12).containsEntry(<span class="jxr_string">"USERID"</span>, account.getUsername())
 <a class="jxr_linenumber" name="L139" href="#L139">139</a>         .containsEntry(<span class="jxr_string">"EMAIL"</span>, account.getEmail()).containsEntry(<span class="jxr_string">"FIRSTNAME"</span>, account.getFirstName())
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>         .containsEntry(<span class="jxr_string">"LASTNAME"</span>, account.getLastName()).containsEntry(<span class="jxr_string">"STATUS"</span>, account.getStatus())
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>         .containsEntry(<span class="jxr_string">"ADDR1"</span>, account.getAddress1()).containsEntry(<span class="jxr_string">"ADDR2"</span>, account.getAddress2())
@@ -170,9 +170,9 @@
 <a class="jxr_linenumber" name="L162" href="#L162">162</a>     mapper.insertProfile(account);
 <a class="jxr_linenumber" name="L163" href="#L163">163</a> 
 <a class="jxr_linenumber" name="L164" href="#L164">164</a>     <em class="jxr_comment">// then</em>
-<a class="jxr_linenumber" name="L165" href="#L165">165</a>     Map&lt;String, Object&gt; record = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM profile WHERE userid = ?"</span>, <span class="jxr_string">"mybatis"</span>);
+<a class="jxr_linenumber" name="L165" href="#L165">165</a>     Map&lt;String, Object&gt; recordMap = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM profile WHERE userid = ?"</span>, <span class="jxr_string">"mybatis"</span>);
 <a class="jxr_linenumber" name="L166" href="#L166">166</a> 
-<a class="jxr_linenumber" name="L167" href="#L167">167</a>     assertThat(record).hasSize(5).containsEntry(<span class="jxr_string">"USERID"</span>, account.getUsername())
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>     assertThat(recordMap).hasSize(5).containsEntry(<span class="jxr_string">"USERID"</span>, account.getUsername())
 <a class="jxr_linenumber" name="L168" href="#L168">168</a>         .containsEntry(<span class="jxr_string">"LANGPREF"</span>, account.getLanguagePreference())
 <a class="jxr_linenumber" name="L169" href="#L169">169</a>         .containsEntry(<span class="jxr_string">"FAVCATEGORY"</span>, account.getFavouriteCategoryId()).containsEntry(<span class="jxr_string">"MYLISTOPT"</span>, 1)
 <a class="jxr_linenumber" name="L170" href="#L170">170</a>         .containsEntry(<span class="jxr_string">"BANNEROPT"</span>, 0);
@@ -193,9 +193,9 @@
 <a class="jxr_linenumber" name="L185" href="#L185">185</a>     mapper.insertSignon(account);
 <a class="jxr_linenumber" name="L186" href="#L186">186</a> 
 <a class="jxr_linenumber" name="L187" href="#L187">187</a>     <em class="jxr_comment">// then</em>
-<a class="jxr_linenumber" name="L188" href="#L188">188</a>     Map&lt;String, Object&gt; record = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM signon WHERE username = ?"</span>, <span class="jxr_string">"mybatis"</span>);
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>     Map&lt;String, Object&gt; recordMap = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM signon WHERE username = ?"</span>, <span class="jxr_string">"mybatis"</span>);
 <a class="jxr_linenumber" name="L189" href="#L189">189</a> 
-<a class="jxr_linenumber" name="L190" href="#L190">190</a>     assertThat(record).hasSize(2).containsEntry(<span class="jxr_string">"USERNAME"</span>, account.getUsername()).containsEntry(<span class="jxr_string">"PASSWORD"</span>,
+<a class="jxr_linenumber" name="L190" href="#L190">190</a>     assertThat(recordMap).hasSize(2).containsEntry(<span class="jxr_string">"USERNAME"</span>, account.getUsername()).containsEntry(<span class="jxr_string">"PASSWORD"</span>,
 <a class="jxr_linenumber" name="L191" href="#L191">191</a>         account.getPassword());
 <a class="jxr_linenumber" name="L192" href="#L192">192</a>   }
 <a class="jxr_linenumber" name="L193" href="#L193">193</a> 
@@ -224,9 +224,9 @@
 <a class="jxr_linenumber" name="L216" href="#L216">216</a>     mapper.updateAccount(account);
 <a class="jxr_linenumber" name="L217" href="#L217">217</a> 
 <a class="jxr_linenumber" name="L218" href="#L218">218</a>     <em class="jxr_comment">// then</em>
-<a class="jxr_linenumber" name="L219" href="#L219">219</a>     Map&lt;String, Object&gt; record = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM account WHERE userid = ?"</span>, <span class="jxr_string">"j2ee"</span>);
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>     Map&lt;String, Object&gt; recordMap = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM account WHERE userid = ?"</span>, <span class="jxr_string">"j2ee"</span>);
 <a class="jxr_linenumber" name="L220" href="#L220">220</a> 
-<a class="jxr_linenumber" name="L221" href="#L221">221</a>     assertThat(record).hasSize(12).containsEntry(<span class="jxr_string">"USERID"</span>, account.getUsername())
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>     assertThat(recordMap).hasSize(12).containsEntry(<span class="jxr_string">"USERID"</span>, account.getUsername())
 <a class="jxr_linenumber" name="L222" href="#L222">222</a>         .containsEntry(<span class="jxr_string">"EMAIL"</span>, account.getEmail()).containsEntry(<span class="jxr_string">"FIRSTNAME"</span>, account.getFirstName())
 <a class="jxr_linenumber" name="L223" href="#L223">223</a>         .containsEntry(<span class="jxr_string">"LASTNAME"</span>, account.getLastName()).containsEntry(<span class="jxr_string">"STATUS"</span>, account.getStatus())
 <a class="jxr_linenumber" name="L224" href="#L224">224</a>         .containsEntry(<span class="jxr_string">"ADDR1"</span>, account.getAddress1()).containsEntry(<span class="jxr_string">"ADDR2"</span>, account.getAddress2())
@@ -253,9 +253,9 @@
 <a class="jxr_linenumber" name="L245" href="#L245">245</a>     mapper.updateProfile(account);
 <a class="jxr_linenumber" name="L246" href="#L246">246</a> 
 <a class="jxr_linenumber" name="L247" href="#L247">247</a>     <em class="jxr_comment">// then</em>
-<a class="jxr_linenumber" name="L248" href="#L248">248</a>     Map&lt;String, Object&gt; record = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM profile WHERE userid = ?"</span>, <span class="jxr_string">"j2ee"</span>);
+<a class="jxr_linenumber" name="L248" href="#L248">248</a>     Map&lt;String, Object&gt; recordMap = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM profile WHERE userid = ?"</span>, <span class="jxr_string">"j2ee"</span>);
 <a class="jxr_linenumber" name="L249" href="#L249">249</a> 
-<a class="jxr_linenumber" name="L250" href="#L250">250</a>     assertThat(record).hasSize(5).containsEntry(<span class="jxr_string">"USERID"</span>, account.getUsername())
+<a class="jxr_linenumber" name="L250" href="#L250">250</a>     assertThat(recordMap).hasSize(5).containsEntry(<span class="jxr_string">"USERID"</span>, account.getUsername())
 <a class="jxr_linenumber" name="L251" href="#L251">251</a>         .containsEntry(<span class="jxr_string">"LANGPREF"</span>, account.getLanguagePreference())
 <a class="jxr_linenumber" name="L252" href="#L252">252</a>         .containsEntry(<span class="jxr_string">"FAVCATEGORY"</span>, account.getFavouriteCategoryId()).containsEntry(<span class="jxr_string">"MYLISTOPT"</span>, 0)
 <a class="jxr_linenumber" name="L253" href="#L253">253</a>         .containsEntry(<span class="jxr_string">"BANNEROPT"</span>, 0);
@@ -276,9 +276,9 @@
 <a class="jxr_linenumber" name="L268" href="#L268">268</a>     mapper.updateSignon(account);
 <a class="jxr_linenumber" name="L269" href="#L269">269</a> 
 <a class="jxr_linenumber" name="L270" href="#L270">270</a>     <em class="jxr_comment">// then</em>
-<a class="jxr_linenumber" name="L271" href="#L271">271</a>     Map&lt;String, Object&gt; record = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM signon WHERE username = ?"</span>, <span class="jxr_string">"j2ee"</span>);
+<a class="jxr_linenumber" name="L271" href="#L271">271</a>     Map&lt;String, Object&gt; recordMap = jdbcTemplate.queryForMap(<span class="jxr_string">"SELECT * FROM signon WHERE username = ?"</span>, <span class="jxr_string">"j2ee"</span>);
 <a class="jxr_linenumber" name="L272" href="#L272">272</a> 
-<a class="jxr_linenumber" name="L273" href="#L273">273</a>     assertThat(record).hasSize(2).containsEntry(<span class="jxr_string">"USERNAME"</span>, account.getUsername()).containsEntry(<span class="jxr_string">"PASSWORD"</span>,
+<a class="jxr_linenumber" name="L273" href="#L273">273</a>     assertThat(recordMap).hasSize(2).containsEntry(<span class="jxr_string">"USERNAME"</span>, account.getUsername()).containsEntry(<span class="jxr_string">"PASSWORD"</span>,
 <a class="jxr_linenumber" name="L274" href="#L274">274</a>         account.getPassword());
 <a class="jxr_linenumber" name="L275" href="#L275">275</a>   }
 <a class="jxr_linenumber" name="L276" href="#L276">276</a> 

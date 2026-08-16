@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Cart.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JPetStore Demo 6</a> &gt; <a href="index.source.html" class="el_package">org.mybatis.jpetstore.domain</a> &gt; <span class="el_source">Cart.java</span></div><h1>Cart.java</h1><pre class="source lang-java linenums">/*
+ *    Copyright 2010-2026 the original author or authors.
+ *
+ *    Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *       https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+package org.mybatis.jpetstore.domain;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * The Class Cart.
+ */
+<span class="fc" id="L29">public class Cart implements Serializable {</span>
+
+  /** The serial version uid. */
+  private static final long serialVersionUID = 8329559983943337176L;
+
+  /** The item map. */
+<span class="fc" id="L35">  private final Map&lt;String, CartItem&gt; itemMap = new ConcurrentHashMap&lt;&gt;();</span>
+
+  /** The item list. */
+<span class="fc" id="L38">  private final List&lt;CartItem&gt; itemList = new ArrayList&lt;&gt;();</span>
+
+  /**
+   * Gets the cart items.
+   *
+   * @return the cart items
+   */
+  public Iterator&lt;CartItem&gt; getCartItems() {
+<span class="fc" id="L46">    return itemList.iterator();</span>
+  }
+
+  /**
+   * Gets the cart item list.
+   *
+   * @return the cart item list
+   */
+  public List&lt;CartItem&gt; getCartItemList() {
+<span class="fc" id="L55">    return itemList;</span>
+  }
+
+  /**
+   * Gets the number of items.
+   *
+   * @return the number of items
+   */
+  public int getNumberOfItems() {
+<span class="fc" id="L64">    return itemList.size();</span>
+  }
+
+  /**
+   * Gets the all cart items.
+   *
+   * @return the all cart items
+   */
+  public Iterator&lt;CartItem&gt; getAllCartItems() {
+<span class="fc" id="L73">    return itemList.iterator();</span>
+  }
+
+  /**
+   * Contains item id.
+   *
+   * @param itemId
+   *          the item id
+   *
+   * @return true, if successful
+   */
+  public boolean containsItemId(String itemId) {
+<span class="fc" id="L85">    return itemMap.containsKey(itemId);</span>
+  }
+
+  /**
+   * Adds the item.
+   *
+   * @param item
+   *          the item
+   * @param isInStock
+   *          the is in stock
+   */
+  public void addItem(Item item, boolean isInStock) {
+<span class="fc" id="L97">    CartItem cartItem = itemMap.get(item.getItemId());</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">    if (cartItem == null) {</span>
+<span class="fc" id="L99">      cartItem = new CartItem();</span>
+<span class="fc" id="L100">      cartItem.setItem(item);</span>
+<span class="fc" id="L101">      cartItem.setQuantity(0);</span>
+<span class="fc" id="L102">      cartItem.setInStock(isInStock);</span>
+<span class="fc" id="L103">      itemMap.put(item.getItemId(), cartItem);</span>
+<span class="fc" id="L104">      itemList.add(cartItem);</span>
+    }
+<span class="fc" id="L106">    cartItem.incrementQuantity();</span>
+<span class="fc" id="L107">  }</span>
+
+  /**
+   * Removes the item by id.
+   *
+   * @param itemId
+   *          the item id
+   *
+   * @return the item
+   */
+  public Item removeItemById(String itemId) {
+<span class="fc" id="L118">    CartItem cartItem = itemMap.remove(itemId);</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">    if (cartItem == null) {</span>
+<span class="fc" id="L120">      return null;</span>
+    } else {
+<span class="fc" id="L122">      itemList.remove(cartItem);</span>
+<span class="fc" id="L123">      return cartItem.getItem();</span>
+    }
+  }
+
+  /**
+   * Increment quantity by item id.
+   *
+   * @param itemId
+   *          the item id
+   */
+  public void incrementQuantityByItemId(String itemId) {
+<span class="fc" id="L134">    CartItem cartItem = itemMap.get(itemId);</span>
+<span class="fc" id="L135">    cartItem.incrementQuantity();</span>
+<span class="fc" id="L136">  }</span>
+
+  /**
+   * Set quantity by item id.
+   *
+   * @param itemId
+   *          the item id
+   * @param quantity
+   *          the quantity
+   */
+  public void setQuantityByItemId(String itemId, int quantity) {
+<span class="fc" id="L147">    CartItem cartItem = itemMap.get(itemId);</span>
+<span class="fc" id="L148">    cartItem.setQuantity(quantity);</span>
+<span class="fc" id="L149">  }</span>
+
+  /**
+   * Gets the sub total.
+   *
+   * @return the sub total
+   */
+  public BigDecimal getSubTotal() {
+<span class="fc" id="L157">    return itemList.stream()</span>
+<span class="fc" id="L158">        .map(cartItem -&gt; cartItem.getItem().getListPrice().multiply(new BigDecimal(cartItem.getQuantity())))</span>
+<span class="fc" id="L159">        .reduce(BigDecimal.ZERO, BigDecimal::add);</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

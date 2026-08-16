@@ -1,0 +1,20 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+JPetStore Demo 6,org.mybatis.jpetstore.domain,Account,0,129,0,0,0,55,0,37,0,37
+JPetStore Demo 6,org.mybatis.jpetstore.domain,Cart,0,127,0,4,0,32,0,14,0,12
+JPetStore Demo 6,org.mybatis.jpetstore.domain,Sequence,0,26,0,0,0,12,0,6,0,6
+JPetStore Demo 6,org.mybatis.jpetstore.domain,Product,0,35,0,0,0,14,0,10,0,10
+JPetStore Demo 6,org.mybatis.jpetstore.domain,LineItem,0,100,0,0,0,34,0,17,0,17
+JPetStore Demo 6,org.mybatis.jpetstore.domain,Order,0,335,0,2,0,121,0,61,0,60
+JPetStore Demo 6,org.mybatis.jpetstore.domain,Category,3,25,0,0,1,10,1,7,1,7
+JPetStore Demo 6,org.mybatis.jpetstore.domain,Item,34,72,0,0,9,29,5,21,5,21
+JPetStore Demo 6,org.mybatis.jpetstore.domain,CartItem,0,62,0,0,0,19,0,11,0,11
+JPetStore Demo 6,org.mybatis.jpetstore.web.controllers,AccountController.AccountSession,3,29,2,4,1,7,3,4,1,3
+JPetStore Demo 6,org.mybatis.jpetstore.web.controllers,CartController,0,163,2,16,0,45,2,14,0,7
+JPetStore Demo 6,org.mybatis.jpetstore.web.controllers,AccountController,0,160,0,4,0,32,0,11,0,9
+JPetStore Demo 6,org.mybatis.jpetstore.web.controllers,OrderController,69,255,19,29,18,68,19,11,0,6
+JPetStore Demo 6,org.mybatis.jpetstore.web.controllers,CatalogController,0,98,2,6,0,25,2,8,0,6
+JPetStore Demo 6,org.mybatis.jpetstore.web.controllers,RootController,0,5,0,0,0,2,0,2,0,2
+JPetStore Demo 6,org.mybatis.jpetstore.service,CatalogService,0,91,0,4,0,16,0,11,0,9
+JPetStore Demo 6,org.mybatis.jpetstore.service,OrderService,0,157,0,2,0,37,0,9,0,8
+JPetStore Demo 6,org.mybatis.jpetstore.service,AccountService,0,60,0,2,0,14,0,8,0,7
+JPetStore Demo 6,org.mybatis.jpetstore.web.configuration,StaxFactoryInitializationListener,0,17,0,0,0,6,0,3,0,3
