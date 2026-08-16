@@ -165,7 +165,7 @@ class OrderControllerTest {
     String view = orderController.newOrder(emptyOrder, false, true, session, model);
 
     assertThat(view).isEqualTo("order/ViewOrder");
-    assertThat(model.asMap().get("message")).isEqualTo("Thank you, your order has been submitted.");
+    assertThat(model.asMap()).containsEntry("message", "Thank you, your order has been submitted.");
 
     // Verify insertOrder was called exactly once
     verify(orderService, times(1)).insertOrder(any(org.mybatis.jpetstore.domain.Order.class));
@@ -261,7 +261,7 @@ class OrderControllerTest {
     String view = orderController.viewOrder(1, session, model);
 
     assertThat(view).isEqualTo("order/ViewOrder");
-    assertThat(model.asMap().get("order")).isEqualTo(order);
+    assertThat(model.asMap()).containsEntry("order", order);
   }
 
   /**
@@ -283,6 +283,6 @@ class OrderControllerTest {
     String view = orderController.viewOrder(1, session, model);
 
     assertThat(view).isEqualTo("common/Error");
-    assertThat(model.asMap().get("message")).isEqualTo("You may only view your own orders.");
+    assertThat(model.asMap()).containsEntry("message", "You may only view your own orders.");
   }
 }

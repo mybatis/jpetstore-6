@@ -63,9 +63,9 @@ class LineItemMapperTest {
     mapper.insertLineItem(lineItem);
 
     // then
-    Map<String, Object> record = jdbcTemplate.queryForMap("SELECT * FROM lineitem WHERE orderid = ? AND linenum = ?", 1,
-        1);
-    assertThat(record).hasSize(5).containsEntry("ORDERID", lineItem.getOrderId())
+    Map<String, Object> recordMap = jdbcTemplate.queryForMap("SELECT * FROM lineitem WHERE orderid = ? AND linenum = ?",
+        1, 1);
+    assertThat(recordMap).hasSize(5).containsEntry("ORDERID", lineItem.getOrderId())
         .containsEntry("LINENUM", lineItem.getLineNumber()).containsEntry("ITEMID", lineItem.getItemId())
         .containsEntry("QUANTITY", lineItem.getQuantity()).containsEntry("UNITPRICE", new BigDecimal("100.00"));
 

@@ -16,10 +16,8 @@
 package org.mybatis.jpetstore.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -28,6 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -160,16 +159,13 @@ class OrderServiceTest {
 
     // when
     when(sequenceMapper.getSequence(any())).thenReturn(null);
-    try {
+    Throwable message = Assertions.assertThrows(RuntimeException.class, () -> {
       orderService.getNextId("order");
-      fail("Should throw an exception when sequence not found.");
-    } catch (RuntimeException e) {
-      // then
-      assertThat(e.getMessage())
-          .isEqualTo("Error: A null sequence was returned from the database (could not get next order sequence).");
-      verify(sequenceMapper).getSequence(argThat(v -> v.getName().equals("order") && v.getNextId() == -1));
-    }
-
+    });
+    Assertions.assertEquals(
+        "Error: A null sequence was returned from the database (could not get next order sequence).",
+        message.getMessage());
+    verify(sequenceMapper).getSequence(argThat(v -> v.getName().equals("order") && v.getNextId() == -1));
   }
 
   /**
@@ -198,9 +194,9 @@ class OrderServiceTest {
 
     // then
     verify(orderMapper).insertOrder(argThat(v -> v == order && v.getOrderId() == 100));
-    verify(orderMapper).insertOrderStatus(eq(order));
+    verify(orderMapper).insertOrderStatus(order);
     verify(lineItemMapper).insertLineItem(argThat(v -> v == item && v.getOrderId() == 100));
-    verify(itemMapper).updateInventoryQuantity(eq(expectedItemParam));
+    verify(itemMapper).updateInventoryQuantity(expectedItemParam);
   }
 
 }
