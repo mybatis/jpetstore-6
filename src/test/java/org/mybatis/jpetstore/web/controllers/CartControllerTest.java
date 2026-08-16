@@ -78,6 +78,53 @@ class CartControllerTest {
   }
 
   /**
+   * Add item with new id fetches item from catalog and adds to cart.
+   */
+  @Test
+  void addItemWithNewIdFetchesItemFromCatalogAndAddsToCart() {
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+
+    Cart cart = new Cart();
+    when(session.getAttribute("cart")).thenReturn(cart);
+
+    Item item = new Item();
+    item.setItemId("EST-1");
+    item.setListPrice(new java.math.BigDecimal("10.00"));
+    when(catalogService.isItemInStock("EST-1")).thenReturn(true);
+    when(catalogService.getItem("EST-1")).thenReturn(item);
+
+    String view = cartController.addItemToCart("EST-1", session, model);
+
+    assertThat(view).isEqualTo("cart/Cart");
+    assertThat(cart.containsItemId("EST-1")).isTrue();
+    assertThat(cart.getCartItemList().get(0).getQuantity()).isEqualTo(1);
+    assertThat(model.asMap().get("cart")).isSameAs(cart);
+  }
+
+  /**
+   * Add item with existing id increments quantity without calling catalog.
+   */
+  @Test
+  void addItemWithExistingIdIncrementsQuantityWithoutCallingCatalog() {
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+
+    Cart cart = new Cart();
+    Item item = new Item();
+    item.setItemId("EST-1");
+    item.setListPrice(new java.math.BigDecimal("10.00"));
+    cart.addItem(item, true);
+    when(session.getAttribute("cart")).thenReturn(cart);
+
+    String view = cartController.addItemToCart("EST-1", session, model);
+
+    assertThat(view).isEqualTo("cart/Cart");
+    assertThat(cart.getCartItemList().get(0).getQuantity()).isEqualTo(2);
+    org.mockito.Mockito.verifyNoInteractions(catalogService);
+  }
+
+  /**
    * Remove item with null id returns error.
    */
   @Test
@@ -86,6 +133,45 @@ class CartControllerTest {
     Model model = new ExtendedModelMap();
 
     String view = cartController.removeItemFromCart(null, session, model);
+
+    assertThat(view).isEqualTo("common/Error");
+    assertThat(model.asMap()).containsKey("message");
+  }
+
+  /**
+   * Remove item with existing id removes item from cart.
+   */
+  @Test
+  void removeItemWithExistingIdRemovesItemFromCart() {
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+
+    Cart cart = new Cart();
+    Item item = new Item();
+    item.setItemId("EST-1");
+    item.setListPrice(new java.math.BigDecimal("10.00"));
+    cart.addItem(item, true);
+    when(session.getAttribute("cart")).thenReturn(cart);
+
+    String view = cartController.removeItemFromCart("EST-1", session, model);
+
+    assertThat(view).isEqualTo("cart/Cart");
+    assertThat(cart.containsItemId("EST-1")).isFalse();
+    assertThat(model.asMap().get("cart")).isSameAs(cart);
+  }
+
+  /**
+   * Remove item with non existent id returns error.
+   */
+  @Test
+  void removeItemWithNonExistentIdReturnsError() {
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+
+    Cart cart = new Cart();
+    when(session.getAttribute("cart")).thenReturn(cart);
+
+    String view = cartController.removeItemFromCart("NOT-THERE", session, model);
 
     assertThat(view).isEqualTo("common/Error");
     assertThat(model.asMap()).containsKey("message");
