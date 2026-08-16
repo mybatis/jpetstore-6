@@ -16,7 +16,6 @@
 package org.mybatis.jpetstore.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -55,9 +54,9 @@ class AccountServiceTest {
     accountService.insertAccount(account);
 
     // then
-    verify(accountMapper).insertAccount(eq(account));
-    verify(accountMapper).insertProfile(eq(account));
-    verify(accountMapper).insertSignon(eq(account));
+    verify(accountMapper).insertAccount(account);
+    verify(accountMapper).insertProfile(account);
+    verify(accountMapper).insertSignon(account);
   }
 
   /**
@@ -73,9 +72,9 @@ class AccountServiceTest {
     accountService.updateAccount(account);
 
     // then
-    verify(accountMapper).updateAccount(eq(account));
-    verify(accountMapper).updateProfile(eq(account));
-    verify(accountMapper).updateSignon(eq(account));
+    verify(accountMapper).updateAccount(account);
+    verify(accountMapper).updateProfile(account);
+    verify(accountMapper).updateSignon(account);
   }
 
   /**
@@ -91,9 +90,9 @@ class AccountServiceTest {
     accountService.updateAccount(account);
 
     // then
-    verify(accountMapper).updateAccount(eq(account));
-    verify(accountMapper).updateProfile(eq(account));
-    verify(accountMapper, never()).updateSignon(eq(account));
+    verify(accountMapper).updateAccount(account);
+    verify(accountMapper).updateProfile(account);
+    verify(accountMapper, never()).updateSignon(account);
   }
 
   /**
@@ -109,9 +108,9 @@ class AccountServiceTest {
     accountService.updateAccount(account);
 
     // then
-    verify(accountMapper).updateAccount(eq(account));
-    verify(accountMapper).updateProfile(eq(account));
-    verify(accountMapper, never()).updateSignon(eq(account));
+    verify(accountMapper).updateAccount(account);
+    verify(accountMapper).updateProfile(account);
+    verify(accountMapper, never()).updateSignon(account);
   }
 
   /**

@@ -134,8 +134,8 @@ class AccountMapperTest {
     mapper.insertAccount(account);
 
     // then
-    Map<String, Object> record = jdbcTemplate.queryForMap("SELECT * FROM account WHERE userid = ?", "mybatis");
-    assertThat(record).hasSize(12).containsEntry("USERID", account.getUsername())
+    Map<String, Object> recordMap = jdbcTemplate.queryForMap("SELECT * FROM account WHERE userid = ?", "mybatis");
+    assertThat(recordMap).hasSize(12).containsEntry("USERID", account.getUsername())
         .containsEntry("EMAIL", account.getEmail()).containsEntry("FIRSTNAME", account.getFirstName())
         .containsEntry("LASTNAME", account.getLastName()).containsEntry("STATUS", account.getStatus())
         .containsEntry("ADDR1", account.getAddress1()).containsEntry("ADDR2", account.getAddress2())
@@ -162,9 +162,9 @@ class AccountMapperTest {
     mapper.insertProfile(account);
 
     // then
-    Map<String, Object> record = jdbcTemplate.queryForMap("SELECT * FROM profile WHERE userid = ?", "mybatis");
+    Map<String, Object> recordMap = jdbcTemplate.queryForMap("SELECT * FROM profile WHERE userid = ?", "mybatis");
 
-    assertThat(record).hasSize(5).containsEntry("USERID", account.getUsername())
+    assertThat(recordMap).hasSize(5).containsEntry("USERID", account.getUsername())
         .containsEntry("LANGPREF", account.getLanguagePreference())
         .containsEntry("FAVCATEGORY", account.getFavouriteCategoryId()).containsEntry("MYLISTOPT", 1)
         .containsEntry("BANNEROPT", 0);
@@ -185,9 +185,9 @@ class AccountMapperTest {
     mapper.insertSignon(account);
 
     // then
-    Map<String, Object> record = jdbcTemplate.queryForMap("SELECT * FROM signon WHERE username = ?", "mybatis");
+    Map<String, Object> recordMap = jdbcTemplate.queryForMap("SELECT * FROM signon WHERE username = ?", "mybatis");
 
-    assertThat(record).hasSize(2).containsEntry("USERNAME", account.getUsername()).containsEntry("PASSWORD",
+    assertThat(recordMap).hasSize(2).containsEntry("USERNAME", account.getUsername()).containsEntry("PASSWORD",
         account.getPassword());
   }
 
@@ -216,9 +216,9 @@ class AccountMapperTest {
     mapper.updateAccount(account);
 
     // then
-    Map<String, Object> record = jdbcTemplate.queryForMap("SELECT * FROM account WHERE userid = ?", "j2ee");
+    Map<String, Object> recordMap = jdbcTemplate.queryForMap("SELECT * FROM account WHERE userid = ?", "j2ee");
 
-    assertThat(record).hasSize(12).containsEntry("USERID", account.getUsername())
+    assertThat(recordMap).hasSize(12).containsEntry("USERID", account.getUsername())
         .containsEntry("EMAIL", account.getEmail()).containsEntry("FIRSTNAME", account.getFirstName())
         .containsEntry("LASTNAME", account.getLastName()).containsEntry("STATUS", account.getStatus())
         .containsEntry("ADDR1", account.getAddress1()).containsEntry("ADDR2", account.getAddress2())
@@ -245,9 +245,9 @@ class AccountMapperTest {
     mapper.updateProfile(account);
 
     // then
-    Map<String, Object> record = jdbcTemplate.queryForMap("SELECT * FROM profile WHERE userid = ?", "j2ee");
+    Map<String, Object> recordMap = jdbcTemplate.queryForMap("SELECT * FROM profile WHERE userid = ?", "j2ee");
 
-    assertThat(record).hasSize(5).containsEntry("USERID", account.getUsername())
+    assertThat(recordMap).hasSize(5).containsEntry("USERID", account.getUsername())
         .containsEntry("LANGPREF", account.getLanguagePreference())
         .containsEntry("FAVCATEGORY", account.getFavouriteCategoryId()).containsEntry("MYLISTOPT", 0)
         .containsEntry("BANNEROPT", 0);
@@ -268,9 +268,9 @@ class AccountMapperTest {
     mapper.updateSignon(account);
 
     // then
-    Map<String, Object> record = jdbcTemplate.queryForMap("SELECT * FROM signon WHERE username = ?", "j2ee");
+    Map<String, Object> recordMap = jdbcTemplate.queryForMap("SELECT * FROM signon WHERE username = ?", "j2ee");
 
-    assertThat(record).hasSize(2).containsEntry("USERNAME", account.getUsername()).containsEntry("PASSWORD",
+    assertThat(recordMap).hasSize(2).containsEntry("USERNAME", account.getUsername()).containsEntry("PASSWORD",
         account.getPassword());
   }
 

@@ -96,7 +96,7 @@ class CartTest {
     // then
     assertThat(item).isNull();
     assertThat(cart.containsItemId("I01")).isFalse();
-    assertThat(cart.getNumberOfItems()).isEqualTo(0);
+    assertThat(cart.getNumberOfItems()).isZero();
     assertThat(cart.getCartItems().hasNext()).isFalse();
     assertThat(cart.getAllCartItems().hasNext()).isFalse();
   }

@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class StaxFactoryInitializationListenerTest.
  */
-public class StaxFactoryInitializationListenerTest {
+class StaxFactoryInitializationListenerTest {
 
   /**
    * Context initialized sets stax factory properties.

@@ -19,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.Month;
 
 import org.junit.jupiter.api.Test;
 
@@ -97,7 +98,7 @@ class OrderTest {
   void getFormattedOrderDate() {
     // given
     Order order = new Order();
-    order.setOrderDate(LocalDateTime.of(2026, 8, 15, 13, 45, 30));
+    order.setOrderDate(LocalDateTime.of(2026, Month.AUGUST, 15, 13, 45, 30));
 
     // when
     String formattedOrderDate = order.getFormattedOrderDate();
