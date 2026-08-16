@@ -19,6 +19,9 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 
+/**
+ * The Class StaxFactoryInitializationListener.
+ */
 @WebListener
 public class StaxFactoryInitializationListener implements ServletContextListener {
 

@@ -21,8 +21,6 @@ import org.mybatis.jpetstore.domain.Category;
 
 /**
  * The Interface CategoryMapper.
- *
- * @author Eduardo Macarron
  */
 public interface CategoryMapper {
 

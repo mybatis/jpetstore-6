@@ -45,8 +45,6 @@ import org.openqa.selenium.By;
 
 /**
  * Integration tests for screen transition.
- *
- * @author Kazuki Shimizu
  */
 @ExtendWith(ScreenShooterExtension.class)
 class ScreenTransitionIT {

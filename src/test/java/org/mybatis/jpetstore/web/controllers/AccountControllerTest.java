@@ -17,6 +17,8 @@ package org.mybatis.jpetstore.web.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import jakarta.servlet.http.HttpSession;
@@ -34,22 +36,34 @@ import org.mybatis.jpetstore.service.CatalogService;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
+/**
+ * The Class AccountControllerTest.
+ */
 @ExtendWith(MockitoExtension.class)
 class AccountControllerTest {
 
+  /** The account service. */
   @Mock
   private AccountService accountService;
+  /** The catalog service. */
   @Mock
   private CatalogService catalogService;
 
+  /** The account controller. */
   @InjectMocks
   private AccountController accountController;
 
+  /**
+   * Signon form returns signon view.
+   */
   @Test
   void signonFormReturnsSignonView() {
     assertThat(accountController.signonForm()).isEqualTo("account/SignonForm");
   }
 
+  /**
+   * Signon with invalid credentials returns signon view.
+   */
   @Test
   void signonWithInvalidCredentialsReturnsSignonView() {
     HttpSession session = mock(HttpSession.class);
@@ -62,6 +76,9 @@ class AccountControllerTest {
     assertThat(model.asMap()).containsKey("message");
   }
 
+  /**
+   * Signon with valid credentials redirects.
+   */
   @Test
   void signonWithValidCredentialsRedirects() {
     HttpSession session = mock(HttpSession.class);
@@ -77,6 +94,9 @@ class AccountControllerTest {
     assertThat(view).isEqualTo("redirect:/catalog");
   }
 
+  /**
+   * New account form returns new account view.
+   */
   @Test
   void newAccountFormReturnsNewAccountView() {
     Model model = new ExtendedModelMap();
@@ -86,6 +106,22 @@ class AccountControllerTest {
     assertThat(model.asMap()).containsKey("categories");
   }
 
+  /**
+   * Signoff invalidates session and redirects to catalog.
+   */
+  @Test
+  void signoffInvalidatesSessionAndRedirectsToCatalog() {
+    HttpSession session = mock(HttpSession.class);
+
+    String view = accountController.signoff(session);
+
+    assertThat(view).isEqualTo("redirect:/catalog");
+    verify(session, times(1)).invalidate();
+  }
+
+  /**
+   * Account session is authenticated with valid account.
+   */
   @Test
   void accountSessionIsAuthenticatedWithValidAccount() {
     Account account = new Account();
@@ -94,12 +130,18 @@ class AccountControllerTest {
     assertThat(session.isAuthenticated()).isTrue();
   }
 
+  /**
+   * Account session is not authenticated with null account.
+   */
   @Test
   void accountSessionIsNotAuthenticatedWithNullAccount() {
     AccountController.AccountSession session = new AccountController.AccountSession(null, List.of(), true);
     assertThat(session.isAuthenticated()).isFalse();
   }
 
+  /**
+   * New account redirects to catalog without logging in.
+   */
   @Test
   void newAccountRedirectsToCatalogWithoutLoggingIn() {
     // Registration should insert the account and redirect to catalog WITHOUT
@@ -112,6 +154,9 @@ class AccountControllerTest {
     assertThat(view).isEqualTo("redirect:/catalog");
   }
 
+  /**
+   * Edit account redirects to edit page not catalog.
+   */
   @Test
   void editAccountRedirectsToEditPageNotCatalog() {
     // After saving account, should redirect to /account/edit so the user stays
@@ -126,5 +171,42 @@ class AccountControllerTest {
     String view = accountController.editAccount(account, session);
 
     assertThat(view).isEqualTo("redirect:/account/edit");
+  }
+
+  /**
+   * Edit account form with session returns edit account view with account.
+   */
+  @Test
+  void editAccountFormWithSessionReturnsEditAccountViewWithAccount() {
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+    Account account = new Account();
+    account.setUsername("j2ee");
+    AccountController.AccountSession accountSession = new AccountController.AccountSession(account, List.of(), true);
+    when(session.getAttribute("accountBean")).thenReturn(accountSession);
+
+    String view = accountController.editAccountForm(session, model);
+
+    assertThat(view).isEqualTo("account/EditAccountForm");
+    assertThat(model.asMap().get("account")).isSameAs(account);
+    assertThat(model.asMap()).containsKey("languages");
+    assertThat(model.asMap()).containsKey("categories");
+  }
+
+  /**
+   * Edit account form without session returns edit account view without account.
+   */
+  @Test
+  void editAccountFormWithoutSessionReturnsEditAccountViewWithoutAccount() {
+    HttpSession session = mock(HttpSession.class);
+    Model model = new ExtendedModelMap();
+    when(session.getAttribute("accountBean")).thenReturn(null);
+
+    String view = accountController.editAccountForm(session, model);
+
+    assertThat(view).isEqualTo("account/EditAccountForm");
+    assertThat(model.asMap()).doesNotContainKey("account");
+    assertThat(model.asMap()).containsKey("languages");
+    assertThat(model.asMap()).containsKey("categories");
   }
 }

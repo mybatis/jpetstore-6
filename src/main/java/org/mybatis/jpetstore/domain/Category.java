@@ -19,8 +19,6 @@ import java.io.Serializable;
 
 /**
  * The Class Category.
- *
- * @author Eduardo Macarron
  */
 public class Category implements Serializable {
 

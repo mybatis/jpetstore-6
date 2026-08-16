@@ -26,25 +26,37 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mybatis.jpetstore.domain.Category;
+import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.Product;
 import org.mybatis.jpetstore.service.CatalogService;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
+/**
+ * The Class CatalogControllerTest.
+ */
 @ExtendWith(MockitoExtension.class)
 class CatalogControllerTest {
 
+  /** The catalog service. */
   @Mock
   private CatalogService catalogService;
 
+  /** The catalog controller. */
   @InjectMocks
   private CatalogController catalogController;
 
+  /**
+   * View main returns correct view.
+   */
   @Test
   void viewMainReturnsCorrectView() {
     assertThat(catalogController.viewMain()).isEqualTo("catalog/Main");
   }
 
+  /**
+   * View category with valid id.
+   */
   @Test
   void viewCategoryWithValidId() {
     Model model = new ExtendedModelMap();
@@ -60,6 +72,9 @@ class CatalogControllerTest {
     assertThat(model.asMap()).containsKey("productList");
   }
 
+  /**
+   * Search products with null keyword.
+   */
   @Test
   void searchProductsWithNullKeyword() {
     Model model = new ExtendedModelMap();
@@ -68,6 +83,9 @@ class CatalogControllerTest {
     assertThat(model.asMap()).containsKey("message");
   }
 
+  /**
+   * Search products with valid keyword.
+   */
   @Test
   void searchProductsWithValidKeyword() {
     Model model = new ExtendedModelMap();
@@ -78,5 +96,58 @@ class CatalogControllerTest {
 
     assertThat(view).isEqualTo("catalog/SearchProducts");
     assertThat(model.asMap()).containsKey("productList");
+  }
+
+  /**
+   * View product with null id does not populate model.
+   */
+  @Test
+  void viewProductWithNullIdDoesNotPopulateModel() {
+    Model model = new ExtendedModelMap();
+
+    String view = catalogController.viewProduct(null, model);
+
+    assertThat(view).isEqualTo("catalog/Product");
+    assertThat(model.asMap()).doesNotContainKey("itemList");
+    assertThat(model.asMap()).doesNotContainKey("product");
+  }
+
+  /**
+   * View product with valid id populates model.
+   */
+  @Test
+  void viewProductWithValidIdPopulatesModel() {
+    Model model = new ExtendedModelMap();
+    Product product = new Product();
+    product.setProductId("FI-SW-01");
+    List<Item> items = List.of();
+    when(catalogService.getProduct("FI-SW-01")).thenReturn(product);
+    when(catalogService.getItemListByProduct("FI-SW-01")).thenReturn(items);
+
+    String view = catalogController.viewProduct("FI-SW-01", model);
+
+    assertThat(view).isEqualTo("catalog/Product");
+    assertThat(model.asMap().get("product")).isSameAs(product);
+    assertThat(model.asMap().get("itemList")).isSameAs(items);
+  }
+
+  /**
+   * View item populates model with item and product.
+   */
+  @Test
+  void viewItemPopulatesModelWithItemAndProduct() {
+    Model model = new ExtendedModelMap();
+    Product product = new Product();
+    product.setProductId("FI-SW-01");
+    Item item = new Item();
+    item.setItemId("EST-1");
+    item.setProduct(product);
+    when(catalogService.getItem("EST-1")).thenReturn(item);
+
+    String view = catalogController.viewItem("EST-1", model);
+
+    assertThat(view).isEqualTo("catalog/Item");
+    assertThat(model.asMap().get("item")).isSameAs(item);
+    assertThat(model.asMap().get("product")).isSameAs(product);
   }
 }

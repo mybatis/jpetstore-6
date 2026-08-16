@@ -21,8 +21,6 @@ import org.mybatis.jpetstore.domain.Order;
 
 /**
  * The Interface OrderMapper.
- *
- * @author Eduardo Macarron
  */
 public interface OrderMapper {
 

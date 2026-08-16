@@ -32,15 +32,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * The Class CartController.
+ */
 @Controller
 @RequestMapping("/cart")
 public class CartController {
 
+  /** The error view. */
   private static final String ERROR_VIEW = "common/Error";
 
+  /** The catalog service. */
   @Autowired
   private CatalogService catalogService;
 
+  /**
+   * Get cart.
+   *
+   * @param session
+   *          the session
+   *
+   * @return the cart
+   */
   private Cart getCart(HttpSession session) {
     Cart cart = (Cart) session.getAttribute("cart");
     if (cart == null) {
@@ -50,12 +63,34 @@ public class CartController {
     return cart;
   }
 
+  /**
+   * View cart.
+   *
+   * @param session
+   *          the session
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping({ "", "/" })
   public String viewCart(HttpSession session, Model model) {
     model.addAttribute("cart", getCart(session));
     return "cart/Cart";
   }
 
+  /**
+   * Add item to cart.
+   *
+   * @param workingItemId
+   *          the working item id
+   * @param session
+   *          the session
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping("/addItem")
   public String addItemToCart(@RequestParam(value = "workingItemId", required = false) String workingItemId,
       HttpSession session, Model model) {
@@ -75,6 +110,18 @@ public class CartController {
     return "cart/Cart";
   }
 
+  /**
+   * Remove item from cart.
+   *
+   * @param workingItemId
+   *          the working item id
+   * @param session
+   *          the session
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping("/removeItem")
   public String removeItemFromCart(@RequestParam(value = "workingItemId", required = false) String workingItemId,
       HttpSession session, Model model) {
@@ -92,6 +139,18 @@ public class CartController {
     return "cart/Cart";
   }
 
+  /**
+   * Update cart quantities.
+   *
+   * @param request
+   *          the request
+   * @param session
+   *          the session
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @PostMapping("/update")
   public String updateCartQuantities(HttpServletRequest request, HttpSession session, Model model) {
     Cart cart = getCart(session);
@@ -113,6 +172,16 @@ public class CartController {
     return "cart/Cart";
   }
 
+  /**
+   * Check out.
+   *
+   * @param session
+   *          the session
+   * @param model
+   *          the model
+   *
+   * @return the string
+   */
   @GetMapping("/checkout")
   public String checkOut(HttpSession session, Model model) {
     model.addAttribute("cart", getCart(session));

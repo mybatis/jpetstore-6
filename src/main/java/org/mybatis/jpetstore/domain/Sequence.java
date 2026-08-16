@@ -19,8 +19,6 @@ import java.io.Serializable;
 
 /**
  * The Class Sequence.
- *
- * @author Eduardo Macarron
  */
 public class Sequence implements Serializable {
 

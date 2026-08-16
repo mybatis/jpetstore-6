@@ -21,8 +21,6 @@ import org.mybatis.jpetstore.domain.Product;
 
 /**
  * The Interface ProductMapper.
- *
- * @author Eduardo Macarron
  */
 public interface ProductMapper {
 

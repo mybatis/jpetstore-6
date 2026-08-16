@@ -21,8 +21,6 @@ import org.mybatis.jpetstore.domain.LineItem;
 
 /**
  * The Interface LineItemMapper.
- *
- * @author Eduardo Macarron
  */
 public interface LineItemMapper {
 

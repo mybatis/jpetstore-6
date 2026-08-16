@@ -13,30 +13,27 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.mybatis.jpetstore.mapper;
+package org.mybatis.jpetstore.web.controllers;
 
-import org.mybatis.jpetstore.domain.Sequence;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
 
 /**
- * The Interface SequenceMapper.
+ * The Class RootControllerTest.
  */
-public interface SequenceMapper {
+class RootControllerTest {
+
+  /** The root controller. */
+  private final RootController rootController = new RootController();
 
   /**
-   * Get sequence.
-   *
-   * @param sequence
-   *          the sequence
-   *
-   * @return the sequence
+   * Redirect to home returns redirect to index.
    */
-  Sequence getSequence(Sequence sequence);
+  @Test
+  void redirectToHomeReturnsRedirectToIndex() {
+    String view = rootController.redirectToHome();
 
-  /**
-   * Update sequence.
-   *
-   * @param sequence
-   *          the sequence
-   */
-  void updateSequence(Sequence sequence);
+    assertThat(view).isEqualTo("redirect:/index.html");
+  }
 }
