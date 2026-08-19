@@ -9,7 +9,7 @@ MyBatis JPetStore
 
 ![mybatis-jpetstore](https://mybatis.org/images/mybatis-logo.png)
 
-JPetStore 6 is a full web application built on top of MyBatis 3, Spring 5 and Stripes.
+JPetStore 6 is a full web application built on top of MyBatis 3 and Spring 7.
 
 ## Other versions that you may want to know about
 
@@ -36,29 +36,25 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
 - Startup the Tomcat server and deploy web application
 
   ```
-  $ ./mvnw cargo:run -P tomcat9
+  $ ./mvnw cargo:run -P tomcat11
   ```
 
   > Note:
   >
   > We provide maven profiles per application server as follow:
   >
-  > | Profile             | Description                         |
-  > | ------------------- | ----------------------------------- |
-  > | tomcat9 (preferred) | Running under the Tomcat 9.0        |
-  > | glassfish5          | Running under the GlassFish 5       |
-  > | jetty12-ee8         | Running under the Jetty 12          |
-  > | liberty26-ee8       | Running under the WebSphere Liberty |
-  > | payara5             | Running under the Payara 5          |
-  > | resin4              | Running under the Resin 4           |
-  > | tomee8              | Running under the TomEE 8.0         |
-  > | wildfly26           | Running under the WildFly 26        |
+  > | Profile              | Description                        |
+  > | -------------------- | ---------------------------------- |
+  > | tomcat11 (preferred) | Running under Tomcat 11.0          |
+  > | glassfish8           | Running under GlassFish 8          |
+  > | jetty12-ee11         | Running under Jetty 12             |
+  > | liberty26-ee11       | Running under WebSphere Liberty 26 |
+  > | payara7              | Running under Payara 7             |
+  > | tomee10              | Running under TomEE 10             |
+  > | wildfly41            | Running under the WildFly 41       |
 
 - Run application in browser http://localhost:8080/jpetstore/
 - Press Ctrl-C to stop the server.
-
-- When using 'glassfish5', it must run under java 8 as it does not work with newer versions.  The code is set to 'D:/jdk/jdk-1.8.0.501'.  Your usage likely differs, so simply call with '-Dcargo.java.home=PATH-TO-JDK8'.
-- When using 'payara', the full maven buil must run under java 17, this is unlike glassfish5 due to how it connects with cargo.  In that case, use '-Denforcer.skip=true' to accomplish.
 
 ## Run on Docker
 ```
@@ -75,5 +71,5 @@ docker compose up -d
 Perform integration tests for screen transition.
 
 ```
-$ ./mvnw clean verify -P tomcat9
+$ ./mvnw clean verify -P tomcat11
 ```

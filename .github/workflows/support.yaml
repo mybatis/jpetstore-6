@@ -32,48 +32,30 @@ jobs:
       matrix:
         cache: [maven]
         distribution: ['zulu']
+        java: [21]
         os: [macos-latest, ubuntu-latest, windows-latest]
-        token: ["tomcat9", "glassfish5", "jetty12-ee8", "liberty26-ee8", "payara5", "resin4", "tomee8", "wildfly26"]
-        exclude:
-          - os: windows-latest
-            token: liberty26-ee8
+        # Do not add tomee10 until https://github.com/apache/tomee/pull/2844 released
+        token: ["tomcat11", "glassfish8", "jetty12-ee11", "liberty26-ee11", "payara7", "wildfly41"]
       fail-fast: false
       max-parallel: 6
-    name: Test JDK ${{ matrix.token == 'payara5' && '17' || '21' }}, ${{ matrix.os }}, ${{ matrix.token }}
+    name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Setup Java ${{ matrix.token == 'payara5' && '17' || '21' }} ${{ matrix.distribution }}
+      - name: Setup Java ${{ matrix.java }} ${{ matrix.distribution }}
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           cache: ${{ matrix.cache }}
           distribution: ${{ matrix.distribution }}
-          java-version: ${{ matrix.token == 'payara5' && '17' || '21' }}
-
-      # Provision Java 8 specifically for GlassFish 5 side-by-side without changing default JAVA_HOME
-      - name: Setup Secondary Java 8 for GlassFish
-        if: matrix.token == 'glassfish5'
-        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
-        id: glassfish-jdk
-        with:
-          distribution: ${{ matrix.distribution }}
-          java-version: '8'
-          set-default: false
-
+          java-version: ${{ matrix.java }}
       - name: Build, start, test, and stop with ${{ matrix.token }}
         shell: bash
         run: |
-          # Dynamically set cargo.java.home only for glassfish5 using the secondary JDK path
-          CARGO_JAVA_OPT=""
-          if [ "${{ matrix.token }}" = "glassfish5" ]; then
-            CARGO_JAVA_OPT="-Dcargo.java.home=${{ steps.glassfish-jdk.outputs.path }}"
-          fi
-
           echo "Running package..."
           ./mvnw package --batch-mode --no-transfer-progress --show-version -D"enforcer.skip=true" -D"license.skip=true" -DskipTests -P ${{ matrix.token }}
 
           echo "Starting container forcing output flushing..."
-          nohup ./mvnw cargo:run -P ${{ matrix.token }} $CARGO_JAVA_OPT -Dorg.slf4j.simpleLogger.defaultLogLevel=info > cargo.log 2>&1 &
+          nohup ./mvnw cargo:run -P ${{ matrix.token }} -Dorg.slf4j.simpleLogger.defaultLogLevel=info > cargo.log 2>&1 &
 
           # Stream cargo.log to the background job output so you can see boot progress live
           tail -f cargo.log &
@@ -106,13 +88,13 @@ jobs:
           fi
 
           echo "Running integration tests..."
-          ./mvnw failsafe:integration-test -P ${{ matrix.token }} $CARGO_JAVA_OPT
+          ./mvnw failsafe:integration-test -P ${{ matrix.token }}
 
           echo "Verify integration tests..."
           ./mvnw failsafe:verify -P ${{ matrix.token }}
 
           echo "Stopping container..."
-          ./mvnw cargo:stop -P ${{ matrix.token }} $CARGO_JAVA_OPT
+          ./mvnw cargo:stop -P ${{ matrix.token }}
 
       - name: Upload Container Logs on Failure
         if: failure()
