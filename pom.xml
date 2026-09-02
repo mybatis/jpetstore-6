@@ -68,14 +68,14 @@
 
     <!-- Library Versions -->
     <assertj.version>3.27.7</assertj.version>
-    <byte-buddy.version>1.18.11</byte-buddy.version>
+    <byte-buddy.version>1.18.13</byte-buddy.version>
     <commons-logging.version>1.4.0</commons-logging.version>
     <hsqldb.version>2.7.4</hsqldb.version>
     <jstl-api.version>3.0.2</jstl-api.version>
     <jstl-impl.version>3.0.1</jstl-impl.version>
     <mockito.version>5.23.0</mockito.version>
     <slf4j.version>2.0.18</slf4j.version>
-    <spring.version>7.0.8</spring.version>
+    <spring.version>7.0.9</spring.version>
 
     <!-- Plugin Versions -->
     <cargo-maven3-plugin.version>1.10.28</cargo-maven3-plugin.version>
@@ -95,7 +95,7 @@
       <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-bom</artifactId>
-        <version>4.47.0</version>
+        <version>4.48.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -227,14 +227,14 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>7.17.0</version>
+      <version>7.18.1</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit3-driver</artifactId>
-      <version>4.47.0</version>
+      <version>4.48.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -329,7 +329,7 @@
       </activation>
       <properties>
         <tomcat.major-version>11.0</tomcat.major-version>
-        <tomcat.version>11.0.24</tomcat.version>
+        <tomcat.version>11.0.25</tomcat.version>
         <cargo.maven.containerId>tomcat11x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/${tomcat.version}/tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -468,7 +468,7 @@
     <profile>
       <id>payara7</id>
       <properties>
-        <payara.version>7.2026.7</payara.version>
+        <payara.version>7.2026.8</payara.version>
         <cargo.maven.containerId>payara</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
         <cargo.server.start.timeout>240000</cargo.server.start.timeout>
@@ -556,7 +556,7 @@
     <profile>
       <id>wildfly41</id>
       <properties>
-        <wildfly.version>41.0.0.Final</wildfly.version>
+        <wildfly.version>41.0.1.Final</wildfly.version>
         <cargo.maven.containerId>wildfly41x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
