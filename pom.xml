@@ -72,7 +72,7 @@
     <commons-logging.version>1.4.0</commons-logging.version>
     <hsqldb.version>2.7.4</hsqldb.version>
     <mockito.version>5.23.0</mockito.version>
-    <slf4j.version>2.0.18</slf4j.version>
+    <slf4j.version>2.0.19</slf4j.version>
     <spring.version>5.3.39</spring.version>
 
     <!-- Plugin Versions -->
