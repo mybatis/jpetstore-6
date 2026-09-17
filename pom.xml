@@ -76,7 +76,7 @@
     <spring.version>5.3.39</spring.version>
 
     <!-- Plugin Versions -->
-    <cargo-maven3-plugin.version>1.10.28</cargo-maven3-plugin.version>
+    <cargo-maven3-plugin.version>1.10.29</cargo-maven3-plugin.version>
 
     <!-- Automatic Module Name -->
     <module.name>org.mybatis.jpetstore</module.name>
