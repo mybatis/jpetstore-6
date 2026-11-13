@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>52</version>
+    <version>53</version>
     <relativePath />
   </parent>
 
@@ -59,8 +59,8 @@
 
   <properties>
     <!-- Java Usage -->
-    <java.version>8</java.version>
-    <java.release.version>8</java.release.version>
+    <java.version>11</java.version>
+    <java.release.version>11</java.release.version>
 
     <!-- Configuration -->
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
@@ -68,15 +68,15 @@
 
     <!-- Library Versions -->
     <assertj.version>3.27.7</assertj.version>
-    <byte-buddy.version>1.18.13</byte-buddy.version>
+    <byte-buddy.version>1.18.17</byte-buddy.version>
     <commons-logging.version>1.4.0</commons-logging.version>
     <hsqldb.version>2.7.4</hsqldb.version>
-    <mockito.version>5.23.0</mockito.version>
-    <slf4j.version>2.0.19</slf4j.version>
+    <mockito.version>5.24.0</mockito.version>
+    <slf4j.version>2.0.20</slf4j.version>
     <spring.version>5.3.39</spring.version>
 
     <!-- Plugin Versions -->
-    <cargo-maven3-plugin.version>1.10.28</cargo-maven3-plugin.version>
+    <cargo-maven3-plugin.version>1.10.30</cargo-maven3-plugin.version>
 
     <!-- Automatic Module Name -->
     <module.name>org.mybatis.jpetstore</module.name>
@@ -93,7 +93,7 @@
       <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-bom</artifactId>
-        <version>4.49.0</version>
+        <version>4.52.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -105,7 +105,7 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.5.19</version>
+      <version>3.6.0</version>
     </dependency>
     <dependency>
       <groupId>org.mybatis</groupId>
@@ -231,14 +231,14 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>7.18.1</version>
+      <version>7.19.1</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit3-driver</artifactId>
-      <version>4.48.0</version>
+      <version>4.52.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -281,7 +281,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.6.0</version>
+          <version>3.6.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
