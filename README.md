@@ -9,7 +9,7 @@ MyBatis JPetStore
 
 ![mybatis-jpetstore](https://mybatis.org/images/mybatis-logo.png)
 
-JPetStore 6 is a full web application built on top of MyBatis 3, Spring 5 and Stripes.
+JPetStore 6 is a full web application built on top of MyBatis 3 and Spring 5.
 
 ## Other versions that you may want to know about
 
@@ -58,7 +58,7 @@ Running JPetStore sample under Tomcat (using the [cargo-maven2-plugin](https://c
 - Press Ctrl-C to stop the server.
 
 - When using 'glassfish5', it must run under java 8 as it does not work with newer versions.  The code is set to 'D:/jdk/jdk-1.8.0.501'.  Your usage likely differs, so simply call with '-Dcargo.java.home=PATH-TO-JDK8'.
-- When using 'payara', the full maven buil must run under java 17, this is unlike glassfish5 due to how it connects with cargo.  In that case, use '-Denforcer.skip=true' to accomplish.
+- When using 'payara', the full maven build must run under java 17, this is unlike glassfish5 due to how it connects with cargo.  In that case, use '-Denforcer.skip=true' to accomplish.
 
 ## Run on Docker
 ```
