@@ -31,7 +31,7 @@ jobs:
     strategy:
       matrix:
         cache: [maven]
-        distribution: ['zulu']
+        distribution: ['temurin']
         java: [21]
         os: [macos-latest, ubuntu-latest, windows-latest]
         token: ["tomcat11", "glassfish8", "jetty12-ee11", "liberty26-ee11", "payara7", "tomee10", "wildfly42"]
