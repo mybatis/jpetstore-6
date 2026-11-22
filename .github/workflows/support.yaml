@@ -34,8 +34,7 @@ jobs:
         distribution: ['zulu']
         java: [21]
         os: [macos-latest, ubuntu-latest, windows-latest]
-        # Do not add tomee10 until https://github.com/apache/tomee/pull/2844 released
-        token: ["tomcat11", "glassfish8", "jetty12-ee11", "liberty26-ee11", "payara7", "wildfly41"]
+        token: ["tomcat11", "glassfish8", "jetty12-ee11", "liberty26-ee11", "payara7", "tomee10", "wildfly42"]
       fail-fast: false
       max-parallel: 6
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}, ${{ matrix.token }}
@@ -43,7 +42,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Setup Java ${{ matrix.java }} ${{ matrix.distribution }}
-        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+        uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
         with:
           cache: ${{ matrix.cache }}
           distribution: ${{ matrix.distribution }}
@@ -98,7 +97,7 @@ jobs:
 
       - name: Upload Container Logs on Failure
         if: failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: cargo-logs-${{ matrix.token }}-${{ matrix.os }}
           path: |

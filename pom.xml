@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>52</version>
+    <version>53</version>
     <relativePath />
   </parent>
 
@@ -63,22 +63,22 @@
     <java.release.version>21</java.release.version>
 
     <!-- Configuration -->
-    <clirr.comparisonVersion>7.0.0</clirr.comparisonVersion>
+    <clirr.comparisonVersion>6.4.0</clirr.comparisonVersion>
     <osgi.export />
 
     <!-- Library Versions -->
     <assertj.version>3.27.7</assertj.version>
-    <byte-buddy.version>1.18.13</byte-buddy.version>
+    <byte-buddy.version>1.18.17</byte-buddy.version>
     <commons-logging.version>1.4.0</commons-logging.version>
     <hsqldb.version>2.7.4</hsqldb.version>
     <jstl-api.version>3.0.2</jstl-api.version>
     <jstl-impl.version>3.0.1</jstl-impl.version>
-    <mockito.version>5.23.0</mockito.version>
-    <slf4j.version>2.0.18</slf4j.version>
-    <spring.version>7.0.9</spring.version>
+    <mockito.version>5.24.0</mockito.version>
+    <slf4j.version>2.0.20</slf4j.version>
+    <spring.version>7.2.0</spring.version>
 
     <!-- Plugin Versions -->
-    <cargo-maven3-plugin.version>1.10.28</cargo-maven3-plugin.version>
+    <cargo-maven3-plugin.version>1.10.30</cargo-maven3-plugin.version>
 
     <!-- Automatic Module Name -->
     <module.name>org.mybatis.jpetstore</module.name>
@@ -95,7 +95,7 @@
       <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-bom</artifactId>
-        <version>4.48.0</version>
+        <version>4.53.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -107,7 +107,7 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.5.19</version>
+      <version>3.6.0</version>
     </dependency>
     <dependency>
       <groupId>org.mybatis</groupId>
@@ -227,14 +227,14 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>7.18.1</version>
+      <version>7.19.2</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit3-driver</artifactId>
-      <version>4.48.0</version>
+      <version>4.52.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -258,7 +258,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.5.6</version>
+          <version>3.6.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -329,7 +329,7 @@
       </activation>
       <properties>
         <tomcat.major-version>11.0</tomcat.major-version>
-        <tomcat.version>11.0.25</tomcat.version>
+        <tomcat.version>11.0.29</tomcat.version>
         <cargo.maven.containerId>tomcat11x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/${tomcat.version}/tomcat-${tomcat.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -355,7 +355,7 @@
     <profile>
       <id>glassfish8</id>
       <properties>
-        <glassfish.version>8.0.4</glassfish.version>
+        <glassfish.version>8.0.5</glassfish.version>
         <cargo.maven.containerId>glassfish8x</cargo.maven.containerId>
         <cargo.server.start.timeout>240000</cargo.server.start.timeout>
       </properties>
@@ -402,7 +402,7 @@
       <id>jetty12-ee11</id>
       <properties>
         <jetty.major-version>12</jetty.major-version>
-        <jetty.version>12.1.12</jetty.version>
+        <jetty.version>12.1.15</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.jetty.deployer.ee.version>ee11</cargo.jetty.deployer.ee.version>
       </properties>
@@ -430,7 +430,7 @@
     <profile>
       <id>liberty26-ee11</id>
       <properties>
-        <liberty.version>26.0.0.8</liberty.version>
+        <liberty.version>26.0.0.11</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/io/openliberty/openliberty-jakartaee11/${liberty.version}/openliberty-jakartaee11-${liberty.version}.zip</cargo.maven.containerUrl>
         <cargo.server.start.timeout>240000</cargo.server.start.timeout>
@@ -468,7 +468,7 @@
     <profile>
       <id>payara7</id>
       <properties>
-        <payara.version>7.2026.8</payara.version>
+        <payara.version>7.2026.11</payara.version>
         <cargo.maven.containerId>payara</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/fish/payara/distributions/payara/${payara.version}/payara-${payara.version}.zip</cargo.maven.containerUrl>
         <cargo.server.start.timeout>240000</cargo.server.start.timeout>
@@ -513,7 +513,7 @@
       <id>tomee10</id>
       <properties>
         <tomee.major-version>10</tomee.major-version>
-        <tomee.version>10.2.0</tomee.version>
+        <tomee.version>10.3.0</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
@@ -554,9 +554,9 @@
     </profile>
 
     <profile>
-      <id>wildfly41</id>
+      <id>wildfly42</id>
       <properties>
-        <wildfly.version>41.0.1.Final</wildfly.version>
+        <wildfly.version>42.0.0.Final</wildfly.version>
         <cargo.maven.containerId>wildfly41x</cargo.maven.containerId>
         <cargo.maven.containerUrl>https://github.com/wildfly/wildfly/releases/download/${wildfly.version}/wildfly-${wildfly.version}.zip</cargo.maven.containerUrl>
       </properties>
