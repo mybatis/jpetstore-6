@@ -63,7 +63,7 @@
     <java.release.version>11</java.release.version>
 
     <!-- Configuration -->
-    <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
+    <clirr.comparisonVersion>6.3.0</clirr.comparisonVersion>
     <osgi.export />
 
     <!-- Library Versions -->
