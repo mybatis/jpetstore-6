@@ -15,10 +15,10 @@
  */
 package org.mybatis.jpetstore.web.controllers;
 
-import java.util.Iterator;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.util.Iterator;
 
 import org.mybatis.jpetstore.domain.Cart;
 import org.mybatis.jpetstore.domain.CartItem;
