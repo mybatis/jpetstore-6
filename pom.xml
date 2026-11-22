@@ -75,7 +75,7 @@
     <jstl-impl.version>3.0.1</jstl-impl.version>
     <mockito.version>5.24.0</mockito.version>
     <slf4j.version>2.0.20</slf4j.version>
-    <spring.version>7.2.0</spring.version>
+    <spring.version>7.1.0</spring.version>
 
     <!-- Plugin Versions -->
     <cargo-maven3-plugin.version>1.10.30</cargo-maven3-plugin.version>
